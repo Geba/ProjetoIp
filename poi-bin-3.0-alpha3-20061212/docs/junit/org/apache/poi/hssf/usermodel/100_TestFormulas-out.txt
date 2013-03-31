@@ -1,0 +1,2 @@
+Open /tmp/bug27272_143619.xls in Excel
+Open /tmp/bug27272_243620.xls in Excel

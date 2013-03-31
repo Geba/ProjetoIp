@@ -1,0 +1,12 @@
+Couldn't find the new location of the "slide" with id 9 that used to be at 135180
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
+Couldn't find the new location of the "slide" with id 8 that used to be at 124616
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
+Couldn't find the new location of the "slide" with id 6 that used to be at 114073
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
+Couldn't find the new location of the "slide" with id 5 that used to be at 103520
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
+Couldn't find the new location of the "slide" with id 4 that used to be at 92989
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
+Couldn't find the new location of the "slide" with id 3 that used to be at 10469
+Not updating the position of it, you probably won't be able to find it any more (if you ever could!)
