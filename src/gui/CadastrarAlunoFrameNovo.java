@@ -35,7 +35,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
+					CadastrarAlunoFrameNovo frame = new CadastrarAlunoFrameNovo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

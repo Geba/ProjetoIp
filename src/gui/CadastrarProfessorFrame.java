@@ -35,7 +35,7 @@ public class CadastrarProfessorFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
+					CadastrarProfessorFrame frame = new CadastrarProfessorFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

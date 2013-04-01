@@ -21,7 +21,7 @@ public class EscolaFrameNovo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EscolaFrame frame = new EscolaFrame();
+					EscolaFrameNovo frame = new EscolaFrameNovo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

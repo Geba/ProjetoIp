@@ -38,7 +38,7 @@ public class CadastrarAdmFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
+					CadastrarAdmFrame frame = new CadastrarAdmFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
