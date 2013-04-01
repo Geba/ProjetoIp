@@ -4,10 +4,10 @@ public class Administrador extends Empregado {
 	private String login;
 	private String senha;
 
-	public Administrador(String cpf, String nome, String identidade,
+	public Administrador(String cpf, String nome, String dataNasc, String identidade,
 			String sexo, Endereco endereco, String funcao,
 			String login) {
-		super(cpf, nome, identidade, sexo, endereco, funcao);
+		super(cpf, nome, dataNasc, identidade, sexo, endereco, funcao);
 		this.login = login;
 	}
 

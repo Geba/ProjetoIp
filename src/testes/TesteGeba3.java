@@ -13,19 +13,19 @@ public class TesteGeba3 {
 				"asd", "", "asdasd");
 		Turma turma = new Turma("tumrma1");
 
-		Pessoa bruna = new Aluno("43536787656", "Bruna", "7727724", "F", end,
+		Pessoa bruna = new Aluno("43536787656", "Bruna","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
-		Pessoa harry = new Aluno("25365576866", "Harry", "7727724", "F", end,
+		Pessoa harry = new Aluno("25365576866", "Harry","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
-		Pessoa alana = new Aluno("47623456456", "Laryssa", "7727724", "F", end,
+		Pessoa alana = new Aluno("47623456456", "Laryssa","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
-		Pessoa geba = new Aluno("83830480504", "Geovane", "7727724", "F", end,
-				"Luiz", "Nancy", turma);
-
-		Pessoa novo = new Aluno("000000", "Fulano", "7727724", "F", end,
+		Pessoa geba = new Aluno("83830480504", "Geovane","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
 
-		Pessoa novo2 = new Aluno("000000", "Fulano2", "7727724", "F", end,
+		Pessoa novo = new Aluno("000000", "Fulano", "","7727724", "F", end,
+				"Luiz", "Nancy", turma);
+
+		Pessoa novo2 = new Aluno("000000", "Fulano2","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
 
 		pessoas.inserir(geba);
@@ -71,9 +71,9 @@ public class TesteGeba3 {
 		}
 
 		
-		Pessoa alana2 = new Aluno("47623456456", "Alana", "7727724", "F", end,
+		Pessoa alana2 = new Aluno("47623456456", "Alana","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
-		Pessoa geba2 = new Aluno("83830480504", "Geba", "7727724", "F", end,
+		Pessoa geba2 = new Aluno("83830480504", "Geba","", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
 		System.out.println("\n\nTeste aualizar Laryssa p Alana\n");
 		try {

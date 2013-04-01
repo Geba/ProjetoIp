@@ -6,9 +6,9 @@ public class Professor extends Empregado {
 	private String senha;
 	private RepositorioTurma turmas;
 	private RepositorioArrayDisciplina disciplinas;
-	public Professor(String cpf, String nome, String identidade, String sexo,
+	public Professor(String cpf, String nome, String dataNasc, String identidade, String sexo,
 			Endereco endereco, String funcao, String login) {
-		super(cpf, nome, identidade, sexo, endereco, funcao);
+		super(cpf, nome, dataNasc, identidade, sexo, endereco, funcao);
 		this.login=login;
 	}
 	public String getLogin() {

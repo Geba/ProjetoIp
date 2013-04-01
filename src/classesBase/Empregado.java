@@ -4,9 +4,9 @@ public abstract class Empregado extends Pessoa {
 	private String funcao;
 	private double salario;
 	private boolean[][] frequencia;
-	public Empregado(String cpf, String nome, String identidade, String sexo,
+	public Empregado(String cpf, String nome, String dataNasc, String identidade, String sexo,
 			Endereco endereco, String funcao) {
-		super(cpf, nome, identidade, sexo, endereco);
+		super(cpf, nome, dataNasc, identidade, sexo, endereco);
 		this.funcao = funcao;
 		this.salario = 0.0;
 		frequencia = new boolean[12][31];

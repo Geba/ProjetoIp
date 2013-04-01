@@ -19,9 +19,9 @@ public class Aluno extends Pessoa {
 	private Turma turma;
 	private Boletim boletim;
 
-	public Aluno(String cpf, String nome, String identidade, String sexo,
+	public Aluno(String cpf, String nome, String dataNasc, String identidade, String sexo,
 			Endereco endereco, String pai, String mae, Turma turma) {
-		super(cpf, nome, identidade, sexo, endereco);
+		super(cpf, nome, dataNasc, identidade, sexo, endereco);
 		this.pai = pai;
 		this.mae = mae;
 		presenca = new Boolean[12][31];
