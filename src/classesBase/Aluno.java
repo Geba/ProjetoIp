@@ -6,6 +6,10 @@ public class Aluno extends Pessoa {
 	private String pai;
 	private String mae;
 	private String numeroMatricula;
+	private Boolean[][] presenca;
+	private Turma turma;
+	private Boletim boletim;
+
 
 	public Boletim getBoletim() {
 		return boletim;
@@ -15,9 +19,6 @@ public class Aluno extends Pessoa {
 		this.boletim = boletim;
 	}
 
-	private Boolean[][] presenca;
-	private Turma turma;
-	private Boletim boletim;
 
 	public Aluno(String cpf, String nome, String dataNasc, String identidade, String sexo,
 			Endereco endereco, String pai, String mae, Turma turma) {

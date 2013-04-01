@@ -27,9 +27,6 @@ public class CadastrarProfessorFrame extends JFrame {
 	private JTextField textField_10;
 	private JTextField textField_11;
 	private JTextField textField_12;
-	private JTextField textField_4;
-	private JPasswordField passwordField;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -188,32 +185,6 @@ public class CadastrarProfessorFrame extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(21, 285, 250, 96);
 		contentPane.add(textArea);
-		
-		JLabel lblInsiraUmLogin = new JLabel("Insira um login:");
-		lblInsiraUmLogin.setBounds(287, 277, 105, 16);
-		contentPane.add(lblInsiraUmLogin);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(389, 271, 142, 28);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
-		
-		JLabel lblDigiteUmaSenha = new JLabel("Digite uma senha:");
-		lblDigiteUmaSenha.setBounds(287, 305, 134, 16);
-		contentPane.add(lblDigiteUmaSenha);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(409, 299, 134, 28);
-		contentPane.add(passwordField);
-		
-		JLabel lblConfirmeASenha = new JLabel("Confirme sua senha:");
-		lblConfirmeASenha.setBounds(287, 333, 134, 16);
-		contentPane.add(lblConfirmeASenha);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(419, 327, 134, 28);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
 	}
 }
 
