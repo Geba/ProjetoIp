@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 
 //import modificacoes.RepositorioArrayPessoa2;
 
+import modificacoes.RepositorioArrayPessoa2;
+
 import org.apache.poi.hssf.usermodel.*;
 
 import classesBase.*;
@@ -17,7 +19,7 @@ import excecoes.RepositorioException;
 
 public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
-	private RepositorioArrayPessoa pessoas;
+	private RepositorioArrayPessoa2 pessoas;
 	HSSFWorkbook wb;
 	HSSFSheet sheet1;
 	int cont = 0;
@@ -68,7 +70,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			abrir = true;
 		}
 
-		pessoas = new RepositorioArrayPessoa();
+		pessoas = new RepositorioArrayPessoa2();
 		this.lerPlanilha();
 
 	}
@@ -90,7 +92,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 				cell = row.getCell((short) 0);
 			} catch (NullPointerException e) {
 				acabou = true;
-				 System.out.println("acabou");
+				System.out.println("acabou");
 			}
 			if (cell != null) {
 
@@ -116,7 +118,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 					}
 
 					nome = lerCelula(i, 2);
-					String dataNasc=lerCelula(i, 3);
+					String dataNasc = lerCelula(i, 3);
 					try {
 						rg = lerCelula(i, 4);
 					} catch (NumberFormatException e) {
@@ -149,7 +151,10 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 						senha = "" + (int) cell7.getNumericCellValue();
 					}
 					try {
-						salario = Double.parseDouble(lerCelula(i, 20));
+						String sal = lerCelula(i, 20);
+						if (!sal.equals("")) {
+							salario = Double.parseDouble(lerCelula(i, 20));
+						}
 					} catch (NumberFormatException e) {
 						HSSFCell cell7 = row.getCell((short) 20);
 						salario = cell7.getNumericCellValue();
@@ -160,28 +165,28 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 					switch ((int) tipoPessoa) {
 					case 1:
-						pessoa = new Aluno(cpf, nome, dataNasc, rg, sexo, end, pai, mae,
-								turma);
+						pessoa = new Aluno(cpf, nome, dataNasc, rg, sexo, end,
+								pai, mae, turma);
 						((Aluno) pessoa).setNumeroMatricula(numeroMatricula);
 						// System.out.println("criou um aluno");
 						break;
 					case 2:
-						pessoa = new Administrador(cpf, nome, dataNasc, rg, sexo, end,
-								funcao, login);
+						pessoa = new Administrador(cpf, nome, dataNasc, rg,
+								sexo, end, funcao, login);
 						((Administrador) pessoa).setSalario(salario);
 						((Administrador) pessoa).setSenha(senha);
 						// System.out.println("criou um adm");
 						break;
 					case 3:
-						pessoa = new Professor(cpf, nome, dataNasc, rg, sexo, end,
-								funcao, login);
+						pessoa = new Professor(cpf, nome, dataNasc, rg, sexo,
+								end, funcao, login);
 						((Professor) pessoa).setSalario(salario);
 						((Professor) pessoa).setSenha(senha);
 						// System.out.println("criou um prof");
 						break;
 					case 4:
-						pessoa = new Funcionario(cpf, nome, dataNasc, rg, sexo, end,
-								funcao);
+						pessoa = new Funcionario(cpf, nome, dataNasc, rg, sexo,
+								end, funcao);
 						((Funcionario) pessoa).setSalario(salario);
 						// System.out.println("criou um func");
 					}
@@ -198,7 +203,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 	}
 
-	public RepositorioArrayPessoa getPessoas() {
+	public RepositorioArrayPessoa2 getPessoas() {
 		return pessoas;
 	}
 
@@ -251,7 +256,8 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
 			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
 			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10).setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 10)
+					.setCellValue(p.getEndereco().getCidade());
 			row.createCell((short) 11)
 					.setCellValue(p.getEndereco().getEstado());
 			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
@@ -278,7 +284,8 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
 			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
 			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10).setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 10)
+					.setCellValue(p.getEndereco().getCidade());
 			row.createCell((short) 11)
 					.setCellValue(p.getEndereco().getEstado());
 			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
@@ -309,8 +316,8 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row2.createCell((short) 8)
 					.setCellValue(p.getEndereco().getBairro());
 			row2.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row2.createCell((short) 10)
-					.setCellValue(p.getEndereco().getCidade());
+			row2.createCell((short) 10).setCellValue(
+					p.getEndereco().getCidade());
 			row2.createCell((short) 11).setCellValue(
 					p.getEndereco().getEstado());
 			row2.createCell((short) 12).setCellValue(p.getEndereco().getPais());
@@ -339,7 +346,8 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
 			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
 			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10).setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 10)
+					.setCellValue(p.getEndereco().getCidade());
 			row.createCell((short) 11)
 					.setCellValue(p.getEndereco().getEstado());
 			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
@@ -416,7 +424,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 		}
 
 		nome2 = lerCelula(i, 2);
-		String dataNasc=lerCelula(i, 3);
+		String dataNasc = lerCelula(i, 3);
 		try {
 			rg = lerCelula(i, 4);
 		} catch (NumberFormatException e) {
@@ -461,25 +469,28 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 		switch ((int) tipoPessoa) {
 		case 1:
-			pessoa = new Aluno(cpf2, nome2,dataNasc, rg, sexo, end, pai, mae, turma);
+			pessoa = new Aluno(cpf2, nome2, dataNasc, rg, sexo, end, pai, mae,
+					turma);
 			((Aluno) pessoa).setNumeroMatricula(numeroMatricula);
 			// System.out.println("criou um aluno");
 			break;
 		case 2:
-			pessoa = new Administrador(cpf2, nome2, dataNasc, rg, sexo, end, funcao,
-					login);
+			pessoa = new Administrador(cpf2, nome2, dataNasc, rg, sexo, end,
+					funcao, login);
 			((Administrador) pessoa).setSalario(salario);
 			((Administrador) pessoa).setSenha(senha);
 			// System.out.println("criou um adm");
 			break;
 		case 3:
-			pessoa = new Professor(cpf2, nome2, dataNasc, rg, sexo, end, funcao, login);
+			pessoa = new Professor(cpf2, nome2, dataNasc, rg, sexo, end,
+					funcao, login);
 			((Professor) pessoa).setSalario(salario);
 			((Professor) pessoa).setSenha(senha);
 			// System.out.println("criou um prof");
 			break;
 		case 4:
-			pessoa = new Funcionario(cpf2, nome2, dataNasc, rg, sexo, end, funcao);
+			pessoa = new Funcionario(cpf2, nome2, dataNasc, rg, sexo, end,
+					funcao);
 			((Funcionario) pessoa).setSalario(salario);
 			// System.out.println("criou um func");
 		}
@@ -527,7 +538,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 		System.out.println(i);
 
-		HSSFRow row = sheet1.getRow(i-1);
+		HSSFRow row = sheet1.getRow(i);
 		for (int k = 0; k < 19; k++) {
 			row.getCell((short) k).setCellValue("");
 		}
@@ -549,6 +560,72 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 		}
 
 		pessoas.remover(cpf);
+	}
+
+	public String imprimir() {
+		String retorno = "";
+
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Pessoas");
+
+		for (int i = 0; i < cont; i++) {
+			HSSFRow row = this.sheet1.getRow(i);
+			String cpf, rg;
+			try {
+				cpf = lerCelula(i, 1);
+			} catch (NumberFormatException e) {
+				HSSFCell cell2 = row.getCell((short) 1);
+				cpf = "" + (int) cell2.getNumericCellValue();
+			}
+
+			String nome = lerCelula(i, 2);
+			String dataNasc = lerCelula(i, 3);
+			try {
+				rg = lerCelula(i, 4);
+			} catch (NumberFormatException e) {
+				HSSFCell cell4 = row.getCell((short) 4);
+				rg = "" + (int) cell4.getNumericCellValue();
+			}
+			if (!nome.equals("")) {
+				retorno += nome + " / " + cpf + " / " + rg + " / " + dataNasc
+						+ "\n";
+			}
+		}
+
+		try {
+			wb.write(stream);
+		} catch (IOException e) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e) {
+			System.out.println("erro close");
+		}
+		return retorno;
 	}
 
 }

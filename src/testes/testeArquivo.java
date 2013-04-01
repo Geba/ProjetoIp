@@ -58,13 +58,13 @@ public class testeArquivo {
 		}
 		
 		System.out.println("imprimindo inseriu: ");
-		System.out.println(pessoas.getPessoas().imprimir());
+		System.out.println(pessoas.imprimir());
 		
 		try {
-			pessoas.remover("33");
+			pessoas.remover("43536787656");
 			//pessoas.atualizar(item);
 			//System.out.println(pessoas.procurar("83830480504").getNome());
-			System.out.println(pessoas.getPessoas().procurar("83830480504").getNome()+" <<<<\n");
+			//System.out.println(pessoas.getPessoas().procurar("83830480504").getNome()+" <<<<\n");
 		} catch (RepositorioException e) {
 			System.out.println("rep excep");
 		} catch (ElementoNaoEncontradoException e) {
@@ -72,7 +72,7 @@ public class testeArquivo {
 		}
 		
 		System.out.println("imprimindo removeu bruna: ");
-		System.out.println(pessoas.getPessoas().imprimir());
+		System.out.println(pessoas.imprimir());
 	}
 
 }
