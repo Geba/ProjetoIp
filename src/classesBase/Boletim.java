@@ -1,21 +1,22 @@
 package classesBase;
 
-import dados.RepositorioArrayDisciplina;
+import modificacoes.RepositorioArrayDisciplina2;
+
 
 public class Boletim {
-	private RepositorioArrayDisciplina disciplinas;
+	private RepositorioArrayDisciplina2 disciplinas;
 	private double[][] notas;
 
-	public Boletim(RepositorioArrayDisciplina d) { // quantidade de disciplinas
-		disciplinas = d;
-		notas = new double[d.getCont()][4];
+	public Boletim(RepositorioArrayDisciplina2 repositorioArrayDisciplina2) { // quantidade de disciplinas
+		disciplinas = repositorioArrayDisciplina2;
+		notas = new double[repositorioArrayDisciplina2.getCont()][4];
 	}
 
-	public RepositorioArrayDisciplina getDisciplinas() {
+	public RepositorioArrayDisciplina2 getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(RepositorioArrayDisciplina disciplinas) {
+	public void setDisciplinas(RepositorioArrayDisciplina2 disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 

@@ -1,12 +1,10 @@
 package testes;
 import classesBase.*;
-import dados.RepositorioListaPessoa;
+import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 public class TesteGeba2 {
 
 	public static void main(String[] args) {
-
-		// FUNCIONOU TUDO DO ARRAY DE PESSOA!
 
 		RepositorioListaPessoa pessoas = new RepositorioListaPessoa();
 		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",

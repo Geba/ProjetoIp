@@ -3,59 +3,74 @@ package testes;
 import classesBase.Aluno;
 import classesBase.Endereco;
 import classesBase.Pessoa;
+import classesBase.Professor;
 import classesBase.Turma;
-import dados.RepositorioArrayPessoa;
+import dados.RepositorioPessoaArquivoXls;
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.RepositorioException;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
-		// FUNCIONOU TUDO DO ARRAY DE PESSOA!
+		System.out.println("comecou");
+		
 
-		RepositorioArrayPessoa pessoas = new RepositorioArrayPessoa();
+		RepositorioPessoaArquivoXls pessoas = new RepositorioPessoaArquivoXls();
+
 		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",
 				"asd", "", "asdasd");
 		Turma turma = new Turma("tumrma1");
-		Pessoa p = new Aluno("12345678983", "Ana", "7727724", "F",
-				end, "Luiz", "Nancy", turma);
-		Pessoa a = new Aluno("43536787656", "Bruna", "7727724", "F",
-				end, "Luiz", "Nancy", turma);
-		Pessoa alana = new Aluno("47623456456", "Laryssa", "7727724", "F", end,
-				"Luiz", "Nancy", turma);
-		Pessoa geba = new Aluno("97087543324", "Geovane", "7727724", "F",
-				end, "Luiz", "Nancy", turma);
 
-		Pessoa novo = new Aluno("47623456456", "Fulano", "7727724", "F", end,
+		Pessoa bruna = new Aluno("43536787656", "Bruna", "7727724", "F", end,
+				"Luiz", "Nancy", turma);
+		// Pessoa harry = new Aluno("25365576866", "Harry", "7727724", "F", end,
+		// "Luiz", "Nancy", turma);
+		Pessoa laryssa = new Professor("47623456456", "Laryssa", "7727724",
+				"F", end, "ser legal", "alasdsas");
+		Pessoa geba = new Aluno("83830480504", "Geovane", "7727724", "F", end,
 				"Luiz", "Nancy", turma);
 
-		pessoas.inserir(geba);
-		pessoas.inserir(alana);
-		pessoas.inserir(a);
-		pessoas.inserir(p);
-		
-		
-System.out.println("\nImprima:\n");
-		
-			
-	System.out.println(pessoas.imprimir());
-	
-	try {
-		pessoas.atualizar(novo);
-	} catch (ElementoNaoEncontradoException e) {
-		System.out.println(e.getMessage());
-	}
-	
-	System.out.println(pessoas.imprimir());
-	
-	try {
-		pessoas.remover(a.getCpf());
-	} catch (ElementoNaoEncontradoException e) {
-		System.out.println(e.getMessage());
-	}
-	
-	System.out.println(pessoas.imprimir());
+		Pessoa novo = new Aluno("000000", "Fulano", "7727724", "F", end,
+				"Luiz", "Nancy", turma);
 
+		Pessoa prof = new Professor("47623456456", "Prof", "7727724", "F", end,
+				"ser legal", "alasds");
+		
+		Pessoa item = new Professor("47623456456", "profatualizado", "7727724", "F", end,
+				"ser legal", "alasds");
+
+		// Pessoa novo2 = new Aluno("000000", "Fulano2", "7727724", "F", end,
+		// "Luiz", "Nancy", turma);
+		
+		System.out.println("imprimindo: ");
+		System.out.println(pessoas.getPessoas().imprimir());
+
+		try {
+			pessoas.inserir(prof);
+			pessoas.inserir(geba);
+			pessoas.inserir(bruna);
+			pessoas.inserir(novo);
+			pessoas.inserir(laryssa);
+		} catch (RepositorioException e) {
+			System.out.println("n deu certo");
+		}
+		
+		System.out.println("imprimindo: ");
+		System.out.println(pessoas.getPessoas().imprimir());
+		
+		try {
+			pessoas.remover("43536787656");
+			pessoas.atualizar(item);
+			System.out.println(pessoas.procurar("83830480504").getNome());
+		} catch (RepositorioException e) {
+			System.out.println("rep excep");
+		} catch (ElementoNaoEncontradoException e) {
+			System.out.println("n encontrado");
+		}
+		
+		//System.out.println("imprimindo: ");
+		//System.out.println(pessoas.getPessoas().imprimir());
 	}
 
 }

@@ -1,16 +1,21 @@
 package testes;
 
+
+
 import classesBase.Aluno;
 import classesBase.Endereco;
 import classesBase.Pessoa;
 import classesBase.Professor;
 import classesBase.Turma;
 import dados.RepositorioPessoaArquivoXls;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
 
 public class testeArquivo {
 
 	public static void main(String[] args) {
+		
+		System.out.println("comecou");
 
 		RepositorioPessoaArquivoXls pessoas = new RepositorioPessoaArquivoXls();
 
@@ -32,36 +37,17 @@ public class testeArquivo {
 
 		Pessoa prof = new Professor("47623456456", "Prof", "7727724", "F", end,
 				"ser legal", "alasds");
+		
+		Pessoa item = new Professor("47623456456", "profatualizado", "7727724", "F", end,
+				"ser legal", "alasds");
 
 		// Pessoa novo2 = new Aluno("000000", "Fulano2", "7727724", "F", end,
 		// "Luiz", "Nancy", turma);
+		
+		System.out.println("imprimindo: ");
+		System.out.println(pessoas.getPessoas().imprimir());
 
 		try {
-			pessoas.inserir(prof);
-			pessoas.inserir(geba);
-			pessoas.inserir(bruna);
-			pessoas.inserir(novo);
-			pessoas.inserir(laryssa);
-			pessoas.inserir(prof);
-			pessoas.inserir(geba);
-			pessoas.inserir(bruna);
-			pessoas.inserir(novo);
-			pessoas.inserir(laryssa);
-			pessoas.inserir(prof);
-			pessoas.inserir(geba);
-			pessoas.inserir(bruna);
-			pessoas.inserir(novo);
-			pessoas.inserir(laryssa);
-			pessoas.inserir(prof);
-			pessoas.inserir(geba);
-			pessoas.inserir(bruna);
-			pessoas.inserir(novo);
-			pessoas.inserir(laryssa);
-			pessoas.inserir(prof);
-			pessoas.inserir(geba);
-			pessoas.inserir(bruna);
-			pessoas.inserir(novo);
-			pessoas.inserir(laryssa);
 			pessoas.inserir(prof);
 			pessoas.inserir(geba);
 			pessoas.inserir(bruna);
@@ -71,25 +57,22 @@ public class testeArquivo {
 			System.out.println("n deu certo");
 		}
 		
-		/**try {
-			pessoas.remover("000000");
-		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		System.out.println("imprimindo inseriu: ");
+		System.out.println(pessoas.getPessoas().imprimir());
 		
 		try {
-			pessoas.inserir(geba);
+			pessoas.remover("33");
+			//pessoas.atualizar(item);
+			//System.out.println(pessoas.procurar("83830480504").getNome());
+			System.out.println(pessoas.getPessoas().procurar("83830480504").getNome()+" <<<<\n");
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("rep excep");
+		} catch (ElementoNaoEncontradoException e) {
+			System.out.println("n encontrado");
 		}
 		
-		//System.out.println("imprimindo: ");
-		//System.out.println(pessoas.getPessoas().imprimir());
+		System.out.println("imprimindo removeu bruna: ");
+		System.out.println(pessoas.getPessoas().imprimir());
 	}
 
 }

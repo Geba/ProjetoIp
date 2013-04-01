@@ -1,18 +1,19 @@
 package classesBase;
 
-import dados.RepositorioArrayDisciplina;
+import modificacoes.RepositorioArrayDisciplina2;
+import modificacoes.RepositorioArrayPessoa2;
 
 
 public class Turma {
 
 	private String nome;
-	private Aluno[] alunos;
-	private RepositorioArrayDisciplina disciplinas;
+	private RepositorioArrayPessoa2 alunos;
+	private RepositorioArrayDisciplina2 disciplinas;
 
 	public Turma(String nome) {
 		this.nome = nome;
-		this.alunos = new Aluno[60];
-		disciplinas = new RepositorioArrayDisciplina();
+		this.alunos = new RepositorioArrayPessoa2();
+		disciplinas = new RepositorioArrayDisciplina2();
 	}
 
 	public void inserirDisciplina(String nome, String ementa) {
@@ -24,7 +25,11 @@ public class Turma {
 		disciplinas.inserir(d);
 	}
 
-	public String getNome() {
+	public void inserirAluno(Pessoa p){
+		alunos.inserir(p);
+	}
+	
+public String getNome() {
 		return nome;
 	}
 
@@ -32,19 +37,19 @@ public class Turma {
 		this.nome = nome;
 	}
 
-	public Aluno[] getAlunos() {
+	public RepositorioArrayPessoa2 getAlunos() {
 		return alunos;
 	}
 
-	public void setAlunos(Aluno[] alunos) {
+	public void setAlunos(RepositorioArrayPessoa2 alunos) {
 		this.alunos = alunos;
 	}
 
-	public RepositorioArrayDisciplina getDisciplinas() {
+	public RepositorioArrayDisciplina2 getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(RepositorioArrayDisciplina disciplinas) {
+	public void setDisciplinas(RepositorioArrayDisciplina2 disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 
