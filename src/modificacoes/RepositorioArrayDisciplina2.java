@@ -9,6 +9,7 @@ public class RepositorioArrayDisciplina2 extends RepositorioArray<Disciplina> {
 
 	public RepositorioArrayDisciplina2(int n) {// Aqui a gente inicia o array de
 											// Disciplinas; o n define o tamanho
+		//testandoooo
 		super();
 		Disciplina[] array = new Disciplina[n];
 		for (int a = 0; a < array.length; a++) {
