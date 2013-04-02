@@ -126,37 +126,42 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 						rg = "" + (int) cell4.getNumericCellValue();
 					}
 					sexo = lerCelula(i, 5);
-					rua = lerCelula(i, 6);
-					numero = lerCelula(i, 7);
-					bairro = lerCelula(i, 8);
+					String telefone="";
 					try {
-						cep = lerCelula(i, 9);
-					} catch (NumberFormatException e) {
-						HSSFCell cell5 = row.getCell((short) 9);
-						cep = "" + (int) cell5.getNumericCellValue();
-					}
-					cidade = lerCelula(i, 10);
-					estado = lerCelula(i, 11);
-					pais = lerCelula(i, 12);
-					pai = lerCelula(i, 13);
-					mae = lerCelula(i, 14);
-					numeroMatricula = lerCelula(i, 15);
-					nomeTurma = lerCelula(i, 16);
-					funcao = lerCelula(i, 17);
-					login = lerCelula(i, 18);
-					try {
-						senha = lerCelula(i, 19);
-					} catch (NumberFormatException e) {
-						HSSFCell cell7 = row.getCell((short) 19);
-						senha = "" + (int) cell7.getNumericCellValue();
-					}
-					try {
-						String sal = lerCelula(i, 20);
-						if (!sal.equals("")) {
-							salario = Double.parseDouble(lerCelula(i, 20));
+						String tel = lerCelula(i, 6);
+						if (!tel.equals("")) {
+							telefone = lerCelula(i, 6);
 						}
 					} catch (NumberFormatException e) {
-						HSSFCell cell7 = row.getCell((short) 20);
+						HSSFCell cell7 = row.getCell((short) 6);
+						telefone = ""+cell7.getNumericCellValue();
+					}
+					
+					rua = lerCelula(i, 7);
+					numero = lerCelula(i, 8);
+					bairro = lerCelula(i, 9);
+					try {
+						cep = lerCelula(i, 10);
+					} catch (NumberFormatException e) {
+						HSSFCell cell5 = row.getCell((short) 10);
+						cep = "" + (int) cell5.getNumericCellValue();
+					}
+					cidade = lerCelula(i, 11);
+					estado = lerCelula(i, 12);
+					pais = lerCelula(i, 13);
+					pai = lerCelula(i, 14);
+					mae = lerCelula(i, 15);
+					numeroMatricula = lerCelula(i, 16);
+					nomeTurma = lerCelula(i, 17);
+					funcao = lerCelula(i, 18);
+					
+					try {
+						String sal = lerCelula(i, 19);
+						if (!sal.equals("")) {
+							salario = Double.parseDouble(lerCelula(i, 19));
+						}
+					} catch (NumberFormatException e) {
+						HSSFCell cell7 = row.getCell((short) 19);
 						salario = cell7.getNumericCellValue();
 					}
 					Endereco end = new Endereco(rua, numero, bairro, cep,
@@ -165,27 +170,25 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 					switch ((int) tipoPessoa) {
 					case 1:
-						pessoa = new Aluno(cpf, nome, dataNasc, rg, sexo, end,
+						pessoa = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, end,
 								pai, mae, turma);
 						((Aluno) pessoa).setNumeroMatricula(numeroMatricula);
 						// System.out.println("criou um aluno");
 						break;
 					case 2:
 						pessoa = new Administrador(cpf, nome, dataNasc, rg,
-								sexo, end, funcao, login);
+								sexo, telefone, end, funcao);
 						((Administrador) pessoa).setSalario(salario);
-						((Administrador) pessoa).setSenha(senha);
 						// System.out.println("criou um adm");
 						break;
 					case 3:
-						pessoa = new Professor(cpf, nome, dataNasc, rg, sexo,
-								end, funcao, login);
+						pessoa = new Professor(cpf, nome, dataNasc, rg, sexo,telefone,
+								end, funcao);
 						((Professor) pessoa).setSalario(salario);
-						((Professor) pessoa).setSenha(senha);
 						// System.out.println("criou um prof");
 						break;
 					case 4:
-						pessoa = new Funcionario(cpf, nome, dataNasc, rg, sexo,
+						pessoa = new Funcionario(cpf, nome, dataNasc, rg, sexo,telefone,
 								end, funcao);
 						((Funcionario) pessoa).setSalario(salario);
 						// System.out.println("criou um func");
@@ -252,25 +255,24 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 3).setCellValue(p.getDataNasc());
 			row.createCell((short) 4).setCellValue(p.getIdentidade());
 			row.createCell((short) 5).setCellValue(p.getSexo());
-			row.createCell((short) 6).setCellValue(p.getEndereco().getRua());
-			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
-			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
-			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10)
-					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 6).setCellValue(p.getTelefone());
+			row.createCell((short) 7).setCellValue(p.getEndereco().getRua());
+			row.createCell((short) 8).setCellValue(p.getEndereco().getNumero());
+			row.createCell((short) 9).setCellValue(p.getEndereco().getBairro());
+			row.createCell((short) 10).setCellValue(p.getEndereco().getCep());
 			row.createCell((short) 11)
+					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 12)
 					.setCellValue(p.getEndereco().getEstado());
-			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
-			row.createCell((short) 13).setCellValue(((Aluno) p).getPai());
-			row.createCell((short) 14).setCellValue(((Aluno) p).getMae());
-			row.createCell((short) 15).setCellValue(
-					((Aluno) p).getNumeroMatricula());
+			row.createCell((short) 13).setCellValue(p.getEndereco().getPais());
+			row.createCell((short) 14).setCellValue(((Aluno) p).getPai());
+			row.createCell((short) 15).setCellValue(((Aluno) p).getMae());
 			row.createCell((short) 16).setCellValue(
+					((Aluno) p).getNumeroMatricula());
+			row.createCell((short) 17).setCellValue(
 					((Aluno) p).getTurma().getNome());
-			row.createCell((short) 17).setCellValue("");
 			row.createCell((short) 18).setCellValue("");
 			row.createCell((short) 19).setCellValue("");
-			row.createCell((short) 20).setCellValue("");
 		} else if (p instanceof Administrador) {
 			HSSFRow row = sheet1.createRow(cont);
 			// System.out.println("entrou no gravar pessoa admo >" + cont);
@@ -280,26 +282,23 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 3).setCellValue(p.getDataNasc());
 			row.createCell((short) 4).setCellValue(p.getIdentidade());
 			row.createCell((short) 5).setCellValue(p.getSexo());
-			row.createCell((short) 6).setCellValue(p.getEndereco().getRua());
-			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
-			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
-			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10)
-					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 6).setCellValue(p.getTelefone());
+			row.createCell((short) 7).setCellValue(p.getEndereco().getRua());
+			row.createCell((short) 8).setCellValue(p.getEndereco().getNumero());
+			row.createCell((short) 9).setCellValue(p.getEndereco().getBairro());
+			row.createCell((short) 10).setCellValue(p.getEndereco().getCep());
 			row.createCell((short) 11)
+					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 12)
 					.setCellValue(p.getEndereco().getEstado());
-			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
-			row.createCell((short) 13).setCellValue("");
+			row.createCell((short) 13).setCellValue(p.getEndereco().getPais());
 			row.createCell((short) 14).setCellValue("");
 			row.createCell((short) 15).setCellValue("");
 			row.createCell((short) 16).setCellValue("");
-			row.createCell((short) 17).setCellValue(
-					((Administrador) p).getFuncao());
+			row.createCell((short) 17).setCellValue("");
 			row.createCell((short) 18).setCellValue(
-					((Administrador) p).getLogin());
+					((Administrador) p).getFuncao());
 			row.createCell((short) 19).setCellValue(
-					((Administrador) p).getSenha());
-			row.createCell((short) 20).setCellValue(
 					((Administrador) p).getSalario());
 		} else if (p instanceof Professor) {
 			HSSFRow row2 = sheet1.createRow(cont);
@@ -310,28 +309,25 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row2.createCell((short) 3).setCellValue(p.getDataNasc());
 			row2.createCell((short) 4).setCellValue(p.getIdentidade());
 			row2.createCell((short) 5).setCellValue(p.getSexo());
-			row2.createCell((short) 6).setCellValue(p.getEndereco().getRua());
-			row2.createCell((short) 7)
-					.setCellValue(p.getEndereco().getNumero());
+			row2.createCell((short) 6).setCellValue(p.getTelefone());
+			row2.createCell((short) 7).setCellValue(p.getEndereco().getRua());
 			row2.createCell((short) 8)
+					.setCellValue(p.getEndereco().getNumero());
+			row2.createCell((short) 9)
 					.setCellValue(p.getEndereco().getBairro());
-			row2.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row2.createCell((short) 10).setCellValue(
-					p.getEndereco().getCidade());
+			row2.createCell((short) 10).setCellValue(p.getEndereco().getCep());
 			row2.createCell((short) 11).setCellValue(
+					p.getEndereco().getCidade());
+			row2.createCell((short) 12).setCellValue(
 					p.getEndereco().getEstado());
-			row2.createCell((short) 12).setCellValue(p.getEndereco().getPais());
-			row2.createCell((short) 13).setCellValue("");
+			row2.createCell((short) 13).setCellValue(p.getEndereco().getPais());
 			row2.createCell((short) 14).setCellValue("");
 			row2.createCell((short) 15).setCellValue("");
 			row2.createCell((short) 16).setCellValue("");
-			row2.createCell((short) 17).setCellValue(
+			row2.createCell((short) 17).setCellValue("");
+			row2.createCell((short) 18).setCellValue(
 					((Professor) p).getFuncao());
-			row2.createCell((short) 18)
-					.setCellValue(((Professor) p).getLogin());
-			row2.createCell((short) 19)
-					.setCellValue(((Professor) p).getSenha());
-			row2.createCell((short) 20).setCellValue(
+			row2.createCell((short) 19).setCellValue(
 					((Professor) p).getSalario());
 		} else if (p instanceof Funcionario) {
 			HSSFRow row = sheet1.createRow(cont);
@@ -342,24 +338,23 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			row.createCell((short) 3).setCellValue(p.getDataNasc());
 			row.createCell((short) 4).setCellValue(p.getIdentidade());
 			row.createCell((short) 5).setCellValue(p.getSexo());
-			row.createCell((short) 6).setCellValue(p.getEndereco().getRua());
-			row.createCell((short) 7).setCellValue(p.getEndereco().getNumero());
-			row.createCell((short) 8).setCellValue(p.getEndereco().getBairro());
-			row.createCell((short) 9).setCellValue(p.getEndereco().getCep());
-			row.createCell((short) 10)
-					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 6).setCellValue(p.getTelefone());
+			row.createCell((short) 7).setCellValue(p.getEndereco().getRua());
+			row.createCell((short) 8).setCellValue(p.getEndereco().getNumero());
+			row.createCell((short) 9).setCellValue(p.getEndereco().getBairro());
+			row.createCell((short) 10).setCellValue(p.getEndereco().getCep());
 			row.createCell((short) 11)
+					.setCellValue(p.getEndereco().getCidade());
+			row.createCell((short) 12)
 					.setCellValue(p.getEndereco().getEstado());
-			row.createCell((short) 12).setCellValue(p.getEndereco().getPais());
-			row.createCell((short) 13).setCellValue("");
+			row.createCell((short) 13).setCellValue(p.getEndereco().getPais());
 			row.createCell((short) 14).setCellValue("");
 			row.createCell((short) 15).setCellValue("");
 			row.createCell((short) 16).setCellValue("");
-			row.createCell((short) 17).setCellValue(
+			row.createCell((short) 17).setCellValue("");
+			row.createCell((short) 18).setCellValue(
 					((Funcionario) p).getFuncao());
-			row.createCell((short) 18).setCellValue("");
-			row.createCell((short) 19).setCellValue("");
-			row.createCell((short) 20).setCellValue(
+			row.createCell((short) 19).setCellValue(
 					((Funcionario) p).getSalario());
 		}
 		try {
@@ -396,7 +391,7 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 	public Pessoa procurar(String cpf) throws ElementoNaoEncontradoException {
 		Pessoa pessoa = pessoas.procurar(cpf);
 		Pessoa p = null;
-		String senha, nomeTurma, cpf2, nome2 = "", rg, sexo, pai, mae, rua, numero, bairro, cep, cidade, estado, pais, numeroMatricula, funcao, login;
+		String telefone, nomeTurma, cpf2, nome2 = "", rg, sexo, pai, mae, rua, numero, bairro, cep, cidade, estado, pais, numeroMatricula, funcao;
 		double salario = 0.0;
 
 		int i = pessoas.procurarIndice(cpf);
@@ -432,34 +427,34 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			rg = "" + (int) cell4.getNumericCellValue();
 		}
 		sexo = lerCelula(i, 5);
-		rua = lerCelula(i, 6);
-		numero = lerCelula(i, 7);
-		bairro = lerCelula(i, 8);
 		try {
-			cep = lerCelula(i, 9);
+			telefone = lerCelula(i, 6);
 		} catch (NumberFormatException e) {
-			HSSFCell cell5 = row.getCell((short) 9);
+			HSSFCell cell7 = row.getCell((short) 6);
+			telefone = "" + (int) cell7.getNumericCellValue();
+		}
+		rua = lerCelula(i, 7);
+		numero = lerCelula(i, 8);
+		bairro = lerCelula(i, 9);
+		try {
+			cep = lerCelula(i, 10);
+		} catch (NumberFormatException e) {
+			HSSFCell cell5 = row.getCell((short) 10);
 			cep = "" + (int) cell5.getNumericCellValue();
 		}
-		cidade = lerCelula(i, 10);
-		estado = lerCelula(i, 11);
-		pais = lerCelula(i, 12);
-		pai = lerCelula(i, 13);
-		mae = lerCelula(i, 14);
-		numeroMatricula = lerCelula(i, 15);
-		nomeTurma = lerCelula(i, 16);
-		funcao = lerCelula(i, 17);
-		login = lerCelula(i, 18);
+		cidade = lerCelula(i, 11);
+		estado = lerCelula(i, 12);
+		pais = lerCelula(i, 13);
+		pai = lerCelula(i, 14);
+		mae = lerCelula(i, 15);
+		numeroMatricula = lerCelula(i, 16);
+		nomeTurma = lerCelula(i, 17);
+		funcao = lerCelula(i, 18);
+		
 		try {
-			senha = lerCelula(i, 19);
+			salario = Double.parseDouble(lerCelula(i, 19));
 		} catch (NumberFormatException e) {
 			HSSFCell cell7 = row.getCell((short) 19);
-			senha = "" + (int) cell7.getNumericCellValue();
-		}
-		try {
-			salario = Double.parseDouble(lerCelula(i, 20));
-		} catch (NumberFormatException e) {
-			HSSFCell cell7 = row.getCell((short) 20);
 			salario = cell7.getNumericCellValue();
 		}
 
@@ -469,27 +464,25 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 
 		switch ((int) tipoPessoa) {
 		case 1:
-			pessoa = new Aluno(cpf2, nome2, dataNasc, rg, sexo, end, pai, mae,
+			pessoa = new Aluno(cpf2, nome2, dataNasc, rg, sexo, telefone, end, pai, mae,
 					turma);
 			((Aluno) pessoa).setNumeroMatricula(numeroMatricula);
 			// System.out.println("criou um aluno");
 			break;
 		case 2:
-			pessoa = new Administrador(cpf2, nome2, dataNasc, rg, sexo, end,
-					funcao, login);
+			pessoa = new Administrador(cpf2, nome2, dataNasc, rg, sexo,telefone, end,
+					funcao);
 			((Administrador) pessoa).setSalario(salario);
-			((Administrador) pessoa).setSenha(senha);
 			// System.out.println("criou um adm");
 			break;
 		case 3:
-			pessoa = new Professor(cpf2, nome2, dataNasc, rg, sexo, end,
-					funcao, login);
+			pessoa = new Professor(cpf2, nome2, dataNasc, rg, sexo, telefone,end,
+					funcao);
 			((Professor) pessoa).setSalario(salario);
-			((Professor) pessoa).setSenha(senha);
 			// System.out.println("criou um prof");
 			break;
 		case 4:
-			pessoa = new Funcionario(cpf2, nome2, dataNasc, rg, sexo, end,
+			pessoa = new Funcionario(cpf2, nome2, dataNasc, rg, sexo, telefone, end,
 					funcao);
 			((Funcionario) pessoa).setSalario(salario);
 			// System.out.println("criou um func");
