@@ -5,13 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-
 import classesBase.*;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
@@ -73,7 +70,6 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 
 	public void lerPlanilha() {
 		Disciplina d = null;
-
 		String nome, ementa;
 		int i = 0;
 		boolean acabou = false;

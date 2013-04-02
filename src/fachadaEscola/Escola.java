@@ -12,7 +12,6 @@ import dados.RepositorioListaDisciplina;
 import dados.RepositorioListaPessoa;
 import dados.*;
 import excecoes.*;
-import modificacoes.*;
 import negocio.*;
 
 public class Escola {
