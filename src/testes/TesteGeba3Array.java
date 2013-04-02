@@ -3,7 +3,6 @@ package testes;
 import java.util.Iterator;
 import classesBase.*;
 import dados.RepositorioArrayPessoa;
-import modificacoes.*;
 import excecoes.*;
 
 public class TesteGeba3Array {

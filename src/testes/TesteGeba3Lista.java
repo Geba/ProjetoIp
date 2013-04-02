@@ -5,7 +5,6 @@ import java.util.Iterator;
 import classesBase.*;
 import dados.RepositorioArrayPessoa;
 import dados.RepositorioListaPessoa;
-import modificacoes.*;
 import excecoes.*;
 
 public class TesteGeba3Lista {
