@@ -1,5 +1,6 @@
 package excecoes;
 
+@SuppressWarnings("serial")
 public class RepositorioException extends Exception {
 	
 	private Throwable exception;

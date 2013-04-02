@@ -1,6 +1,7 @@
 package excecoes;
 
 
+@SuppressWarnings("serial")
 public class ElementoNaoEncontradoException extends Exception {
 	/**
 	 * 

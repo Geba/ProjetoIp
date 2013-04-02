@@ -1,6 +1,7 @@
 package classesBase;
 
 import dados.*;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
 
 public class Professor extends Empregado {
@@ -34,19 +35,42 @@ public class Professor extends Empregado {
 	
 	public void inserirDisciplina(Disciplina d){
 		try {
-			this.getDisciplinas().inserir(d);
+			this.disciplinas.inserir(d);
 		} catch (RepositorioException e) {
 			System.out.println("erro no inserir disciplinas");
 		}
 	}
 	
-	public void inserirTurma(Turma t){
-		try {
-			this.getTurmas().inserir(t);
-		} catch (RepositorioException e) {
-			System.out.println("erro no inserir turmas");
+	public void removerDisciplina(Disciplina d) throws RepositorioException, ElementoNaoEncontradoException{
+		try{
+			this.disciplinas.remover(d.getNome());
+		}catch(ElementoNaoEncontradoException e){
+			throw e;			
+		}catch(RepositorioException a){
+			throw a;
 		}
 		
 	}
+	
+	public void inserirTurma(Turma t){
+		try {
+			this.turmas.inserir(t);
+		} catch (RepositorioException e) {
+			System.out.println("erro no inserir turmas");
+		}
+	}
+	
+	public void removerTurma(Turma t) throws RepositorioException, ElementoNaoEncontradoException{
+		try{
+			this.turmas.remover(t.getNome());
+		}catch(ElementoNaoEncontradoException e){
+			throw e;			
+		}catch(RepositorioException a){
+			throw a;
+		}
+		
+	}
+
+
 
 }

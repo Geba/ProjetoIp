@@ -1,6 +1,9 @@
 package classesBase;
 
 import dados.RepositorioArrayDisciplina;
+import excecoes.ElementoNaoEncontradoException;
+import excecoes.NumeroMaximoException;
+import excecoes.RepositorioException;
 
 public class Boletim {
 	private RepositorioArrayDisciplina disciplinas;
@@ -46,6 +49,23 @@ public class Boletim {
 			retorno += "Media = " + (sum / 4) + "\n";
 		}
 		return retorno;
+	}
+	
+	
+	public void inserirDisciplina(Disciplina d)throws NumeroMaximoException{
+		if(this.disciplinas.getCont()==15){
+			throw new NumeroMaximoException("disciplinas", 15);
+		}
+		this.disciplinas.inserir(d);
+	}
+	
+	public void removerDisciplina(Disciplina d) throws ElementoNaoEncontradoException{
+		try{
+			this.disciplinas.remover(d.getNome());
+		}catch(ElementoNaoEncontradoException e){
+			throw e;			
+		}
+		
 	}
 
 }
