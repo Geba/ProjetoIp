@@ -1,13 +1,10 @@
 package dados;
+
 import excecoes.ElementoNaoEncontradoException;
-
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 import classesBase.Turma;
 
-
-public class RepositorioArrayTurma extends RepositorioArray<Turma> {
+public class RepositorioArrayTurma extends RepositorioArray<Turma> implements Repositorio<Turma> {
 
 	public RepositorioArrayTurma(int n) {// Aqui a gente inicia o array de
 											// Turmas; o n define o tamanho
@@ -16,61 +13,74 @@ public class RepositorioArrayTurma extends RepositorioArray<Turma> {
 		for (int a = 0; a < array.length; a++) {
 			array[a] = null;
 		}
-		super.setArray(array);
+		super.setArray(array);// Aqui é inicializado o array, que é um atributo
+								// da calsse pai.
 	}
 
-	public RepositorioArrayTurma() {// Tamanho defalt = 500000
+	public RepositorioArrayTurma() {// Tamanho default = 500000
 		super();
-		Turma[] array = new Turma[500000];
+		Turma[] array = new Turma[50000];
 		for (int a = 0; a < array.length; a++) {
 			array[a] = null;
 		}
 		super.setArray(array);
 	}
 
-	public void inserir(Turma item) {
+	public void inserir(Turma turma) {
 		Turma[] array = super.getArray();
-		array[super.getCont()] = item;
+		array[super.getCont()] = turma;
 		super.setArray(array);
 		super.setCont(super.getCont() + 1);
 	}
 
-	public Turma procurar(String procura) throws ElementoNaoEncontradoException {
-		Turma p = null;
+
+	public Turma procurar(String nome) throws ElementoNaoEncontradoException {
+		Turma t = null;
 		boolean achou = false;
-		Iterator<Turma> it = iterator();
-		while (it.hasNext() && !achou) {
-			try {
-				p = it.next();
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getNome().equals(procura)) {
+		Turma[] array = super.getArray();
+		for (int i = 0; !achou && i < super.getCont(); i++) {
+			t = array[i];
+			if (t.getNome().equals(nome)) {
 				achou = true;
 			}
 		}
 		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
-		return p;
+		return t;
 	}
-
-	public int procurarIndice(String nome)
+	
+	public RepositorioArrayTurma procurarNome(String nome)
 			throws ElementoNaoEncontradoException {
-		Turma p = null;
-		int i = -1;
+		Turma t = null;
 		boolean achou = false;
-		Iterator<Turma> it = iterator();
-
-		while (it.hasNext() && !achou) {
-			try {
-				p = it.next();
-				i++;
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getNome().equals(nome)) {
+		Turma[] array = super.getArray();
+		RepositorioArrayTurma resultado = new RepositorioArrayTurma();
+		for (int i = 0; i < super.getCont(); i++) {
+			t = array[i];
+			if (t.getNome().toLowerCase().contains(nome.toLowerCase())) {// isso tem que ser revisto,
 				achou = true;
+				resultado.inserir(t);
+			}
+		}
+		if (achou == false) {
+			throw new ElementoNaoEncontradoException();
+		}
+		return resultado;
+	}
+	
+	private int procurarIndice(String nome) throws ElementoNaoEncontradoException {
+		Turma t = null;
+		boolean achou = false;
+		Turma[] array = super.getArray();
+		int i = 0;
+		for (i = 0; !achou && i < super.getCont();) {
+			t = array[i];
+			if (t.getNome().equals(nome)) {
+				achou = true;
+			}
+			if(!achou){
+				i++;
 			}
 		}
 		if (achou == false) {
@@ -79,15 +89,15 @@ public class RepositorioArrayTurma extends RepositorioArray<Turma> {
 		return i;
 	}
 
-	public void atualizar(Turma item) throws ElementoNaoEncontradoException {
+	public void atualizar(Turma turma) throws ElementoNaoEncontradoException {
 		int i = 0;
 		try {
-			i = procurarIndice(item.getNome());
-		} catch (NoSuchElementException e) {
+			i = procurarIndice(turma.getNome());
+		} catch (ElementoNaoEncontradoException e) {
 			throw new ElementoNaoEncontradoException();
 		}
 		Turma[] turmas = super.getArray();
-		turmas[i] = item;
+		turmas[i] = turma;
 		super.setArray(turmas);
 	}
 
@@ -98,7 +108,7 @@ public class RepositorioArrayTurma extends RepositorioArray<Turma> {
 		} catch (ElementoNaoEncontradoException e) {
 			throw new ElementoNaoEncontradoException();
 		}
-		System.out.println(i);// esseéumTeste
+		// System.out.println(i);//esseéumTeste
 		Turma[] turmas = super.getArray();
 		if (i == super.getCont()) {
 			turmas[i] = null;
@@ -119,8 +129,7 @@ public class RepositorioArrayTurma extends RepositorioArray<Turma> {
 		for (int i = 0; i <= super.getCont(); i++) {
 
 			if (turmas[i] != null) {
-				retorno += turmas[i].getNome() + " / ";
-
+				retorno += turmas[i].getNome();
 				retorno += "\n";
 			}
 		}
@@ -130,17 +139,12 @@ public class RepositorioArrayTurma extends RepositorioArray<Turma> {
 
 	public Iterator<Turma> iterator() {// Ele já pecorre o array da classe
 										// pai.vv
-		IteratorArray<Turma> it = new IteratorArray<Turma>(super.getArray());// Tem
-																				// de
-																				// Definir
-																				// o
-																				// tipoDoIterator,
-																				// aqui
-																				// eu
-																				// fiz
-																				// de
-																				// array:)
+		IteratorArrayTurma it = new IteratorArrayTurma(super.getArray());
 		return it;
 	}
 
+	public Iterator<Turma> getIterator(){
+		IteratorArrayTurma it = new IteratorArrayTurma(super.getArray());
+		return it;
+	}
 }

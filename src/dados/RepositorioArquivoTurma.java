@@ -6,9 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import modificacoes.RepositorioArrayDisciplina2;
-import modificacoes.RepositorioArrayPessoa2;
-import modificacoes.RepositorioArrayTurma2;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,7 +18,7 @@ import excecoes.RepositorioException;
 
 public class RepositorioArquivoTurma implements Repositorio<Turma> {
 
-	private RepositorioArrayTurma2 turmas;
+	private RepositorioArrayTurma turmas;
 	HSSFWorkbook wb;
 	HSSFSheet sheet1;
 	int cont = 0;
@@ -76,7 +73,7 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 			abrir = true;
 		}
 
-		turmas = new RepositorioArrayTurma2();
+		turmas = new RepositorioArrayTurma();
 		this.lerPlanilha();
 
 	}

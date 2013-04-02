@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import classesBase.*;
+import dados.RepositorioArrayPessoa;
+import dados.RepositorioArrayTurma;
+import dados.RepositorioListaDisciplina;
+import dados.RepositorioListaPessoa;
 import dados.*;
-//import dados.Repositorio;
 import excecoes.*;
 import modificacoes.*;
 import negocio.*;
@@ -36,13 +39,13 @@ public class Escola {
 		}
 
 		if (repositorio.equalsIgnoreCase("array")) {
-			pessoas = new RepositorioArrayPessoa2();
-			turmas = new RepositorioArrayTurma2();
-			disciplinas = new RepositorioArrayDisciplina2();
+			pessoas = new RepositorioArrayPessoa();
+			turmas = new RepositorioArrayTurma();
+			disciplinas = new RepositorioArrayDisciplina();
 		} else if (repositorio.equalsIgnoreCase("lista")) {
 			pessoas = new RepositorioListaPessoa();
-			turmas = new RepositorioListaTurma2();
-			disciplinas = new RepositorioListaDisciplina2();
+			turmas = new RepositorioListaTurma();
+			disciplinas = new RepositorioListaDisciplina();
 		} else if (repositorio.equalsIgnoreCase("arquivo")) {
 
 		} else {

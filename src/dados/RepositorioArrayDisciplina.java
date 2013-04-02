@@ -1,77 +1,87 @@
 package dados;
-import excecoes.ElementoNaoEncontradoException;
 
+import excecoes.ElementoNaoEncontradoException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import classesBase.Disciplina;
 
+public class RepositorioArrayDisciplina extends RepositorioArray<Disciplina> implements Repositorio<Disciplina> {
 
-public class RepositorioArrayDisciplina extends RepositorioArray<Disciplina> {
-
-	
-
-	public RepositorioArrayDisciplina(int n) {//Aqui a gente inicia o array de Disciplinas; o n define o tamanho
+	public RepositorioArrayDisciplina(int n) {// Aqui a gente inicia o array de
+											// Disciplinas; o n define o tamanho
+		//testandoooo
 		super();
-		Disciplina [] array = new Disciplina[n];
+		Disciplina[] array = new Disciplina[n];
+		for (int a = 0; a < array.length; a++) {
+			array[a] = null;
+		}
+		super.setArray(array);// Aqui é inicializado o array, que é um atributo
+								// da calsse pai.
+	}
+
+	public RepositorioArrayDisciplina() {// Tamanho default = 500000
+		super();
+		Disciplina[] array = new Disciplina[50000];
 		for (int a = 0; a < array.length; a++) {
 			array[a] = null;
 		}
 		super.setArray(array);
 	}
-	
-	public RepositorioArrayDisciplina() {//Tamanho defalt = 500000
-		super();
-		Disciplina [] array = new Disciplina[500000];
-		for (int a = 0; a < array.length; a++) {
-			array[a] = null;
-		}
-		super.setArray(array);
-	}
 
-	public void inserir(Disciplina item) {
-		Disciplina []array = super.getArray();
-		array[super.getCont()] = item;
+	public void inserir(Disciplina disciplina) {
+		Disciplina[] array = super.getArray();
+		array[super.getCont()] = disciplina;
 		super.setArray(array);
 		super.setCont(super.getCont() + 1);
 	}
 
-	public Disciplina procurar(String procura)
-			throws ElementoNaoEncontradoException {
-		Disciplina p = null;
+	public Disciplina procurar(String nome) throws ElementoNaoEncontradoException {
+		Disciplina d = null;
 		boolean achou = false;
-		Iterator<Disciplina> it = iterator();
-		while (it.hasNext() && !achou) {
-			try {
-				p = it.next();
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getNome().equals(procura)) {
+		Disciplina[] array = super.getArray();
+		for (int i = 0; !achou && i < super.getCont(); i++) {
+			d = array[i];
+			if (d.getNome().equals(nome)) {
 				achou = true;
 			}
 		}
 		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
-		return p;
+		return d;
+	}
+	
+	public RepositorioArrayDisciplina procurarNome(String nome)
+			throws ElementoNaoEncontradoException {
+		Disciplina d = null;
+		boolean achou = false;
+		Disciplina[] array = super.getArray();
+		RepositorioArrayDisciplina resultado = new RepositorioArrayDisciplina();
+		for (int i = 0; i < super.getCont(); i++) {
+			d = array[i];
+			if (d.getNome().toLowerCase().contains(nome.toLowerCase())) {// isso tem que ser revisto,
+				achou = true;
+				resultado.inserir(d);
+			}
+		}
+		if (achou == false) {
+			throw new ElementoNaoEncontradoException();
+		}
+		return resultado;
 	}
 
-	public int procurarIndice(String nome) throws ElementoNaoEncontradoException {
-		Disciplina p = null;
-		int i = -1;
+	private int procurarIndice(String nome) throws ElementoNaoEncontradoException {
+		Disciplina d = null;
 		boolean achou = false;
-		Iterator<Disciplina> it = iterator();
-		
-		while (it.hasNext() && !achou) {
-			try {
-				p = it.next();
-				i++;
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getNome().equals(nome)) {
+		Disciplina[] array = super.getArray();
+		int i = 0;
+		for (i = 0; !achou && i < super.getCont();) {
+			d = array[i];
+			if (d.getNome().equals(nome)) {
 				achou = true;
+			}
+			if(!achou){
+				i++;
 			}
 		}
 		if (achou == false) {
@@ -80,36 +90,34 @@ public class RepositorioArrayDisciplina extends RepositorioArray<Disciplina> {
 		return i;
 	}
 
-	public void atualizar(Disciplina item) throws ElementoNaoEncontradoException {
+	public void atualizar(Disciplina disciplina) throws ElementoNaoEncontradoException {
 		int i = 0;
 		try {
-			i = procurarIndice(item.getNome());
-		} catch (NoSuchElementException e) {
+			i = procurarIndice(disciplina.getNome());
+		} catch (ElementoNaoEncontradoException e) {
 			throw new ElementoNaoEncontradoException();
 		}
 		Disciplina[] disciplinas = super.getArray();
-		disciplinas[i] = item;
+		disciplinas[i] = disciplina;
 		super.setArray(disciplinas);
 	}
 
 	public void remover(String nome) throws ElementoNaoEncontradoException {
-		int i=0;
+		int i = 0;
 		try {
 			i = procurarIndice(nome);
 		} catch (ElementoNaoEncontradoException e) {
 			throw new ElementoNaoEncontradoException();
 		}
-		System.out.println(i);//esseéumTeste
 		Disciplina[] disciplinas = super.getArray();
-		if (i == super.getCont()){
-			disciplinas[i]=null;
-		}else{
-			for (int n=i; n < super.getCont(); n++) {
-				disciplinas[n] = disciplinas[n+1];
-			}	
+		if (i == super.getCont()) {
+			disciplinas[i] = null;
+		} else {
+			for (int n = i; n < super.getCont(); n++) {
+				disciplinas[n] = disciplinas[n + 1];
+			}
 		}
-		
-		
+
 		disciplinas[disciplinas.length - 1] = null;
 		super.setArray(disciplinas);
 		super.setCont(super.getCont() - 1);
@@ -119,20 +127,24 @@ public class RepositorioArrayDisciplina extends RepositorioArray<Disciplina> {
 		String retorno = "";
 		Disciplina[] disciplinas = super.getArray();
 		for (int i = 0; i <= super.getCont(); i++) {
-			
+
 			if (disciplinas[i] != null) {
-				retorno += disciplinas[i].getNome() + " / "
-						+ disciplinas[i].getEmenta();
+				retorno += disciplinas[i].getNome();
 				retorno += "\n";
 			}
 		}
 		return retorno;
 
 	}
-	
-	public Iterator<Disciplina> iterator() {// Ele já pecorre o array da classe pai.vv
-		IteratorArray<Disciplina> it = new IteratorArray<Disciplina>(super.getArray());// Tem de Definir o tipoDoIterator, aqui eu fiz de array:)
+
+	public Iterator<Disciplina> iterator() {// Ele já pecorre o array da classe
+										// pai.vv
+		IteratorArrayDisciplina it = new IteratorArrayDisciplina(super.getArray());
 		return it;
 	}
 
+	public Iterator<Disciplina> getIterator(){
+		IteratorArrayDisciplina it = new IteratorArrayDisciplina(super.getArray());
+		return it;
+	}	
 }

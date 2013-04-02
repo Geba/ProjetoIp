@@ -1,16 +1,17 @@
-package modificacoes;
+package dados;
 
 import java.util.Iterator;
+
 import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
 
-public class RepositorioListaTurma2 implements Repositorio<Turma>{
+public class RepositorioListaTurma implements Repositorio<Turma>{
 
 	private Turma turma;
-	private RepositorioListaTurma2 prox;
+	private RepositorioListaTurma prox;
 
-	public RepositorioListaTurma2() {
+	public RepositorioListaTurma() {
 		this.turma = null;
 		this.prox = null;
 	}
@@ -23,18 +24,18 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 		this.turma = turma;
 	}
 
-	public RepositorioListaTurma2 getProx() {
+	public RepositorioListaTurma getProx() {
 		return this.prox;
 	}
 
-	public void setProx(RepositorioListaTurma2 prox) {
+	public void setProx(RepositorioListaTurma prox) {
 		this.prox = prox;
 	}
 
 	public void inserir(Turma turma) {
 
 		if (this.prox == null) {
-			RepositorioListaTurma2 novoRepositorio = new RepositorioListaTurma2();
+			RepositorioListaTurma novoRepositorio = new RepositorioListaTurma();
 			novoRepositorio.setTurma(turma);
 			setProx(novoRepositorio);
 		} else {
@@ -43,7 +44,7 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 	}
 
 	public String imprimir() {
-		RepositorioListaTurma2 repositorioAtual = this.prox;
+		RepositorioListaTurma repositorioAtual = this.prox;
 		String resposta = "";
 		while (repositorioAtual != null) {
 			resposta = resposta + repositorioAtual.getTurma().getNome();
@@ -56,7 +57,7 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 		Turma t = null;
 		boolean achou = false;
 		// Iterator<RepositorioLista<Turma>> it = iterator();
-		RepositorioListaTurma2 repositorioAtual = this.prox;
+		RepositorioListaTurma repositorioAtual = this.prox;
 		while (repositorioAtual != null && achou == false) {
 			t = repositorioAtual.getTurma();
 			if (t.getNome().equals(nome)) {
@@ -70,12 +71,12 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 		return t;
 	}
 
-	public RepositorioArrayTurma2 procurarNome(String nome)
+	public RepositorioArrayTurma procurarNome(String nome)
 			throws ElementoNaoEncontradoException {
 		Turma t = null;
 		boolean achou = false;
-		RepositorioArrayTurma2 resultado = new RepositorioArrayTurma2();
-		RepositorioListaTurma2 repositorioAtual = this.prox;
+		RepositorioArrayTurma resultado = new RepositorioArrayTurma();
+		RepositorioListaTurma repositorioAtual = this.prox;
 		while (repositorioAtual != null) {
 			t = repositorioAtual.getTurma();
 			if (t.getNome().toLowerCase().contains(nome.toLowerCase())) {
@@ -94,7 +95,7 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 
 		boolean achou = false;
 		Turma t = null;
-		RepositorioListaTurma2 repositorioAtual = this.prox;
+		RepositorioListaTurma repositorioAtual = this.prox;
 		while ((repositorioAtual != null) && (achou == false)) {
 			t = repositorioAtual.getTurma();
 			if (t.getNome().equals(turma.getNome())) {
@@ -122,8 +123,8 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 
 	public void remover(String nome) throws ElementoNaoEncontradoException {
 		boolean achou = false;
-		RepositorioListaTurma2 repositorioAtual = null;
-		RepositorioListaTurma2 repositorioProximo = this.prox;
+		RepositorioListaTurma repositorioAtual = null;
+		RepositorioListaTurma repositorioProximo = this.prox;
 		if (this.prox.getTurma().getNome().equals(nome)) {// Verifica se o
 															// primeiro da lista
 															// é aquele que eu
@@ -169,8 +170,8 @@ public class RepositorioListaTurma2 implements Repositorio<Turma>{
 		 */
 	}
 
-	public Iterator<RepositorioListaTurma2> iterator() {
-		IteratorListaTurma2 it = new IteratorListaTurma2(this.prox);// Passa
+	public Iterator<RepositorioListaTurma> iterator() {
+		IteratorListaTurma it = new IteratorListaTurma(this.prox);// Passa
 																	// como
 																	// argumento
 																	// o

@@ -1,7 +1,7 @@
 package testes;
 
-import modificacoes.RepositorioArrayDisciplina2;
 import classesBase.*;
+import dados.RepositorioArrayDisciplina;
 
 public class TesteBoletim {
 
@@ -10,7 +10,7 @@ public class TesteBoletim {
 	 */
 	public static void main(String[] args) {
 		
-		RepositorioArrayDisciplina2 disc = new RepositorioArrayDisciplina2(3);
+		RepositorioArrayDisciplina disc = new RepositorioArrayDisciplina(3);
 		Disciplina portugues = new Disciplina("portgues", "oi");
 		Disciplina mat = new Disciplina("matematica", "oi");
 		Disciplina geo = new Disciplina("geografia", "oi");

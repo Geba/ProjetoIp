@@ -1,7 +1,5 @@
 package classesBase;
 
-import modificacoes.RepositorioArrayDisciplina2;
-import modificacoes.RepositorioArrayTurma2;
 import dados.*;
 import excecoes.RepositorioException;
 
@@ -13,8 +11,8 @@ public class Professor extends Empregado {
 			String identidade, String sexo, String telefone, Endereco endereco,
 			String funcao) {
 		super(cpf, nome, dataNasc, identidade, sexo, telefone, endereco, funcao);
-		turmas = new RepositorioArrayTurma2();
-		disciplinas = new RepositorioArrayDisciplina2();
+		turmas = new RepositorioArrayTurma();
+		disciplinas = new RepositorioArrayDisciplina();
 
 	}
 

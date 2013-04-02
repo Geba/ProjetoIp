@@ -1,16 +1,15 @@
-package modificacoes;
+package dados;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import classesBase.Disciplina;
+import classesBase.Pessoa;
 
-
-public class IteratorArrayDisciplina2 implements Iterator<Disciplina> {
-	Disciplina[] array;
+public class IteratorArrayPessoa implements Iterator<Pessoa> {
+	Pessoa[] array;
 	int indiceAtual;
 	long contador = 0;
 
-	public IteratorArrayDisciplina2(Disciplina[] array) {
+	public IteratorArrayPessoa(Pessoa[] array) {
 		this.array = array;
 		this.indiceAtual = 0;
 		for (int i = 0; this.array[i] != null; i++) {
@@ -23,11 +22,12 @@ public class IteratorArrayDisciplina2 implements Iterator<Disciplina> {
 		return this.indiceAtual < this.contador;
 	}
 
-	public Disciplina next() {
+	public Pessoa next() {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		return array[indiceAtual++];
+		
+		return array[++indiceAtual];
 
 	}
 

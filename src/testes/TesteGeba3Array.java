@@ -2,13 +2,14 @@ package testes;
 
 import java.util.Iterator;
 import classesBase.*;
+import dados.RepositorioArrayPessoa;
 import modificacoes.*;
 import excecoes.*;
 
 public class TesteGeba3Array {
 	public static void main(String[] args) {
 
-		RepositorioArrayPessoa2 pessoas = new RepositorioArrayPessoa2();
+		RepositorioArrayPessoa pessoas = new RepositorioArrayPessoa();
 		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",
 				"asd", "", "asdasd");
 		Turma turma = new Turma("tumrma1");
@@ -128,7 +129,7 @@ public class TesteGeba3Array {
 		
 		System.out.println("procurando Ful");
 		try{
-			RepositorioArrayPessoa2 resultado = pessoas.procurarNome("Ful");
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("Ful");
 			System.out.println(resultado.imprimir());
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");
@@ -136,7 +137,7 @@ public class TesteGeba3Array {
 		
 		System.out.println("procurando immy");
 		try{
-			RepositorioArrayPessoa2 resultado = pessoas.procurarNome("immy");
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("immy");
 			System.out.println(resultado.imprimir());
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");
@@ -144,7 +145,7 @@ public class TesteGeba3Array {
 		
 		System.out.println("procurando Turner");
 		try{
-			RepositorioArrayPessoa2 resultado = pessoas.procurarNome("Turner");
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("Turner");
 			System.out.println(resultado.imprimir());
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");
@@ -152,7 +153,7 @@ public class TesteGeba3Array {
 		
 		System.out.println("procurando turner");
 		try{
-			RepositorioArrayPessoa2 resultado = pessoas.procurarNome("turner");
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("turner");
 			System.out.println(resultado.imprimir());
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");

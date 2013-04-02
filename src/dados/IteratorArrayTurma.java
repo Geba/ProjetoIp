@@ -1,15 +1,15 @@
-package modificacoes;
+package dados;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import classesBase.Turma;
 
-public class IteratorArrayTurma2 implements Iterator<Turma> {
+public class IteratorArrayTurma implements Iterator<Turma> {
 	Turma[] array;
 	int indiceAtual;
 	long contador = 0;
 
-	public IteratorArrayTurma2(Turma[] array) {
+	public IteratorArrayTurma(Turma[] array) {
 		this.array = array;
 		this.indiceAtual = 0;
 		for (int i = 0; this.array[i] != null; i++) {

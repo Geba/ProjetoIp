@@ -1,16 +1,16 @@
-package modificacoes;
+package dados;
 
 import java.util.Iterator;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
-import dados.*;
 
-public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
+
+public class RepositorioListaDisciplina implements Repositorio<Disciplina> {
 
 	private Disciplina disciplina;
-	private RepositorioListaDisciplina2 prox;
+	private RepositorioListaDisciplina prox;
 
-	public RepositorioListaDisciplina2() {
+	public RepositorioListaDisciplina() {
 		this.disciplina = null;
 		this.prox = null;
 	}
@@ -23,18 +23,18 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 		this.disciplina = disciplina;
 	}
 
-	public RepositorioListaDisciplina2 getProx() {
+	public RepositorioListaDisciplina getProx() {
 		return this.prox;
 	}
 
-	public void setProx(RepositorioListaDisciplina2 prox) {
+	public void setProx(RepositorioListaDisciplina prox) {
 		this.prox = prox;
 	}
 
 	public void inserir(Disciplina disciplina) {
 
 		if (this.prox == null) {
-			RepositorioListaDisciplina2 novoRepositorio = new RepositorioListaDisciplina2();
+			RepositorioListaDisciplina novoRepositorio = new RepositorioListaDisciplina();
 			novoRepositorio.setDisciplina(disciplina);
 			setProx(novoRepositorio);
 		} else {
@@ -43,7 +43,7 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 	}
 
 	public String imprimir() {
-		RepositorioListaDisciplina2 repositorioAtual = this.prox;
+		RepositorioListaDisciplina repositorioAtual = this.prox;
 		String resposta = "";
 		while (repositorioAtual != null) {
 			resposta = resposta + repositorioAtual.getDisciplina().getNome();
@@ -56,7 +56,7 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 			throws ElementoNaoEncontradoException {
 		Disciplina d = null;
 		boolean achou = false;
-		RepositorioListaDisciplina2 repositorioAtual = this.prox;
+		RepositorioListaDisciplina repositorioAtual = this.prox;
 		while (repositorioAtual != null && achou == false) {
 			d = repositorioAtual.getDisciplina();
 			if (d.getNome().equals(nome)) {
@@ -70,12 +70,12 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 		return d;
 	}
 
-	public RepositorioArrayDisciplina2 procurarNome(String nome)
+	public RepositorioArrayDisciplina procurarNome(String nome)
 			throws ElementoNaoEncontradoException {
 		Disciplina d = null;
 		boolean achou = false;
-		RepositorioArrayDisciplina2 resultado = new RepositorioArrayDisciplina2();
-		RepositorioListaDisciplina2 repositorioAtual = this.prox;
+		RepositorioArrayDisciplina resultado = new RepositorioArrayDisciplina();
+		RepositorioListaDisciplina repositorioAtual = this.prox;
 		while (repositorioAtual != null) {
 			d = repositorioAtual.getDisciplina();
 			if (d.getNome().toLowerCase().contains(nome.toLowerCase())) {
@@ -95,7 +95,7 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 
 		boolean achou = false;
 		Disciplina d = null;
-		RepositorioListaDisciplina2 repositorioAtual = this.prox;
+		RepositorioListaDisciplina repositorioAtual = this.prox;
 		while ((repositorioAtual != null) && (achou == false)) {
 			d = repositorioAtual.getDisciplina();
 			if (d.getNome().equals(disciplina.getNome())) {
@@ -124,8 +124,8 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 
 	public void remover(String nome) throws ElementoNaoEncontradoException {
 		boolean achou = false;
-		RepositorioListaDisciplina2 repositorioAtual = null;
-		RepositorioListaDisciplina2 repositorioProximo = this.prox;
+		RepositorioListaDisciplina repositorioAtual = null;
+		RepositorioListaDisciplina repositorioProximo = this.prox;
 		if (this.prox.getDisciplina().getNome().equals(nome)) {// Verifica se o
 			// primeiro da lista
 			// é aquele que eu
@@ -171,8 +171,8 @@ public class RepositorioListaDisciplina2 implements Repositorio<Disciplina> {
 		 */
 	}
 
-	public Iterator<RepositorioListaDisciplina2> iterator() {
-		IteratorListaDisciplina2 it = new IteratorListaDisciplina2(this.prox);// Passa
+	public Iterator<RepositorioListaDisciplina> iterator() {
+		IteratorListaDisciplina it = new IteratorListaDisciplina(this.prox);// Passa
 		// como
 		// argumento
 		// o

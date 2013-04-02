@@ -1,13 +1,14 @@
-package modificacoes;
+package dados;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class IteratorListaTurma2 implements Iterator<RepositorioListaTurma2> {
 
-	private RepositorioListaTurma2 repositorio;
+public class IteratorListaTurma implements Iterator<RepositorioListaTurma> {
 
-	public IteratorListaTurma2(RepositorioListaTurma2 repositorio) {//Recebe como argumento o primeiro item da lista
-		this.repositorio = new RepositorioListaTurma2();
+	private RepositorioListaTurma repositorio;
+
+	public IteratorListaTurma(RepositorioListaTurma repositorio) {//Recebe como argumento o primeiro item da lista
+		this.repositorio = new RepositorioListaTurma();
 		this.repositorio.setProx(repositorio);//Cria a mesma estrutura presente no repositorio, em q o primeiro item da lista é vazio.
 	}
 
@@ -21,7 +22,7 @@ public class IteratorListaTurma2 implements Iterator<RepositorioListaTurma2> {
 	
 	
 	
-	public RepositorioListaTurma2 next() throws NoSuchElementException{
+	public RepositorioListaTurma next() throws NoSuchElementException{
 		if (hasNext()) {
 			this.repositorio = this.repositorio.getProx();
 			return this.repositorio;
@@ -35,11 +36,11 @@ public class IteratorListaTurma2 implements Iterator<RepositorioListaTurma2> {
 				"Esta operacao nao é suportada.");
 	}
 
-	public RepositorioListaTurma2 getRepositorio() {
+	public RepositorioListaTurma getRepositorio() {
 		return repositorio;
 	}
 
-	public void setRepositorio(RepositorioListaTurma2 repositorio) {
+	public void setRepositorio(RepositorioListaTurma repositorio) {
 		this.repositorio = repositorio;
 	}
 

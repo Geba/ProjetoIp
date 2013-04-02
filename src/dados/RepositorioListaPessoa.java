@@ -1,36 +1,53 @@
 package dados;
 
 import java.util.Iterator;
-
 import excecoes.ElementoNaoEncontradoException;
-
-import java.util.NoSuchElementException;
-
 import classesBase.*;
 
-public class RepositorioListaPessoa extends RepositorioLista<Pessoa> implements
-		Repositorio<Pessoa>, Iterable<RepositorioLista<Pessoa>> {
+
+public class RepositorioListaPessoa implements Repositorio<Pessoa>{
+
+	private Pessoa pessoa;
+	private RepositorioListaPessoa prox;
 
 	public RepositorioListaPessoa() {
-		super();
+		this.pessoa = null;
+		this.prox = null;
+	}
+
+	public Pessoa getPessoa() {
+		return this.pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public RepositorioListaPessoa getProx() {
+		return this.prox;
+	}
+
+	public void setProx(RepositorioListaPessoa prox) {
+		this.prox = prox;
 	}
 
 	public void inserir(Pessoa pessoa) {
 
-		if (super.getProx() == null) {
+		if (this.prox == null) {
 			RepositorioListaPessoa novoRepositorio = new RepositorioListaPessoa();
-			novoRepositorio.setItem(pessoa);
-			super.setProx(novoRepositorio);
+			novoRepositorio.setPessoa(pessoa);
+			setProx(novoRepositorio);
 		} else {
-			((RepositorioListaPessoa) super.getProx()).inserir(pessoa);
+			getProx().inserir(pessoa);
 		}
 	}
 
 	public String imprimir() {
-		Iterator<RepositorioLista<Pessoa>> it = iterator();
+		RepositorioListaPessoa repositorioAtual= this.prox;
 		String resposta = "";
-		while (it.hasNext()) {
-			resposta = resposta + it.next().getItem().getNome() + "\n";
+		while (repositorioAtual!= null) {
+			resposta = resposta + repositorioAtual.getPessoa().getNome()+"\n";
+			repositorioAtual=repositorioAtual.getProx();
 		}
 		return resposta;
 	}
@@ -38,81 +55,129 @@ public class RepositorioListaPessoa extends RepositorioLista<Pessoa> implements
 	public Pessoa procurar(String cpf) throws ElementoNaoEncontradoException {
 		Pessoa p = null;
 		boolean achou = false;
-		Iterator<RepositorioLista<Pessoa>> it = iterator();
-		while (it.hasNext() && !achou) {
-			try {
-				p = it.next().getItem();
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getCpf().equals(cpf)) {
+		// Iterator<RepositorioLista<Pessoa>> it = iterator();
+		RepositorioListaPessoa repositorioAtual = this.prox;
+		while (repositorioAtual != null && achou == false) {
+			p = repositorioAtual.getPessoa();
+			if (p.getCpf().equals(cpf)) {
 				achou = true;
 			}
+			repositorioAtual = repositorioAtual.getProx();
 		}
 		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
 		return p;
+		/**
+		 * while (it.hasNext() && !achou) { try { p = it.next().getPessoa(); }
+		 * catch (NoSuchElementException e) { throw new
+		 * ElementoNaoEncontradoException(); } if (p != null &&
+		 * p.getCpf().equals(cpf)) { achou = true; } } if (achou == false) {
+		 * throw new ElementoNaoEncontradoException(); } return p;
+		 */
+	}
+
+	public RepositorioArrayPessoa procurarNome(String nome)
+			throws ElementoNaoEncontradoException {
+		Pessoa p = null;
+		boolean achou = false;
+		RepositorioArrayPessoa resultado = new RepositorioArrayPessoa();
+		RepositorioListaPessoa repositorioAtual = this.prox;
+		while (repositorioAtual != null) {
+			p = repositorioAtual.getPessoa();
+			if (p.getNome().toLowerCase().contains(nome.toLowerCase())) {
+				achou = true;
+				resultado.inserir(p);
+			}
+			repositorioAtual = repositorioAtual.getProx();
+		}
+		if (achou == false) {
+			throw new ElementoNaoEncontradoException();
+		}
+		return resultado;
 	}
 
 	public void atualizar(Pessoa pessoa) throws ElementoNaoEncontradoException {
+
 		boolean achou = false;
-		Iterator<RepositorioLista<Pessoa>> it = iterator();
 		Pessoa p = null;
-		RepositorioLista<Pessoa> repositorio = null;
-		while (it.hasNext() && !achou) {
-			try {
-				repositorio = it.next();
-				p = repositorio.getItem();
-			} catch (NoSuchElementException e) {
-				throw new ElementoNaoEncontradoException();
-			}
-			if (p != null && p.getCpf().equals(pessoa.getCpf())) {
+		RepositorioListaPessoa repositorioAtual = this.prox;
+		while ((repositorioAtual != null) && (achou == false)) {
+			p = repositorioAtual.getPessoa();
+			if (p.getCpf().equals(pessoa.getCpf())) {
+				repositorioAtual.setPessoa(pessoa);
 				achou = true;
-				repositorio.setItem(pessoa); // substitui a pessoa atual pelo
-												// parametro passado.
+			} else {
+				repositorioAtual = repositorioAtual.getProx();
 			}
 		}
 		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
+		/**
+		 * boolean achou = false; Iterator<RepositorioLista<Pessoa>> it =
+		 * iterator(); Pessoa p = null; RepositorioLista<Pessoa> repositorio =
+		 * null; while (it.hasNext() && !achou) { try { repositorio = it.next();
+		 * p = repositorio.getPessoa(); } catch (NoSuchElementException e) {
+		 * throw new ElementoNaoEncontradoException(); } if (p != null &&
+		 * p.getCpf().equals(pessoa.getCpf())) { achou = true;
+		 * repositorio.setPessoa(pessoa); // substitui a pessoa atual pelo //
+		 * parametro passado. } } if (achou == false) { throw new
+		 * ElementoNaoEncontradoException(); }
+		 */
 	}
 
 	public void remover(String cpf) throws ElementoNaoEncontradoException {
-		Pessoa p = null;
 		boolean achou = false;
-		Iterator<RepositorioLista<Pessoa>> it = iterator();
-		RepositorioLista<Pessoa> repositorioAtual = null;
-		RepositorioLista<Pessoa> repositorioProximo = null;
-		if (super.getProx().getItem().getCpf().equals(cpf)) {
-			p = super.getProx().getItem();
-			super.setProx(super.getProx().getProx());
+		RepositorioListaPessoa repositorioAtual = null;
+		RepositorioListaPessoa repositorioProximo = this.prox;
+		if (this.prox.getPessoa().getCpf().equals(cpf)) {// Verifica se o
+															// primeiro da lista
+															// é aquele que eu
+															// quero remover.
+			this.prox = this.prox.getProx();
 			achou = true;
-			} else {
-			while (it.hasNext() && !achou) {
-				try {
-					repositorioAtual = ((IteratorLista<Pessoa>) it)
-							.getRepositorio();
-					repositorioProximo = it.next();
-					p = repositorioProximo.getItem();
-				} catch (NoSuchElementException e) {
-					throw new ElementoNaoEncontradoException();
-				}
-				if (p != null && p.getCpf().equals(cpf)) {
-					achou = true;
-					System.out.println("achei " + p.getNome() + "\n\n");
+		} else {
+			repositorioAtual = this.prox;
+			repositorioProximo = repositorioAtual.getProx();
+			while (achou != true && repositorioProximo != null) {
+				if (repositorioProximo.getPessoa().getCpf().equals(cpf)) {
 					repositorioAtual.setProx(repositorioProximo.getProx());
+					;
+					achou = true;
+				} else {
+					repositorioAtual = repositorioProximo;
+					repositorioProximo = repositorioProximo.getProx();
 				}
 			}
 		}
-		/**if (achou == false) {
+		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
-		*/
+		/**
+		 * Pessoa p = null; boolean achou = false;
+		 * Iterator<RepositorioLista<Pessoa>> it = iterator();
+		 * RepositorioLista<Pessoa> repositorioAtual = null;
+		 * RepositorioLista<Pessoa> repositorioProximo = null; if
+		 * (getProx().getPessoa().getCpf().equals(cpf)) { p =
+		 * getProx().getPessoa(); setProx(getProx().getProx()); achou = true; }
+		 * else { while (it.hasNext() && !achou) { try { repositorioAtual =
+		 * ((IteratorLista<Pessoa>) it) .getRepositorio(); repositorioProximo =
+		 * it.next(); p = repositorioProximo.getPessoa(); } catch
+		 * (NoSuchElementException e) { throw new
+		 * ElementoNaoEncontradoException(); } if (p != null &&
+		 * p.getCpf().equals(cpf)) { achou = true; System.out.println("achei " +
+		 * p.getNome() + "\n\n");
+		 * repositorioAtual.setProx(repositorioProximo.getProx()); } }
+		 */
+
+		/**
+		 * if (achou == false) { throw new ElementoNaoEncontradoException(); }
+		 */
 	}
 
-	public Iterator<RepositorioLista<Pessoa>> iterator() {
-		IteratorLista<Pessoa> it = new IteratorLista<Pessoa>(super.getProx());
+	public Iterator<RepositorioListaPessoa> iterator() {
+		IteratorListaPessoa it = new IteratorListaPessoa(this.prox);//Passa como argumento o primeiro item da lista.
 		return it;
 
 	}

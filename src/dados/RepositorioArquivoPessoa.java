@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 
 //import modificacoes.RepositorioArrayPessoa2;
 
-import modificacoes.RepositorioArrayPessoa2;
 
 import org.apache.poi.hssf.usermodel.*;
 
@@ -19,7 +18,7 @@ import excecoes.RepositorioException;
 
 public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
-	private RepositorioArrayPessoa2 pessoas;
+	private RepositorioArrayPessoa pessoas;
 	HSSFWorkbook wb;
 	HSSFSheet sheet1;
 	int cont = 0;
@@ -73,7 +72,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			abrir = true;
 		}
 
-		pessoas = new RepositorioArrayPessoa2();
+		pessoas = new RepositorioArrayPessoa();
 		this.lerPlanilha();
 
 	}
@@ -209,7 +208,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
 	}
 
-	public RepositorioArrayPessoa2 getPessoas() {
+	public RepositorioArrayPessoa getPessoas() {
 		return pessoas;
 	}
 

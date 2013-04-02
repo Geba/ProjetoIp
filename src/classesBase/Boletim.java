@@ -1,12 +1,12 @@
 package classesBase;
 
-import modificacoes.RepositorioArrayDisciplina2;
+import dados.RepositorioArrayDisciplina;
 
 public class Boletim {
-	private RepositorioArrayDisciplina2 disciplinas;
+	private RepositorioArrayDisciplina disciplinas;
 	private double[][] notas;
 
-	public Boletim(RepositorioArrayDisciplina2 repositorioArrayDisciplina2) { // quantidade
+	public Boletim(RepositorioArrayDisciplina repositorioArrayDisciplina2) { // quantidade
 																				// de
 																				// disciplinas
 		disciplinas = repositorioArrayDisciplina2;
@@ -18,11 +18,11 @@ public class Boletim {
 		}
 	}
 
-	public RepositorioArrayDisciplina2 getDisciplinas() {
+	public RepositorioArrayDisciplina getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(RepositorioArrayDisciplina2 disciplinas) {
+	public void setDisciplinas(RepositorioArrayDisciplina disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 
