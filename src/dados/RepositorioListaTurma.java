@@ -1,8 +1,6 @@
 package dados;
 
 import java.util.Iterator;
-
-import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
 
