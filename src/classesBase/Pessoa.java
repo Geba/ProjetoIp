@@ -3,15 +3,25 @@ package classesBase;
 public abstract class Pessoa {
 	private String cpf;
 	private String nome;
+	private String telefone;
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	private String dataNasc;
 	private String identidade;
 	private String sexo;
 	private Endereco endereco;
 
 	public Pessoa(String cpf, String nome, String dataNasc, String identidade,
-			String sexo, Endereco endereco) {
+			String sexo, String telefone, Endereco endereco) {
 		this.cpf = cpf;
 		this.nome = nome;
+		this.telefone = telefone;
 		this.dataNasc = dataNasc;
 		this.identidade = identidade;
 		this.sexo = sexo;

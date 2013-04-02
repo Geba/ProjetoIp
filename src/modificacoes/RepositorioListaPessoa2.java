@@ -3,8 +3,9 @@ package modificacoes;
 import java.util.Iterator;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
+import dados.*;
 
-public class RepositorioListaPessoa2 {
+public class RepositorioListaPessoa2 implements Repositorio<Pessoa>{
 
 	private Pessoa pessoa;
 	private RepositorioListaPessoa2 prox;

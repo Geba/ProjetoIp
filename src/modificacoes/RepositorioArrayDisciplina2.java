@@ -1,11 +1,12 @@
 package modificacoes;
 
 import dados.RepositorioArray;
+import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 import java.util.Iterator;
 import classesBase.Disciplina;
 
-public class RepositorioArrayDisciplina2 extends RepositorioArray<Disciplina> {
+public class RepositorioArrayDisciplina2 extends RepositorioArray<Disciplina> implements Repositorio<Disciplina> {
 
 	public RepositorioArrayDisciplina2(int n) {// Aqui a gente inicia o array de
 											// Disciplinas; o n define o tamanho

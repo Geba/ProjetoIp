@@ -6,7 +6,7 @@ public class Aluno extends Pessoa {
 	private String pai;
 	private String mae;
 	private String numeroMatricula;
-	private Boolean[][] presenca;
+	//private Boolean[][] presenca;
 	private Turma turma;
 	private Boletim boletim;
 
@@ -20,12 +20,12 @@ public class Aluno extends Pessoa {
 	}
 
 
-	public Aluno(String cpf, String nome, String dataNasc, String identidade, String sexo,
+	public Aluno(String cpf, String nome, String dataNasc, String identidade, String sexo,String telefone,
 			Endereco endereco, String pai, String mae, Turma turma) {
-		super(cpf, nome, dataNasc, identidade, sexo, endereco);
+		super(cpf, nome, dataNasc, identidade, telefone, sexo, endereco);
 		this.pai = pai;
 		this.mae = mae;
-		presenca = new Boolean[12][31];
+		//presenca = new Boolean[12][31];
 		this.turma = turma;
 
 		// gerando um numero aleatorio pro numeroMatricula pra nao precisar
@@ -63,14 +63,6 @@ public class Aluno extends Pessoa {
 
 	public void setNumeroMatricula(String numeroMatricula) {
 		this.numeroMatricula = numeroMatricula;
-	}
-
-	public Boolean[][] getPresenca() {
-		return presenca;
-	}
-
-	public void setPresenca(Boolean[][] presenca) {
-		this.presenca = presenca;
 	}
 
 	public Turma getTurma() {

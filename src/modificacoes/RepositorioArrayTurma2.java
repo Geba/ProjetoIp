@@ -1,11 +1,12 @@
 package modificacoes;
 
 import dados.RepositorioArray;
+import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 import java.util.Iterator;
 import classesBase.Turma;
 
-public class RepositorioArrayTurma2 extends RepositorioArray<Turma> {
+public class RepositorioArrayTurma2 extends RepositorioArray<Turma> implements Repositorio<Turma> {
 
 	public RepositorioArrayTurma2(int n) {// Aqui a gente inicia o array de
 											// Turmas; o n define o tamanho

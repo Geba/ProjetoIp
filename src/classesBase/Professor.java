@@ -1,41 +1,54 @@
 package classesBase;
+
+import modificacoes.RepositorioArrayDisciplina2;
+import modificacoes.RepositorioArrayTurma2;
 import dados.*;
+import excecoes.RepositorioException;
 
 public class Professor extends Empregado {
-	private String login;
-	private String senha;
-	private RepositorioTurma turmas;
-	private RepositorioArrayDisciplina disciplinas;
-	public Professor(String cpf, String nome, String dataNasc, String identidade, String sexo,
-			Endereco endereco, String funcao, String login) {
-		super(cpf, nome, dataNasc, identidade, sexo, endereco, funcao);
-		this.login=login;
+	private Repositorio<Turma> turmas;
+	private Repositorio<Disciplina> disciplinas;
+
+	public Professor(String cpf, String nome, String dataNasc,
+			String identidade, String sexo, String telefone, Endereco endereco,
+			String funcao) {
+		super(cpf, nome, dataNasc, identidade, sexo, telefone, endereco, funcao);
+		turmas = new RepositorioArrayTurma2();
+		disciplinas = new RepositorioArrayDisciplina2();
+
 	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	public RepositorioTurma getTurmas() {
+
+	public Repositorio<Turma> getTurmas() {
 		return turmas;
 	}
-	public void setTurmas(RepositorioTurma turmas) {
+
+	public void setTurmas(Repositorio<Turma> turmas) {
 		this.turmas = turmas;
 	}
-	public RepositorioArrayDisciplina getDisciplinas() {
+
+	public Repositorio<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-	public void setDisciplinas(RepositorioArrayDisciplina disciplinas) {
+
+	public void setDisciplinas(Repositorio<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 	
+	public void inserirDisciplina(Disciplina d){
+		try {
+			this.getDisciplinas().inserir(d);
+		} catch (RepositorioException e) {
+			System.out.println("erro no inserir disciplinas");
+		}
+	}
 	
-	
+	public void inserirTurma(Turma t){
+		try {
+			this.getTurmas().inserir(t);
+		} catch (RepositorioException e) {
+			System.out.println("erro no inserir turmas");
+		}
+		
+	}
+
 }

@@ -1,10 +1,11 @@
 package modificacoes;
 
 import java.util.Iterator;
+import dados.*;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
 
-public class RepositorioListaTurma2 {
+public class RepositorioListaTurma2 implements Repositorio<Turma>{
 
 	private Turma turma;
 	private RepositorioListaTurma2 prox;
