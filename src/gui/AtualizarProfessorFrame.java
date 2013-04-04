@@ -21,7 +21,7 @@ public class AtualizarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
-	private JTextField texCpf;
+	private JTextField textCpf;
 	private JTextField textRG;
 	private JTextField textDataNascimento;
 	private JTextField textEndereco;
@@ -53,7 +53,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarProfessorFrame(Professor professor) {
+	public AtualizarProfessorFrame(Professor professor) {//todos os campos serão atualizados com os dados do professor
 		this.professor = professor;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
@@ -62,9 +62,9 @@ public class AtualizarProfessorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblCadastrarAluno = new JLabel("Cadastrar Professor");
-		lblCadastrarAluno.setBounds(21, 18, 144, 16);
-		contentPane.add(lblCadastrarAluno);
+		JLabel lblAtualizarProfessor = new JLabel("Atualizar Professor");
+		lblAtualizarProfessor.setBounds(21, 18, 144, 16);
+		contentPane.add(lblAtualizarProfessor);
 
 		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
 		lblNomeCompleto.setBounds(21, 59, 112, 16);
@@ -79,10 +79,10 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
 
-		texCpf = new JTextField();
-		texCpf.setBounds(214, 121, 141, 28);
-		contentPane.add(texCpf);
-		texCpf.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(214, 121, 141, 28);
+		contentPane.add(textCpf);
+		textCpf.setColumns(10);
 
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
@@ -195,5 +195,19 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(textAreaFuncao);
 		
 		this.textBairro.setText(this.professor.getEndereco().getBairro());
+		this.textCep.setText(this.professor.getEndereco().getCep());
+		this.textCidade.setText(this.professor.getEndereco().getCidade());
+		this.textEndereco.setText(this.professor.getEndereco().getRua());
+		this.textBairro.setText(this.professor.getEndereco().getBairro());
+		this.textCep.setText(this.professor.getEndereco().getCep());
+		this.textCidade.setText(this.professor.getEndereco().getCidade());
+		this.textEstado.setText(this.professor.getEndereco().getEstado());
+		this.textNcasa.setText(this.professor.getEndereco().getNumero());
+		this.textNome.setText(this.professor.getNome());
+		this.textRG.setText(this.professor.getIdentidade());
+		this.textDataNascimento.setText(this.professor.getDataNasc());
+		this.textPais.setText(this.professor.getEndereco().getPais());
+		this.textCpf.setText(this.professor.getCpf());
+		
 	}
 }

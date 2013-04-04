@@ -3,9 +3,11 @@ package testes;
 import classesBase.Aluno;
 import classesBase.Endereco;
 import classesBase.Pessoa;
+import classesBase.Professor;
 import classesBase.Turma;
 import dados.RepositorioArrayPessoa;
 import dados.RepositorioListaPessoa;
+import excecoes.ElementoNaoEncontradoException;
 
 public class EscolaTeste {
 
@@ -31,14 +33,15 @@ public class EscolaTeste {
 		Pessoa timmy = new Aluno("123456789", "Timmy Turner","", "34655843", "F",
 				"",end, "Pai", "Mae", turma);
 		Pessoa bob = new Aluno("123456000","BobSponge SquarePants", "", "12321", "A", "", end, "Pai", "Mae", turma);
-		Pessoa frango = new Aluno("123456001","Frango", "", "122321", "F", "", end, "Pai", "Mae", turma);
-		Pessoa vaca = new Aluno("123456002","vaca", "", "1223221", "F", "", end, "Pai", "Mae", turma);
-		Pessoa jerry = new Aluno("123456005","Jerry", "", "122321", "F", "", end, "Pai", "Mae", turma);
-		Pessoa tom = new Aluno("123456004","Tom", "", "1223s21", "F", "", end, "Pai", "Mae", turma);
-		Pessoa johny = new Aluno("123456006","Johny", "", "122321", "F", "", end, "Pai", "Mae", turma);
+		Pessoa frango = new Aluno("123456001","Frango", "", "1245789", "F", "", end, "Pai", "Mae", turma);
+		Pessoa vaca = new Aluno("123456002","vaca", "", "1245789", "F", "", end, "Pai", "Mae", turma);
+		Pessoa jerry = new Aluno("123456005","Jerry", "", "12235521", "F", "", end, "Pai", "Mae", turma);
+		Pessoa tom = new Aluno("123456004","Tom", "", "12235521", "F", "", end, "Pai", "Mae", turma);
+		Pessoa johny = new Aluno("123456006","Johny", "", "12233421", "F", "", end, "Pai", "Mae", turma);
 		Pessoa lindinha = new Aluno("123456007","Lindinha", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa docinho = new Aluno("123456008","Docinho", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("123456009","Florzinha", "", "122321", "F", "", end, "Pai", "Mae", turma);
+		Pessoa untonio = new Professor("123454321", "Untonio", "","123454433","M", "333333333", end,"se pai");
 		pessoas.inserir(geba);
 		pessoas.inserir(harry);
 		pessoas.inserir(bruna);
@@ -54,10 +57,22 @@ public class EscolaTeste {
 		pessoas.inserir(flor);
 		pessoas.inserir(docinho);
 		pessoas.inserir(lindinha);
+		pessoas.inserir(untonio);
 		
 		
 	}
 	RepositorioArrayPessoa getRepositorio(){
 		return this.pessoas;
 	}
+	public Professor getProfessor() {
+		Professor untonio = null; 
+		try {
+			untonio = (Professor) this.pessoas.procurar("123454321"); 
+			 
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return untonio;
+		}
 }
