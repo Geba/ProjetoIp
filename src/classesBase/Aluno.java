@@ -1,15 +1,11 @@
 package classesBase;
 
-
-
 public class Aluno extends Pessoa {
 	private String pai;
 	private String mae;
 	private String numeroMatricula;
-	//private Boolean[][] presenca;
 	private Turma turma;
 	private Boletim boletim;
-
 
 	public Boletim getBoletim() {
 		return boletim;
@@ -25,7 +21,6 @@ public class Aluno extends Pessoa {
 		super(cpf, nome, dataNasc, identidade, telefone, sexo, endereco);
 		this.pai = pai;
 		this.mae = mae;
-		//presenca = new Boolean[12][31];
 		this.turma = turma;
 
 		// gerando um numero aleatorio pro numeroMatricula pra nao precisar

@@ -4,14 +4,6 @@ public abstract class Pessoa {
 	private String cpf;
 	private String nome;
 	private String telefone;
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
 	private String dataNasc;
 	private String identidade;
 	private String sexo;
@@ -74,6 +66,14 @@ public abstract class Pessoa {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 }

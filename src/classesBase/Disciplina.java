@@ -5,7 +5,7 @@ public class Disciplina {
 
 	private String ementa;
 	private String nome;
-	
+
 	public Disciplina(String nome, String ementa){
 		this.nome = nome;
 		this.ementa = ementa;
@@ -26,6 +26,5 @@ public class Disciplina {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
+
 }
