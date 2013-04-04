@@ -3,7 +3,7 @@ package classesBase;
 import dados.RepositorioArrayDisciplina;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.NumeroMaximoException;
-import excecoes.RepositorioException;
+
 
 public class Boletim {
 	private RepositorioArrayDisciplina disciplinas;
