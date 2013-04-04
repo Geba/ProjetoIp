@@ -122,7 +122,8 @@ public class TesteGeba3Lista {
 		pessoas.inserir(bruna);
 		pessoas.inserir(novo);
 		pessoas.inserir(alana);
-		pessoas.inserir(timmy);
+		pessoas.inserir(timmy);pessoas.inserir(alana);
+		pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);
 		System.out.println(pessoas.imprimir());
 
 		System.out.println("procurando Ful");
@@ -148,7 +149,18 @@ public class TesteGeba3Lista {
 		} catch (ElementoNaoEncontradoException e) {
 			System.out.println("Nao achei");
 		}
+		pessoas.inserir(alana);
+		pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);
+		
+		
 
+		System.out.println("procurando turner");
+		try{
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("turner");
+			System.out.println(resultado.imprimir());
+		}catch(ElementoNaoEncontradoException e){
+			System.out.println("Nao achei");
+		}
 		System.out.println("procurando turner");
 		try {
 			RepositorioArrayPessoa resultado = pessoas.procurarNome("turner");

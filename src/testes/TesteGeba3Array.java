@@ -29,6 +29,10 @@ public class TesteGeba3Array {
 				"Luiz", "Nancy", turma);
 		
 		Pessoa timmy = new Aluno("123456789","Timmy Turner","", "34655843", "F", "",end, "Pai", "Mae", turma);
+		Pessoa timmy1 = new Aluno("123456789","Timmy Turner1","", "34655843", "F", "",end, "Pai", "Mae", turma);
+		Pessoa timmy2 = new Aluno("123456789","Timmy Turner2","", "34655843", "F", "",end, "Pai", "Mae", turma);
+		Pessoa timmy3 = new Aluno("123456789","Timmy Turner3","", "34655843", "F", "",end, "Pai", "Mae", turma);
+		Pessoa timmy4 = new Aluno("123456789","Timmy Turner4","", "34655843", "F", "",end, "Pai", "Mae", turma);
 
 		pessoas.inserir(geba);
 		pessoas.inserir(harry);
@@ -124,6 +128,16 @@ public class TesteGeba3Array {
 		pessoas.inserir(novo);
 		pessoas.inserir(alana);
 		pessoas.inserir(timmy);
+		pessoas.inserir(geba);
+		pessoas.inserir(harry);
+		pessoas.inserir(bruna);
+		pessoas.inserir(novo);
+		pessoas.inserir(alana);
+		pessoas.inserir(timmy4);
+		pessoas.inserir(timmy1);
+		pessoas.inserir(timmy2);
+		pessoas.inserir(timmy3);
+		
 		System.out.println(pessoas.imprimir());
 		
 		System.out.println("procurando Ful");
@@ -162,15 +176,21 @@ public class TesteGeba3Array {
 		while (it.hasNext()){
 			System.out.println(it.next().getNome());
 		}
-		/**use este para RepositorioListaPessoa2
-		System.out.println("Testando o iterator Lista");
-		Iterator<RepositorioListaPessoa2> it = pessoas.iterator();
 		
 		
-		while(it.hasNext()){
-			System.out.println(it.next().getPessoa().getNome());
+		
+
+		System.out.println("procurando turner");
+		try{
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("turner");
+			Iterator<Pessoa> it2 = resultado.iterator();
+			while (it2.hasNext()){
+				System.out.println(it2.next().getNome());
+			}
+			//System.out.println(resultado.imprimir());
+		}catch(ElementoNaoEncontradoException e){
+			System.out.println("Nao achei");
 		}
-		*/
 		
 		
 	}
