@@ -25,7 +25,7 @@ import javax.swing.ButtonGroup;
 import classesBase.Administrador;
 
 @SuppressWarnings("serial")
-public class CadastrarAdmFrame extends JFrame {
+public class AtualizarAdmFrame extends JFrame {
 
 	private Escola fachada;
 	private JPanel contentPane;
@@ -44,6 +44,7 @@ public class CadastrarAdmFrame extends JFrame {
 	private JTextArea textfuncao;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String sexo;
+	private static Administrador adminstrador;
 	
 
 	/**
@@ -53,7 +54,7 @@ public class CadastrarAdmFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAdmFrame frame = new CadastrarAdmFrame();
+					AtualizarAdmFrame frame = new AtualizarAdmFrame(adminstrador);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +66,7 @@ public class CadastrarAdmFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastrarAdmFrame() {
+	public AtualizarAdmFrame(Administrador administrador) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -239,10 +240,24 @@ public class CadastrarAdmFrame extends JFrame {
 
 		this.fachada = PaginaPrincipal.fachada;
 		
-		
+		this.textBairro.setText(this.adminstrador.getEndereco().getBairro());
+		this.textCep.setText(this.adminstrador.getEndereco().getCep());
+		this.textCidade.setText(this.adminstrador.getEndereco().getCidade());
+		this.textRua.setText(this.adminstrador.getEndereco().getRua());
+		this.textBairro.setText(this.adminstrador.getEndereco().getBairro());
+		this.textCep.setText(this.adminstrador.getEndereco().getCep());
+		this.textCidade.setText(this.adminstrador.getEndereco().getCidade());
+		this.textEstado.setText(this.adminstrador.getEndereco().getEstado());
+		this.textNumero.setText(this.adminstrador.getEndereco().getNumero());
+		this.textNome.setText(this.adminstrador.getNome());
+		this.textRG.setText(this.adminstrador.getIdentidade());
+		this.textDataNasc.setText(this.adminstrador.getDataNasc());
+		this.textPais.setText(this.adminstrador.getEndereco().getPais());
+		this.textCPF.setText(this.adminstrador.getCpf());
 
 	}
 
+	
 	private void cadastrar(){
 		System.out.println(sexo);
 		try{

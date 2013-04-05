@@ -1,51 +1,51 @@
 package gui;
 
-//import java.awt.BorderLayout;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
 
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
-import fachadaEscola.Escola;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 
-import classesBase.Administrador;
+import classesBase.Aluno;
+import classesBase.Turma;
 
 @SuppressWarnings("serial")
-public class CadastrarAdmFrame extends JFrame {
+public class AtualizarAlunoFrameNovo extends JFrame {
 
-	private Escola fachada;
 	private JPanel contentPane;
 	private JTextField textNome;
 	private JTextField textCPF;
 	private JTextField textRG;
 	private JTextField textDataNasc;
+	private JTextField textPai;
+	private JTextField textMae;  // FALTA RESOLVER O COMBOBOX DA TURMA!!!!
 	private JTextField textRua;
 	private JTextField textNumero;
-	private JTextField textCep;
+	private JTextField textCEP;
 	private JTextField textBairro;
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textPais;
-	private JTextField texttelefone;
-	private JTextArea textfuncao;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField textTelefone;
 	private String sexo;
-	
-
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private static Aluno aluno;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +53,7 @@ public class CadastrarAdmFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAdmFrame frame = new CadastrarAdmFrame();
+					AtualizarAlunoFrameNovo frame = new AtualizarAlunoFrameNovo(aluno);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,211 +65,248 @@ public class CadastrarAdmFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastrarAdmFrame() {
+	public AtualizarAlunoFrameNovo(Aluno aluno) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JLabel lblCadastrarAluno = new JLabel("Cadastrar Administrador");
-		lblCadastrarAluno.setBounds(21, 18, 170, 16);
+		
+		JLabel lblCadastrarAluno = new JLabel("Cadastrar Aluno");
+		lblCadastrarAluno.setBounds(21, 18, 144, 16);
 		contentPane.add(lblCadastrarAluno);
-
+		
 		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
 		lblNomeCompleto.setBounds(21, 59, 112, 16);
 		contentPane.add(lblNomeCompleto);
-
+		
 		textNome = new JTextField();
 		textNome.setBounds(138, 53, 435, 28);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
-
+		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
-
+		
 		textCPF = new JTextField();
 		textCPF.setBounds(214, 121, 141, 28);
 		contentPane.add(textCPF);
 		textCPF.setColumns(10);
-
+		
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
-
+		
 		textRG = new JTextField();
 		textRG.setBounds(45, 121, 125, 28);
 		contentPane.add(textRG);
 		textRG.setColumns(10);
-
+		
 		textDataNasc = new JTextField();
 		textDataNasc.setBounds(245, 87, 125, 28);
 		contentPane.add(textDataNasc);
 		textDataNasc.setColumns(10);
-
-		JLabel lblDataDeNascimento = new JLabel(
-				"Data de Nascimento (dd/mm/aaaa)");
+		
+		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento (dd/mm/aaaa)");
 		lblDataDeNascimento.setBounds(21, 93, 228, 16);
 		contentPane.add(lblDataDeNascimento);
-
+		
+		
 		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		buttonGroup.add(rdbtnFeminino);
+		rdbtnFeminino.setBounds(432, 102, 141, 23);
+		contentPane.add(rdbtnFeminino);
+		
+		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		buttonGroup.add(rdbtnMasculino);
+		rdbtnMasculino.setBounds(432, 126, 141, 23);
+		contentPane.add(rdbtnMasculino);
+		//JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
 		rdbtnFeminino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sexo = "Feminino";
 			}
 		});
-		buttonGroup.add(rdbtnFeminino);
-		rdbtnFeminino.setBounds(432, 102, 141, 23);
-		contentPane.add(rdbtnFeminino);
 
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		//JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
 		rdbtnMasculino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sexo = "Masculino";
 			}
 		});
-		buttonGroup.add(rdbtnMasculino);
-		rdbtnMasculino.setBounds(432, 126, 141, 23);
-		contentPane.add(rdbtnMasculino);
-
-
+		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(432, 87, 61, 16);
 		contentPane.add(lblSexo);
-
+		
+		JLabel lblNomeDoPai = new JLabel("Nome do Pai:");
+		lblNomeDoPai.setBounds(21, 167, 94, 16);
+		contentPane.add(lblNomeDoPai);
+		
+		textPai = new JTextField();
+		textPai.setBounds(112, 161, 461, 28);
+		contentPane.add(textPai);
+		textPai.setColumns(10);
+		
+		JLabel lblNomeDaMe = new JLabel("Nome da M\u00E3e:");
+		lblNomeDaMe.setBounds(21, 200, 94, 16);
+		contentPane.add(lblNomeDaMe);
+		
+		textMae = new JTextField();
+		textMae.setBounds(122, 194, 451, 28);
+		contentPane.add(textMae);
+		textMae.setColumns(10);
+		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setBounds(21, 161, 61, 16);
+		lblEndereo.setBounds(21, 234, 61, 16);
 		contentPane.add(lblEndereo);
-
+		
 		JLabel lblN = new JLabel("N\u00BA :");
-		lblN.setBounds(432, 161, 61, 16);
+		lblN.setBounds(432, 234, 61, 16);
 		contentPane.add(lblN);
-
+		
 		textRua = new JTextField();
-		textRua.setBounds(90, 155, 320, 28);
+		textRua.setBounds(90, 228, 320, 28);
 		contentPane.add(textRua);
 		textRua.setColumns(10);
-
+		
 		textNumero = new JTextField();
-		textNumero.setBounds(460, 155, 113, 28);
+		textNumero.setBounds(460, 228, 113, 28);
 		contentPane.add(textNumero);
 		textNumero.setColumns(10);
-
+		
 		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setBounds(21, 195, 61, 16);
+		lblCep.setBounds(21, 268, 61, 16);
 		contentPane.add(lblCep);
-
-		textCep = new JTextField();
-		textCep.setBounds(57, 189, 134, 28);
-		contentPane.add(textCep);
-		textCep.setColumns(10);
-
+		
+		textCEP = new JTextField();
+		textCEP.setBounds(56, 262, 130, 28);
+		contentPane.add(textCEP);
+		textCEP.setColumns(10);
+		
 		JLabel lblBairro = new JLabel("Bairro:");
-		lblBairro.setBounds(203, 195, 61, 16);
+		lblBairro.setBounds(397, 268, 61, 16);
 		contentPane.add(lblBairro);
-
+		
 		textBairro = new JTextField();
-		textBairro.setBounds(245, 189, 134, 28);
+		textBairro.setBounds(439, 262, 134, 28);
 		contentPane.add(textBairro);
 		textBairro.setColumns(10);
-
+		
 		JLabel lblCidade = new JLabel("Cidade:");
-		lblCidade.setBounds(21, 229, 61, 16);
+		lblCidade.setBounds(198, 268, 61, 16);
 		contentPane.add(lblCidade);
-
+		
 		textCidade = new JTextField();
-		textCidade.setBounds(77, 223, 134, 28);
+		textCidade.setBounds(248, 262, 134, 28);
 		contentPane.add(textCidade);
 		textCidade.setColumns(10);
-
+		
 		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(228, 229, 61, 16);
+		lblEstado.setBounds(21, 302, 61, 16);
 		contentPane.add(lblEstado);
-
+		
 		textEstado = new JTextField();
-		textEstado.setBounds(277, 223, 125, 28);
+		textEstado.setBounds(70, 296, 125, 28);
 		contentPane.add(textEstado);
 		textEstado.setColumns(10);
-
+		
 		JLabel lblPas = new JLabel("Pa\u00EDs:");
-		lblPas.setBounds(417, 229, 61, 16);
+		lblPas.setBounds(210, 302, 61, 16);
 		contentPane.add(lblPas);
-
+		
 		textPais = new JTextField();
-		textPais.setBounds(452, 223, 121, 28);
+		textPais.setBounds(245, 296, 121, 28);
 		contentPane.add(textPais);
 		textPais.setColumns(10);
-
+		
+		JLabel lblTurma = new JLabel("Turma:");
+		lblTurma.setBounds(21, 341, 61, 16);
+		contentPane.add(lblTurma);
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				cadastrar();
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
-
+		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				voltar();
 			}
 		});
 		btnVoltar.setBounds(334, 365, 117, 42);
 		contentPane.add(btnVoltar);
-
-		JLabel lblFuno = new JLabel("Fun\u00E7\u00E3o:");
-		lblFuno.setBounds(21, 263, 250, 16);
-		contentPane.add(lblFuno);
-
-		textfuncao = new JTextArea();
-		textfuncao.setBounds(21, 285, 250, 96);
-		contentPane.add(textfuncao);
-
-		JLabel lblTelefone = new JLabel("Telefone: ");
-		lblTelefone.setBounds(299, 269, 80, 16);
+		
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setBounds(378, 302, 61, 16);
 		contentPane.add(lblTelefone);
+		
+		textTelefone = new JTextField();
+		textTelefone.setBounds(439, 296, 134, 28);
+		contentPane.add(textTelefone);
+		textTelefone.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(70, 337, 141, 27);
+		contentPane.add(comboBox);
+		
+		JButton btnNewButton = new JButton("Adicionar Nova");
+		btnNewButton.setBounds(70, 372, 141, 29);
+		contentPane.add(btnNewButton);
+		
 
-		texttelefone = new JTextField();
-		texttelefone.setBounds(366, 263, 134, 28);
-		contentPane.add(texttelefone);
-		texttelefone.setColumns(10);
-
-		this.fachada = PaginaPrincipal.fachada;
+		this.textBairro.setText(this.aluno.getEndereco().getBairro());
+		this.textCEP.setText(this.aluno.getEndereco().getCep());
+		this.textCidade.setText(this.aluno.getEndereco().getCidade());
+		this.textRua.setText(this.aluno.getEndereco().getRua());
+		this.textBairro.setText(this.aluno.getEndereco().getBairro());
+		this.textCidade.setText(this.aluno.getEndereco().getCidade());
+		this.textEstado.setText(this.aluno.getEndereco().getEstado());
+		this.textNumero.setText(this.aluno.getEndereco().getNumero());
+		this.textNome.setText(this.aluno.getNome());
+		this.textRG.setText(this.aluno.getIdentidade());
+		this.textDataNasc.setText(this.aluno.getDataNasc());
+		this.textPais.setText(this.aluno.getEndereco().getPais());
+		this.textCPF.setText(this.aluno.getCpf());
+		this.textPai.setText(this.aluno.getPai());
+		this.textMae.setText(this.aluno.getMae());
+		this.textTelefone.setText(this.aluno.getTelefone());
 		
 		
-
 	}
-
+	
 	private void cadastrar(){
-		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
 			String cpf = textCPF.getText();
 			String dataNasc = textDataNasc.getText();
 			String rg = textRG.getText();
-			String telefone = texttelefone.getText();
+			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();
-			String cep = textCep.getText();
+			String cep = textCEP.getText();
 			String bairro = textBairro.getText();
 			String cidade = textCidade.getText();
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
-			String funcao = textfuncao.getText();
-			//String numero = textNumero.getText();
-			this.fachada.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
-					telefone, rua, numero, bairro, cep, cidade, estado, pais,
-					funcao);
-			JOptionPane.showMessageDialog(this,"Administrador cadastrado com sucesso.");
+			String pai = textPai.getText();
+			String mae = textMae.getText();
+			Turma turma = null;//iniclializar isso aqui
+			//String numero = tf_numero.getText();
+			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
+					numero, bairro, cep, cidade, estado, pais, pai, mae, turma); //<<<<<<
+			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");
 		} catch (ElementoJaCadastradoException e){
-			JOptionPane.showMessageDialog(this,"O administrador j‡ est‡ cadastrado.");
-		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
+			JOptionPane.showMessageDialog(this,"O aluno j‡ est‡ cadastrado.");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,"Entrada invalida. Tente novamente.");
 		}
 		
 	}
@@ -280,3 +317,4 @@ public class CadastrarAdmFrame extends JFrame {
 		this.setVisible(false);
 	}
 }
+
