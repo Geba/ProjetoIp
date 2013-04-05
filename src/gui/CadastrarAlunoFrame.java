@@ -24,7 +24,7 @@ import javax.swing.ButtonGroup;
 
 import classesBase.Turma;
 
-public class CadastrarAlunoFrameNovo extends JFrame {
+public class CadastrarAlunoFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tf_nome;
@@ -51,7 +51,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAlunoFrameNovo frame = new CadastrarAlunoFrameNovo();
+					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +63,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastrarAlunoFrameNovo() {
+	public CadastrarAlunoFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -148,7 +148,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		contentPane.add(tf_pai);
 		tf_pai.setColumns(10);
 		
-		JLabel lblNomeDaMe = new JLabel("Nome da M\u00E3e:");
+		JLabel lblNomeDaMe = new JLabel("Nome da Mae:");
 		lblNomeDaMe.setBounds(21, 200, 94, 16);
 		contentPane.add(lblNomeDaMe);
 		
@@ -157,11 +157,11 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		contentPane.add(tf_mae);
 		tf_mae.setColumns(10);
 		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
+		JLabel lblEndereo = new JLabel("Endereco:");
 		lblEndereo.setBounds(21, 234, 61, 16);
 		contentPane.add(lblEndereo);
 		
-		JLabel lblN = new JLabel("N\u00BA :");
+		JLabel lblN = new JLabel("No :");
 		lblN.setBounds(432, 234, 61, 16);
 		contentPane.add(lblN);
 		
@@ -211,7 +211,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		contentPane.add(tf_estado);
 		tf_estado.setColumns(10);
 		
-		JLabel lblPas = new JLabel("Pa\u00EDs:");
+		JLabel lblPas = new JLabel("Pais:");
 		lblPas.setBounds(210, 302, 61, 16);
 		contentPane.add(lblPas);
 		
@@ -256,6 +256,12 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Adicionar Nova");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(70, 372, 141, 29);
 		contentPane.add(btnNewButton);
 	}
@@ -277,7 +283,7 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 			String pai = tf_pai.getText();
 			String mae = tf_mae.getText();
 			Turma turma = null;//iniclializar isso aqui
-			//String numero = tf_numero.getText();
+			//TEM QUE PEGAR ESSA TURMA AINDA
 			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
 					numero, bairro, cep, cidade, estado, pais, pai, mae, turma); //<<<<<<
 			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");

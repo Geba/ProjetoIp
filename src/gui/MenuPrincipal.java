@@ -62,17 +62,17 @@ public class MenuPrincipal extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblSelecioneOQue = new JLabel(
-				"Selecione o que voc\u00EA deseja alterar:");
+				"Selecione o que voce deseja alterar:");
 		lblSelecioneOQue.setBounds(38, 72, 235, 16);
 		contentPane.add(lblSelecioneOQue);
 		
-		JLabel lblOQueVoc = new JLabel("O que voc\u00EA quer fazer?");
+		JLabel lblOQueVoc = new JLabel("O que voce quer fazer?");
 		lblOQueVoc.setBounds(38, 263, 156, 16);
 		contentPane.add(lblOQueVoc);
 
 		JLabel lblBemvindo = new JLabel("Bem-vindo!");
-		lblBemvindo.setFont(new Font("Pacifico", Font.PLAIN, 18));
-		lblBemvindo.setBounds(38, 37, 95, 23);
+		lblBemvindo.setFont(new Font("Lucida Handwriting", Font.PLAIN, 18));
+		lblBemvindo.setBounds(38, 37, 156, 23);
 		contentPane.add(lblBemvindo);
 
 		JRadioButton rdbtnAlunos = new JRadioButton("Alunos");
@@ -152,7 +152,7 @@ public class MenuPrincipal extends JFrame {
 			private void cadastrar() {
 				
 				if (tipo.equals("aluno")){
-					CadastrarAlunoFrameNovo frame = new CadastrarAlunoFrameNovo();
+					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("professor")){
@@ -164,19 +164,19 @@ public class MenuPrincipal extends JFrame {
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("turma")){
-					//CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
-					//frame.setVisible(true);
-					JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Turma");
+					CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Turma");
 					setVisible(false);
 				} else if (tipo.equals("funcionario")){
-					//CadastrarFuncionarioFrame frame = new CadastrarFuncionarioFrame();
-					//frame.setVisible(true);
-					JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Funcionario");
+					CadastrarFuncionarioFrame frame = new CadastrarFuncionarioFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Funcionario");
 					setVisible(false);
 				} else if (tipo.equals("disciplina")){
-					//CadastrarDisciplinaFrame frame = new CadastrarDisciplinaFrame();
-					//frame.setVisible(true);
-					JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Disciplina");
+					CadastrarDisciplinaFrame frame = new CadastrarDisciplinaFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Disciplina");
 					setVisible(false);
 				} 
 				

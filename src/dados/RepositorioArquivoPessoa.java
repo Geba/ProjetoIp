@@ -149,7 +149,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 						String sal = lerCelula(i, 18);
 						if (!sal.equals("")) {
 							salario = Double.parseDouble(lerCelula(i, 18));
-						} else{
+						} else {
 							salario=0.0;
 						}
 					} catch (NumberFormatException e) {

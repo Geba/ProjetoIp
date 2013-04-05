@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
-import classesBase.Administrador;
+//import classesBase.Administrador;
 
 @SuppressWarnings("serial")
 public class CadastrarAdmFrame extends JFrame {
