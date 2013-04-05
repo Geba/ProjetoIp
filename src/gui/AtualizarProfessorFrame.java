@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,12 +11,13 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JPasswordField;
+//import javax.swing.JPasswordField;
 
-import com.apple.dnssd.TXTRecord;
+//import com.apple.dnssd.TXTRecord;
 
 import classesBase.Professor;
 
+@SuppressWarnings("serial")
 public class AtualizarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;

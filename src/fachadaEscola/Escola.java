@@ -6,10 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import classesBase.*;
-import dados.RepositorioArrayPessoa;
-import dados.RepositorioArrayTurma;
-import dados.RepositorioListaDisciplina;
-import dados.RepositorioListaPessoa;
 import dados.*;
 import excecoes.*;
 import negocio.*;
@@ -56,43 +52,54 @@ public class Escola {
 			String rg, String sexo, String telefone, String rua, String numero,
 			String bairro, String cep, String cidade, String estado,
 			String pais, String pai, String mae, Turma turma)
-			throws EntradaInvalidaException {
+			throws EntradaInvalidaException, ElementoJaCadastradoException {
+		try {
+			Pessoa p = pessoas.procurar(cpf);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e1) {
 
-		if (Controle.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
-				numero, bairro, cep, cidade, estado, pais, pai, mae, turma)) {
-			Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
-					estado, pais);
-			Pessoa aluno = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone,
-					end, pai, mae, turma);
-			try {
-				pessoas.inserir(aluno);
-			} catch (RepositorioException e) {
+			if (Controle.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais, pai, mae,
+					turma)) {
+				Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
+						estado, pais);
+				Pessoa aluno = new Aluno(cpf, nome, dataNasc, rg, sexo,
+						telefone, end, pai, mae, turma);
+				try {
+					pessoas.inserir(aluno);
+				} catch (RepositorioException e) {
 
+				}
+			} else {
+				throw new EntradaInvalidaException();
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 	}
 
 	public void inserirProfessor(String cpf, String nome, String dataNasc,
 			String rg, String sexo, String telefone, String rua, String numero,
 			String bairro, String cep, String cidade, String estado,
-			String pais, String funcao, String login)
-			throws RepositorioException, EntradaInvalidaException {
+			String pais, String funcao) throws RepositorioException,
+			EntradaInvalidaException, ElementoJaCadastradoException {
+		try {
+			Pessoa p = pessoas.procurar(cpf);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e1) {
+			if (Controle.inserirProfessor(cpf, nome, dataNasc, rg, sexo,
+					telefone, rua, numero, bairro, cep, cidade, estado, pais,
+					funcao)) {
+				Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
+						estado, pais);
+				Pessoa prof = new Professor(cpf, nome, dataNasc, rg, sexo,
+						telefone, end, funcao);
+				try {
+					pessoas.inserir(prof);
+				} catch (RepositorioException e) {
 
-		if (Controle.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone,
-				rua, numero, bairro, cep, cidade, estado, pais, funcao)) {
-			Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
-					estado, pais);
-			Pessoa prof = new Professor(cpf, nome, dataNasc, rg, sexo,
-					telefone, end, funcao);
-			try {
-				pessoas.inserir(prof);
-			} catch (RepositorioException e) {
-
+				}
+			} else {
+				throw new EntradaInvalidaException();
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 	}
 
@@ -129,52 +136,68 @@ public class Escola {
 			String rg, String sexo, String telefone, String rua, String numero,
 			String bairro, String cep, String cidade, String estado,
 			String pais, String funcao) throws RepositorioException,
-			EntradaInvalidaException {
-		if (Controle.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
-				telefone, rua, numero, bairro, cep, cidade, estado, pais,
-				funcao)) {
-			Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
-					estado, pais);
-			Pessoa func = new Funcionario(cpf, nome, dataNasc, rg, sexo,
-					telefone, end, funcao);
-			try {
-				pessoas.inserir(func);
-			} catch (RepositorioException e) {
+			EntradaInvalidaException, ElementoJaCadastradoException {
+		try {
+			Pessoa p = pessoas.procurar(cpf);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e1) {
+			if (Controle.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
+					telefone, rua, numero, bairro, cep, cidade, estado, pais,
+					funcao)) {
+				Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
+						estado, pais);
+				Pessoa func = new Funcionario(cpf, nome, dataNasc, rg, sexo,
+						telefone, end, funcao);
+				try {
+					pessoas.inserir(func);
+				} catch (RepositorioException e) {
 
+				}
+			} else {
+				throw new EntradaInvalidaException();
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 	}
 
-	public void inserirTurma(String nome) throws EntradaInvalidaException {
-		if (Controle.nomeValido(nome)) {
+	public void inserirTurma(String nome) throws EntradaInvalidaException,
+			ElementoJaCadastradoException {
+		try {
+			Turma t = turmas.procurar(nome);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e1) {
+			if (Controle.nomeValido(nome)) {
 
-			Turma t = new Turma(nome);
-			try {
-				turmas.inserir(t);
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
+				Turma t = new Turma(nome);
+				try {
+					turmas.inserir(t);
+				} catch (RepositorioException e) {
+					// TODO Auto-generated catch block
 
+				}
+			} else {
+				throw new EntradaInvalidaException();
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 	}
 
 	public void inserirDisciplina(String nome, String ementa)
-			throws EntradaInvalidaException {
+			throws EntradaInvalidaException, ElementoJaCadastradoException {
+		try {
+			Disciplina d = disciplinas.procurar(nome);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e1) {
 
-		if (Controle.nomeValido(nome)) {
-			Disciplina d = new Disciplina(nome, ementa);
-			try {
-				disciplinas.inserir(d);
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (Controle.nomeValido(nome)) {
+				Disciplina d = new Disciplina(nome, ementa);
+				try {
+					disciplinas.inserir(d);
+				} catch (RepositorioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				throw new EntradaInvalidaException();
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 	}
 

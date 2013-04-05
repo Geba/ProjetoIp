@@ -122,7 +122,7 @@ public class CadastrarAdmFrame extends JFrame {
 		contentPane.add(rdbtnFeminino);
 
 		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
-		rdbtnFeminino.addActionListener(new ActionListener() {
+		rdbtnMasculino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sexo = "Masculino";
 			}
@@ -226,19 +226,20 @@ public class CadastrarAdmFrame extends JFrame {
 		contentPane.add(tf_funcao);
 
 		JLabel lblTelefone = new JLabel("Telefone: ");
-		lblTelefone.setBounds(299, 263, 80, 16);
+		lblTelefone.setBounds(299, 269, 80, 16);
 		contentPane.add(lblTelefone);
 
 		tf_telefone = new JTextField();
-		tf_telefone.setBounds(366, 257, 134, 28);
+		tf_telefone.setBounds(366, 263, 134, 28);
 		contentPane.add(tf_telefone);
 		tf_telefone.setColumns(10);
 
-		this.fachada = new Escola();
+		this.fachada = PaginaPrincipal.fachada;
 
 	}
 
 	private void cadastrar(){
+		System.out.println(sexo);
 		try{
 			String nome = tf_nome.getText();
 			String cpf = tf_cpf.getText();
@@ -269,7 +270,7 @@ public class CadastrarAdmFrame extends JFrame {
 	}
 
 	private void voltar() {
-		EscolaFrameNovo frame1 = new EscolaFrameNovo();
+		MenuPrincipal frame1 = new MenuPrincipal();
 		frame1.setVisible(true);
 		this.setVisible(false);
 	}

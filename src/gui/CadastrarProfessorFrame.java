@@ -7,26 +7,39 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JPasswordField;
 
+import excecoes.ElementoJaCadastradoException;
+import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
+
 public class CadastrarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
+	private JTextField tf_nome;
+	private JTextField tf_cpf;
+	private JTextField tf_rg;
+	private JTextField tf_dataNasc;
+	private JTextField tf_rua;
+	private JTextField tf_numero;
+	private JTextField tf_cep;
+	private JTextField tf_bairro;
+	private JTextField tf_cidade;
+	private JTextField tf_estado;
+	private JTextField tf_pais;
+	private JTextField tf_telefone;
+	private JTextArea ta_funcao;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private String sexo;
+	
 
 	/**
 	 * Launch the application.
@@ -63,43 +76,55 @@ public class CadastrarProfessorFrame extends JFrame {
 		lblNomeCompleto.setBounds(21, 59, 112, 16);
 		contentPane.add(lblNomeCompleto);
 		
-		textField = new JTextField();
-		textField.setBounds(138, 53, 435, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tf_nome = new JTextField();
+		tf_nome.setBounds(138, 53, 435, 28);
+		contentPane.add(tf_nome);
+		tf_nome.setColumns(10);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(214, 121, 141, 28);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tf_cpf = new JTextField();
+		tf_cpf.setBounds(214, 121, 141, 28);
+		contentPane.add(tf_cpf);
+		tf_cpf.setColumns(10);
 		
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(45, 121, 125, 28);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		tf_rg = new JTextField();
+		tf_rg.setBounds(45, 121, 125, 28);
+		contentPane.add(tf_rg);
+		tf_rg.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(245, 87, 125, 28);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		tf_dataNasc = new JTextField();
+		tf_dataNasc.setBounds(245, 87, 125, 28);
+		contentPane.add(tf_dataNasc);
+		tf_dataNasc.setColumns(10);
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento (dd/mm/aaaa)");
 		lblDataDeNascimento.setBounds(21, 93, 228, 16);
 		contentPane.add(lblDataDeNascimento);
 		
 		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		rdbtnFeminino.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sexo="Feminino";
+			}
+		});
+		buttonGroup.add(rdbtnFeminino);
 		rdbtnFeminino.setBounds(432, 102, 141, 23);
 		contentPane.add(rdbtnFeminino);
 		
 		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sexo="Masculino";
+			}
+		});
+		buttonGroup.add(rdbtnMasculino);
 		rdbtnMasculino.setBounds(432, 126, 141, 23);
 		contentPane.add(rdbtnMasculino);
 		
@@ -115,66 +140,76 @@ public class CadastrarProfessorFrame extends JFrame {
 		lblN.setBounds(432, 161, 61, 16);
 		contentPane.add(lblN);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(90, 155, 320, 28);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
+		tf_rua = new JTextField();
+		tf_rua.setBounds(90, 155, 320, 28);
+		contentPane.add(tf_rua);
+		tf_rua.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(460, 155, 113, 28);
-		contentPane.add(textField_7);
-		textField_7.setColumns(10);
+		tf_numero = new JTextField();
+		tf_numero.setBounds(460, 155, 113, 28);
+		contentPane.add(tf_numero);
+		tf_numero.setColumns(10);
 		
 		JLabel lblCep = new JLabel("CEP:");
 		lblCep.setBounds(21, 195, 61, 16);
 		contentPane.add(lblCep);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(57, 189, 134, 28);
-		contentPane.add(textField_8);
-		textField_8.setColumns(10);
+		tf_cep = new JTextField();
+		tf_cep.setBounds(57, 189, 134, 28);
+		contentPane.add(tf_cep);
+		tf_cep.setColumns(10);
 		
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setBounds(203, 195, 61, 16);
 		contentPane.add(lblBairro);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(245, 189, 134, 28);
-		contentPane.add(textField_9);
-		textField_9.setColumns(10);
+		tf_bairro = new JTextField();
+		tf_bairro.setBounds(245, 189, 134, 28);
+		contentPane.add(tf_bairro);
+		tf_bairro.setColumns(10);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setBounds(21, 229, 61, 16);
 		contentPane.add(lblCidade);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(77, 223, 134, 28);
-		contentPane.add(textField_10);
-		textField_10.setColumns(10);
+		tf_cidade = new JTextField();
+		tf_cidade.setBounds(77, 223, 134, 28);
+		contentPane.add(tf_cidade);
+		tf_cidade.setColumns(10);
 		
 		JLabel lblEstado = new JLabel("Estado:");
 		lblEstado.setBounds(228, 229, 61, 16);
 		contentPane.add(lblEstado);
 		
-		textField_11 = new JTextField();
-		textField_11.setBounds(277, 223, 125, 28);
-		contentPane.add(textField_11);
-		textField_11.setColumns(10);
+		tf_estado = new JTextField();
+		tf_estado.setBounds(277, 223, 125, 28);
+		contentPane.add(tf_estado);
+		tf_estado.setColumns(10);
 		
 		JLabel lblPas = new JLabel("Pa\u00EDs:");
 		lblPas.setBounds(417, 229, 61, 16);
 		contentPane.add(lblPas);
 		
-		textField_12 = new JTextField();
-		textField_12.setBounds(452, 223, 121, 28);
-		contentPane.add(textField_12);
-		textField_12.setColumns(10);
+		tf_pais = new JTextField();
+		tf_pais.setBounds(452, 223, 121, 28);
+		contentPane.add(tf_pais);
+		tf_pais.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastrar();
+			}
+		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				voltar();
+			}
+		});
 		btnVoltar.setBounds(334, 365, 117, 42);
 		contentPane.add(btnVoltar);
 		
@@ -182,9 +217,52 @@ public class CadastrarProfessorFrame extends JFrame {
 		lblFuno.setBounds(21, 263, 250, 16);
 		contentPane.add(lblFuno);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(21, 285, 250, 96);
-		contentPane.add(textArea);
+		ta_funcao = new JTextArea();
+		ta_funcao.setBounds(21, 285, 250, 96);
+		contentPane.add(ta_funcao);
+		
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setBounds(334, 263, 61, 16);
+		contentPane.add(lblTelefone);
+		
+		tf_telefone = new JTextField();
+		tf_telefone.setBounds(399, 257, 134, 28);
+		contentPane.add(tf_telefone);
+		tf_telefone.setColumns(10);
+	}
+	private void cadastrar(){
+		//System.out.println(sexo);
+		try{
+			String nome = tf_nome.getText();
+			String cpf = tf_cpf.getText();
+			String dataNasc = tf_dataNasc.getText();
+			String rg = tf_rg.getText();
+			String telefone = tf_telefone.getText();
+			String rua = tf_rua.getText();
+			String numero = tf_numero.getText();
+			String cep = tf_cep.getText();
+			String bairro = tf_bairro.getText();
+			String cidade = tf_cidade.getText();
+			String estado = tf_estado.getText();
+			String pais = tf_pais.getText();
+			String funcao = ta_funcao.getText();
+			PaginaPrincipal.fachada.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais, funcao);
+			JOptionPane.showMessageDialog(this,"Professor cadastrado com sucesso.");
+		} catch (ElementoJaCadastradoException e){
+			JOptionPane.showMessageDialog(this,"O professor j‡ est‡ cadastrado.");
+		} catch (RepositorioException e) {
+			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
+		} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+		}
+		
+	}
+
+	private void voltar() {
+		MenuPrincipal frame1 = new MenuPrincipal();
+		frame1.setVisible(true);
+		this.setVisible(false);
 	}
 }
 
