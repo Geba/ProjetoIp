@@ -11,7 +11,7 @@ public class IteratorArrayPessoa implements Iterator<Pessoa> {
 
 	public IteratorArrayPessoa(Pessoa[] array) {
 		this.array = array;
-		this.indiceAtual = 0;
+		this.indiceAtual = -1;
 		for (int i = 0; this.array[i] != null; i++) {
 			this.contador = i;
 		}

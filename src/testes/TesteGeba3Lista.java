@@ -22,6 +22,12 @@ public class TesteGeba3Lista {
 				"Luiz", "Nancy", turma);
 		Pessoa geba = new Aluno("83830480504", "Geovane","", "7727724", "F","", end,
 				"Luiz", "Nancy", turma);
+		Pessoa geba1 = new Aluno("83830480502", "Geovane1","", "7727724", "F","", end,
+				"Luiz", "Nancy", turma);
+		Pessoa geba4 = new Aluno("83830480503", "Geovane2","", "7727724", "F","", end,
+				"Luiz", "Nancy", turma);
+		Pessoa geba5 = new Aluno("83830480502", "Geovane3","", "7727724", "F","", end,
+				"Luiz", "Nancy", turma);
 
 		Pessoa novo = new Aluno("000000", "Fulano","", "7727724", "F","", end,
 				"Luiz", "Nancy", turma);
@@ -124,6 +130,7 @@ public class TesteGeba3Lista {
 		pessoas.inserir(alana);
 		pessoas.inserir(timmy);pessoas.inserir(alana);
 		pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);pessoas.inserir(timmy);
+		pessoas.inserir(geba2);pessoas.inserir(geba5);pessoas.inserir(geba4);
 		System.out.println(pessoas.imprimir());
 
 		System.out.println("procurando Ful");
@@ -179,6 +186,20 @@ public class TesteGeba3Lista {
 		while (it.hasNext()) {
 			System.out.println(it.next().getPessoa().getNome());
 		}
+		
+		
+		System.out.println("procurando ful");
+		try{
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("geo");
+			Iterator<Pessoa> it2 = resultado.iterator();
+			while (it2.hasNext()){
+				System.out.println(it2.next().getNome());
+			}
+			//System.out.println(resultado.imprimir());
+		}catch(ElementoNaoEncontradoException e){
+			System.out.println("Nao achei");
+		}
+		
 		System.out.println("Fadaas!");
 
 	}

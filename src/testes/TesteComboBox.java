@@ -54,9 +54,9 @@ public class TesteComboBox extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		final JComboBox lista = new JComboBox();
-		lista.setBounds(50, 93, 280, 20);
-		contentPane.add(lista);
+		final JComboBox<Pessoa> comboBox = new JComboBox<Pessoa>();
+		comboBox.setBounds(50, 93, 280, 20);
+		contentPane.add(comboBox);
 
 		textField = new JTextField();
 		textField.setBounds(50, 11, 283, 20);
@@ -66,7 +66,7 @@ public class TesteComboBox extends JFrame {
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cpf = ((Pessoa) lista.getSelectedItem()).getCpf();
+				String cpf = ((Pessoa) comboBox.getSelectedItem()).getCpf();
 				try{
 					escola.getRepositorio().remover(cpf);
 				}catch(ElementoNaoEncontradoException e1 ){
@@ -89,20 +89,21 @@ public class TesteComboBox extends JFrame {
 		JButton btnProcurar = new JButton("Procurar");
 		btnProcurar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				comboBox.removeAll();
 				String procura = textField.getText();
 				RepositorioArrayPessoa repositorio = new RepositorioArrayPessoa();
 				try {
 					repositorio = escola.getRepositorio().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
-					// TODO Auto-generated catch block
+					System.out.println("Nao achei");
 					e1.printStackTrace();
 				}
+				comboBox.removeAllItems();
 				Iterator<Pessoa> it = repositorio.iterator();
-				System.out.println(escola.getRepositorio().imprimir());
+				System.out.println("\n\n" + repositorio.imprimir());
 				while (it.hasNext()){
 					Pessoa pessoa = it.next();
-					String nome = pessoa.getNome();
-					lista.addItem(pessoa);
+					comboBox.addItem(pessoa);
 				}
 			}
 		});

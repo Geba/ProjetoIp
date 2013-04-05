@@ -156,6 +156,8 @@ public class TesteGeba3Array {
 			System.out.println("Nao achei");
 		}
 		
+		
+		
 		System.out.println("procurando Turner");
 		try{
 			RepositorioArrayPessoa resultado = pessoas.procurarNome("Turner");
@@ -192,6 +194,16 @@ public class TesteGeba3Array {
 			System.out.println("Nao achei");
 		}
 		
-		
+		System.out.println("procurando ge");
+		try{
+			RepositorioArrayPessoa resultado = pessoas.procurarNome("ge");
+			Iterator<Pessoa> it2 = resultado.iterator();
+			while (it2.hasNext()){
+				System.out.println(it2.next().getNome());
+			}
+			//System.out.println(resultado.imprimir());
+		}catch(ElementoNaoEncontradoException e){
+			System.out.println("Nao achei");
+		}
 	}
 }

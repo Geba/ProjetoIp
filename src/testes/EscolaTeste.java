@@ -24,7 +24,10 @@ public class EscolaTeste {
 				"Luiz", "Nancy", turma);
 		Pessoa alana = new Aluno("47623456456", "Laryssa","", "7727724", "F","", end,
 				"Luiz", "Nancy", turma);
-		Pessoa geba = new Aluno("83830480504", "Geovane","", "7727724", "F","", end,
+		Pessoa geovane = new Aluno("83830480504", "Geovane","", "7727724", "F","", end,
+				"Luiz", "Nancy", turma);
+
+		Pessoa geovane2 = new Aluno("838304802504", "Geovane2","", "7727724", "F","", end,
 				"Luiz", "Nancy", turma);
 
 		Pessoa novo = new Aluno("000000", "Fulano","", "7727724", "F","", end,
@@ -42,7 +45,8 @@ public class EscolaTeste {
 		Pessoa docinho = new Aluno("123456008","Docinho", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("123456009","Florzinha", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa untonio = new Professor("123454321", "Untonio", "","123454433","M", "333333333", end,"se pai");
-		pessoas.inserir(geba);
+		pessoas.inserir(geovane);
+		pessoas.inserir(geovane2);
 		pessoas.inserir(harry);
 		pessoas.inserir(bruna);
 		pessoas.inserir(novo);
