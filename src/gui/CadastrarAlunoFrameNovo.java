@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 
+import classesBase.Turma;
+
 public class CadastrarAlunoFrameNovo extends JFrame {
 
 	private JPanel contentPane;
@@ -274,16 +276,15 @@ public class CadastrarAlunoFrameNovo extends JFrame {
 			String pais = tf_pais.getText();
 			String pai = tf_pai.getText();
 			String mae = tf_mae.getText();
+			Turma turma = null;//iniclializar isso aqui
 			//String numero = tf_numero.getText();
 			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
 					numero, bairro, cep, cidade, estado, pais, pai, mae, turma); //<<<<<<
 			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");
 		} catch (ElementoJaCadastradoException e){
 			JOptionPane.showMessageDialog(this,"O aluno j‡ est‡ cadastrado.");
-		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,"Entrada invalida. Tente novamente.");
 		}
 		
 	}
