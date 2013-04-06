@@ -142,11 +142,15 @@ public class MenuPrincipal extends JFrame {
 
 		
 
-		JButton btnCadastrar = new JButton("Cadastrar Novo");
+		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(new Color(0, 0, 0));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cadastrar();
+				try{
+					cadastrar();
+				} catch(NullPointerException e1){
+					JOptionPane.showMessageDialog(MenuPrincipal.this, "Selecione uma opcao");
+				}
 			}
 
 			private void cadastrar() {
@@ -186,15 +190,15 @@ public class MenuPrincipal extends JFrame {
 				
 			}
 		});
-		btnCadastrar.setBounds(38, 291, 118, 50);
+		btnCadastrar.setBounds(38, 291, 97, 50);
 		contentPane.add(btnCadastrar);
 
 		JButton btnProcurar = new JButton("Procurar");
-		btnProcurar.setBounds(428, 291, 118, 50);
+		btnProcurar.setBounds(349, 291, 97, 50);
 		contentPane.add(btnProcurar);
 
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.setBounds(168, 291, 118, 50);
+		btnRemover.setBounds(142, 291, 97, 50);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -202,8 +206,49 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnRemover);
 
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(298, 291, 118, 50);
+		btnEditar.setBounds(245, 291, 97, 50);
 		contentPane.add(btnEditar);
+		
+		JButton btnRelatrio = new JButton("Relatorio");
+		btnRelatrio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {  //RELATORIO
+				
+				if (tipo.equals("aluno")){
+					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("professor")){
+					CadastrarProfessorFrame frame = new CadastrarProfessorFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("administrador")){
+					CadastrarAdmFrame frame = new CadastrarAdmFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("turma")){
+					CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Turma");
+					setVisible(false);
+				} else if (tipo.equals("funcionario")){
+					CadastrarFuncionarioFrame frame = new CadastrarFuncionarioFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Funcionario");
+					setVisible(false);
+				} else if (tipo.equals("disciplina")){
+					CadastrarDisciplinaFrame frame = new CadastrarDisciplinaFrame();
+					frame.setVisible(true);
+					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Faça o frame de Cadastrar Disciplina");
+					setVisible(false);
+				} 
+				
+				else {
+					JOptionPane.showMessageDialog(MenuPrincipal.this,"n encontrou ngm");
+				}
+			}
+		});
+		btnRelatrio.setBounds(452, 291, 97, 50);
+		contentPane.add(btnRelatrio);
 
 	}
 }

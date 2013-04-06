@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 import negocio.Controle;
 import classesBase.Administrador;
@@ -14,13 +15,7 @@ import classesBase.Funcionario;
 import classesBase.Pessoa;
 import classesBase.Professor;
 import classesBase.Turma;
-import dados.Repositorio;
-import dados.RepositorioArrayDisciplina;
-import dados.RepositorioArrayPessoa;
-import dados.RepositorioArrayTurma;
-import dados.RepositorioListaDisciplina;
-import dados.RepositorioListaPessoa;
-import dados.RepositorioListaTurma;
+import dados.*;
 import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
@@ -58,7 +53,9 @@ public class Escola {
 			turmas = new RepositorioListaTurma();
 			disciplinas = new RepositorioListaDisciplina();
 		} else if (repositorio.equalsIgnoreCase("arquivo")) {
-
+			pessoas = new RepositorioArquivoPessoa();
+			turmas = new RepositorioArquivoTurma();
+			disciplinas = new RepositorioArquivoDisciplina();
 		} else {
 
 		}
@@ -371,9 +368,13 @@ public class Escola {
 		}
 	}
 
-	public void logar(String login, String senha) {
-
-	}
+	public String relatorioAlunos(){  //tem que fazer os metodos relatorio
+		String retorno="";
+		IteratorListaPessoa it = new IteratorListaPessoa((RepositorioListaPessoa) pessoas);
+		return retorno;
+		}
+	
+	
 
 
 

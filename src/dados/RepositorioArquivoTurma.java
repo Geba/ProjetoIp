@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -89,7 +88,14 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 		boolean acabou = false;
 
 		while (!acabou) {
-			HSSFRow row = this.sheet1.getRow(i);
+			HSSFRow row = null;
+
+			try {
+				row = this.sheet1.getRow(i);
+			} catch (NullPointerException e) {
+				System.out.println("null pointer");
+			}
+
 			HSSFCell cell = null;
 			boolean pulou = false;
 			try {
@@ -162,7 +168,18 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 
 		// System.out.println("entrou no gravar pessoa");
 
-		HSSFRow row = sheet1.createRow(cont);
+		//HSSFRow row = sheet1.createRow(cont);
+		HSSFRow row=null;
+		int i=0;
+		boolean sair=false;
+		while(!sair){
+			try{
+				row = sheet1.createRow(i);
+				i++;
+			} catch(NullPointerException e){
+				sair=true;
+			}
+		}
 		row.createCell((short) 0).setCellValue(turma.getNome());
 
 		try {
@@ -280,6 +297,56 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 	public Iterator<Turma> getIterator() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public String imprimir(){
+		String retorno = "";
+
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Turmas");
+
+		for (int i = 0; i < cont; i++) {
+			String nome = lerCelula(i, 0);
+			
+			if (!nome.equals("")) {
+				retorno += nome + "\n";
+			}
+		}
+
+		try {
+			wb.write(stream);
+		} catch (IOException e) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e) {
+			System.out.println("erro close");
+		}
+		return retorno;
 	}
 
 }
