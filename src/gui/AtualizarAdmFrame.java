@@ -256,6 +256,7 @@ public class AtualizarAdmFrame extends JFrame {
 		this.textCPF.setText(this.administrador.getCpf());
 		this.textFuncao.setText(this.administrador.getFuncao());
 		this.textDataNasc.setText(this.administrador.getDataNasc());
+		this.texttelefone.setText(this.administrador.getTelefone());
 		textFuncao.setText(this.administrador.getFuncao());
 		if(this.administrador.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
