@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 import excecoes.ElementoJaCadastradoException;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 import fachadaEscola.Escola;
@@ -22,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
+import classesBase.Endereco;
 import classesBase.Funcionario;
 
 //import classesBase.Administrador;
@@ -42,7 +44,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textPais;
-	private JTextField texttelefone;
+	private JTextField textTelefone;
 	private JTextArea textFuncao;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String sexo;
@@ -207,7 +209,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cadastrar();
+				atualizar();
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
@@ -234,13 +236,13 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		lblTelefone.setBounds(299, 269, 80, 16);
 		contentPane.add(lblTelefone);
 
-		texttelefone = new JTextField();
-		texttelefone.setBounds(366, 263, 134, 28);
-		contentPane.add(texttelefone);
-		texttelefone.setColumns(10);
+		textTelefone = new JTextField();
+		textTelefone.setBounds(366, 263, 134, 28);
+		contentPane.add(textTelefone);
+		textTelefone.setColumns(10);
 
 		this.fachada = PaginaPrincipal.fachada;
-		
+
 		this.textBairro.setText(this.funcionario.getEndereco().getBairro());
 		this.textCep.setText(this.funcionario.getEndereco().getCep());
 		this.textCidade.setText(this.funcionario.getEndereco().getCidade());
@@ -257,6 +259,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		this.textCPF.setText(this.funcionario.getCpf());
 		this.textDataNasc.setText(this.funcionario.getDataNasc());
 		textFuncao.setText(this.funcionario.getFuncao());
+		this.textTelefone.setText(this.funcionario.getTelefone());
 		if(this.funcionario.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
@@ -265,14 +268,14 @@ public class AtualizarFuncionarioFrame extends JFrame {
 
 	}
 
-	private void cadastrar(){
+	private void atualizar(){
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
 			String cpf = textCPF.getText();
 			String dataNasc = textDataNasc.getText();
 			String rg = textRG.getText();
-			String telefone = texttelefone.getText();
+			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();
 			String cep = textCep.getText();
@@ -281,20 +284,21 @@ public class AtualizarFuncionarioFrame extends JFrame {
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
 			String funcao = textFuncao.getText();
+
 			//String numero = textNumero.getText();
-			this.fachada.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
-					telefone, rua, numero, bairro, cep, cidade, estado, pais,
-					funcao);
-			JOptionPane.showMessageDialog(this,"Funcionario cadastrado com sucesso.");
-		} catch (ElementoJaCadastradoException e){
-			JOptionPane.showMessageDialog(this,"O funcionario j‡ est‡ cadastrado.");
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+			Funcionario funcionarioAux = new Funcionario(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa(funcionarioAux);
+			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
-		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,"Erro no repositorio.");
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 	}
+
+
 
 	private void voltar() {
 		MenuPrincipal frame1 = new MenuPrincipal();

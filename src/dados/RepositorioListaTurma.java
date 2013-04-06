@@ -180,4 +180,10 @@ public class RepositorioListaTurma implements Repositorio<Turma>{
 
 	}
 
+	@Override
+	public Iterator<Turma> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

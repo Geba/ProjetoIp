@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -265,5 +267,11 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 			System.out.println("erro close");
 		}
 
+	}
+
+	@Override
+	public Iterator<Disciplina> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

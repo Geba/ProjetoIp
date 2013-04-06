@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -15,7 +16,10 @@ import javax.swing.JTextArea;
 
 //import com.apple.dnssd.TXTRecord;
 
+import classesBase.Endereco;
 import classesBase.Professor;
+import excecoes.ElementoNaoEncontradoException;
+import excecoes.RepositorioException;
 
 @SuppressWarnings("serial")
 public class AtualizarProfessorFrame extends JFrame {
@@ -25,13 +29,14 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextField textCpf;
 	private JTextField textRG;
 	private JTextField textDataNasc;
-	private JTextField textEndereco;
-	private JTextField textNcasa;
+	private JTextField textRua;
+	private JTextField textNumero;
 	private JTextField textCep;
 	private JTextField textBairro;
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textPais;
+	private JTextField textTelefone;
 	private static Professor professor;
 
 	/**
@@ -124,15 +129,15 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblN.setBounds(432, 161, 61, 16);
 		contentPane.add(lblN);
 
-		textEndereco = new JTextField();
-		textEndereco.setBounds(90, 155, 320, 28);
-		contentPane.add(textEndereco);
-		textEndereco.setColumns(10);
+		textRua = new JTextField();
+		textRua.setBounds(90, 155, 320, 28);
+		contentPane.add(textRua);
+		textRua.setColumns(10);
 
-		textNcasa = new JTextField();
-		textNcasa.setBounds(460, 155, 113, 28);
-		contentPane.add(textNcasa);
-		textNcasa.setColumns(10);
+		textNumero = new JTextField();
+		textNumero.setBounds(460, 155, 113, 28);
+		contentPane.add(textNumero);
+		textNumero.setColumns(10);
 
 		JLabel lblCep = new JLabel("CEP:");
 		lblCep.setBounds(21, 195, 61, 16);
@@ -194,28 +199,73 @@ public class AtualizarProfessorFrame extends JFrame {
 		JTextArea textFuncao = new JTextArea();
 		textFuncao.setBounds(21, 285, 250, 96);
 		contentPane.add(textFuncao);
-		
+
+		JLabel lblTelefone = new JLabel("Telefone: ");
+		lblTelefone.setBounds(299, 269, 80, 16);
+		contentPane.add(lblTelefone);
+
+		textTelefone = new JTextField();
+		textTelefone.setBounds(366, 263, 134, 28);
+		contentPane.add(textTelefone);
+		textTelefone.setColumns(10);
+
 		this.textBairro.setText(this.professor.getEndereco().getBairro());
 		this.textCep.setText(this.professor.getEndereco().getCep());
 		this.textCidade.setText(this.professor.getEndereco().getCidade());
-		this.textEndereco.setText(this.professor.getEndereco().getRua());
+		this.textRua.setText(this.professor.getEndereco().getRua());
 		this.textBairro.setText(this.professor.getEndereco().getBairro());
 		this.textCep.setText(this.professor.getEndereco().getCep());
 		this.textCidade.setText(this.professor.getEndereco().getCidade());
 		this.textEstado.setText(this.professor.getEndereco().getEstado());
-		this.textNcasa.setText(this.professor.getEndereco().getNumero());
+		this.textNumero.setText(this.professor.getEndereco().getNumero());
 		this.textNome.setText(this.professor.getNome());
 		this.textRG.setText(this.professor.getIdentidade());
 		this.textDataNasc.setText(this.professor.getDataNasc());
 		this.textPais.setText(this.professor.getEndereco().getPais());
 		this.textCpf.setText(this.professor.getCpf());
 		this.textDataNasc.setText(this.professor.getDataNasc());
+		this.textTelefone.setText(this.professor.getTelefone());
 		textFuncao.setText(this.professor.getFuncao());
 		if(this.professor.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
-		
+
+	}
+	private void atualizar(){
+		try{
+			String nome = textNome.getText();
+			String cpf = textCpf.getText();
+			String dataNasc = textDataNasc.getText();
+			String rg = textRG.getText();
+			String rua = textRua.getText();
+			String numero = textNumero.getText();
+			String cep = textCep.getText();
+			String bairro = textBairro.getText();
+			String cidade = textCidade.getText();
+			String estado = textEstado.getText();
+			String pais = textPais.getText();
+			String telefone = textTelefone.getText();
+			String funcao = textFuncao.gettext();
+			//String numero = textNumero.getText();
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa(funcionarioAux);
+			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
+		} catch (RepositorioException e) {
+			JOptionPane.showMessageDialog(this,"Erro no repositorio.");
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+
+	private void voltar() {
+		MenuPrincipal frame1 = new MenuPrincipal();
+		frame1.setVisible(true);
+		this.setVisible(false);
 	}
 }

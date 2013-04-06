@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.io.FileInputStream;
+import java.util.Iterator;
 
 //import modificacoes.RepositorioArrayPessoa2;
 
@@ -618,6 +619,12 @@ public class RepositorioPessoaArquivoXls implements Repositorio<Pessoa> {
 			System.out.println("erro close");
 		}
 		return retorno;
+	}
+
+	@Override
+	public Iterator<Pessoa> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

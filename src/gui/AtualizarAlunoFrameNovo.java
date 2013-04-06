@@ -30,6 +30,7 @@ import classesBase.Aluno;
 import classesBase.Endereco;
 import classesBase.Pessoa;
 import classesBase.Turma;
+import dados.Repositorio;
 
 @SuppressWarnings("serial")
 public class AtualizarAlunoFrameNovo extends JFrame {
@@ -285,13 +286,24 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		this.textPai.setText(this.aluno.getPai());
 		this.textMae.setText(this.aluno.getMae());
 		this.textTelefone.setText(this.aluno.getTelefone());
-		
-		cbxTurma.setSelectedItem(this.aluno.getTurma());
+		//seleciona o sexo de acordo com o já salvo
 		if(this.aluno.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
+		
+		//Preenche a comboBox com todos os items e deixa selecionado aqquele que está salvo;
+		cbxTurma.removeAllItems();
+		Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
+		Iterator<Turma> it = repositorio.getIterator();
+		while (it.hasNext()){
+			Turma turmaAux = it.next();
+			cbxTurma.addItem(turmaAux);
+		}
+		
+		cbxTurma.setSelectedItem(this.aluno.getTurma());
+		
 		
 		
 	}
