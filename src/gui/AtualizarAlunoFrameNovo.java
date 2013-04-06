@@ -1,22 +1,22 @@
 package gui;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ButtonModel;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
-import dados.RepositorioArrayTurma;
-import excecoes.ElementoJaCadastradoException;
+
+
 import excecoes.ElementoNaoEncontradoException;
-import excecoes.EntradaInvalidaException;
+
 import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
@@ -28,7 +28,7 @@ import javax.swing.ButtonGroup;
 
 import classesBase.Aluno;
 import classesBase.Endereco;
-import classesBase.Pessoa;
+
 import classesBase.Turma;
 import dados.Repositorio;
 
@@ -37,8 +37,8 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
-	private JTextField textCPF;
-	private JTextField textRG;
+	private JTextField textCpf;
+	private JTextField textRg;
 	private JTextField textDataNasc;
 	private JTextField textPai;
 	private JTextField textMae;  // FALTA RESOLVER O COMBOBOX DA TURMA!!!!
@@ -50,9 +50,10 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	private JTextField textEstado;
 	private JTextField textPais;
 	private JTextField textTelefone;
-	private String sexo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private static Aluno aluno;
+	JRadioButton rdbtnMasculino;
+	JRadioButton rdbtnFeminino;
 	private Turma turma;
 	/**
 	 * Launch the application.
@@ -98,19 +99,19 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
 		
-		textCPF = new JTextField();
-		textCPF.setBounds(214, 121, 141, 28);
-		contentPane.add(textCPF);
-		textCPF.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(214, 121, 141, 28);
+		contentPane.add(textCpf);
+		textCpf.setColumns(10);
 		
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
 		
-		textRG = new JTextField();
-		textRG.setBounds(45, 121, 125, 28);
-		contentPane.add(textRG);
-		textRG.setColumns(10);
+		textRg = new JTextField();
+		textRg.setBounds(45, 121, 125, 28);
+		contentPane.add(textRg);
+		textRg.setColumns(10);
 		
 		textDataNasc = new JTextField();
 		textDataNasc.setBounds(245, 87, 125, 28);
@@ -122,26 +123,25 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(lblDataDeNascimento);
 		
 		
-		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		rdbtnFeminino = new JRadioButton("Feminino");
 		buttonGroup.add(rdbtnFeminino);
 		rdbtnFeminino.setBounds(432, 102, 141, 23);
 		contentPane.add(rdbtnFeminino);
 		
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino = new JRadioButton("Masculino");
 		buttonGroup.add(rdbtnMasculino);
 		rdbtnMasculino.setBounds(432, 126, 141, 23);
 		contentPane.add(rdbtnMasculino);
+		
 		//JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
 		rdbtnFeminino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Feminino";
 			}
 		});
 
 		//JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
 		rdbtnMasculino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Masculino";
 			}
 		});
 		
@@ -270,24 +270,24 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(btnNewButton);
 		
 
-		this.textBairro.setText(this.aluno.getEndereco().getBairro());
-		this.textCEP.setText(this.aluno.getEndereco().getCep());
-		this.textCidade.setText(this.aluno.getEndereco().getCidade());
-		this.textRua.setText(this.aluno.getEndereco().getRua());
-		this.textBairro.setText(this.aluno.getEndereco().getBairro());
-		this.textCidade.setText(this.aluno.getEndereco().getCidade());
-		this.textEstado.setText(this.aluno.getEndereco().getEstado());
-		this.textNumero.setText(this.aluno.getEndereco().getNumero());
-		this.textNome.setText(this.aluno.getNome());
-		this.textRG.setText(this.aluno.getIdentidade());
-		this.textDataNasc.setText(this.aluno.getDataNasc());
-		this.textPais.setText(this.aluno.getEndereco().getPais());
-		this.textCPF.setText(this.aluno.getCpf());
-		this.textPai.setText(this.aluno.getPai());
-		this.textMae.setText(this.aluno.getMae());
-		this.textTelefone.setText(this.aluno.getTelefone());
+		this.textBairro.setText(aluno.getEndereco().getBairro());
+		this.textCEP.setText(aluno.getEndereco().getCep());
+		this.textCidade.setText(aluno.getEndereco().getCidade());
+		this.textRua.setText(aluno.getEndereco().getRua());
+		this.textBairro.setText(aluno.getEndereco().getBairro());
+		this.textCidade.setText(aluno.getEndereco().getCidade());
+		this.textEstado.setText(aluno.getEndereco().getEstado());
+		this.textNumero.setText(aluno.getEndereco().getNumero());
+		this.textNome.setText(aluno.getNome());
+		this.textRg.setText(aluno.getIdentidade());
+		this.textDataNasc.setText(aluno.getDataNasc());
+		this.textPais.setText(aluno.getEndereco().getPais());
+		this.textCpf.setText(aluno.getCpf());
+		this.textPai.setText(aluno.getPai());
+		this.textMae.setText(aluno.getMae());
+		this.textTelefone.setText(aluno.getTelefone());
 		//seleciona o sexo de acordo com o já salvo
-		if(this.aluno.getSexo().equals("M")){
+		if(aluno.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
@@ -302,7 +302,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			cbxTurma.addItem(turmaAux);
 		}
 		
-		cbxTurma.setSelectedItem(this.aluno.getTurma());
+		cbxTurma.setSelectedItem(aluno.getTurma());
 		
 		
 		
@@ -311,9 +311,9 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	private void atualizar(){
 		try{
 			String nome = textNome.getText();
-			String cpf = textCPF.getText();
+			String cpf = textCpf.getText();
 			String dataNasc = textDataNasc.getText();
-			String rg = textRG.getText();
+			String rg = textRg.getText();
 			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();
@@ -324,9 +324,15 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			String pais = textPais.getText();
 			String pai = textPai.getText();
 			String mae = textMae.getText();
+			String sexo;
+			if (rdbtnMasculino.isSelected()){
+				sexo = "M";
+			}else{
+				sexo = "F";
+			}
 			//String numero = tf_numero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Aluno alunoAux = new Aluno(cpf, nome, dataNasc, rg, pais, telefone, endereco, pai, mae, turma);
+			Aluno alunoAux = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
 			
 			PaginaPrincipal.fachada.atualizarPessoa(alunoAux); //<<<<<<
 			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");

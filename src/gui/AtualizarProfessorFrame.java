@@ -27,7 +27,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textNome;
 	private JTextField textCpf;
-	private JTextField textRG;
+	private JTextField textRg;
 	private JTextField textDataNasc;
 	private JTextField textRua;
 	private JTextField textNumero;
@@ -38,7 +38,9 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextField textPais;
 	private JTextField textTelefone;
 	private static Professor professor;
-
+	private JTextArea textFuncao;
+	private JRadioButton rdbtnFeminino;
+	private JRadioButton rdbtnMasculino;
 	/**
 	 * Launch the application.
 	 */
@@ -94,10 +96,10 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
 
-		textRG = new JTextField();
-		textRG.setBounds(45, 121, 125, 28);
-		contentPane.add(textRG);
-		textRG.setColumns(10);
+		textRg = new JTextField();
+		textRg.setBounds(45, 121, 125, 28);
+		contentPane.add(textRg);
+		textRg.setColumns(10);
 
 		textDataNasc = new JTextField();
 		textDataNasc.setBounds(245, 87, 125, 28);
@@ -109,11 +111,11 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblDataDeNascimento.setBounds(21, 93, 228, 16);
 		contentPane.add(lblDataDeNascimento);
 
-		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
+		rdbtnFeminino = new JRadioButton("Feminino");
 		rdbtnFeminino.setBounds(432, 102, 141, 23);
 		contentPane.add(rdbtnFeminino);
 
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino = new JRadioButton("Masculino");
 		rdbtnMasculino.setBounds(432, 126, 141, 23);
 		contentPane.add(rdbtnMasculino);
 
@@ -196,7 +198,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblFuno.setBounds(21, 263, 250, 16);
 		contentPane.add(lblFuno);
 
-		JTextArea textFuncao = new JTextArea();
+		textFuncao = new JTextArea();
 		textFuncao.setBounds(21, 285, 250, 96);
 		contentPane.add(textFuncao);
 
@@ -219,7 +221,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		this.textEstado.setText(this.professor.getEndereco().getEstado());
 		this.textNumero.setText(this.professor.getEndereco().getNumero());
 		this.textNome.setText(this.professor.getNome());
-		this.textRG.setText(this.professor.getIdentidade());
+		this.textRg.setText(this.professor.getIdentidade());
 		this.textDataNasc.setText(this.professor.getDataNasc());
 		this.textPais.setText(this.professor.getEndereco().getPais());
 		this.textCpf.setText(this.professor.getCpf());
@@ -234,21 +236,27 @@ public class AtualizarProfessorFrame extends JFrame {
 
 	}
 	private void atualizar(){
+		String nome = textNome.getText();
+		String cpf = textCpf.getText();
+		String dataNasc = textDataNasc.getText();
+		String rg = textRg.getText();
+		String rua = textRua.getText();
+		String numero = textNumero.getText();
+		String cep = textCep.getText();
+		String bairro = textBairro.getText();
+		String cidade = textCidade.getText();
+		String estado = textEstado.getText();
+		String pais = textPais.getText();
+		String telefone = textTelefone.getText();
+		String funcao = textFuncao.getText();
+		String sexo;
+		if (rdbtnMasculino.isSelected()){
+			sexo = "M";
+		}else{
+			sexo = "F";
+		}
+				//String numero = textNumero.getText();
 		try{
-			String nome = textNome.getText();
-			String cpf = textCpf.getText();
-			String dataNasc = textDataNasc.getText();
-			String rg = textRG.getText();
-			String rua = textRua.getText();
-			String numero = textNumero.getText();
-			String cep = textCep.getText();
-			String bairro = textBairro.getText();
-			String cidade = textCidade.getText();
-			String estado = textEstado.getText();
-			String pais = textPais.getText();
-			String telefone = textTelefone.getText();
-			String funcao = textFuncao.gettext();
-			//String numero = textNumero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 			PaginaPrincipal.fachada.atualizarPessoa(funcionarioAux);

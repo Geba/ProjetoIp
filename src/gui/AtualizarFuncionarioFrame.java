@@ -13,11 +13,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-import excecoes.ElementoJaCadastradoException;
+
 import excecoes.ElementoNaoEncontradoException;
-import excecoes.EntradaInvalidaException;
+
 import excecoes.RepositorioException;
-import fachadaEscola.Escola;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,11 +31,11 @@ import classesBase.Funcionario;
 @SuppressWarnings("serial")
 public class AtualizarFuncionarioFrame extends JFrame {
 
-	private Escola fachada;
+	
 	private JPanel contentPane;
 	private JTextField textNome;
-	private JTextField textCPF;
-	private JTextField textRG;
+	private JTextField textCpf;
+	private JTextField textRg;
 	private JTextField textDataNasc;
 	private JTextField textRua;
 	private JTextField textNumero;
@@ -94,19 +94,19 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
 
-		textCPF = new JTextField();
-		textCPF.setBounds(214, 121, 141, 28);
-		contentPane.add(textCPF);
-		textCPF.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(214, 121, 141, 28);
+		contentPane.add(textCpf);
+		textCpf.setColumns(10);
 
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
 
-		textRG = new JTextField();
-		textRG.setBounds(45, 121, 125, 28);
-		contentPane.add(textRG);
-		textRG.setColumns(10);
+		textRg = new JTextField();
+		textRg.setBounds(45, 121, 125, 28);
+		contentPane.add(textRg);
+		textRg.setColumns(10);
 
 		textDataNasc = new JTextField();
 		textDataNasc.setBounds(245, 87, 125, 28);
@@ -241,26 +241,26 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 
-		this.fachada = PaginaPrincipal.fachada;
+		//this.fachada = PaginaPrincipal.fachada;
 
-		this.textBairro.setText(this.funcionario.getEndereco().getBairro());
-		this.textCep.setText(this.funcionario.getEndereco().getCep());
-		this.textCidade.setText(this.funcionario.getEndereco().getCidade());
-		this.textRua.setText(this.funcionario.getEndereco().getRua());
-		this.textBairro.setText(this.funcionario.getEndereco().getBairro());
-		this.textCep.setText(this.funcionario.getEndereco().getCep());
-		this.textCidade.setText(this.funcionario.getEndereco().getCidade());
-		this.textEstado.setText(this.funcionario.getEndereco().getEstado());
-		this.textNumero.setText(this.funcionario.getEndereco().getNumero());
-		this.textNome.setText(this.funcionario.getNome());
-		this.textRG.setText(this.funcionario.getIdentidade());
-		this.textDataNasc.setText(this.funcionario.getDataNasc());
-		this.textPais.setText(this.funcionario.getEndereco().getPais());
-		this.textCPF.setText(this.funcionario.getCpf());
-		this.textDataNasc.setText(this.funcionario.getDataNasc());
-		textFuncao.setText(this.funcionario.getFuncao());
-		this.textTelefone.setText(this.funcionario.getTelefone());
-		if(this.funcionario.getSexo().equals("M")){
+		this.textBairro.setText(funcionario.getEndereco().getBairro());
+		this.textCep.setText(funcionario.getEndereco().getCep());
+		this.textCidade.setText(funcionario.getEndereco().getCidade());
+		this.textRua.setText(funcionario.getEndereco().getRua());
+		this.textBairro.setText(funcionario.getEndereco().getBairro());
+		this.textCep.setText(funcionario.getEndereco().getCep());
+		this.textCidade.setText(funcionario.getEndereco().getCidade());
+		this.textEstado.setText(funcionario.getEndereco().getEstado());
+		this.textNumero.setText(funcionario.getEndereco().getNumero());
+		this.textNome.setText(funcionario.getNome());
+		this.textRg.setText(funcionario.getIdentidade());
+		this.textDataNasc.setText(funcionario.getDataNasc());
+		this.textPais.setText(funcionario.getEndereco().getPais());
+		this.textCpf.setText(funcionario.getCpf());
+		this.textDataNasc.setText(funcionario.getDataNasc());
+		textFuncao.setText(funcionario.getFuncao());
+		this.textTelefone.setText(funcionario.getTelefone());
+		if(funcionario.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
@@ -272,9 +272,9 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
-			String cpf = textCPF.getText();
+			String cpf = textCpf.getText();
 			String dataNasc = textDataNasc.getText();
-			String rg = textRG.getText();
+			String rg = textRg.getText();
 			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();

@@ -16,9 +16,9 @@ import classesBase.Disciplina;
 //import javax.swing.SwingConstants;
 
 
-import excecoes.ElementoJaCadastradoException;
+
 import excecoes.ElementoNaoEncontradoException;
-import excecoes.EntradaInvalidaException;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -104,8 +104,8 @@ public class AtualizarDisciplinaFrame extends JFrame {
 		lblPoderoSerEditados.setBounds(28, 386, 298, 16);
 		contentPane.add(lblPoderoSerEditados);
 
-		this.textEmenta.setText(this.disciplina.getEmenta());
-		this.textNome.setText(this.disciplina.getNome());
+		this.textEmenta.setText(disciplina.getEmenta());
+		this.textNome.setText(disciplina.getNome());
 
 	}
 	public void voltar(){

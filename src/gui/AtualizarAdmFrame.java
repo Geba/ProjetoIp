@@ -13,11 +13,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-import excecoes.ElementoJaCadastradoException;
+
 import excecoes.ElementoNaoEncontradoException;
-import excecoes.EntradaInvalidaException;
+
 import excecoes.RepositorioException;
-import fachadaEscola.Escola;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,11 +29,10 @@ import classesBase.Endereco;
 @SuppressWarnings("serial")
 public class AtualizarAdmFrame extends JFrame {
 
-	private Escola fachada;
 	private JPanel contentPane;
 	private JTextField textNome;
-	private JTextField textCPF;
-	private JTextField textRG;
+	private JTextField textCpf;
+	private JTextField textRg;
 	private JTextField textDataNasc;
 	private JTextField textRua;
 	private JTextField textNumero;
@@ -93,19 +92,19 @@ public class AtualizarAdmFrame extends JFrame {
 		lblCpf.setBounds(182, 127, 61, 16);
 		contentPane.add(lblCpf);
 
-		textCPF = new JTextField();
-		textCPF.setBounds(214, 121, 141, 28);
-		contentPane.add(textCPF);
-		textCPF.setColumns(10);
+		textCpf = new JTextField();
+		textCpf.setBounds(214, 121, 141, 28);
+		contentPane.add(textCpf);
+		textCpf.setColumns(10);
 
 		JLabel lblRg = new JLabel("RG:");
 		lblRg.setBounds(21, 127, 61, 16);
 		contentPane.add(lblRg);
 
-		textRG = new JTextField();
-		textRG.setBounds(45, 121, 125, 28);
-		contentPane.add(textRG);
-		textRG.setColumns(10);
+		textRg = new JTextField();
+		textRg.setBounds(45, 121, 125, 28);
+		contentPane.add(textRg);
+		textRg.setColumns(10);
 
 		textDataNasc = new JTextField();
 		textDataNasc.setBounds(245, 87, 125, 28);
@@ -205,7 +204,7 @@ public class AtualizarAdmFrame extends JFrame {
 		contentPane.add(textPais);
 		textPais.setColumns(10);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				atualizar();
@@ -240,27 +239,25 @@ public class AtualizarAdmFrame extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 
-		this.fachada = PaginaPrincipal.fachada;
-		
-		this.textBairro.setText(this.administrador.getEndereco().getBairro());
-		this.textCep.setText(this.administrador.getEndereco().getCep());
-		this.textCidade.setText(this.administrador.getEndereco().getCidade());
-		this.textRua.setText(this.administrador.getEndereco().getRua());
-		this.textBairro.setText(this.administrador.getEndereco().getBairro());
-		this.textCep.setText(this.administrador.getEndereco().getCep());
-		this.textCidade.setText(this.administrador.getEndereco().getCidade());
-		this.textEstado.setText(this.administrador.getEndereco().getEstado());
-		this.textNumero.setText(this.administrador.getEndereco().getNumero());
-		this.textNome.setText(this.administrador.getNome());
-		this.textRG.setText(this.administrador.getIdentidade());
-		this.textDataNasc.setText(this.administrador.getDataNasc());
-		this.textPais.setText(this.administrador.getEndereco().getPais());
-		this.textCPF.setText(this.administrador.getCpf());
-		this.textFuncao.setText(this.administrador.getFuncao());
-		this.textDataNasc.setText(this.administrador.getDataNasc());
-		this.textTelefone.setText(this.administrador.getTelefone());
-		textFuncao.setText(this.administrador.getFuncao());
-		if(this.administrador.getSexo().equals("M")){
+		this.textBairro.setText(administrador.getEndereco().getBairro());
+		this.textCep.setText(administrador.getEndereco().getCep());
+		this.textCidade.setText(administrador.getEndereco().getCidade());
+		this.textRua.setText(administrador.getEndereco().getRua());
+		this.textBairro.setText(administrador.getEndereco().getBairro());
+		this.textCep.setText(administrador.getEndereco().getCep());
+		this.textCidade.setText(administrador.getEndereco().getCidade());
+		this.textEstado.setText(administrador.getEndereco().getEstado());
+		this.textNumero.setText(administrador.getEndereco().getNumero());
+		this.textNome.setText(administrador.getNome());
+		this.textRg.setText(administrador.getIdentidade());
+		this.textDataNasc.setText(administrador.getDataNasc());
+		this.textPais.setText(administrador.getEndereco().getPais());
+		this.textCpf.setText(administrador.getCpf());
+		this.textFuncao.setText(administrador.getFuncao());
+		this.textDataNasc.setText(administrador.getDataNasc());
+		this.textTelefone.setText(administrador.getTelefone());
+		textFuncao.setText(administrador.getFuncao());
+		if(administrador.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
@@ -273,9 +270,9 @@ public class AtualizarAdmFrame extends JFrame {
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
-			String cpf = textCPF.getText();
+			String cpf = textCpf.getText();
 			String dataNasc = textDataNasc.getText();
-			String rg = textRG.getText();
+			String rg = textRg.getText();
 			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();
@@ -288,7 +285,7 @@ public class AtualizarAdmFrame extends JFrame {
 			
 			//String numero = textNumero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Administrador administradorAux = new Administrador(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
+			Administrador administradorAux = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 			PaginaPrincipal.fachada.atualizarPessoa(administradorAux);
 			JOptionPane.showMessageDialog(this,"Administrador cadastrado com sucesso.");
 		} catch (RepositorioException e) {
