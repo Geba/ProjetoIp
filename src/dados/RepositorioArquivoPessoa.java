@@ -88,7 +88,16 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 		boolean acabou = false;
 
 		while (!acabou) {
-			HSSFRow row = this.sheet1.getRow(i);
+			HSSFRow row=null;
+			
+			
+			try{
+			row = this.sheet1.getRow(i);
+			}catch(NullPointerException e){
+				System.out.println("null pointer");
+			}
+			
+			
 			HSSFCell cell = null;
 			boolean pulou = false;
 			try {
