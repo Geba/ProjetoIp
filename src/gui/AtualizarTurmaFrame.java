@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import classesBase.Turma;
 
 import excecoes.ElementoJaCadastradoException;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 
 import java.awt.event.ActionListener;
@@ -68,7 +69,7 @@ public class AtualizarTurmaFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cadastrar();
+				atualizar();
 			}
 		});
 		btnCadastrar.setBounds(455, 356, 117, 48);
@@ -102,18 +103,17 @@ public class AtualizarTurmaFrame extends JFrame {
 		setVisible(false);
 	}
 
-	public void cadastrar() {
+	public void atualizar() {
 		String nome = textNome.getText();
+		Turma turmaAux = new Turma(nome);
+		
 		try {
-			PaginaPrincipal.fachada.inserirTurma(nome);
+			PaginaPrincipal.fachada.atualizarTurma(turmaAux);
 			JOptionPane
 					.showMessageDialog(this, "Turma cadastrada com sucesso!");
-		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,
-					"Entrada invalida. Tente novamente.");
-		} catch (ElementoJaCadastradoException e) {
-			JOptionPane.showMessageDialog(this,
-					"Turma ja cadastrada. Tente novamente.");
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

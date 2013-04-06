@@ -183,4 +183,10 @@ public class RepositorioListaDisciplina implements Repositorio<Disciplina> {
 
 	}
 
+	@Override
+	public Iterator<Disciplina> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

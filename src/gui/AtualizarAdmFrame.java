@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 import excecoes.ElementoJaCadastradoException;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 import fachadaEscola.Escola;
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
 import classesBase.Administrador;
+import classesBase.Endereco;
 
 @SuppressWarnings("serial")
 public class AtualizarAdmFrame extends JFrame {
@@ -40,7 +42,7 @@ public class AtualizarAdmFrame extends JFrame {
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textPais;
-	private JTextField texttelefone;
+	private JTextField textTelefone;
 	private JTextArea textFuncao;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String sexo;
@@ -206,7 +208,7 @@ public class AtualizarAdmFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cadastrar();
+				atualizar();
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
@@ -233,10 +235,10 @@ public class AtualizarAdmFrame extends JFrame {
 		lblTelefone.setBounds(299, 269, 80, 16);
 		contentPane.add(lblTelefone);
 
-		texttelefone = new JTextField();
-		texttelefone.setBounds(366, 263, 134, 28);
-		contentPane.add(texttelefone);
-		texttelefone.setColumns(10);
+		textTelefone = new JTextField();
+		textTelefone.setBounds(366, 263, 134, 28);
+		contentPane.add(textTelefone);
+		textTelefone.setColumns(10);
 
 		this.fachada = PaginaPrincipal.fachada;
 		
@@ -256,7 +258,7 @@ public class AtualizarAdmFrame extends JFrame {
 		this.textCPF.setText(this.administrador.getCpf());
 		this.textFuncao.setText(this.administrador.getFuncao());
 		this.textDataNasc.setText(this.administrador.getDataNasc());
-		this.texttelefone.setText(this.administrador.getTelefone());
+		this.textTelefone.setText(this.administrador.getTelefone());
 		textFuncao.setText(this.administrador.getFuncao());
 		if(this.administrador.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
@@ -267,14 +269,14 @@ public class AtualizarAdmFrame extends JFrame {
 	}
 
 	
-	private void cadastrar(){
+	private void atualizar(){
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
 			String cpf = textCPF.getText();
 			String dataNasc = textDataNasc.getText();
 			String rg = textRG.getText();
-			String telefone = texttelefone.getText();
+			String telefone = textTelefone.getText();
 			String rua = textRua.getText();
 			String numero = textNumero.getText();
 			String cep = textCep.getText();
@@ -285,16 +287,15 @@ public class AtualizarAdmFrame extends JFrame {
 			String funcao = textFuncao.getText();
 			
 			//String numero = textNumero.getText();
-			this.fachada.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
-					telefone, rua, numero, bairro, cep, cidade, estado, pais,
-					funcao);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+			Administrador administradorAux = new Administrador(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa(administradorAux);
 			JOptionPane.showMessageDialog(this,"Administrador cadastrado com sucesso.");
-		} catch (ElementoJaCadastradoException e){
-			JOptionPane.showMessageDialog(this,"O administrador j‡ est‡ cadastrado.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
-		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

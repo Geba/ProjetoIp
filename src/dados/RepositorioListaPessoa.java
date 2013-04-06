@@ -182,4 +182,10 @@ public class RepositorioListaPessoa implements Repositorio<Pessoa>{
 
 	}
 
+	@Override
+	public Iterator<Pessoa> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

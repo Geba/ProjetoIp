@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -202,6 +203,12 @@ public class RepositorioTurmaArquivoXls implements Repositorio<Turma> {
 			RepositorioException {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Iterator<Turma> getIterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
