@@ -13,16 +13,22 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import dados.RepositorioArrayTurma;
 import excecoes.ElementoJaCadastradoException;
+import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
+
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 
 import classesBase.Aluno;
+import classesBase.Endereco;
+import classesBase.Pessoa;
 import classesBase.Turma;
 
 @SuppressWarnings("serial")
@@ -46,6 +52,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	private String sexo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private static Aluno aluno;
+	private Turma turma;
 	/**
 	 * Launch the application.
 	 */
@@ -73,9 +80,9 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCadastrarAluno = new JLabel("Cadastrar Aluno");
-		lblCadastrarAluno.setBounds(21, 18, 144, 16);
-		contentPane.add(lblCadastrarAluno);
+		JLabel lblatualizarAluno = new JLabel("atualizar Aluno");
+		lblatualizarAluno.setBounds(21, 18, 144, 16);
+		contentPane.add(lblatualizarAluno);
 		
 		JLabel lblNomeCompleto = new JLabel("Nome Completo:");
 		lblNomeCompleto.setBounds(21, 59, 112, 16);
@@ -226,14 +233,14 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		lblTurma.setBounds(21, 341, 61, 16);
 		contentPane.add(lblTurma);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
+		JButton btnatualizar = new JButton("Atualizar");
+		btnatualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cadastrar();
+				atualizar();
 			}
 		});
-		btnCadastrar.setBounds(461, 365, 112, 42);
-		contentPane.add(btnCadastrar);
+		btnatualizar.setBounds(461, 365, 112, 42);
+		contentPane.add(btnatualizar);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -253,9 +260,9 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(70, 337, 141, 27);
-		contentPane.add(comboBox);
+		JComboBox<Turma> cbxTurma = new JComboBox<Turma>();
+		cbxTurma.setBounds(70, 337, 141, 27);
+		contentPane.add(cbxTurma);
 		
 		JButton btnNewButton = new JButton("Adicionar Nova");
 		btnNewButton.setBounds(70, 372, 141, 29);
@@ -278,6 +285,8 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		this.textPai.setText(this.aluno.getPai());
 		this.textMae.setText(this.aluno.getMae());
 		this.textTelefone.setText(this.aluno.getTelefone());
+		
+		cbxTurma.setSelectedItem(this.aluno.getTurma());
 		if(this.aluno.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
@@ -287,7 +296,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		
 	}
 	
-	private void cadastrar(){
+	private void atualizar(){
 		try{
 			String nome = textNome.getText();
 			String cpf = textCPF.getText();
@@ -303,15 +312,18 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			String pais = textPais.getText();
 			String pai = textPai.getText();
 			String mae = textMae.getText();
-			Turma turma = null;//iniclializar isso aqui
 			//String numero = tf_numero.getText();
-			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
-					numero, bairro, cep, cidade, estado, pais, pai, mae, turma); //<<<<<<
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+			Aluno alunoAux = new Aluno(cpf, nome, dataNasc, rg, pais, telefone, endereco, pai, mae, turma);
+			
+			PaginaPrincipal.fachada.atualizarPessoa(alunoAux); //<<<<<<
 			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");
-		} catch (ElementoJaCadastradoException e){
-			JOptionPane.showMessageDialog(this,"O aluno j‡ est‡ cadastrado.");
-		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada invalida. Tente novamente.");
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

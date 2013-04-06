@@ -5,10 +5,26 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import classesBase.*;
-import dados.*;
-import excecoes.*;
-import negocio.*;
+import negocio.Controle;
+import classesBase.Administrador;
+import classesBase.Aluno;
+import classesBase.Disciplina;
+import classesBase.Endereco;
+import classesBase.Funcionario;
+import classesBase.Pessoa;
+import classesBase.Professor;
+import classesBase.Turma;
+import dados.Repositorio;
+import dados.RepositorioArrayDisciplina;
+import dados.RepositorioArrayPessoa;
+import dados.RepositorioArrayTurma;
+import dados.RepositorioListaDisciplina;
+import dados.RepositorioListaPessoa;
+import dados.RepositorioListaTurma;
+import excecoes.ElementoJaCadastradoException;
+import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
 
 public class Escola {
 
@@ -46,6 +62,30 @@ public class Escola {
 		} else {
 
 		}
+	}
+
+	public Repositorio<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public void setPessoas(Repositorio<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+	}
+
+	public Repositorio<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(Repositorio<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
+	public Repositorio<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(Repositorio<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	public void inserirAluno(String cpf, String nome, String dataNasc,
@@ -334,5 +374,8 @@ public class Escola {
 	public void logar(String login, String senha) {
 
 	}
+
+
+
 
 }
