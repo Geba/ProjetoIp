@@ -278,6 +278,11 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		this.textPai.setText(this.aluno.getPai());
 		this.textMae.setText(this.aluno.getMae());
 		this.textTelefone.setText(this.aluno.getTelefone());
+		if(this.aluno.getSexo().equals("M")){
+			rdbtnMasculino.setSelected(true);
+		}else{
+			rdbtnFeminino.setSelected(true);
+		}
 		
 		
 	}

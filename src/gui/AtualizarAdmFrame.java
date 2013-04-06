@@ -41,10 +41,10 @@ public class AtualizarAdmFrame extends JFrame {
 	private JTextField textEstado;
 	private JTextField textPais;
 	private JTextField texttelefone;
-	private JTextArea textfuncao;
+	private JTextArea textFuncao;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String sexo;
-	private static Administrador adminstrador;
+	private static Administrador administrador;
 	
 
 	/**
@@ -54,7 +54,7 @@ public class AtualizarAdmFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AtualizarAdmFrame frame = new AtualizarAdmFrame(adminstrador);
+					AtualizarAdmFrame frame = new AtualizarAdmFrame(administrador);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -225,9 +225,9 @@ public class AtualizarAdmFrame extends JFrame {
 		lblFuno.setBounds(21, 263, 250, 16);
 		contentPane.add(lblFuno);
 
-		textfuncao = new JTextArea();
-		textfuncao.setBounds(21, 285, 250, 96);
-		contentPane.add(textfuncao);
+		textFuncao = new JTextArea();
+		textFuncao.setBounds(21, 285, 250, 96);
+		contentPane.add(textFuncao);
 
 		JLabel lblTelefone = new JLabel("Telefone: ");
 		lblTelefone.setBounds(299, 269, 80, 16);
@@ -240,20 +240,28 @@ public class AtualizarAdmFrame extends JFrame {
 
 		this.fachada = PaginaPrincipal.fachada;
 		
-		this.textBairro.setText(this.adminstrador.getEndereco().getBairro());
-		this.textCep.setText(this.adminstrador.getEndereco().getCep());
-		this.textCidade.setText(this.adminstrador.getEndereco().getCidade());
-		this.textRua.setText(this.adminstrador.getEndereco().getRua());
-		this.textBairro.setText(this.adminstrador.getEndereco().getBairro());
-		this.textCep.setText(this.adminstrador.getEndereco().getCep());
-		this.textCidade.setText(this.adminstrador.getEndereco().getCidade());
-		this.textEstado.setText(this.adminstrador.getEndereco().getEstado());
-		this.textNumero.setText(this.adminstrador.getEndereco().getNumero());
-		this.textNome.setText(this.adminstrador.getNome());
-		this.textRG.setText(this.adminstrador.getIdentidade());
-		this.textDataNasc.setText(this.adminstrador.getDataNasc());
-		this.textPais.setText(this.adminstrador.getEndereco().getPais());
-		this.textCPF.setText(this.adminstrador.getCpf());
+		this.textBairro.setText(this.administrador.getEndereco().getBairro());
+		this.textCep.setText(this.administrador.getEndereco().getCep());
+		this.textCidade.setText(this.administrador.getEndereco().getCidade());
+		this.textRua.setText(this.administrador.getEndereco().getRua());
+		this.textBairro.setText(this.administrador.getEndereco().getBairro());
+		this.textCep.setText(this.administrador.getEndereco().getCep());
+		this.textCidade.setText(this.administrador.getEndereco().getCidade());
+		this.textEstado.setText(this.administrador.getEndereco().getEstado());
+		this.textNumero.setText(this.administrador.getEndereco().getNumero());
+		this.textNome.setText(this.administrador.getNome());
+		this.textRG.setText(this.administrador.getIdentidade());
+		this.textDataNasc.setText(this.administrador.getDataNasc());
+		this.textPais.setText(this.administrador.getEndereco().getPais());
+		this.textCPF.setText(this.administrador.getCpf());
+		this.textFuncao.setText(this.administrador.getFuncao());
+		this.textDataNasc.setText(this.administrador.getDataNasc());
+		textFuncao.setText(this.administrador.getFuncao());
+		if(this.administrador.getSexo().equals("M")){
+			rdbtnMasculino.setSelected(true);
+		}else{
+			rdbtnFeminino.setSelected(true);
+		}
 
 	}
 
@@ -273,7 +281,8 @@ public class AtualizarAdmFrame extends JFrame {
 			String cidade = textCidade.getText();
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
-			String funcao = textfuncao.getText();
+			String funcao = textFuncao.getText();
+			
 			//String numero = textNumero.getText();
 			this.fachada.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,

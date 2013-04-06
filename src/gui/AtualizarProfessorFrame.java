@@ -24,7 +24,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextField textNome;
 	private JTextField textCpf;
 	private JTextField textRG;
-	private JTextField textDataNascimento;
+	private JTextField textDataNasc;
 	private JTextField textEndereco;
 	private JTextField textNcasa;
 	private JTextField textCep;
@@ -94,10 +94,10 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(textRG);
 		textRG.setColumns(10);
 
-		textDataNascimento = new JTextField();
-		textDataNascimento.setBounds(245, 87, 125, 28);
-		contentPane.add(textDataNascimento);
-		textDataNascimento.setColumns(10);
+		textDataNasc = new JTextField();
+		textDataNasc.setBounds(245, 87, 125, 28);
+		contentPane.add(textDataNasc);
+		textDataNasc.setColumns(10);
 
 		JLabel lblDataDeNascimento = new JLabel(
 				"Data de Nascimento (dd/mm/aaaa)");
@@ -191,9 +191,9 @@ public class AtualizarProfessorFrame extends JFrame {
 		lblFuno.setBounds(21, 263, 250, 16);
 		contentPane.add(lblFuno);
 
-		JTextArea textAreaFuncao = new JTextArea();
-		textAreaFuncao.setBounds(21, 285, 250, 96);
-		contentPane.add(textAreaFuncao);
+		JTextArea textFuncao = new JTextArea();
+		textFuncao.setBounds(21, 285, 250, 96);
+		contentPane.add(textFuncao);
 		
 		this.textBairro.setText(this.professor.getEndereco().getBairro());
 		this.textCep.setText(this.professor.getEndereco().getCep());
@@ -206,9 +206,16 @@ public class AtualizarProfessorFrame extends JFrame {
 		this.textNcasa.setText(this.professor.getEndereco().getNumero());
 		this.textNome.setText(this.professor.getNome());
 		this.textRG.setText(this.professor.getIdentidade());
-		this.textDataNascimento.setText(this.professor.getDataNasc());
+		this.textDataNasc.setText(this.professor.getDataNasc());
 		this.textPais.setText(this.professor.getEndereco().getPais());
 		this.textCpf.setText(this.professor.getCpf());
+		this.textDataNasc.setText(this.professor.getDataNasc());
+		textFuncao.setText(this.professor.getFuncao());
+		if(this.professor.getSexo().equals("M")){
+			rdbtnMasculino.setSelected(true);
+		}else{
+			rdbtnFeminino.setSelected(true);
+		}
 		
 	}
 }

@@ -44,7 +44,7 @@ public class EscolaTeste {
 		Pessoa lindinha = new Aluno("123456007","Lindinha", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa docinho = new Aluno("123456008","Docinho", "", "122321", "F", "", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("123456009","Florzinha", "", "122321", "F", "", end, "Pai", "Mae", turma);
-		Pessoa untonio = new Professor("123454321", "Untonio", "","123454433","M", "333333333", end,"se pai");
+		Pessoa untonio = new Professor("123454321", "Untonio", "","123454433","F", "333333333", end,"se pai");
 		pessoas.inserir(geovane);
 		pessoas.inserir(geovane2);
 		pessoas.inserir(harry);
