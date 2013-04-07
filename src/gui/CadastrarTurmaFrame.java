@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import negocio.Controle;
+
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
@@ -99,10 +101,11 @@ public class CadastrarTurmaFrame extends JFrame {
 	public void cadastrar(){
 		String nome = textNome.getText();
 		try {
+			Controle.nomeValido(nome);
 			PaginaPrincipal.fachada.inserirTurma(nome);
 			JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.\n"+e.getOndeErrou());
+			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Turma ja cadastrada. Tente novamente.");
 		} catch (RepositorioException e) {

@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 
 
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
 
 import excecoes.RepositorioException;
 
@@ -22,6 +23,8 @@ import excecoes.RepositorioException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
+
+import negocio.Controle;
 
 import classesBase.Administrador;
 import classesBase.Endereco;
@@ -284,8 +287,7 @@ public class AtualizarAdmFrame extends JFrame {
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
 			String funcao = textFuncao.getText();
-			
-			//String numero = textNumero.getText();
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Administrador administradorAtualizado = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAtualizado);
@@ -293,8 +295,9 @@ public class AtualizarAdmFrame extends JFrame {
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		}
 		
 	}

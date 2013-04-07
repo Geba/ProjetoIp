@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
 
 import excecoes.RepositorioException;
 
@@ -25,6 +26,8 @@ import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
+
+import negocio.Controle;
 
 import classesBase.Aluno;
 import classesBase.Endereco;
@@ -334,13 +337,16 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		}else{
 			sexo = "F";
 		}
-		
-		//String numero = tf_numero.getText();
-		Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-		Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-		PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
-		JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
-		
+		try {
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+			Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
+			PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
+			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
+			} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this, e.getOndeErrou());
+			e.printStackTrace();
+			}
 	}
 
 	private void voltar() {

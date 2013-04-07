@@ -12,12 +12,15 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import negocio.Controle;
+
 import classesBase.Disciplina;
 //import javax.swing.SwingConstants;
 
 
 
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
 
 
 import java.awt.event.ActionListener;
@@ -118,11 +121,14 @@ public class AtualizarDisciplinaFrame extends JFrame {
 		String nome = textNome.getText();
 		String ementa = textEmenta.getText();
 		try{
+			Controle.nomeValido(nome);
 			Disciplina disciplinaAux = new Disciplina(nome, ementa);
 			PaginaPrincipal.fachada.atualizarDisciplina(disciplinaAux);
 			JOptionPane.showMessageDialog(this, "Disciplina atualizada com sucesso!");
 		}catch(ElementoNaoEncontradoException e){
 			e.printStackTrace();
+		} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 	}	
 }

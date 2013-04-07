@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
+import negocio.Controle;
+
 //import classesBase.Administrador;
 
 @SuppressWarnings("serial")
@@ -260,6 +262,7 @@ public class CadastrarAdmFrame extends JFrame {
 			String pais = textPais.getText();
 			String funcao = textfuncao.getText();
 			//String numero = textNumero.getText();
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			this.fachada.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,
 					funcao);
@@ -269,7 +272,7 @@ public class CadastrarAdmFrame extends JFrame {
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,e.getOndeErrou());
 		}
 		
 	}

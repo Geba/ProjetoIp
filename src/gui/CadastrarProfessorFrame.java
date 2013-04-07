@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
+import negocio.Controle;
+
 public class CadastrarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -246,6 +248,7 @@ public class CadastrarProfessorFrame extends JFrame {
 			String estado = tf_estado.getText();
 			String pais = tf_pais.getText();
 			String funcao = ta_funcao.getText();
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			PaginaPrincipal.fachada.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone,
 					rua, numero, bairro, cep, cidade, estado, pais, funcao);
 			JOptionPane.showMessageDialog(this,"Professor cadastrado com sucesso.");
@@ -254,7 +257,7 @@ public class CadastrarProfessorFrame extends JFrame {
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,e.getOndeErrou());
 		}
 		
 	}

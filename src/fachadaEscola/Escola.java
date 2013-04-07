@@ -93,7 +93,7 @@ public class Escola {
 			RepositorioException {
 
 		try {
-			Controle.inserirPessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -116,7 +116,7 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirPessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -138,7 +138,7 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirPessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -160,7 +160,7 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirPessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}

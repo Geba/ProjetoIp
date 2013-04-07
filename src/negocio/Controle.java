@@ -9,7 +9,7 @@ public class Controle {
 
 	}
 
-	public static boolean inserirPessoa(String cpf, String nome,
+	public static boolean controlePessoa(String cpf, String nome,
 			String dataNasc, String rg, String sexo, String telefone,
 			String rua, String numero, String bairro, String cep,
 			String cidade, String estado, String pais)

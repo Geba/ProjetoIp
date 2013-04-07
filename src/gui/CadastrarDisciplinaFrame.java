@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
+import negocio.Controle;
 //import javax.swing.SwingConstants;
 
 
@@ -113,6 +115,7 @@ public class CadastrarDisciplinaFrame extends JFrame {
 		String nome = textNome.getText();
 		String ementa = textEmenta.getText();
 		try {
+			Controle.nomeValido(nome);
 			PaginaPrincipal.fachada.inserirDisciplina(nome, ementa);
 			JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso!");
 		} catch (EntradaInvalidaException e) {

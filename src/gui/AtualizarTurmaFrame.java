@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import negocio.Controle;
+
 import classesBase.Turma;
 
 import excecoes.ElementoJaCadastradoException;
@@ -109,12 +111,15 @@ public class AtualizarTurmaFrame extends JFrame {
 		turmaAtualizada.setNome(textNome.getText());
 		
 		try {
+			Controle.nomeValido(textNome.getText());
 			PaginaPrincipal.fachada.atualizarTurma(turmaOriginal, turmaAtualizada);
 			JOptionPane
 					.showMessageDialog(this, "Turma cadastrada com sucesso!");
 		} catch (ElementoNaoEncontradoException e) {
 			JOptionPane.showMessageDialog(this,"Turma nao encontrada no Sistema"  );
 			e.printStackTrace();
+		} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		}
 	}
 }

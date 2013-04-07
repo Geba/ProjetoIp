@@ -27,6 +27,8 @@ import java.util.Iterator;
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 
+import negocio.Controle;
+
 import classesBase.Turma;
 
 public class CadastrarAlunoFrame extends JFrame {
@@ -297,6 +299,7 @@ public class CadastrarAlunoFrame extends JFrame {
 			String pai = tf_pai.getText();
 			String mae = tf_mae.getText();
 			Turma turma = (Turma) comboBoxTurma.getSelectedItem();
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, mae, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo,
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,
 					pai, mae, turma); // <<<<<<

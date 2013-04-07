@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+
+import negocio.Controle;
 //import javax.swing.JPasswordField;
 
 //import com.apple.dnssd.TXTRecord;
@@ -19,6 +21,7 @@ import javax.swing.JTextArea;
 import classesBase.Endereco;
 import classesBase.Professor;
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 
 @SuppressWarnings("serial")
@@ -258,6 +261,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		}
 				//String numero = textNumero.getText();
 		try{
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal, funcionarioAux);
@@ -267,6 +271,8 @@ public class AtualizarProfessorFrame extends JFrame {
 		} catch (ElementoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (EntradaInvalidaException e) {
+			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		}
 	}
 
