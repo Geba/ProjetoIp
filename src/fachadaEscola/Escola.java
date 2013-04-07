@@ -354,7 +354,7 @@ public class Escola {
 		}
 	}
 
-	public void atualizarTurma(Turma turma)
+	public void atualizarTurma(Turma turmaOriginal, Turma turmaAtualizada)
 			throws ElementoNaoEncontradoException {
 		try {
 			try {
@@ -375,9 +375,7 @@ public class Escola {
 		}
 	
 
-	public void atualizarAluno(String cpf, String nome, String dataNasc,
-			String rg, String sexo, String telefone, Endereco endereco,
-			String pai, String mae, Turma turma, Pessoa alunoOriginial) {
+	public void atualizarAluno(Aluno alunoOriginal, Aluno AlunoAtualizado) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -25,6 +25,7 @@ import javax.swing.ButtonGroup;
 
 import classesBase.Endereco;
 import classesBase.Funcionario;
+import classesBase.Pessoa;
 
 //import classesBase.Administrador;
 
@@ -70,7 +71,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarFuncionarioFrame(Funcionario funcionario) {
+	public AtualizarFuncionarioFrame(final Funcionario funcionarioOriginal) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -210,7 +211,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				atualizar();
+				atualizar(funcionarioOriginal);
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
@@ -244,32 +245,32 @@ public class AtualizarFuncionarioFrame extends JFrame {
 
 		//this.fachada = PaginaPrincipal.fachada;
 
-		this.textBairro.setText(funcionario.getEndereco().getBairro());
-		this.textCep.setText(funcionario.getEndereco().getCep());
-		this.textCidade.setText(funcionario.getEndereco().getCidade());
-		this.textRua.setText(funcionario.getEndereco().getRua());
-		this.textBairro.setText(funcionario.getEndereco().getBairro());
-		this.textCep.setText(funcionario.getEndereco().getCep());
-		this.textCidade.setText(funcionario.getEndereco().getCidade());
-		this.textEstado.setText(funcionario.getEndereco().getEstado());
-		this.textNumero.setText(funcionario.getEndereco().getNumero());
-		this.textNome.setText(funcionario.getNome());
-		this.textRg.setText(funcionario.getIdentidade());
-		this.textDataNasc.setText(funcionario.getDataNasc());
-		this.textPais.setText(funcionario.getEndereco().getPais());
-		this.textCpf.setText(funcionario.getCpf());
-		this.textDataNasc.setText(funcionario.getDataNasc());
-		textFuncao.setText(funcionario.getFuncao());
-		this.textTelefone.setText(funcionario.getTelefone());
-		if(funcionario.getSexo().equals("M")){
+		this.textBairro.setText(funcionarioOriginal.getEndereco().getBairro());
+		this.textCep.setText(funcionarioOriginal.getEndereco().getCep());
+		this.textCidade.setText(funcionarioOriginal.getEndereco().getCidade());
+		this.textRua.setText(funcionarioOriginal.getEndereco().getRua());
+		this.textBairro.setText(funcionarioOriginal.getEndereco().getBairro());
+		this.textCep.setText(funcionarioOriginal.getEndereco().getCep());
+		this.textCidade.setText(funcionarioOriginal.getEndereco().getCidade());
+		this.textEstado.setText(funcionarioOriginal.getEndereco().getEstado());
+		this.textNumero.setText(funcionarioOriginal.getEndereco().getNumero());
+		this.textNome.setText(funcionarioOriginal.getNome());
+		this.textRg.setText(funcionarioOriginal.getIdentidade());
+		this.textDataNasc.setText(funcionarioOriginal.getDataNasc());
+		this.textPais.setText(funcionarioOriginal.getEndereco().getPais());
+		this.textCpf.setText(funcionarioOriginal.getCpf());
+		this.textDataNasc.setText(funcionarioOriginal.getDataNasc());
+		textFuncao.setText(funcionarioOriginal.getFuncao());
+		this.textTelefone.setText(funcionarioOriginal.getTelefone());
+		if(funcionarioOriginal.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
-		cpfOriginal = funcionario.getCpf();
+		
 	}
 
-	private void atualizar(){
+	private void atualizar(Pessoa funcionarioOriginal){
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
@@ -288,8 +289,8 @@ public class AtualizarFuncionarioFrame extends JFrame {
 
 			//String numero = textNumero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Funcionario funcionarioAux = new Funcionario(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(cpfOriginal, funcionarioAux);
+			Funcionario funcionarioAtualizado = new Funcionario(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa( funcionarioOriginal, funcionarioAtualizado);
 			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no repositorio.");

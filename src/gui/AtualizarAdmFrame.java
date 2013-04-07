@@ -287,8 +287,8 @@ public class AtualizarAdmFrame extends JFrame {
 			
 			//String numero = textNumero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Administrador administradorAux = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAux);
+			Administrador administradorAtualizado = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAtualizado);
 			JOptionPane.showMessageDialog(this,"Administrador atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");

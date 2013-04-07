@@ -37,11 +37,11 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextField textEstado;
 	private JTextField textPais;
 	private JTextField textTelefone;
-	private static Professor professor;
+	private static Professor professorOriginal;
 	private JTextArea textFuncao;
 	private JRadioButton rdbtnFeminino;
 	private JRadioButton rdbtnMasculino;
-	private final String cpfOriginal;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +50,7 @@ public class AtualizarProfessorFrame extends JFrame {
 			public void run() {
 				try {
 					AtualizarProfessorFrame frame = new AtualizarProfessorFrame(
-							professor);
+							professorOriginal);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,8 +62,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarProfessorFrame(Professor professor) {//todos os campos serão atualizados com os dados do professor
-		this.professor = professor;
+	public AtualizarProfessorFrame(final Professor professor) {//todos os campos serão atualizados com os dados do professor
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -212,32 +211,32 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 
-		this.textBairro.setText(this.professor.getEndereco().getBairro());
-		this.textCep.setText(this.professor.getEndereco().getCep());
-		this.textCidade.setText(this.professor.getEndereco().getCidade());
-		this.textRua.setText(this.professor.getEndereco().getRua());
-		this.textBairro.setText(this.professor.getEndereco().getBairro());
-		this.textCep.setText(this.professor.getEndereco().getCep());
-		this.textCidade.setText(this.professor.getEndereco().getCidade());
-		this.textEstado.setText(this.professor.getEndereco().getEstado());
-		this.textNumero.setText(this.professor.getEndereco().getNumero());
-		this.textNome.setText(this.professor.getNome());
-		this.textRg.setText(this.professor.getIdentidade());
-		this.textDataNasc.setText(this.professor.getDataNasc());
-		this.textPais.setText(this.professor.getEndereco().getPais());
-		this.textCpf.setText(this.professor.getCpf());
-		this.textDataNasc.setText(this.professor.getDataNasc());
-		this.textTelefone.setText(this.professor.getTelefone());
-		textFuncao.setText(this.professor.getFuncao());
-		if(this.professor.getSexo().equals("M")){
+		this.textBairro.setText(professorOriginal.getEndereco().getBairro());
+		this.textCep.setText(professorOriginal.getEndereco().getCep());
+		this.textCidade.setText(professorOriginal.getEndereco().getCidade());
+		this.textRua.setText(professorOriginal.getEndereco().getRua());
+		this.textBairro.setText(professorOriginal.getEndereco().getBairro());
+		this.textCep.setText(professorOriginal.getEndereco().getCep());
+		this.textCidade.setText(professorOriginal.getEndereco().getCidade());
+		this.textEstado.setText(professorOriginal.getEndereco().getEstado());
+		this.textNumero.setText(professorOriginal.getEndereco().getNumero());
+		this.textNome.setText(professorOriginal.getNome());
+		this.textRg.setText(professorOriginal.getIdentidade());
+		this.textDataNasc.setText(professorOriginal.getDataNasc());
+		this.textPais.setText(professorOriginal.getEndereco().getPais());
+		this.textCpf.setText(professorOriginal.getCpf());
+		this.textDataNasc.setText(professorOriginal.getDataNasc());
+		this.textTelefone.setText(professorOriginal.getTelefone());
+		textFuncao.setText(professorOriginal.getFuncao());
+		if(professorOriginal.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
-		cpfOriginal = professor.getCpf();
+		
 
 	}
-	private void atualizar(){
+	private void atualizar(Professor professorOriginal){
 		String nome = textNome.getText();
 		String cpf = textCpf.getText();
 		String dataNasc = textDataNasc.getText();
@@ -261,7 +260,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		try{
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(cpfOriginal, funcionarioAux);
+			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal, funcionarioAux);
 			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no repositorio.");

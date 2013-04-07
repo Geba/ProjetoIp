@@ -52,10 +52,11 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	private JTextField textPais;
 	private JTextField textTelefone;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private static Aluno aluno;
+	//private static Aluno aluno;
 	JRadioButton rdbtnMasculino;
 	JRadioButton rdbtnFeminino;
 	private Turma turma;
+	private static Aluno aluno;
 	
 	/**
 	 * Launch the application.
@@ -311,7 +312,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		
 	}
 	
-	private void atualizar(Aluno alunoOriginial){
+	private void atualizar(Aluno alunoOriginal){
 		try{
 			String nome = textNome.getText();
 			String cpf = textCpf.getText();
@@ -336,9 +337,8 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			
 			//String numero = tf_numero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Aluno alunoAtual = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-			alunoAtual.setBoletim(aluno.getBoletim());
-			PaginaPrincipal.fachada.atualizarAluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma, alunoOriginial);
+			Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
+			PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
 			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
 		} catch (ElementoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
