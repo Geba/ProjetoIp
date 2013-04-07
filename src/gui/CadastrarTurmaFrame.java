@@ -13,6 +13,7 @@ import javax.swing.JButton;
 
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -101,9 +102,12 @@ public class CadastrarTurmaFrame extends JFrame {
 			PaginaPrincipal.fachada.inserirTurma(nome);
 			JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.");
+			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.\n"+e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Turma ja cadastrada. Tente novamente.");
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

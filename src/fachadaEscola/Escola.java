@@ -89,23 +89,26 @@ public class Escola {
 			String rg, String sexo, String telefone, String rua, String numero,
 			String bairro, String cep, String cidade, String estado,
 			String pais, String pai, String mae, Turma turma)
-			throws EntradaInvalidaException, ElementoJaCadastradoException, RepositorioException {
-		
-			try {
-				Controle.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais, pai, mae, turma);
-			} catch (EntradaInvalidaException e) {
-				throw e;
-			}
-			try {
-				Pessoa p = pessoas.procurar(cpf);
-				throw new ElementoJaCadastradoException();
-			} catch (ElementoNaoEncontradoException e) {
-				Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-				Aluno aluno = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-				pessoas.inserir(aluno);
-			}
-			
-		
+			throws EntradaInvalidaException, ElementoJaCadastradoException,
+			RepositorioException {
+
+		try {
+			Controle.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
+					numero, bairro, cep, cidade, estado, pais, pai, mae, turma);
+		} catch (EntradaInvalidaException e) {
+			throw e;
+		}
+		try {
+			Pessoa p = pessoas.procurar(cpf);
+			throw new ElementoJaCadastradoException();
+		} catch (ElementoNaoEncontradoException e) {
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
+					estado, pais);
+			Aluno aluno = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone,
+					endereco, pai, mae, turma);
+			pessoas.inserir(aluno);
+		}
+
 	}
 
 	public void inserirProfessor(String cpf, String nome, String dataNasc,
@@ -114,7 +117,8 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais, funcao);
+			Controle.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais, funcao);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -122,11 +126,13 @@ public class Escola {
 			Pessoa p = pessoas.procurar(cpf);
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
-			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Professor professor = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
+					estado, pais);
+			Professor professor = new Professor(cpf, nome, dataNasc, rg, sexo,
+					telefone, endereco, funcao);
 			pessoas.inserir(professor);
 		}
-			}
+	}
 
 	public void inserirAdministrador(String cpf, String nome, String dataNasc,
 			String rg, String sexo, String telefone, String rua, String numero,
@@ -134,7 +140,9 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirAdministrador(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais, funcao);
+			Controle.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
+					telefone, rua, numero, bairro, cep, cidade, estado, pais,
+					funcao);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -142,11 +150,13 @@ public class Escola {
 			Pessoa p = pessoas.procurar(cpf);
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
-			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Administrador administrador = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
+					estado, pais);
+			Administrador administrador = new Administrador(cpf, nome,
+					dataNasc, rg, sexo, telefone, endereco, funcao);
 			pessoas.inserir(administrador);
 		}
-}
+	}
 
 	public void inserirFuncionario(String cpf, String nome, String dataNasc,
 			String rg, String sexo, String telefone, String rua, String numero,
@@ -154,7 +164,9 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.inserirFuncionario(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais, funcao);
+			Controle.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
+					telefone, rua, numero, bairro, cep, cidade, estado, pais,
+					funcao);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -162,15 +174,17 @@ public class Escola {
 			Pessoa p = pessoas.procurar(cpf);
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
-			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Funcionario funcionario = new Funcionario(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
+					estado, pais);
+			Funcionario funcionario = new Funcionario(cpf, nome, dataNasc, rg,
+					sexo, telefone, endereco, funcao);
 			pessoas.inserir(funcionario);
 		}
 	}
 
 	public void inserirTurma(String nome) throws EntradaInvalidaException,
 			ElementoJaCadastradoException, RepositorioException {
-		
+
 		try {
 			Turma t = turmas.procurar(nome);
 			throw new ElementoJaCadastradoException();
@@ -180,7 +194,9 @@ public class Escola {
 		}
 	}
 
-	public void inserirDisciplina(String nome, String ementa) throws ElementoJaCadastradoException, RepositorioException{
+	public void inserirDisciplina(String nome, String ementa)
+			throws ElementoJaCadastradoException, RepositorioException,
+			EntradaInvalidaException {
 		try {
 			Disciplina d = disciplinas.procurar(nome);
 			throw new ElementoJaCadastradoException();
@@ -188,9 +204,9 @@ public class Escola {
 			if (Controle.nomeValido(nome)) {
 				Disciplina d = new Disciplina(nome, ementa);
 				disciplinas.inserir(d);
-				}
 			}
-		
+		}
+
 	}
 
 	public Pessoa procurarPessoa(String cpf)
@@ -200,7 +216,7 @@ public class Escola {
 			try {
 				p = pessoas.procurar(cpf);
 			} catch (ElementoNaoEncontradoException e) {
-		throw e;
+				throw e;
 			}
 		}
 		return p;
@@ -209,16 +225,12 @@ public class Escola {
 	public Disciplina procurarDisciplina(String nome)
 			throws ElementoNaoEncontradoException, EntradaInvalidaException {
 		Disciplina d = null;
-
 		if (Controle.nomeValido(nome)) {
 			try {
-
 				d = disciplinas.procurar(nome);
 			} catch (ElementoNaoEncontradoException e) {
-throw e;
+				throw e;
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 		return d;
 	}
@@ -233,79 +245,45 @@ throw e;
 			} catch (ElementoNaoEncontradoException e) {
 				throw e;
 			}
-		} else {
-			throw new EntradaInvalidaException();
 		}
 		return t;
 	}
 
 	public void removerPessoa(String cpf) throws RepositorioException,
-			EntradaInvalidaException {
-
-		if (Controle.cpfValido(cpf)) {
-			try {
-				pessoas.remover(cpf);
-
-			} catch (RepositorioException f) {
-
-			} catch (ElementoNaoEncontradoException e) {
-
-			}
-		} else {
-			throw new EntradaInvalidaException();
-		}
+			EntradaInvalidaException, ElementoNaoEncontradoException {
+		Controle.cpfValido(cpf);
+		pessoas.remover(cpf);
 	}
 
 	public void removerDisciplina(String nome) throws RepositorioException,
-			EntradaInvalidaException {
-		if (Controle.nomeValido(nome)) {
-			try {
-				disciplinas.remover(nome);
-			} catch (ElementoNaoEncontradoException e) {
-
-			}
-		} else {
-			throw new EntradaInvalidaException();
-		}
+			EntradaInvalidaException, ElementoNaoEncontradoException {
+		Controle.nomeValido(nome);
+		disciplinas.remover(nome);
 	}
 
 	public void removerTurma(String nome) throws RepositorioException,
-			EntradaInvalidaException {
-		if (Controle.nomeValido(nome)) {
-			try {
-				turmas.remover(nome);
-			} catch (ElementoNaoEncontradoException e) {
-
-			}
-		} else {
-			throw new EntradaInvalidaException();
-		}
+			EntradaInvalidaException, ElementoNaoEncontradoException {
+		Controle.nomeValido(nome);
+		turmas.remover(nome);
 	}
 
 	public void atualizarPessoa(Pessoa pessoaOriginal, Pessoa pessoaAtualizada)
 			throws ElementoNaoEncontradoException, RepositorioException {
-		if (pessoaOriginal.getCpf().equals(pessoaAtualizada.getCpf())){
+		if (pessoaOriginal.getCpf().equals(pessoaAtualizada.getCpf())) {
 			try {
 				pessoas.atualizar(pessoaAtualizada);
-			} catch (ElementoNaoEncontradoException e) {
-
-			} catch (RepositorioException f) {
-
-			}	
-		}else{
+			} catch (ElementoNaoEncontradoException e) {//isso nunca vai acontecer
+			}
+		} else {
 			try {
 				removerPessoa(pessoaOriginal.getCpf());
 				this.pessoas.inserir(pessoaAtualizada);
 			} catch (EntradaInvalidaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-			
 		}
 		try {
 			pessoas.atualizar(pessoaAtualizada);
 		} catch (ElementoNaoEncontradoException e) {
-
 		} catch (RepositorioException f) {
 
 		}
@@ -339,22 +317,22 @@ throw e;
 		}
 	}
 
-	public String relatorioAlunos(){  //tem que fazer os metodos relatorio
-		String retorno="";
-		IteratorListaPessoa it = new IteratorListaPessoa((RepositorioListaPessoa) pessoas);
+	public String relatorioAlunos() { // tem que fazer os metodos relatorio
+		String retorno = "";
+		IteratorListaPessoa it = new IteratorListaPessoa(
+				(RepositorioListaPessoa) pessoas);
 		return retorno;
-		}
-	
+	}
 
 	public void atualizarAluno(Aluno alunoOriginal, Aluno alunoAtualizado) {
-		if(alunoAtualizado.getCpf().equals(alunoOriginal.getCpf())){
+		if (alunoAtualizado.getCpf().equals(alunoOriginal.getCpf())) {
 			try {
 				pessoas.inserir(alunoAtualizado);
 			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else{
+		} else {
 			alunoAtualizado.setBoletim(alunoOriginal.getBoletim());
 			try {
 				pessoas.remover(alunoOriginal.getCpf());
@@ -368,18 +346,14 @@ throw e;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 	}
-	
-	public void atualizarProfessor(Professor professorOriginal, Professor professorAtualizado){
-		
+
+	public void atualizarProfessor(Professor professorOriginal,
+			Professor professorAtualizado) {
+
 	}
-	
-	
-
-
-
 
 }

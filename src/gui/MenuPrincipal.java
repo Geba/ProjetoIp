@@ -247,7 +247,7 @@ public class MenuPrincipal extends JFrame {
 				} 
 				
 				else {
-					JOptionPane.showMessageDialog(MenuPrincipal.this,"n encontrou ngm");
+					JOptionPane.showMessageDialog(MenuPrincipal.this,"Nao encontrou ninguem");
 				}
 			}
 		});

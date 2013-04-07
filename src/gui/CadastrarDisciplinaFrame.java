@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -115,9 +116,12 @@ public class CadastrarDisciplinaFrame extends JFrame {
 			PaginaPrincipal.fachada.inserirDisciplina(nome, ementa);
 			JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso!");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.");
+			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.\n"+e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Disciplina ja cadastrada. Tente novamente.");
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

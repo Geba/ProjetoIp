@@ -414,7 +414,7 @@ public class Controle {
 			pode = false;
 		}
 		if (!pode){
-			String ondeErrou = "O CPF deve te no mínimo 3 caracteres";
+			String ondeErrou = "O Nome deve te no mínimo 3 caracteres";
 			throw new EntradaInvalidaException(ondeErrou);
 		}
 		return pode;
