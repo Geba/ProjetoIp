@@ -27,7 +27,7 @@ public class IteratorArrayDisciplina implements Iterator<Disciplina> {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		return array[indiceAtual++];
+		return array[++indiceAtual];
 
 	}
 

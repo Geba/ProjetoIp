@@ -13,12 +13,16 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import dados.Repositorio;
+import dados.RepositorioArrayTurma;
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
+
 import javax.swing.JComboBox;
 import javax.swing.ButtonGroup;
 
@@ -251,9 +255,17 @@ public class CadastrarAlunoFrame extends JFrame {
 		contentPane.add(tf_telefone);
 		tf_telefone.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(70, 337, 141, 27);
-		contentPane.add(comboBox);
+		JComboBox<Turma> cbxTurma = new JComboBox<Turma>();
+		cbxTurma.setBounds(70, 337, 141, 27);
+		contentPane.add(cbxTurma);
+		
+		cbxTurma.removeAllItems();
+		Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
+		Iterator<Turma> it = repositorio.getIterator();
+		while (it.hasNext()){
+			Turma turmaAux = it.next();
+			cbxTurma.addItem(turmaAux);
+		}
 		
 		JButton btnNewButton = new JButton("Adicionar Nova");
 		btnNewButton.addActionListener(new ActionListener() {

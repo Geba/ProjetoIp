@@ -2,6 +2,7 @@ package classesBase;
 
 import dados.RepositorioArrayDisciplina;
 import dados.RepositorioArrayPessoa;
+import excecoes.ElementoNaoEncontradoException;
 
 
 public class Turma {
@@ -28,6 +29,15 @@ public class Turma {
 	public void inserirAluno(Pessoa p){
 		alunos.inserir(p);
 	}
+	
+	public void removerDisciplina(String nome) throws ElementoNaoEncontradoException{
+		disciplinas.remover(nome);
+	}
+	
+	public void removerAluno(String cpf) throws ElementoNaoEncontradoException{
+		alunos.remover(nome);
+	}
+	
 	
 public String getNome() {
 		return nome;
@@ -57,4 +67,7 @@ public String getNome() {
 		return disciplinas.getCont();
 	}
 
+	public String toString(){
+		return this.nome;
+	}
 }

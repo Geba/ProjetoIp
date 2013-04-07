@@ -26,7 +26,7 @@ public class IteratorArrayTurma implements Iterator<Turma> {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		return array[indiceAtual++];
+		return array[++indiceAtual];
 
 	}
 

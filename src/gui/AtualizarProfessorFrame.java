@@ -37,7 +37,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextField textEstado;
 	private JTextField textPais;
 	private JTextField textTelefone;
-	private static Professor professorOriginal;
+	private static Professor professor;
 	private JTextArea textFuncao;
 	private JRadioButton rdbtnFeminino;
 	private JRadioButton rdbtnMasculino;
@@ -50,7 +50,7 @@ public class AtualizarProfessorFrame extends JFrame {
 			public void run() {
 				try {
 					AtualizarProfessorFrame frame = new AtualizarProfessorFrame(
-							professorOriginal);
+							professor);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarProfessorFrame(final Professor professor) {//todos os campos serão atualizados com os dados do professor
+	public AtualizarProfessorFrame(final Professor professorOriginal) {//todos os campos serão atualizados com os dados do professor
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
