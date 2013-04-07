@@ -113,7 +113,7 @@ public class AtualizarTurmaFrame extends JFrame {
 			JOptionPane
 					.showMessageDialog(this, "Turma cadastrada com sucesso!");
 		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(this,"Turma nao encontrada no Sistema"  );
 			e.printStackTrace();
 		}
 	}

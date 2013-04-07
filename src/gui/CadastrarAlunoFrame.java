@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.lang.Object;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -228,15 +229,6 @@ public class CadastrarAlunoFrame extends JFrame {
 		lblTurma.setBounds(21, 341, 61, 16);
 		contentPane.add(lblTurma);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cadastrar();
-			}
-		});
-		btnCadastrar.setBounds(461, 365, 112, 42);
-		contentPane.add(btnCadastrar);
-		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -255,16 +247,16 @@ public class CadastrarAlunoFrame extends JFrame {
 		contentPane.add(tf_telefone);
 		tf_telefone.setColumns(10);
 		
-		JComboBox<Turma> cbxTurma = new JComboBox<Turma>();
-		cbxTurma.setBounds(70, 337, 141, 27);
-		contentPane.add(cbxTurma);
+		JComboBox<Turma> comboBoxTurma = new JComboBox<Turma>();
+		comboBoxTurma.setBounds(70, 337, 141, 27);
+		contentPane.add(comboBoxTurma);
 		
-		cbxTurma.removeAllItems();
+		comboBoxTurma.removeAllItems();
 		Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
 		Iterator<Turma> it = repositorio.getIterator();
 		while (it.hasNext()){
 			Turma turmaAux = it.next();
-			cbxTurma.addItem(turmaAux);
+			comboBoxTurma.addItem(turmaAux);
 		}
 		
 		JButton btnNewButton = new JButton("Adicionar Nova");
@@ -276,6 +268,15 @@ public class CadastrarAlunoFrame extends JFrame {
 		});
 		btnNewButton.setBounds(70, 372, 141, 29);
 		contentPane.add(btnNewButton);
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastrar();
+			}
+		});
+		btnCadastrar.setBounds(461, 365, 112, 42);
+		contentPane.add(btnCadastrar);
 	}
 	
 	private void cadastrar(){
@@ -294,7 +295,8 @@ public class CadastrarAlunoFrame extends JFrame {
 			String pais = tf_pais.getText();
 			String pai = tf_pai.getText();
 			String mae = tf_mae.getText();
-			Turma turma = null;//iniclializar isso aqui
+			Turma turma = comboBoxTurma.getSelectedItem();//POR QUE RAZÃO ISSO AQUI NAO FUNCIONA?? PORQUE EU NAO CONSIGO ACESSAR A COMBOBOX??
+			 
 			//TEM QUE PEGAR ESSA TURMA AINDA
 			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo, telefone, rua,
 					numero, bairro, cep, cidade, estado, pais, pai, mae, turma); //<<<<<<
@@ -312,5 +314,6 @@ public class CadastrarAlunoFrame extends JFrame {
 		frame1.setVisible(true);
 		this.setVisible(false);
 	}
+	
 }
 

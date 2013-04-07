@@ -241,6 +241,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		btnatualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atualizar(alunoOriginal);
+				
 			}
 		});
 		btnatualizar.setBounds(461, 365, 112, 42);

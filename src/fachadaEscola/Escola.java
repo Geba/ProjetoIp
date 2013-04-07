@@ -245,7 +245,7 @@ public class Escola {
 			try {
 				p = pessoas.procurar(cpf);
 			} catch (ElementoNaoEncontradoException e) {
-				// TRATAR
+		throw e;
 			}
 		} else {
 			throw new EntradaInvalidaException();
@@ -262,7 +262,7 @@ public class Escola {
 
 				d = disciplinas.procurar(nome);
 			} catch (ElementoNaoEncontradoException e) {
-
+throw e;
 			}
 		} else {
 			throw new EntradaInvalidaException();
@@ -278,7 +278,7 @@ public class Escola {
 			try {
 				t = turmas.procurar(nome);
 			} catch (ElementoNaoEncontradoException e) {
-
+				throw e;
 			}
 		} else {
 			throw new EntradaInvalidaException();
