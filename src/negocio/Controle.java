@@ -9,381 +9,116 @@ public class Controle {
 
 	}
 
-	public static boolean inserirAluno(String cpf, String nome,
+	public static boolean inserirPessoa(String cpf, String nome,
 			String dataNasc, String rg, String sexo, String telefone,
 			String rua, String numero, String bairro, String cep,
-			String cidade, String estado, String pais, String pai,
-			String mae, Turma turma) throws EntradaInvalidaException {
+			String cidade, String estado, String pais)
+			throws EntradaInvalidaException {
 		boolean pode = true;
 		String ondeErrou = "";
-		boolean preencheu=true;
+		boolean preencheu = true;
 		boolean entradaInvalida = false;
 		boolean errouData = false;
 		if (cpf == null || cpf == "") {
-			preencheu=false;
+			preencheu = false;
 			ondeErrou = "Por favor, preencha os campos:";
-			ondeErrou = ondeErrou+"\nCPF";
+			ondeErrou = ondeErrou + "\nCPF";
 			pode = false;
-		} else if (nome == null || nome == "") {
-			if(preencheu =false){
+		}
+		if (nome == null || nome == "") {
+			if (preencheu = false) {
 				ondeErrou = "Por favor, preencha os campos:";
 			}
-			ondeErrou = ondeErrou+ "\nNome";
+			ondeErrou = ondeErrou + "\nNome";
 			preencheu = false;
 			pode = false;
-		} else if (rg == null || rg == "") {
-			if(preencheu =false){
+		}
+		if (rg == null || rg == "") {
+			if (preencheu = false) {
 				ondeErrou = "Por favor, preencha os campos:";
 			}
-			ondeErrou = ondeErrou+"\nRG";
+			ondeErrou = ondeErrou + "\nRG";
 			preencheu = false;
 			pode = false;
-		} else if (cpf.length() < 11) {
+		}
+		if (cpf.length() < 11) {
 			entradaInvalida = true;
-			ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			ondeErrou = ondeErrou+"\nO CPF não contém caracteres suficiente, o mínimo são 11";
+			ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			ondeErrou = ondeErrou
+					+ "\nO CPF não contém caracteres suficiente, o mínimo são 11";
 			pode = false;
-		} else if (rg.length() < 4) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
+		}
+		if (rg.length() < 4) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
 			}
-			ondeErrou = ondeErrou+"\nO RG não contém caracteres suficiente, o mínimo são 4";
-			entradaInvalida = true;
-			pode = false;
-		} else if (nome.length() < 5) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO Nome não contém caracteres suficiente, o mínimo são 5";
-			entradaInvalida = true;
-			pode = false;
-			pode = false;
-		} else if (dataNasc.length() != 10) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			entradaInvalida = true;
-			pode = false;
-			errouData = true;
-		} else if (dataNasc.charAt(2) != '/' || dataNasc.charAt(5) != '/') {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			if(errouData = false){
-				ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			}
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(0, 2))) > 31) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO dia selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(3, 5))) > 12) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO mês selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if (telefone.length() < 8) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO telefone nao contem caracteres suficiente, o mínimo é 8";
+			ondeErrou = ondeErrou
+					+ "\nO RG não contém caracteres suficiente, o mínimo são 4";
 			entradaInvalida = true;
 			pode = false;
 		}
-		if (!pode){
+		if (nome.length() < 5) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			ondeErrou = ondeErrou
+					+ "\nO Nome não contém caracteres suficiente, o mínimo são 5";
+			entradaInvalida = true;
+			pode = false;
+			pode = false;
+		}
+		if (dataNasc.length() != 10) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			ondeErrou = ondeErrou + "\nDigite a data no formato dd/mm/aaaa";
+			entradaInvalida = true;
+			pode = false;
+			errouData = true;
+		}else{
+		if (dataNasc.charAt(2) != '/' || dataNasc.charAt(5) != '/') {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			if (errouData = false) {
+				ondeErrou = ondeErrou + "\nDigite a data no formato dd/mm/aaaa";
+			}
+			entradaInvalida = true;
+			pode = false;
+		}
+		if ((Integer.parseInt(dataNasc.substring(0, 2))) > 31) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			ondeErrou = ondeErrou + "\nO dia selecionado não existe";
+			entradaInvalida = true;
+			pode = false;
+		}
+		if ((Integer.parseInt(dataNasc.substring(3, 5))) > 12) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			ondeErrou = ondeErrou + "\nO mês selecionado não existe";
+			entradaInvalida = true;
+			pode = false;
+		}
+		}
+		if (telefone.length() < 8) {
+			if (entradaInvalida = false) {
+				ondeErrou = ondeErrou + "\n" + "O que ainda está errado:";
+			}
+			ondeErrou = ondeErrou
+					+ "\nO telefone nao contem caracteres suficiente, o mínimo é 8";
+			entradaInvalida = true;
+			pode = false;
+		}
+		if (!pode) {
 			throw new EntradaInvalidaException(ondeErrou);
 		}
 		return pode;
 	}
 
-	public static boolean inserirProfessor(String cpf, String nome,
-			String dataNasc, String rg, String sexo, String telefone,
-			String rua, String numero, String bairro, String cep,
-			String cidade, String estado, String pais, String funcao) throws EntradaInvalidaException {
-
-		boolean pode = true;
-		String ondeErrou = "";
-		boolean preencheu=true;
-		boolean entradaInvalida = false;
-		boolean errouData = false;
-		if (cpf == null || cpf == "") {
-			preencheu=false;
-			ondeErrou = "Por favor, preencha os campos:";
-			ondeErrou = ondeErrou+"\nCPF";
-			pode = false;
-		} else if (nome == null || nome == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+ "\nNome";
-			preencheu = false;
-			pode = false;
-		} else if (rg == null || rg == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+"\nRG";
-			preencheu = false;
-			pode = false;
-		} else if (cpf.length() < 11) {
-			entradaInvalida = true;
-			ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			ondeErrou = ondeErrou+"\nO CPF não contém caracteres suficiente, o mínimo são 11";
-			pode = false;
-		} else if (rg.length() < 4) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO RG não contém caracteres suficiente, o mínimo são 4";
-			entradaInvalida = true;
-			pode = false;
-		} else if (nome.length() < 5) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO Nome não contém caracteres suficiente, o mínimo são 5";
-			entradaInvalida = true;
-			pode = false;
-			pode = false;
-		} else if (dataNasc.length() != 10) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			entradaInvalida = true;
-			pode = false;
-			errouData = true;
-		} else if (dataNasc.charAt(2) != '/' || dataNasc.charAt(5) != '/') {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			if(errouData = false){
-				ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			}
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(0, 2))) > 31) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO dia selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(3, 5))) > 12) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO mês selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if (telefone.length() < 8) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO telefone nao contem caracteres suficiente, o mínimo é 8";
-			entradaInvalida = true;
-			pode = false;
-		}
-		if (!pode){
-			throw new EntradaInvalidaException(ondeErrou);
-		}
-		return pode;
-	}
-
-	public static boolean inserirAdministrador(String cpf, String nome,
-			String dataNasc, String rg, String sexo, String telefone,
-			String rua, String numero, String bairro, String cep,
-			String cidade, String estado, String pais, String funcao) throws EntradaInvalidaException {
-
-		boolean pode = true;
-		String ondeErrou = "";
-		boolean preencheu=true;
-		boolean entradaInvalida = false;
-		boolean errouData = false;
-		if (cpf == null || cpf == "") {
-			preencheu=false;
-			ondeErrou = "Por favor, preencha os campos:";
-			ondeErrou = ondeErrou+"\nCPF";
-			pode = false;
-		} else if (nome == null || nome == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+ "\nNome";
-			preencheu = false;
-			pode = false;
-		} else if (rg == null || rg == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+"\nRG";
-			preencheu = false;
-			pode = false;
-		} else if (cpf.length() < 11) {
-			entradaInvalida = true;
-			ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			ondeErrou = ondeErrou+"\nO CPF não contém caracteres suficiente, o mínimo são 11";
-			pode = false;
-		} else if (rg.length() < 4) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO RG não contém caracteres suficiente, o mínimo são 4";
-			entradaInvalida = true;
-			pode = false;
-		} else if (nome.length() < 5) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO Nome não contém caracteres suficiente, o mínimo são 5";
-			entradaInvalida = true;
-			pode = false;
-			pode = false;
-		} else if (dataNasc.length() != 10) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			entradaInvalida = true;
-			pode = false;
-			errouData = true;
-		} else if (dataNasc.charAt(2) != '/' || dataNasc.charAt(5) != '/') {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			if(errouData = false){
-				ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			}
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(0, 2))) > 31) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO dia selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(3, 5))) > 12) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO mês selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if (telefone.length() < 8) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO telefone nao contem caracteres suficiente, o mínimo é 8";
-			entradaInvalida = true;
-			pode = false;
-		}
-		if (!pode){
-			throw new EntradaInvalidaException(ondeErrou);
-		}
-		return pode;
-	}
-
-	public static boolean inserirFuncionario(String cpf, String nome,
-			String dataNasc, String rg, String sexo, String telefone,
-			String rua, String numero, String bairro, String cep,
-			String cidade, String estado, String pais, String funcao) throws EntradaInvalidaException {
-		boolean pode = true;
-		String ondeErrou = "";
-		boolean preencheu=true;
-		boolean entradaInvalida = false;
-		boolean errouData = false;
-		if (cpf == null || cpf == "") {
-			preencheu=false;
-			ondeErrou = "Por favor, preencha os campos:";
-			ondeErrou = ondeErrou+"\nCPF";
-			pode = false;
-		} else if (nome == null || nome == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+ "\nNome";
-			preencheu = false;
-			pode = false;
-		} else if (rg == null || rg == "") {
-			if(preencheu =false){
-				ondeErrou = "Por favor, preencha os campos:";
-			}
-			ondeErrou = ondeErrou+"\nRG";
-			preencheu = false;
-			pode = false;
-		} else if (cpf.length() < 11) {
-			entradaInvalida = true;
-			ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			ondeErrou = ondeErrou+"\nO CPF não contém caracteres suficiente, o mínimo são 11";
-			pode = false;
-		} else if (rg.length() < 4) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO RG não contém caracteres suficiente, o mínimo são 4";
-			entradaInvalida = true;
-			pode = false;
-		} else if (nome.length() < 5) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO Nome não contém caracteres suficiente, o mínimo são 5";
-			entradaInvalida = true;
-			pode = false;
-			pode = false;
-		} else if (dataNasc.length() != 10) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			entradaInvalida = true;
-			pode = false;
-			errouData = true;
-		} else if (dataNasc.charAt(2) != '/' || dataNasc.charAt(5) != '/') {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			if(errouData = false){
-				ondeErrou = ondeErrou+"\nDigite a data no formato dd/mm/aaaa";
-			}
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(0, 2))) > 31) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO dia selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if ((Integer.parseInt(dataNasc.substring(3, 5))) > 12) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO mês selecionado não existe";
-			entradaInvalida = true;
-			pode = false;
-		} else if (telefone.length() < 8) {
-			if(entradaInvalida = false){
-				ondeErrou = ondeErrou+"\n"+"O que ainda está errado:";
-			}
-			ondeErrou = ondeErrou+"\nO telefone nao contem caracteres suficiente, o mínimo é 8";
-			entradaInvalida = true;
-			pode = false;
-		}
-		if (!pode){
-			throw new EntradaInvalidaException(ondeErrou);
-		}
-		return pode;
-	}
-
+	
 	public static boolean cpfValido(String cpf) throws EntradaInvalidaException {
 		boolean pode = true;
 		double cpf2;
@@ -401,19 +136,20 @@ public class Controle {
 		if (cpf2 == 0.0) {
 			pode = false;
 		}
-		if (!pode){
+		if (!pode) {
 			String ondeErrou = "O CPF deve te no mínimo 11 dígitos";
 			throw new EntradaInvalidaException(ondeErrou);
 		}
 		return pode;
 	}
 
-	public static boolean nomeValido(String nome) throws EntradaInvalidaException {
+	public static boolean nomeValido(String nome)
+			throws EntradaInvalidaException {
 		boolean pode = true;
 		if (nome.length() < 3 || nome == null) {
 			pode = false;
 		}
-		if (!pode){
+		if (!pode) {
 			String ondeErrou = "O Nome deve te no mínimo 3 caracteres";
 			throw new EntradaInvalidaException(ondeErrou);
 		}
