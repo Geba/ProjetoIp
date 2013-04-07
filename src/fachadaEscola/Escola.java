@@ -358,7 +358,7 @@ public class Escola {
 			throws ElementoNaoEncontradoException {
 		try {
 			try {
-				turmas.atualizar(turma);
+				turmas.atualizar(turmaAtualizada);
 			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -377,6 +377,10 @@ public class Escola {
 
 	public void atualizarAluno(Aluno alunoOriginal, Aluno AlunoAtualizado) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void atualizarProfessor(Professor professorOriginal, Professor professorAtualizado){
 		
 	}
 	

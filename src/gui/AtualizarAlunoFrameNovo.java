@@ -313,40 +313,32 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	}
 	
 	private void atualizar(Aluno alunoOriginal){
-		try{
-			String nome = textNome.getText();
-			String cpf = textCpf.getText();
-			String dataNasc = textDataNasc.getText();
-			String rg = textRg.getText();
-			String telefone = textTelefone.getText();
-			String rua = textRua.getText();
-			String numero = textNumero.getText();
-			String cep = textCEP.getText();
-			String bairro = textBairro.getText();
-			String cidade = textCidade.getText();
-			String estado = textEstado.getText();
-			String pais = textPais.getText();
-			String pai = textPai.getText();
-			String mae = textMae.getText();
-			String sexo;
-			if (rdbtnMasculino.isSelected()){
-				sexo = "M";
-			}else{
-				sexo = "F";
-			}
-			
-			//String numero = tf_numero.getText();
-			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-			PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
-			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
-		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String nome = textNome.getText();
+		String cpf = textCpf.getText();
+		String dataNasc = textDataNasc.getText();
+		String rg = textRg.getText();
+		String telefone = textTelefone.getText();
+		String rua = textRua.getText();
+		String numero = textNumero.getText();
+		String cep = textCEP.getText();
+		String bairro = textBairro.getText();
+		String cidade = textCidade.getText();
+		String estado = textEstado.getText();
+		String pais = textPais.getText();
+		String pai = textPai.getText();
+		String mae = textMae.getText();
+		String sexo;
+		if (rdbtnMasculino.isSelected()){
+			sexo = "M";
+		}else{
+			sexo = "F";
 		}
+		
+		//String numero = tf_numero.getText();
+		Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
+		Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
+		PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
+		JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
 		
 	}
 

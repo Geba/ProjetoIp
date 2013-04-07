@@ -45,7 +45,7 @@ public class AtualizarTurmaFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarTurmaFrame(Turma turma) {
+	public AtualizarTurmaFrame(final Turma turmaOriginal) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -69,7 +69,7 @@ public class AtualizarTurmaFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				atualizar();
+				atualizar(turmaOriginal);
 			}
 		});
 		btnCadastrar.setBounds(455, 356, 117, 48);
@@ -103,12 +103,13 @@ public class AtualizarTurmaFrame extends JFrame {
 		setVisible(false);
 	}
 
-	public void atualizar() {
-		String nome = textNome.getText();
-		Turma turmaAux = new Turma(nome);
+	public void atualizar(Turma turmaOriginal) {
+		
+		Turma turmaAtualizada = turmaOriginal;
+		turmaAtualizada.setNome(textNome.getText());
 		
 		try {
-			PaginaPrincipal.fachada.atualizarTurma(turmaAux);
+			PaginaPrincipal.fachada.atualizarTurma(turmaOriginal, turmaAtualizada);
 			JOptionPane
 					.showMessageDialog(this, "Turma cadastrada com sucesso!");
 		} catch (ElementoNaoEncontradoException e) {
