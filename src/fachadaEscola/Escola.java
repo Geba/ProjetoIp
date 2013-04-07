@@ -331,6 +331,24 @@ public class Escola {
 
 	public void atualizarPessoa(Pessoa pessoaOriginal, Pessoa pessoaAtualizada)
 			throws ElementoNaoEncontradoException, RepositorioException {
+		if (pessoaOriginal.getCpf().equals(pessoaAtualizada.getCpf())){
+			try {
+				pessoas.atualizar(pessoaAtualizada);
+			} catch (ElementoNaoEncontradoException e) {
+
+			} catch (RepositorioException f) {
+
+			}	
+		}else{
+			try {
+				removerPessoa(pessoaOriginal.getCpf());
+				this.pessoas.inserir(pessoaAtualizada);
+			} catch (EntradaInvalidaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		try {
 			pessoas.atualizar(pessoaAtualizada);
 		} catch (ElementoNaoEncontradoException e) {
@@ -375,8 +393,30 @@ public class Escola {
 		}
 	
 
-	public void atualizarAluno(Aluno alunoOriginal, Aluno AlunoAtualizado) {
-		// TODO Auto-generated method stub
+	public void atualizarAluno(Aluno alunoOriginal, Aluno alunoAtualizado) {
+		if(alunoAtualizado.getCpf().equals(alunoOriginal.getCpf())){
+			try {
+				pessoas.inserir(alunoAtualizado);
+			} catch (RepositorioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			alunoAtualizado.setBoletim(alunoOriginal.getBoletim());
+			try {
+				pessoas.remover(alunoOriginal.getCpf());
+			} catch (ElementoNaoEncontradoException | RepositorioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				pessoas.inserir(alunoAtualizado);
+			} catch (RepositorioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
 	}
 	

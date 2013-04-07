@@ -3,8 +3,9 @@ package faltafazer;
 public class FaltaFazer {
 
 	/**
-	 * Classe Escola: os métodos de relatório.
-	 * 
+	 * Classe Escola:
+	 * criar os métodos de relatório.
+	 * definir os erros jogados.
 	 * 
 	 * 
 	 * 
