@@ -2,8 +2,10 @@ package dados;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import classesBase.Turma;
 
-public class IteratorListaTurma implements Iterator<RepositorioListaTurma> {
+
+public class IteratorListaTurma implements Iterator<Turma> {
 
 	private RepositorioListaTurma repositorio;
 
@@ -22,10 +24,10 @@ public class IteratorListaTurma implements Iterator<RepositorioListaTurma> {
 	
 	
 	
-	public RepositorioListaTurma next() throws NoSuchElementException{
+	public Turma next() throws NoSuchElementException{
 		if (hasNext()) {
 			this.repositorio = this.repositorio.getProx();
-			return this.repositorio;
+			return this.repositorio.getTurma();
 		} else {
 			throw new NoSuchElementException();
 		}

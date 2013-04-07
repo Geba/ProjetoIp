@@ -182,9 +182,9 @@ public class TesteGeba3Lista {
 
 		// use este para RepositorioListaPessoa2
 		System.out.println("Testando o iterator Lista");
-		Iterator<RepositorioListaPessoa> it = pessoas.iterator();
+		Iterator<Pessoa> it = pessoas.iterator();
 		while (it.hasNext()) {
-			System.out.println(it.next().getPessoa().getNome());
+			System.out.println(it.next().getNome());
 		}
 		
 		

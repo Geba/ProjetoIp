@@ -2,8 +2,10 @@ package dados;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import classesBase.Pessoa;
 
-public class IteratorListaPessoa implements Iterator<RepositorioListaPessoa> {
+
+public class IteratorListaPessoa implements Iterator<Pessoa> {
 
 	private RepositorioListaPessoa repositorio;
 
@@ -22,10 +24,10 @@ public class IteratorListaPessoa implements Iterator<RepositorioListaPessoa> {
 	
 	
 	
-	public RepositorioListaPessoa next() throws NoSuchElementException{
+	public Pessoa next() throws NoSuchElementException{
 		if (hasNext()) {
 			this.repositorio = this.repositorio.getProx();
-			return this.repositorio;
+			return this.repositorio.getPessoa();
 		} else {
 			throw new NoSuchElementException();
 		}

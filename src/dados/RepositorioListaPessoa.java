@@ -176,7 +176,7 @@ public class RepositorioListaPessoa implements Repositorio<Pessoa>{
 		 */
 	}
 
-	public Iterator<RepositorioListaPessoa> iterator() {
+	public Iterator<Pessoa> iterator() {
 		IteratorListaPessoa it = new IteratorListaPessoa(this.prox);//Passa como argumento o primeiro item da lista.
 		return it;
 

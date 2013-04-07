@@ -1,6 +1,7 @@
 package classesBase;
 
 import dados.*;
+import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
 
@@ -9,9 +10,9 @@ public class Professor extends Empregado {
 	private Repositorio<Disciplina> disciplinas;
 
 	public Professor(String cpf, String nome, String dataNasc,
-			String identidade, String sexo, String telefone, Endereco endereco,
+			String rg, String sexo, String telefone, Endereco endereco,
 			String funcao) {
-		super(cpf, nome, dataNasc, identidade, sexo, telefone, endereco, funcao);
+		super(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 		turmas = new RepositorioArrayTurma();
 		disciplinas = new RepositorioArrayDisciplina();
 
@@ -33,7 +34,7 @@ public class Professor extends Empregado {
 		this.disciplinas = disciplinas;
 	}
 	
-	public void inserirDisciplina(Disciplina d){
+	public void inserirDisciplina(Disciplina d) throws ElementoJaCadastradoException{
 		try {
 			this.disciplinas.inserir(d);
 		} catch (RepositorioException e) {
@@ -52,7 +53,7 @@ public class Professor extends Empregado {
 		
 	}
 	
-	public void inserirTurma(Turma t){
+	public void inserirTurma(Turma t) throws ElementoJaCadastradoException{
 		try {
 			this.turmas.inserir(t);
 		} catch (RepositorioException e) {

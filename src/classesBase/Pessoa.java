@@ -9,13 +9,13 @@ public abstract class Pessoa {
 	private String sexo;
 	private Endereco endereco;
 
-	public Pessoa(String cpf, String nome, String dataNasc, String identidade,
+	public Pessoa(String cpf, String nome, String dataNasc, String rg,
 			String sexo, String telefone, Endereco endereco) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataNasc = dataNasc;
-		this.rg = identidade;
+		this.rg = rg;
 		this.sexo = sexo;
 		this.endereco = endereco;
 	}

@@ -2,6 +2,7 @@ package dados;
 
 import java.util.Iterator;
 
+import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
 

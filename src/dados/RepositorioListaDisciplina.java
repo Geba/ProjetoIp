@@ -171,7 +171,7 @@ public class RepositorioListaDisciplina implements Repositorio<Disciplina> {
 		 */
 	}
 
-	public Iterator<RepositorioListaDisciplina> iterator() {
+	public Iterator<Disciplina> iterator() {
 		IteratorListaDisciplina it = new IteratorListaDisciplina(this.prox);// Passa
 		// como
 		// argumento

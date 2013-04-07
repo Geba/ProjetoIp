@@ -168,7 +168,7 @@ public class RepositorioListaTurma implements Repositorio<Turma>{
 		 */
 	}
 
-	public Iterator<RepositorioListaTurma> iterator() {
+	public Iterator<Turma> iterator() {
 		IteratorListaTurma it = new IteratorListaTurma(this.prox);// Passa
 																	// como
 																	// argumento
