@@ -329,10 +329,10 @@ public class Escola {
 		}
 	}
 
-	public void atualizarPessoa(Pessoa pessoa)
+	public void atualizarPessoa(Pessoa pessoaOriginal, Pessoa pessoaAtualizada)
 			throws ElementoNaoEncontradoException, RepositorioException {
 		try {
-			pessoas.atualizar(pessoa);
+			pessoas.atualizar(pessoaAtualizada);
 		} catch (ElementoNaoEncontradoException e) {
 
 		} catch (RepositorioException f) {
@@ -373,6 +373,14 @@ public class Escola {
 		IteratorListaPessoa it = new IteratorListaPessoa((RepositorioListaPessoa) pessoas);
 		return retorno;
 		}
+	
+
+	public void atualizarAluno(String cpf, String nome, String dataNasc,
+			String rg, String sexo, String telefone, Endereco endereco,
+			String pai, String mae, Turma turma, Pessoa alunoOriginial) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

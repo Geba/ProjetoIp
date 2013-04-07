@@ -28,6 +28,7 @@ import javax.swing.ButtonGroup;
 
 import classesBase.Aluno;
 import classesBase.Endereco;
+import classesBase.Aluno;
 
 import classesBase.Turma;
 import dados.Repositorio;
@@ -55,6 +56,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	JRadioButton rdbtnMasculino;
 	JRadioButton rdbtnFeminino;
 	private Turma turma;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -74,7 +76,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarAlunoFrameNovo(Aluno aluno) {
+	public AtualizarAlunoFrameNovo(final Aluno alunoOriginal) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -237,7 +239,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		JButton btnatualizar = new JButton("Atualizar");
 		btnatualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				atualizar();
+				atualizar(alunoOriginal);
 			}
 		});
 		btnatualizar.setBounds(461, 365, 112, 42);
@@ -270,28 +272,29 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(btnNewButton);
 		
 
-		this.textBairro.setText(aluno.getEndereco().getBairro());
-		this.textCEP.setText(aluno.getEndereco().getCep());
-		this.textCidade.setText(aluno.getEndereco().getCidade());
-		this.textRua.setText(aluno.getEndereco().getRua());
-		this.textBairro.setText(aluno.getEndereco().getBairro());
-		this.textCidade.setText(aluno.getEndereco().getCidade());
-		this.textEstado.setText(aluno.getEndereco().getEstado());
-		this.textNumero.setText(aluno.getEndereco().getNumero());
-		this.textNome.setText(aluno.getNome());
-		this.textRg.setText(aluno.getIdentidade());
-		this.textDataNasc.setText(aluno.getDataNasc());
-		this.textPais.setText(aluno.getEndereco().getPais());
-		this.textCpf.setText(aluno.getCpf());
-		this.textPai.setText(aluno.getPai());
-		this.textMae.setText(aluno.getMae());
-		this.textTelefone.setText(aluno.getTelefone());
+		this.textBairro.setText(alunoOriginal.getEndereco().getBairro());
+		this.textCEP.setText(alunoOriginal.getEndereco().getCep());
+		this.textCidade.setText(alunoOriginal.getEndereco().getCidade());
+		this.textRua.setText(alunoOriginal.getEndereco().getRua());
+		this.textBairro.setText(alunoOriginal.getEndereco().getBairro());
+		this.textCidade.setText(alunoOriginal.getEndereco().getCidade());
+		this.textEstado.setText(alunoOriginal.getEndereco().getEstado());
+		this.textNumero.setText(alunoOriginal.getEndereco().getNumero());
+		this.textNome.setText(alunoOriginal.getNome());
+		this.textRg.setText(alunoOriginal.getIdentidade());
+		this.textDataNasc.setText(alunoOriginal.getDataNasc());
+		this.textPais.setText(alunoOriginal.getEndereco().getPais());
+		this.textCpf.setText(alunoOriginal.getCpf());
+		this.textPai.setText(alunoOriginal.getPai());
+		this.textMae.setText(alunoOriginal.getMae());
+		this.textTelefone.setText(alunoOriginal.getTelefone());
 		//seleciona o sexo de acordo com o já salvo
-		if(aluno.getSexo().equals("M")){
+		if(alunoOriginal.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
+		
 		
 		//Preenche a comboBox com todos os items e deixa selecionado aqquele que está salvo;
 		cbxTurma.removeAllItems();
@@ -302,13 +305,13 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			cbxTurma.addItem(turmaAux);
 		}
 		
-		cbxTurma.setSelectedItem(aluno.getTurma());
+		cbxTurma.setSelectedItem(alunoOriginal.getTurma());
 		
 		
 		
 	}
 	
-	private void atualizar(){
+	private void atualizar(Aluno alunoOriginial){
 		try{
 			String nome = textNome.getText();
 			String cpf = textCpf.getText();
@@ -330,12 +333,13 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			}else{
 				sexo = "F";
 			}
+			
 			//String numero = tf_numero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Aluno alunoAux = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-			
-			PaginaPrincipal.fachada.atualizarPessoa(alunoAux); //<<<<<<
-			JOptionPane.showMessageDialog(this,"Aluno cadastrado com sucesso.");
+			Aluno alunoAtual = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
+			alunoAtual.setBoletim(aluno.getBoletim());
+			PaginaPrincipal.fachada.atualizarAluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma, alunoOriginial);
+			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
 		} catch (ElementoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

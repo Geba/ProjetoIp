@@ -5,7 +5,7 @@ public abstract class Pessoa {
 	private String nome;
 	private String telefone;
 	private String dataNasc;
-	private String identidade;
+	private String rg;
 	private String sexo;
 	private Endereco endereco;
 
@@ -15,7 +15,7 @@ public abstract class Pessoa {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.dataNasc = dataNasc;
-		this.identidade = identidade;
+		this.rg = identidade;
 		this.sexo = sexo;
 		this.endereco = endereco;
 	}
@@ -45,11 +45,11 @@ public abstract class Pessoa {
 	}
 
 	public String getIdentidade() {
-		return identidade;
+		return rg;
 	}
 
 	public void setIdentidade(String identidade) {
-		this.identidade = identidade;
+		this.rg = identidade;
 	}
 
 	public String getSexo() {

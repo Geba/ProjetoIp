@@ -45,6 +45,7 @@ public class AtualizarAdmFrame extends JFrame {
 	private JTextArea textFuncao;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String sexo;
+	
 	private static Administrador administrador;
 	
 
@@ -67,7 +68,7 @@ public class AtualizarAdmFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarAdmFrame(Administrador administrador) {
+	public AtualizarAdmFrame(final Administrador administradorOrigninal) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -207,7 +208,7 @@ public class AtualizarAdmFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				atualizar();
+				atualizar(administradorOrigninal);
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
@@ -239,34 +240,35 @@ public class AtualizarAdmFrame extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 
-		this.textBairro.setText(administrador.getEndereco().getBairro());
-		this.textCep.setText(administrador.getEndereco().getCep());
-		this.textCidade.setText(administrador.getEndereco().getCidade());
-		this.textRua.setText(administrador.getEndereco().getRua());
-		this.textBairro.setText(administrador.getEndereco().getBairro());
-		this.textCep.setText(administrador.getEndereco().getCep());
-		this.textCidade.setText(administrador.getEndereco().getCidade());
-		this.textEstado.setText(administrador.getEndereco().getEstado());
-		this.textNumero.setText(administrador.getEndereco().getNumero());
-		this.textNome.setText(administrador.getNome());
-		this.textRg.setText(administrador.getIdentidade());
-		this.textDataNasc.setText(administrador.getDataNasc());
-		this.textPais.setText(administrador.getEndereco().getPais());
-		this.textCpf.setText(administrador.getCpf());
-		this.textFuncao.setText(administrador.getFuncao());
-		this.textDataNasc.setText(administrador.getDataNasc());
-		this.textTelefone.setText(administrador.getTelefone());
-		textFuncao.setText(administrador.getFuncao());
-		if(administrador.getSexo().equals("M")){
+		this.textBairro.setText(administradorOrigninal.getEndereco().getBairro());
+		this.textCep.setText(administradorOrigninal.getEndereco().getCep());
+		this.textCidade.setText(administradorOrigninal.getEndereco().getCidade());
+		this.textRua.setText(administradorOrigninal.getEndereco().getRua());
+		this.textBairro.setText(administradorOrigninal.getEndereco().getBairro());
+		this.textCep.setText(administradorOrigninal.getEndereco().getCep());
+		this.textCidade.setText(administradorOrigninal.getEndereco().getCidade());
+		this.textEstado.setText(administradorOrigninal.getEndereco().getEstado());
+		this.textNumero.setText(administradorOrigninal.getEndereco().getNumero());
+		this.textNome.setText(administradorOrigninal.getNome());
+		this.textRg.setText(administradorOrigninal.getIdentidade());
+		this.textDataNasc.setText(administradorOrigninal.getDataNasc());
+		this.textPais.setText(administradorOrigninal.getEndereco().getPais());
+		this.textCpf.setText(administradorOrigninal.getCpf());
+		this.textFuncao.setText(administradorOrigninal.getFuncao());
+		this.textDataNasc.setText(administradorOrigninal.getDataNasc());
+		this.textTelefone.setText(administradorOrigninal.getTelefone());
+		textFuncao.setText(administradorOrigninal.getFuncao());
+		if(administradorOrigninal.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
+		
 
 	}
 
 	
-	private void atualizar(){
+	private void atualizar(Administrador administradoOriginal){
 		System.out.println(sexo);
 		try{
 			String nome = textNome.getText();
@@ -286,8 +288,8 @@ public class AtualizarAdmFrame extends JFrame {
 			//String numero = textNumero.getText();
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Administrador administradorAux = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(administradorAux);
-			JOptionPane.showMessageDialog(this,"Administrador cadastrado com sucesso.");
+			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAux);
+			JOptionPane.showMessageDialog(this,"Administrador atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (ElementoNaoEncontradoException e) {

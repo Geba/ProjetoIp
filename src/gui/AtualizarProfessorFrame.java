@@ -41,6 +41,7 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextArea textFuncao;
 	private JRadioButton rdbtnFeminino;
 	private JRadioButton rdbtnMasculino;
+	private final String cpfOriginal;
 	/**
 	 * Launch the application.
 	 */
@@ -233,6 +234,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		}else{
 			rdbtnFeminino.setSelected(true);
 		}
+		cpfOriginal = professor.getCpf();
 
 	}
 	private void atualizar(){
@@ -259,7 +261,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		try{
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(funcionarioAux);
+			PaginaPrincipal.fachada.atualizarPessoa(cpfOriginal, funcionarioAux);
 			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no repositorio.");
