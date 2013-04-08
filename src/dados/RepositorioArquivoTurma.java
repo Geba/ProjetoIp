@@ -83,7 +83,7 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 		Turma turma = null;
 
 		String nome;
-		RepositorioArquivoDisciplina disciplinas = new RepositorioArquivoDisciplina();
+		//RepositorioArquivoDisciplina disciplinas = new RepositorioArquivoDisciplina();
 		int i = 0;
 		boolean acabou = false;
 

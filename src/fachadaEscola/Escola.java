@@ -59,6 +59,94 @@ public class Escola {
 		} else {
 
 		}
+
+		// - PARA TESTES -
+		// - PARA TESTES -
+		// - PARA TESTES -
+		// - PARA TESTES -
+
+		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",
+				"asd", "", "asdasd");
+		Turma turma = new Turma("tumrma1");
+		Pessoa bruna = new Aluno("43536787656", "Bruna", "", "7727724", "F",
+				"", end, "Luiz", "Nancy", turma);
+		Pessoa harry = new Aluno("25365576866", "Harry", "", "7727724", "F",
+				"", end, "Luiz", "Nancy", turma);
+		Pessoa alana = new Aluno("47623456456", "Laryssa", "", "7727724", "F",
+				"", end, "Luiz", "Nancy", turma);
+		Pessoa geovane = new Aluno("83830480504", "Geovane", "", "7727724",
+				"F", "", end, "Luiz", "Nancy", turma);
+
+		Pessoa geovane2 = new Aluno("838304802504", "Geovane2", "", "7727724",
+				"F", "", end, "Luiz", "Nancy", turma);
+
+		Pessoa novo = new Aluno("000000", "Fulano", "", "7727724", "F", "",
+				end, "Luiz", "Nancy", turma);
+
+		Pessoa timmy = new Aluno("123456789", "Timmy Turner", "", "34655843",
+				"F", "", end, "Pai", "Mae", turma);
+		Pessoa bob = new Aluno("123456000", "BobSponge SquarePants", "",
+				"12321", "A", "", end, "Pai", "Mae", turma);
+		Pessoa frango = new Aluno("123456001", "Frango", "", "1245789", "F",
+				"", end, "Pai", "Mae", turma);
+		Pessoa vaca = new Aluno("123456002", "vaca", "", "1245789", "F", "",
+				end, "Pai", "Mae", turma);
+		Pessoa jerry = new Aluno("123456005", "Jerry", "", "12235521", "F", "",
+				end, "Pai", "Mae", turma);
+		Pessoa tom = new Aluno("123456004", "Tom", "", "12235521", "F", "",
+				end, "Pai", "Mae", turma);
+		Pessoa johny = new Aluno("123456006", "Johny", "", "12233421", "F", "",
+				end, "Pai", "Mae", turma);
+		Pessoa lindinha = new Aluno("123456007", "Lindinha", "", "122321", "F",
+				"", end, "Pai", "Mae", turma);
+		Pessoa docinho = new Aluno("123456008", "Docinho", "", "122321", "F",
+				"", end, "Pai", "Mae", turma);
+		Pessoa flor = new Aluno("123456009", "Florzinha", "", "122321", "F",
+				"", end, "Pai", "Mae", turma);
+		Pessoa untonio = new Professor("123454321", "Untonio", "", "123454433",
+				"F", "333333333", end, "se pai");
+
+		Disciplina d1 = new Disciplina("disc", "ser legal");
+		Disciplina d2 = new Disciplina("disc2", "ser legal");
+		Disciplina d3 = new Disciplina("disc3", "ser legal");
+
+		try {
+			pessoas.inserir(geovane);
+			pessoas.inserir(geovane2);
+			pessoas.inserir(harry);
+			pessoas.inserir(bruna);
+			pessoas.inserir(novo);
+			pessoas.inserir(alana);
+			pessoas.inserir(timmy);
+			pessoas.inserir(bob);
+			pessoas.inserir(vaca);
+			pessoas.inserir(frango);
+			pessoas.inserir(jerry);
+			pessoas.inserir(johny);
+			pessoas.inserir(tom);
+			pessoas.inserir(flor);
+			pessoas.inserir(docinho);
+			pessoas.inserir(lindinha);
+			pessoas.inserir(untonio);
+			disciplinas.inserir(d1);
+			disciplinas.inserir(d2);
+			disciplinas.inserir(d3);
+			turmas.inserir(turma);
+			((Professor) untonio).inserirDisciplina(d1);
+			((Professor) untonio).inserirDisciplina(d2);
+			((Professor) untonio).inserirDisciplina(d3);
+			((Professor) untonio).inserirTurma(turma);
+		} catch (RepositorioException e) {
+			System.out.println("erro");
+		}
+		// - PARA TESTES -
+		// - PARA TESTES -
+		// - PARA TESTES -
+		// - PARA TESTES -
+		catch (ElementoJaCadastradoException e) {
+			System.out.println("mais erro");
+		}
+
 	}
 
 	public Repositorio<Pessoa> getPessoas() {
@@ -93,7 +181,8 @@ public class Escola {
 			RepositorioException {
 
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -116,7 +205,8 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -138,7 +228,8 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -160,7 +251,8 @@ public class Escola {
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais);
 		} catch (EntradaInvalidaException e) {
 			throw e;
 		}
@@ -266,7 +358,8 @@ public class Escola {
 		if (pessoaOriginal.getCpf().equals(pessoaAtualizada.getCpf())) {
 			try {
 				pessoas.atualizar(pessoaAtualizada);
-			} catch (ElementoNaoEncontradoException e) {//isso nunca vai acontecer
+			} catch (ElementoNaoEncontradoException e) {// isso nunca vai
+														// acontecer
 			}
 		} else {
 			try {
@@ -313,16 +406,15 @@ public class Escola {
 
 	public String relatorioAlunos() { // tem que fazer os metodos relatorio
 		String retorno = "";
-		
+
 		Iterator<Pessoa> it = pessoas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
-			if (p instanceof Aluno){
-				retorno+=p.getNome()+" | "+p.getCpf()+"\n";
+			if (p instanceof Aluno) {
+				retorno += p.getNome() + " | " + p.getCpf() + "\n";
 			}
 		}
-		
-		
+
 		return retorno;
 	}
 
@@ -338,7 +430,7 @@ public class Escola {
 			alunoAtualizado.setBoletim(alunoOriginal.getBoletim());
 			try {
 				pessoas.remover(alunoOriginal.getCpf());
-			} catch (ElementoNaoEncontradoException e){
+			} catch (ElementoNaoEncontradoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (RepositorioException e) {
@@ -358,9 +450,7 @@ public class Escola {
 
 	public void atualizarProfessor(Professor professorOriginal,
 			Professor professorAtualizado) {
-		professorOriginal=professorAtualizado;
+		professorOriginal = professorAtualizado;
 	}
-	
-	
 
 }

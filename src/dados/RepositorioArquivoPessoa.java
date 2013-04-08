@@ -55,7 +55,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			} catch (IOException e) {
 				System.out.println("erro dentro");
 			}
-			abrir = true;
+			//abrir = true;
 		} catch (IOException e) {
 			System.out.println("n achou");
 			wb = new HSSFWorkbook();
@@ -70,7 +70,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			} catch (IOException f) {
 				System.out.println("erro dentro");
 			}
-			abrir = true;
+			//abrir = true;
 		}
 
 		pessoas = new RepositorioArrayPessoa();

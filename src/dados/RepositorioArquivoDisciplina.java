@@ -71,6 +71,7 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 	}
 
 	public void lerPlanilha() {
+		@SuppressWarnings("unused")
 		Disciplina d = null;
 		String nome, ementa;
 		int i = 0;

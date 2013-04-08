@@ -10,7 +10,7 @@ public class FaltaFazer {
 	 * 
 	 * 
 	 *
-	 * 
+	 *o frame procurar ainda t‡ dando alguns erros, mas eu preciso estudar calculo, depois resolvo isso hehe 
 	 * 
 	 * 
 	 * 

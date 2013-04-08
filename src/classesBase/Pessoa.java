@@ -77,6 +77,6 @@ public abstract class Pessoa {
 	}
 	
 	public String toString(){
-	return this.nome+" CPF:"+this.cpf;
+	return this.nome+"  CPF: "+this.cpf;
 	}
 }

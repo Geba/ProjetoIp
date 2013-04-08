@@ -194,6 +194,13 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnCadastrar);
 
 		JButton btnProcurar = new JButton("Procurar");
+		btnProcurar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ProcurarFrame frame = new ProcurarFrame(tipo);
+				frame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnProcurar.setBounds(349, 291, 97, 50);
 		contentPane.add(btnProcurar);
 

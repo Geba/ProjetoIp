@@ -71,6 +71,13 @@ public class Professor extends Empregado {
 		}
 		
 	}
+	
+	public Turma procurarTurma(String nome) throws ElementoNaoEncontradoException{
+		return this.turmas.procurar(nome);
+	}
+	public Disciplina procurarDisciplina(String nome) throws ElementoNaoEncontradoException{
+		return this.disciplinas.procurar(nome);
+	}
 
 
 
