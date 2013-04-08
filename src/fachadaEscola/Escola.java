@@ -318,7 +318,7 @@ public class Escola {
 		while (it.hasNext()){
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Aluno){
-				retorno+=p.getNome()+" | "+p.getCpf();
+				retorno+=p.getNome()+" | "+p.getCpf()+"\n";
 			}
 		}
 		
@@ -338,7 +338,10 @@ public class Escola {
 			alunoAtualizado.setBoletim(alunoOriginal.getBoletim());
 			try {
 				pessoas.remover(alunoOriginal.getCpf());
-			} catch (ElementoNaoEncontradoException | RepositorioException e) {
+			} catch (ElementoNaoEncontradoException e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RepositorioException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
