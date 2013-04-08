@@ -268,7 +268,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 		
-		JComboBox<Turma> cbxTurma = new JComboBox<Turma>();
+		JComboBox cbxTurma = new JComboBox();
 		cbxTurma.setBounds(70, 337, 141, 27);
 		contentPane.add(cbxTurma);
 		

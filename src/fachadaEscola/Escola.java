@@ -313,8 +313,16 @@ public class Escola {
 
 	public String relatorioAlunos() { // tem que fazer os metodos relatorio
 		String retorno = "";
-		IteratorListaPessoa it = new IteratorListaPessoa(
-				(RepositorioListaPessoa) pessoas);
+		
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()){
+			Pessoa p = (Pessoa) it.next();
+			if (p instanceof Aluno){
+				retorno+=p.getNome()+" | "+p.getCpf();
+			}
+		}
+		
+		
 		return retorno;
 	}
 
@@ -347,7 +355,9 @@ public class Escola {
 
 	public void atualizarProfessor(Professor professorOriginal,
 			Professor professorAtualizado) {
-
+		professorOriginal=professorAtualizado;
 	}
+	
+	
 
 }

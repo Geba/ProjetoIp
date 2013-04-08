@@ -50,7 +50,7 @@ public class CadastrarAlunoFrame extends JFrame {
 	private JTextField tf_telefone;
 	private String sexo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JComboBox<Turma> comboBoxTurma;
+	private JComboBox comboBoxTurma;
 
 	/**
 	 * Launch the application.
@@ -250,7 +250,7 @@ public class CadastrarAlunoFrame extends JFrame {
 		contentPane.add(tf_telefone);
 		tf_telefone.setColumns(10);
 
-		comboBoxTurma = new JComboBox<Turma>();
+		comboBoxTurma = new JComboBox();
 		comboBoxTurma.setBounds(70, 337, 141, 27);
 		contentPane.add(comboBoxTurma);
 
@@ -265,11 +265,12 @@ public class CadastrarAlunoFrame extends JFrame {
 		JButton btnNewButton = new JButton("Adicionar Nova");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+				CadastrarTurmaFrame frame = new CadastrarTurmaFrame(true);
 				frame.setVisible(true);
+				
 			}
 		});
-		btnNewButton.setBounds(70, 372, 141, 29);
+		btnNewButton.setBounds(70, 365, 141, 29);
 		contentPane.add(btnNewButton);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -280,6 +281,23 @@ public class CadastrarAlunoFrame extends JFrame {
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
+		
+		JButton btnAtualizarTurmas = new JButton("Atualizar Turmas");
+		btnAtualizarTurmas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				comboBoxTurma.removeAllItems();
+				Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
+				Iterator<Turma> it = repositorio.getIterator();
+				while (it.hasNext()){
+					Turma turmaAux = it.next();
+					comboBoxTurma.addItem(turmaAux);
+				}
+				
+			}
+		});
+		btnAtualizarTurmas.setBounds(70, 392, 141, 29);
+		contentPane.add(btnAtualizarTurmas);
 	}
 
 	private void cadastrar() {
@@ -321,5 +339,4 @@ public class CadastrarAlunoFrame extends JFrame {
 		frame1.setVisible(true);
 		this.setVisible(false);
 	}
-
 }

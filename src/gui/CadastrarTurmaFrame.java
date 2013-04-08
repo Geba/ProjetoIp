@@ -24,6 +24,7 @@ public class CadastrarTurmaFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
+	private static boolean fechar;
 
 	/**
 	 * Launch the application.
@@ -32,7 +33,7 @@ public class CadastrarTurmaFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+					CadastrarTurmaFrame frame = new CadastrarTurmaFrame(fechar);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +45,8 @@ public class CadastrarTurmaFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastrarTurmaFrame() {
+	public CadastrarTurmaFrame(final boolean fechar) {
+		this.fechar = fechar;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -93,8 +95,11 @@ public class CadastrarTurmaFrame extends JFrame {
 	}
 	
 	public void voltar(){
+		if (!fechar){
 		MenuPrincipal frame = new MenuPrincipal();
 		frame.setVisible(true);
+		System.out.println(fechar);
+		}
 		setVisible(false);
 	}
 	

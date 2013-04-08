@@ -168,7 +168,7 @@ public class MenuPrincipal extends JFrame {
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("turma")){
-					CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+					CadastrarTurmaFrame frame = new CadastrarTurmaFrame(false);
 					frame.setVisible(true);
 					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Turma");
 					setVisible(false);
@@ -230,7 +230,7 @@ public class MenuPrincipal extends JFrame {
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("turma")){
-					CadastrarTurmaFrame frame = new CadastrarTurmaFrame();
+					CadastrarTurmaFrame frame = new CadastrarTurmaFrame(false);
 					frame.setVisible(true);
 					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Turma");
 					setVisible(false);
