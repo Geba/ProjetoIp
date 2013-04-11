@@ -105,6 +105,8 @@ public class Escola {
 				"", end, "Pai", "Mae", turma);
 		Pessoa untonio = new Professor("123454333321", "Untonio", "", "123454433",
 				"F", "333333333", end, "se pai");
+		Pessoa prof = new Professor("1222454333321", "Profinho", "", "1234588833",
+				"F", "333333333", end, "se pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");
 		Disciplina d2 = new Disciplina("disc2", "ser legal");
@@ -128,6 +130,7 @@ public class Escola {
 			pessoas.inserir(docinho);
 			pessoas.inserir(lindinha);
 			pessoas.inserir(untonio);
+			pessoas.inserir(prof);
 			disciplinas.inserir(d1);
 			disciplinas.inserir(d2);
 			disciplinas.inserir(d3);

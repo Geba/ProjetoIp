@@ -52,11 +52,11 @@ public class EditarProfessorFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblSelecioneAOpcao = new JLabel("Selecione a opcao desejada:");
-		lblSelecioneAOpcao.setBounds(50, 153, 268, 16);
+		lblSelecioneAOpcao.setBounds(40, 153, 268, 16);
 		contentPane.add(lblSelecioneAOpcao);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(40, 62, 462, 27);
+		comboBox.setBounds(40, 54, 462, 27);
 		contentPane.add(comboBox);
 		
 		Repositorio<Pessoa> repositorio = PaginaPrincipal.fachada
@@ -90,7 +90,9 @@ public class EditarProfessorFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//EDITAR TURMAS
-				
+				EditarProfessorTurmasFrame frame = new EditarProfessorTurmasFrame((Professor)comboBox.getSelectedItem());
+				frame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnInserirTurma.setBounds(198, 181, 146, 50);
@@ -122,7 +124,7 @@ public class EditarProfessorFrame extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JLabel lblSelecioneOProfessor = new JLabel("Selecione o professor a ser editado:");
-		lblSelecioneOProfessor.setBounds(50, 32, 254, 16);
+		lblSelecioneOProfessor.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOProfessor);
 		
 	}
