@@ -259,7 +259,7 @@ public class ProcurarFrame extends JFrame {
 				try{
 				texto += "\n" + p.getNome() + " / " + p.getCpf();
 				}catch(NullPointerException e){
-					JOptionPane.showMessageDialog(this, "errito");
+					JOptionPane.showMessageDialog(this, "errito");   //TA DANDO ERRO NESSES DOIS ITERATORS
 				}
 			}
 			texto += "\n\nDisciplinas dessa turma: ";

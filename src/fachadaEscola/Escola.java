@@ -103,7 +103,7 @@ public class Escola {
 				"", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("123456009", "Florzinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa untonio = new Professor("123454321", "Untonio", "", "123454433",
+		Pessoa untonio = new Professor("123454333321", "Untonio", "", "123454433",
 				"F", "333333333", end, "se pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");

@@ -51,12 +51,13 @@ public class MenuPrincipal extends JFrame {
 
 	public MenuPrincipal() {
 
-		this.fachada=PaginaPrincipal.fachada;
+		this.fachada = PaginaPrincipal.fachada;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("InternalFrame.background"));
+		contentPane.setBackground(UIManager
+				.getColor("InternalFrame.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -65,7 +66,7 @@ public class MenuPrincipal extends JFrame {
 				"Selecione o que voce deseja alterar:");
 		lblSelecioneOQue.setBounds(38, 72, 235, 16);
 		contentPane.add(lblSelecioneOQue);
-		
+
 		JLabel lblOQueVoc = new JLabel("O que voce quer fazer?");
 		lblOQueVoc.setBounds(38, 263, 156, 16);
 		contentPane.add(lblOQueVoc);
@@ -78,7 +79,7 @@ public class MenuPrincipal extends JFrame {
 		JRadioButton rdbtnAlunos = new JRadioButton("Alunos");
 		rdbtnAlunos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tipo="aluno";
+				tipo = "aluno";
 			}
 		});
 		rdbtnAlunos.setMnemonic('1');
@@ -89,7 +90,7 @@ public class MenuPrincipal extends JFrame {
 		JRadioButton rdbtnProfessores = new JRadioButton("Professores");
 		rdbtnProfessores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tipo="professor";
+				tipo = "professor";
 			}
 		});
 		grupo.add(rdbtnProfessores);
@@ -99,7 +100,7 @@ public class MenuPrincipal extends JFrame {
 		JRadioButton rdbtnAdministradores = new JRadioButton("Administradores");
 		rdbtnAdministradores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tipo="administrador";
+				tipo = "administrador";
 			}
 		});
 		grupo.add(rdbtnAdministradores);
@@ -109,8 +110,8 @@ public class MenuPrincipal extends JFrame {
 		JRadioButton rdbtnFuncionrios = new JRadioButton("Funcion\u00E1rios");
 		rdbtnFuncionrios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tipo="funcionario";
-				
+				tipo = "funcionario";
+
 			}
 		});
 		grupo.add(rdbtnFuncionrios);
@@ -119,11 +120,11 @@ public class MenuPrincipal extends JFrame {
 
 		JRadioButton rdbtnTurmas = new JRadioButton("Turmas");
 		rdbtnTurmas.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				tipo="turma";
+				tipo = "turma";
 			}
-			
+
 		});
 		grupo.add(rdbtnTurmas);
 		rdbtnTurmas.setBounds(35, 187, 141, 23);
@@ -132,62 +133,61 @@ public class MenuPrincipal extends JFrame {
 		JRadioButton rdbtnDisciplinas = new JRadioButton("Disciplinas");
 		rdbtnDisciplinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tipo="disciplina";
+				tipo = "disciplina";
 			}
 		});
 		grupo.add(rdbtnDisciplinas);
 		rdbtnDisciplinas.setBounds(35, 209, 141, 23);
 		contentPane.add(rdbtnDisciplinas);
 
-
-		
-
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(new Color(0, 0, 0));
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
+				try {
 					cadastrar();
-				} catch(NullPointerException e1){
-					JOptionPane.showMessageDialog(MenuPrincipal.this, "Selecione uma opcao");
+				} catch (NullPointerException e1) {
+					JOptionPane.showMessageDialog(MenuPrincipal.this,
+							"Selecione uma opcao");
 				}
 			}
 
 			private void cadastrar() {
-				
-				if (tipo.equals("aluno")){
+
+				if (tipo.equals("aluno")) {
 					CadastrarAlunoFrame frame = new CadastrarAlunoFrame();
 					frame.setVisible(true);
 					setVisible(false);
-				} else if (tipo.equals("professor")){
+				} else if (tipo.equals("professor")) {
 					CadastrarProfessorFrame frame = new CadastrarProfessorFrame();
 					frame.setVisible(true);
 					setVisible(false);
-				} else if (tipo.equals("administrador")){
+				} else if (tipo.equals("administrador")) {
 					CadastrarAdmFrame frame = new CadastrarAdmFrame();
 					frame.setVisible(true);
 					setVisible(false);
-				} else if (tipo.equals("turma")){
+				} else if (tipo.equals("turma")) {
 					CadastrarTurmaFrame frame = new CadastrarTurmaFrame(false);
 					frame.setVisible(true);
-					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Turma");
+					// JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Turma");
 					setVisible(false);
-				} else if (tipo.equals("funcionario")){
+				} else if (tipo.equals("funcionario")) {
 					CadastrarFuncionarioFrame frame = new CadastrarFuncionarioFrame();
 					frame.setVisible(true);
-					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Funcionario");
+					// JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Funcionario");
 					setVisible(false);
-				} else if (tipo.equals("disciplina")){
+				} else if (tipo.equals("disciplina")) {
 					CadastrarDisciplinaFrame frame = new CadastrarDisciplinaFrame();
 					frame.setVisible(true);
-					//JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Disciplina");
+					// JOptionPane.showMessageDialog(MenuPrincipal.this,"Fa�a o frame de Cadastrar Disciplina");
 					setVisible(false);
-				} 
-				
-				else {
-					JOptionPane.showMessageDialog(MenuPrincipal.this,"n encontrou ngm");
 				}
-				
+
+				else {
+					JOptionPane.showMessageDialog(MenuPrincipal.this,
+							"n encontrou ngm");
+				}
+
 			}
 		});
 		btnCadastrar.setBounds(38, 291, 97, 50);
@@ -208,26 +208,62 @@ public class MenuPrincipal extends JFrame {
 		btnRemover.setBounds(142, 291, 97, 50);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					RemoverFrame frame = new RemoverFrame(tipo);
+					frame.setVisible(true);
+					setVisible(false);
+				} catch (NullPointerException f) {
+					JOptionPane.showMessageDialog(MenuPrincipal.this,
+							"Selecione uma opcao");
+				}
 			}
 		});
 		contentPane.add(btnRemover);
 
-		JButton btnAtualizar = new JButton("Atualizar");
-		btnAtualizar.addActionListener(new ActionListener() {
+		JButton Editar = new JButton("Editar");
+		Editar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				if (tipo.equals("professor")) {
+					EditarProfessorFrame frame = new EditarProfessorFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("funcionario")) {
+
+				} else if (tipo.equals("aluno")) {
+
+				} else if (tipo.equals("administrador")) {
+
+				} else if (tipo.equals("disciplina")) {
+
+				} else if (tipo.equals("turma")) {
+
+				} else {
+
+					JOptionPane.showMessageDialog(MenuPrincipal.this,
+							"Selecione uma opcao");
+
+				}
+
 			}
 		});
-		btnAtualizar.setBounds(245, 291, 97, 50);
-		contentPane.add(btnAtualizar);
-		
+		Editar.setBounds(245, 291, 97, 50);
+		contentPane.add(Editar);
+
 		JButton btnRelatrio = new JButton("Relatorio");
 		btnRelatrio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {  //RELATORIO
-				
-				RelatorioFrame frame = new RelatorioFrame(tipo);
-				frame.setVisible(true);
-				setVisible(false);
-				
+			public void actionPerformed(ActionEvent arg0) { // RELATORIO
+
+				try {
+					RelatorioFrame frame = new RelatorioFrame(tipo);
+					frame.setVisible(true);
+					setVisible(false);
+				} catch (NullPointerException e) {
+					JOptionPane.showMessageDialog(MenuPrincipal.this,
+							"Selecione uma opcao");
+				}
+
 			}
 		});
 		btnRelatrio.setBounds(452, 291, 97, 50);

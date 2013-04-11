@@ -20,13 +20,18 @@ import negocio.Controle;
 
 import classesBase.Endereco;
 import classesBase.Professor;
+import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
 
 @SuppressWarnings("serial")
 public class AtualizarProfessorFrame extends JFrame {
 
+	private String sexo;
 	private JPanel contentPane;
 	private JTextField textNome;
 	private JTextField textCpf;
@@ -44,7 +49,8 @@ public class AtualizarProfessorFrame extends JFrame {
 	private JTextArea textFuncao;
 	private JRadioButton rdbtnFeminino;
 	private JRadioButton rdbtnMasculino;
-	
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+
 	/**
 	 * Launch the application.
 	 */
@@ -65,7 +71,16 @@ public class AtualizarProfessorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarProfessorFrame(final Professor professorOriginal) {//todos os campos serão atualizados com os dados do professor
+	public AtualizarProfessorFrame(final Professor professorOriginal) {// todos
+																		// os
+																		// campos
+																		// serão
+																		// atualizados
+																		// com
+																		// os
+																		// dados
+																		// do
+																		// professor
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -91,6 +106,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(lblCpf);
 
 		textCpf = new JTextField();
+		textCpf.setEditable(false);
 		textCpf.setBounds(214, 121, 141, 28);
 		contentPane.add(textCpf);
 		textCpf.setColumns(10);
@@ -115,10 +131,22 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(lblDataDeNascimento);
 
 		rdbtnFeminino = new JRadioButton("Feminino");
+		rdbtnFeminino.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sexo = "Feminino";
+			}
+		});
+		buttonGroup.add(rdbtnFeminino);
 		rdbtnFeminino.setBounds(432, 102, 141, 23);
 		contentPane.add(rdbtnFeminino);
 
 		rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sexo = "Masculino";
+			}
+		});
+		buttonGroup.add(rdbtnMasculino);
 		rdbtnMasculino.setBounds(432, 126, 141, 23);
 		contentPane.add(rdbtnMasculino);
 
@@ -189,11 +217,54 @@ public class AtualizarProfessorFrame extends JFrame {
 		contentPane.add(textPais);
 		textPais.setColumns(10);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		JButton btnCadastrar = new JButton("Atualizar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					System.out.println(professorOriginal.getCpf());
+					String nome = textNome.getText();
+					String cpf = professorOriginal.getCpf();
+					String dataNasc = textDataNasc.getText();
+					String rg = textRg.getText();
+					String telefone = textTelefone.getText();
+					String rua = textRua.getText();
+					String numero = textNumero.getText();
+					String cep = textCep.getText();
+					String bairro = textBairro.getText();
+					String cidade = textCidade.getText();
+					String estado = textEstado.getText();
+					String pais = textPais.getText();
+					String funcao = textFuncao.getText();
+					Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao,
+							telefone, rua, numero, bairro, cep, cidade, estado,
+							pais);
+
+					Endereco endereco = new Endereco(rua, numero, bairro, cep,
+							cidade, estado, pais);
+					Professor professorAtualizado = new Professor(cpf, nome,
+							dataNasc, rg, sexo, telefone, endereco, funcao);
+
+					PaginaPrincipal.fachada.atualizarProfessor(
+							professorOriginal, professorAtualizado);
+					JOptionPane.showMessageDialog(AtualizarProfessorFrame.this,
+							"Professor atualizado com sucesso.");
+
+				} catch (EntradaInvalidaException e) {
+					JOptionPane.showMessageDialog(AtualizarProfessorFrame.this,
+							e.getOndeErrou());
+				}
+
+			}
+		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
 
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+			}
+		});
 		btnVoltar.setBounds(334, 365, 117, 42);
 		contentPane.add(btnVoltar);
 
@@ -231,15 +302,15 @@ public class AtualizarProfessorFrame extends JFrame {
 		this.textDataNasc.setText(professorOriginal.getDataNasc());
 		this.textTelefone.setText(professorOriginal.getTelefone());
 		textFuncao.setText(professorOriginal.getFuncao());
-		if(professorOriginal.getSexo().equals("M")){
+		if (professorOriginal.getSexo().equals("M")) {
 			rdbtnMasculino.setSelected(true);
-		}else{
+		} else {
 			rdbtnFeminino.setSelected(true);
 		}
-		
 
 	}
-	private void atualizar(Professor professorOriginal){
+
+	private void atualizar(Professor professorOriginal) {
 		String nome = textNome.getText();
 		String cpf = textCpf.getText();
 		String dataNasc = textDataNasc.getText();
@@ -254,20 +325,25 @@ public class AtualizarProfessorFrame extends JFrame {
 		String telefone = textTelefone.getText();
 		String funcao = textFuncao.getText();
 		String sexo;
-		if (rdbtnMasculino.isSelected()){
+		if (rdbtnMasculino.isSelected()) {
 			sexo = "M";
-		}else{
+		} else {
 			sexo = "F";
 		}
-				//String numero = textNumero.getText();
-		try{
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
-			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
-			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal, funcionarioAux);
-			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
+		// String numero = textNumero.getText();
+		try {
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
+					rua, numero, bairro, cep, cidade, estado, pais);
+			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
+					estado, pais);
+			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg,
+					sexo, telefone, endereco, funcao);
+			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal,
+					funcionarioAux);
+			JOptionPane.showMessageDialog(this,
+					"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this,"Erro no repositorio.");
+			JOptionPane.showMessageDialog(this, "Erro no repositorio.");
 		} catch (ElementoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -276,11 +352,9 @@ public class AtualizarProfessorFrame extends JFrame {
 		}
 	}
 
-
-
 	private void voltar() {
-		MenuPrincipal frame1 = new MenuPrincipal();
-		frame1.setVisible(true);
+		// MenuPrincipal frame1 = new MenuPrincipal();
+		// frame1.setVisible(true);
 		this.setVisible(false);
 	}
 }

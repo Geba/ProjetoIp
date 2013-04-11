@@ -211,7 +211,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		contentPane.add(textPais);
 		textPais.setColumns(10);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				atualizar(funcionarioOriginal);
