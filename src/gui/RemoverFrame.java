@@ -117,15 +117,16 @@ public class RemoverFrame extends JFrame {
 			}
 		}
 		
-		final Pessoa p=(Pessoa) comboBox.getSelectedItem();
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int opc = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover?");
 				switch(opc){
 				case 0: //sim
 					try {
+						Pessoa p=(Pessoa)comboBox.getSelectedItem();
 						PaginaPrincipal.fachada.removerPessoa(p.getCpf());
 						JOptionPane.showMessageDialog(RemoverFrame.this, tipo+" removido com sucesso.");
 					} catch (RepositorioException e1) {

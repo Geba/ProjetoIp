@@ -27,7 +27,7 @@ public class PaginaPrincipal extends JFrame {
 					PaginaPrincipal frame = new PaginaPrincipal();
 					frame.setVisible(false);
 				} catch (Exception e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		});
