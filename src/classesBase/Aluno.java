@@ -71,5 +71,10 @@ public class Aluno extends Pessoa {
 	public String imprimirBoletim() {
 		return boletim.imprimir();
 	}
+	public String resumo(){
+		String resumo = super.resumo();
+		resumo+="\nNome do Pai: "+ pai+"\nNome do Mãe: "+ mae+"\nTurma :"+turma;
+		return resumo;
+	}
 
 }
