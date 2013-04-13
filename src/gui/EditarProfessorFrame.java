@@ -23,13 +23,13 @@ import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-public class EditarPessoaFrame extends JFrame {
+public class EditarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JComboBox comboBox;
 	private JTextField textField;
 	private RepositorioArrayPessoa repositorio;
-	private static int n;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -37,7 +37,7 @@ public class EditarPessoaFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditarPessoaFrame frame = new EditarPessoaFrame(n);
+					EditarProfessorFrame frame = new EditarProfessorFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,19 +49,9 @@ public class EditarPessoaFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditarPessoaFrame(int escolha){
-		switch(escolha){
-		case 0:
-			
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-			
-		}
+	public EditarProfessorFrame(){
+		this.repositorio =null; 
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -94,7 +84,7 @@ public class EditarPessoaFrame extends JFrame {
 				try{
 				p = (Pessoa) comboBox.getSelectedItem();
 				} catch(NullPointerException e){
-					JOptionPane.showMessageDialog(EditarPessoaFrame.this, "Selecione um professor:");
+					JOptionPane.showMessageDialog(EditarProfessorFrame.this, "Selecione um professor:");
 				}
 				AtualizarProfessorFrame frame = new AtualizarProfessorFrame((Professor) p);
 				frame.setVisible(true);

@@ -226,20 +226,20 @@ public class MenuPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if (tipo.equals("professor")) {
-					EditarPessoaFrame frame = new EditarPessoaFrame(0);
+					EditarProfessorFrame frame = new EditarProfessorFrame();
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("funcionario")) {
-					EditarPessoaFrame frame = new EditarPessoaFrame(1);
-					frame.setVisible(true);
+					//EditarfuncionarioFrame frame = new EditarfuncionarioFrame();
+					//frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("aluno")) {
-					EditarPessoaFrame frame = new EditarPessoaFrame(2);
-					frame.setVisible(true);
+					//EditarAlunoFrame frame = new EditarAlunoFrame();
+					//frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("administrador")) {
-					EditarPessoaFrame frame = new EditarPessoaFrame(3);
-					frame.setVisible(true);
+					//EditarAdmFrame frame = new EditarAdmFrame();
+					//frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("disciplina")) {
 

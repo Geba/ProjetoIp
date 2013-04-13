@@ -455,5 +455,49 @@ public class Escola {
 			Professor professorAtualizado) {
 		professorOriginal = professorAtualizado;
 	}
-
+	
+	public RepositorioArrayPessoa  getAlunos(){
+		RepositorioArrayPessoa alunos = new RepositorioArrayPessoa();
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()){
+			Pessoa p = it.next();
+			if(p instanceof Aluno){
+				alunos.inserir(p);
+			}
+		}
+		return alunos;
+	}
+	public RepositorioArrayPessoa  getProfessores(){
+		RepositorioArrayPessoa professores = new RepositorioArrayPessoa();
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()){
+			Pessoa p = it.next();
+			if(p instanceof Professor){
+				professores.inserir(p);
+			}
+		}
+		return professores;
+	}
+	public RepositorioArrayPessoa  getAdministradores(){
+		RepositorioArrayPessoa administradores = new RepositorioArrayPessoa();
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()){
+			Pessoa p = it.next();
+			if(p instanceof Administrador){
+				administradores.inserir(p);
+			}
+		}
+		return administradores;
+	}
+	public RepositorioArrayPessoa  getFuncionarios(){
+		RepositorioArrayPessoa funcionarios = new RepositorioArrayPessoa();
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()){
+			Pessoa p = it.next();
+			if(p instanceof Professor){
+				funcionarios.inserir(p);
+			}
+		}
+		return funcionarios;
+	}
 }
