@@ -81,7 +81,7 @@ public abstract class Pessoa {
 	}
 
 	public String resumo() {
-		String resumo = "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg + "\nTelefone: "+telefone+"\nSexo: "+sexo;
+		String resumo = "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg +"\nSexo: "+sexo+ "\nTelefone: "+telefone;
 		return resumo;
 	}
 }

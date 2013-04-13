@@ -1,5 +1,7 @@
 package classesBase;
 
+import java.util.Iterator;
+
 import dados.*;
 import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
@@ -79,6 +81,23 @@ public class Professor extends Empregado {
 		return this.disciplinas.procurar(nome);
 	}
 
+	public String resumo(){
+		String resumo = super.resumo();
+		
+		Iterator<Turma> itTurmas = turmas.getIterator();
+		Iterator<Disciplina> itDisciplinas = disciplinas.getIterator();
+		resumo+="\nTurmas:";
+		while (itTurmas.hasNext()){
+			Turma turma = itTurmas.next();
+			resumo+="\n"+turma.getNome();
+		}
+		resumo+="\nDisciplinas:";
+		while (itDisciplinas.hasNext()){
+			Disciplina disciplina = itDisciplinas.next();
+			resumo+="\n"+disciplina.getNome();
+		}
+		return resumo;
+	}
 
 
 }
