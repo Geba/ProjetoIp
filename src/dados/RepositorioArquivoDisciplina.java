@@ -188,33 +188,107 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 	@SuppressWarnings("deprecation")
 	public Disciplina procurar(String nome)
 			throws ElementoNaoEncontradoException {
-		Disciplina d = null;
-		boolean achou = false;
-		int i = 0;
-
-		while (!achou && i < cont) {
-			HSSFRow row = sheet1.createRow(i);
-			HSSFCell cell = row.getCell((short) 0);
-			if (cell.getStringCellValue().equalsIgnoreCase(nome)) {
-				achou = true;
-				HSSFCell cell2 = row.getCell((short) 1);
-				d = new Disciplina(nome, cell2.getStringCellValue());
-			} else {
-				i++;
-			}
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
 		}
-		if (!achou) {
-			throw new ElementoNaoEncontradoException();
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Disciplinas");
+
+		
+		Disciplina d = null;
+		
+		int i=this.getLinha(nome);
+		
+		HSSFRow row = sheet1.getRow(i);
+		HSSFCell cell = row.getCell((short)0);
+		String nome1 = cell.getStringCellValue();
+		String ementa = row.getCell((short)1).getStringCellValue();
+		
+		d=new Disciplina(nome1, ementa);
+		
+
+		try {
+			wb.write(stream);
+		} catch (IOException e) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e) {
+			System.out.println("erro close");
 		}
 
 		return d;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void atualizar(Disciplina item)
 			throws ElementoNaoEncontradoException, RepositorioException {
-		remover(item.getNome());
-		inserir(item);
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Disciplinas");
+		
+		int aux=this.getLinha(item.getNome());
+		//HSSFRow row2 = sheet1.getRow(aux);
+		HSSFRow row = sheet1.createRow(aux);
+		row.createCell((short) 0).setCellValue(item.getNome());
+		row.createCell((short) 1).setCellValue(item.getEmenta());
+		
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e3) {
+			System.out.println("erro close");
+		}
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -242,21 +316,11 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		}
 
 		sheet1 = wb.getSheet("Disciplinas");
-		boolean achou = false;
-		int i = 0, aux = 0;
-		while (!achou) {
-			HSSFRow row = sheet1.getRow(i);
-			HSSFCell cell = row.getCell((short) 0);
-			if (cell.getStringCellValue().equals(nome)) {
-				achou = true;
-				aux = i;
-			} else {
-				i++;
-			}
-		}
+		
+		int aux=this.getLinha(nome);
 		HSSFRow row2 = sheet1.getRow(aux);
 		for (int k = 0; k < 2; k++) {
-			row2.getCell((short) k).setCellValue("");
+			row2.getCell((short) k).setCellValue("-");
 		}
 
 		try {
@@ -331,5 +395,27 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 			System.out.println("erro close");
 		}
 		return retorno;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public int getLinha(String nome) throws ElementoNaoEncontradoException{
+		int i=0;
+		String str="";
+		boolean achou = false;
+		
+		for(;i<this.cont && !achou; i++){
+			HSSFRow row = sheet1.getRow(i);
+			HSSFCell cell = row.getCell((short)0);
+			str = cell.getStringCellValue();
+			if(str.equals(nome)){
+				achou=true;
+			}
+		}
+		
+		if(!achou){
+			throw new ElementoNaoEncontradoException();
+		}
+		
+		return --i;
 	}
 }

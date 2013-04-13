@@ -168,18 +168,8 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 
 		// System.out.println("entrou no gravar pessoa");
 
-		//HSSFRow row = sheet1.createRow(cont);
-		HSSFRow row=null;
-		int i=0;
-		boolean sair=false;
-		while(!sair){
-			try{
-				row = sheet1.createRow(i);
-				i++;
-			} catch(NullPointerException e){
-				sair=true;
-			}
-		}
+		HSSFRow row = sheet1.createRow(cont);
+		
 		row.createCell((short) 0).setCellValue(turma.getNome());
 
 		try {
@@ -208,30 +198,59 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 	@Override
 	public Turma procurar(String nome) throws ElementoNaoEncontradoException {
 		Turma t = null;
-		boolean achou = false;
-		int i = 0;
-
-		while (!achou && i < cont) {
-			HSSFRow row = sheet1.createRow(i);
-			HSSFCell cell = row.getCell((short) 0);
-			if (cell.getStringCellValue().equalsIgnoreCase(nome)) {
-				achou = true;
-				t = new Turma(nome);
-			} else {
-				i++;
-			}
-		}
-		if (!achou) {
-			throw new ElementoNaoEncontradoException();
-		}
+		int i = this.getLinha(nome);
+		
+		HSSFRow row = sheet1.getRow(i);
+		String nome1 = row.getCell((short)0).getStringCellValue();
+		
+		t=new Turma(nome1);
+		
 		return t;
 	}
 
 	@Override
 	public void atualizar(Turma item) throws ElementoNaoEncontradoException,
 			RepositorioException {
-		remover(item.getNome());
-		inserir(item);
+
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Turmas");
+		
+		HSSFRow row2 = sheet1.getRow(this.getLinha(item.getNome()));
+		row2.getCell((short) 0).setCellValue(item.getNome());
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e3) {
+			System.out.println("erro close");
+		}
 
 	}
 
@@ -260,20 +279,9 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 		}
 
 		sheet1 = wb.getSheet("Turmas");
-		boolean achou = false;
-		int i = 0, aux = 0;
-		while (!achou) {
-			HSSFRow row = sheet1.getRow(i);
-			HSSFCell cell = row.getCell((short) 0);
-			if (cell.getStringCellValue().equals(nome)) {
-				achou = true;
-				aux = i;
-			} else {
-				i++;
-			}
-		}
-		HSSFRow row2 = sheet1.getRow(aux);
-		row2.getCell((short) 0).setCellValue("");
+		
+		HSSFRow row2 = sheet1.getRow(this.getLinha(nome));
+		row2.getCell((short) 0).setCellValue("-");
 
 		try {
 			wb.write(stream);
@@ -347,6 +355,27 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 			System.out.println("erro close");
 		}
 		return retorno;
+	}
+	@SuppressWarnings("deprecation")
+	public int getLinha(String nome) throws ElementoNaoEncontradoException{
+		int i=0;
+		String str="";
+		boolean achou = false;
+		
+		for(;i<this.cont && !achou; i++){
+			HSSFRow row = sheet1.getRow(i);
+			HSSFCell cell = row.getCell((short)0);
+			str = cell.getStringCellValue();
+			if(str.equals(nome)){
+				achou=true;
+			}
+		}
+		
+		if(!achou){
+			throw new ElementoNaoEncontradoException();
+		}
+		
+		return --i;
 	}
 
 }
