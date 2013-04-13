@@ -130,7 +130,7 @@ public class RemoverFrame extends JFrame {
 						PaginaPrincipal.fachada.removerPessoa(p.getCpf());
 						JOptionPane.showMessageDialog(RemoverFrame.this, tipo+" removido com sucesso.");
 					} catch (RepositorioException e1) {
-						JOptionPane.showConfirmDialog(null, "Erro no sistema. Desculpe-nos.");
+						JOptionPane.showMessageDialog(null, "Erro no sistema. Desculpe-nos.");
 					} catch (EntradaInvalidaException e1) {
 					} catch (ElementoNaoEncontradoException e1) {
 					}

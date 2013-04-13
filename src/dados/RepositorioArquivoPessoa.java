@@ -546,7 +546,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
 		HSSFRow row = sheet1.getRow(i);
 		for (int k = 0; k < 19; k++) {
-			row.getCell((short) k).setCellValue("");
+			row.getCell((short) k).setCellValue("-");
 		}
 
 		try {
@@ -610,7 +610,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 				HSSFCell cell4 = row.getCell((short) 4);
 				rg = "" + (int) cell4.getNumericCellValue();
 			}
-			if (!nome.equals("")) {
+			if (!nome.equals("-")) {
 				retorno += nome + " / " + cpf + " / " + rg + " / " + dataNasc
 						+ "\n";
 			}

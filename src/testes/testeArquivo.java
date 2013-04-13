@@ -2,11 +2,15 @@ package testes;
 
 
 
+import java.util.Iterator;
+
 import classesBase.Aluno;
 import classesBase.Endereco;
 import classesBase.Pessoa;
 import classesBase.Professor;
 import classesBase.Turma;
+import dados.IteratorArquivo;
+import dados.IteratorArquivoPessoa;
 import dados.RepositorioArquivoPessoa;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.RepositorioException;
@@ -14,9 +18,9 @@ import excecoes.RepositorioException;
 public class testeArquivo {
 
 	public static void main(String[] args) {
-		
+
 		System.out.println("comecou");
-		
+
 		RepositorioArquivoPessoa pessoas = new RepositorioArquivoPessoa();
 
 		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",
@@ -37,13 +41,13 @@ public class testeArquivo {
 
 		Pessoa prof = new Professor("47623456456", "Prof","", "7727724", "F", "",end,
 				"ser legal");
-		
+
 		Pessoa item = new Professor("47623456456", "profatualizado","", "7727724", "F", "", end,
 				"ser legal");
 
 		// Pessoa novo2 = new Aluno("000000", "Fulano2", "7727724", "F", end,
 		// "Luiz", "Nancy", turma);
-		
+
 		System.out.println("imprimindo: ");
 		System.out.println(pessoas.getPessoas().imprimir());
 
@@ -56,10 +60,10 @@ public class testeArquivo {
 		} catch (RepositorioException e) {
 			System.out.println("n deu certo");
 		}
-		
+
 		System.out.println("imprimindo inseriu: ");
 		System.out.println(pessoas.imprimir());
-		
+
 		try {
 			pessoas.remover("43536787656");
 			//pessoas.atualizar(item);
@@ -70,9 +74,25 @@ public class testeArquivo {
 		} catch (ElementoNaoEncontradoException e) {
 			System.out.println("n encontrado");
 		}
-		
-		System.out.println("imprimindo removeu bruna: ");
-		System.out.println(pessoas.imprimir());
+
+		//System.out.println("imprimindo removeu bruna: ");
+		//System.out.println(pessoas.imprimir());
+
+
+		System.out.println("INTERATOR: \n");
+		Iterator<Pessoa> it = new IteratorArquivoPessoa("Pessoas");
+
+		while(it.hasNext()){ 
+			System.out.println("CONT DO ITERATOR: "+((IteratorArquivo<Pessoa>) it).getIndice());
+			try{System.out.println(it.next().getNome()+"");
+
+			}catch(NullPointerException e){
+				System.out.println("nullpointer");
+			}
+		}
+
+		System.out.println("fim");
+
 	}
 
 }

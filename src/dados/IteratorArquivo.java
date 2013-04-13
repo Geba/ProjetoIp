@@ -1,4 +1,5 @@
 package dados;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,20 +8,25 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-public class IteratorArquivo<T> implements Iterator<T> {
+public abstract class IteratorArquivo<T> implements Iterator<T> {
 	int indiceAtual;
-	
+
 	HSSFWorkbook wb;
 	HSSFSheet sheet1;
-	int cont = 0;
+	//int cont = 0;
 	FileOutputStream stream;
 	FileInputStream file;
+	String arq="planilha.xls";
+	String aba="";
+	
 
-	public IteratorArquivo(String arq, String aba) {
-		
+	public IteratorArquivo(String aba) {
+		this.aba=aba;
 		try {
 			file = new FileInputStream(new File(arq));
 			this.wb = new HSSFWorkbook(file);
@@ -29,7 +35,7 @@ public class IteratorArquivo<T> implements Iterator<T> {
 			stream.flush();
 			stream.close();
 		} catch (FileNotFoundException e1) {
-			//System.out.println("n achou");
+			// System.out.println("n achou");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet(aba);
 			try {
@@ -38,13 +44,13 @@ public class IteratorArquivo<T> implements Iterator<T> {
 				stream.flush();
 				stream.close();
 			} catch (FileNotFoundException e) {
-				//System.out.println("erro dentro");
+				System.out.println("erro dentro");
 			} catch (IOException e) {
-				//System.out.println("erro dentro");
+				 System.out.println("erro dentro");
 			}
-			//abrir = true;
+			// abrir = true;
 		} catch (IOException e) {
-			//System.out.println("n achou");
+			// System.out.println("n achou");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet(aba);
 			try {
@@ -53,34 +59,69 @@ public class IteratorArquivo<T> implements Iterator<T> {
 				stream.flush();
 				stream.close();
 			} catch (FileNotFoundException g) {
-				//System.out.println("erro dentro");
+				 System.out.println("erro dentro");
 			} catch (IOException f) {
-				//System.out.println("erro dentro");
+				 System.out.println("erro dentro");
 			}
-			//abrir = true;
+			// abrir = true;
 		}
-		
+		indiceAtual=-1;
+
 	}
 
 	public boolean hasNext() {
-		boolean retorno=false;
+		//abrir();
+		boolean retorno = true;
+		HSSFRow row = null;
+		//indiceAtual++;
+		try {
+			int aux=indiceAtual;
+			
+			try{
+			row = this.sheet1.getRow(aux);
+			}catch(IndexOutOfBoundsException e){
+				aux++;
+				row = this.sheet1.getRow(aux);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("null pointer");
+		}
+		//indiceAtual--;
+
+		HSSFCell cell = null;
+		// boolean pulou = false;
+		try {
+			cell = row.getCell((short) 2);
+			//System.out.println(cell.toString() +"<<<<cell");
+		} catch (NullPointerException e) {
+			retorno = false;
+			//System.out.println("acabou iterator");
+		}
+		if (cell == null) {
+			retorno = false;
+		}
 		
-		//return indiceAtual < array.length;
+		
+		try {
+			stream.flush();
+			stream.close();
+		} catch (IOException e) {
+			System.out.println("erro dentro hasnext");
+		}
+		//fechar();
+		
 		return retorno;
 	}
 
-	public T next() {
-		
-return null;
-
-	}
+	public abstract T next();
 
 	public void remove() {
 		throw new UnsupportedOperationException(
-				"Esta operacao nao é suportada.");
+				"Esta operacao nao eh suportada.");
 	}
 
 	public int getIndice() {
 		return indiceAtual;
 	}
+	
 }

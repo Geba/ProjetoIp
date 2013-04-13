@@ -2,6 +2,7 @@ package testes;
 
 import java.util.Iterator;
 import classesBase.*;
+import dados.IteratorArrayPessoa;
 import dados.RepositorioArrayPessoa;
 import excecoes.*;
 
@@ -176,6 +177,7 @@ public class TesteGeba3Array {
 		
 		Iterator<Pessoa> it = pessoas.iterator();
 		while (it.hasNext()){
+			//System.out.println("ITERATOR "+((IteratorArrayPessoa) it).getIndice());
 			System.out.println(it.next().getNome());
 		}
 		
@@ -205,5 +207,9 @@ public class TesteGeba3Array {
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");
 		}
+		
+		//Iterator<Pessoa> it = new IteratorArrayPessoa(pessoas.getArray());
+		
+		
 	}
 }

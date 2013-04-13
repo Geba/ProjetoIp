@@ -54,7 +54,7 @@ public class TesteComboBox extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		final JComboBox<Pessoa> comboBox = new JComboBox<Pessoa>();
+		final JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(50, 93, 280, 20);
 		contentPane.add(comboBox);
 
