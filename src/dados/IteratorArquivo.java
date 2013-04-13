@@ -75,14 +75,8 @@ public abstract class IteratorArquivo<T> implements Iterator<T> {
 		HSSFRow row = null;
 		//indiceAtual++;
 		try {
-			int aux=indiceAtual;
+			row = this.sheet1.getRow(++indiceAtual);
 			
-			try{
-			row = this.sheet1.getRow(aux);
-			}catch(IndexOutOfBoundsException e){
-				aux++;
-				row = this.sheet1.getRow(aux);
-			}
 		} catch (NullPointerException e) {
 			System.out.println("null pointer");
 		}
@@ -109,6 +103,10 @@ public abstract class IteratorArquivo<T> implements Iterator<T> {
 			System.out.println("erro dentro hasnext");
 		}
 		//fechar();
+		
+		if(!retorno){
+			System.out.println("falso");
+		}
 		
 		return retorno;
 	}

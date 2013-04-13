@@ -19,28 +19,28 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 		// super.abrir();
 
 		Pessoa pessoa = null;
-		if (hasNext()) {
 
-			String telefone = "", nomeTurma, cpf, nome, rg, sexo, pai, mae, rua, numero, bairro, cep, cidade, estado, pais, numeroMatricula, funcao;
-			double salario = 0.0;
-			double tipoPessoa = 0.0;
-			HSSFRow row = null;
+		String telefone = "", nomeTurma, cpf, nome, rg, sexo, pai, mae, rua, numero, bairro, cep, cidade, estado, pais, numeroMatricula, funcao;
+		double salario = 0.0;
+		double tipoPessoa = 0.0;
+		HSSFRow row = null;
 
-			int i = super.indiceAtual;
-			try {
-				row = this.sheet1.getRow(i);
-			} catch (IndexOutOfBoundsException e) {
-				i++;
-				row = this.sheet1.getRow(i);
-			}
+		int i = super.indiceAtual;
+		row = this.sheet1.getRow(++i);
+
+		if (!lerCelula(i, 0).equals("-")) {
+
 			try {
 				tipoPessoa = Integer.parseInt(lerCelula(i, 0));
 			} catch (NumberFormatException e) {
-				HSSFCell cell1 = row.getCell((short) 0);
-				try {
-					tipoPessoa = cell1.getNumericCellValue();
-				} catch (NumberFormatException e1) {
-					System.out.print("pulouIteratorArqPessoa");
+
+				if (!lerCelula(i, 0).equals("-")) {
+					HSSFCell cell1 = row.getCell((short) 0);
+					try {
+						tipoPessoa = cell1.getNumericCellValue();
+					} catch (NumberFormatException e1) {
+						System.out.print("pulouIteratorArqPessoa");
+					}
 				}
 			}
 
@@ -129,8 +129,9 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 						telefone, end, funcao);
 				((Funcionario) pessoa).setSalario(salario);
 			}
-			// pessoas.inserir(pessoa);
 		}
+		// pessoas.inserir(pessoa);
+
 		// super.fechar();
 		return pessoa;
 	}
