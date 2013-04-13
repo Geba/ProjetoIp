@@ -70,6 +70,28 @@ public abstract class IteratorArquivo<T> implements Iterator<T> {
 	}
 
 	public boolean hasNext() {
+		
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet(aba);
+		
 		//abrir();
 		boolean retorno = true;
 		HSSFRow row = null;
@@ -96,17 +118,23 @@ public abstract class IteratorArquivo<T> implements Iterator<T> {
 		}
 		
 		
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
 		try {
 			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
 			stream.close();
-		} catch (IOException e) {
-			System.out.println("erro dentro hasnext");
+		} catch (IOException e3) {
+			System.out.println("erro close");
 		}
 		//fechar();
-		
-		if(!retorno){
-			System.out.println("falso");
-		}
 		
 		return retorno;
 	}

@@ -1,9 +1,15 @@
 package dados;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import classesBase.*;
 
@@ -17,6 +23,26 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 
 	public Pessoa next() {
 		// super.abrir();
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet(aba);
 
 		Pessoa pessoa = null;
 
@@ -131,6 +157,23 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 			}
 		}
 		// pessoas.inserir(pessoa);
+		
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e3) {
+			System.out.println("erro close");
+		}
 
 		// super.fechar();
 		return pessoa;
