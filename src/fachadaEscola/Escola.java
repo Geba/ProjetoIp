@@ -104,9 +104,9 @@ public class Escola {
 		Pessoa flor = new Aluno("123456009", "Florzinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
 		Pessoa untonio = new Professor("123454333321", "Untonio", "", "123454433",
-				"F", "333333333", end, "se pai");
+				"F", "333333333", end, "ser pai");
 		Pessoa prof = new Professor("1222454333321", "Profinho", "", "1234588833",
-				"F", "333333333", end, "se pai");
+				"F", "333333333", end, "ser pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");
 		Disciplina d2 = new Disciplina("disc2", "ser legal");
@@ -139,6 +139,10 @@ public class Escola {
 			((Professor) untonio).inserirDisciplina(d2);
 			((Professor) untonio).inserirDisciplina(d3);
 			((Professor) untonio).inserirTurma(turma);
+			((Professor) prof).inserirDisciplina(d1);
+			((Professor) prof).inserirDisciplina(d2);
+			((Professor) prof).inserirDisciplina(d3);
+			((Professor) prof).inserirTurma(turma);
 		} catch (RepositorioException e) {
 			System.out.println("erro");
 		}
