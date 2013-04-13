@@ -26,7 +26,7 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 		HSSFRow row = null;
 
 		int i = super.indiceAtual;
-		row = this.sheet1.getRow(++i);
+		row = this.sheet1.getRow(i);
 
 		if (!lerCelula(i, 0).equals("-")) {
 
