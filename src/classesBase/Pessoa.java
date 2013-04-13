@@ -75,8 +75,13 @@ public abstract class Pessoa {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	public String toString(){
-	return this.nome+"  CPF: "+this.cpf;
+
+	public String toString() {
+		return this.nome + "  CPF: " + this.cpf;
+	}
+
+	public String resumo() {
+		String resumo = "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg + "\nTelefone: "+telefone+"\nSexo: "+sexo;
+		return resumo;
 	}
 }

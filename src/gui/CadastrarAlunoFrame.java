@@ -270,7 +270,7 @@ public class CadastrarAlunoFrame extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(70, 365, 141, 29);
+		btnNewButton.setBounds(70, 368, 141, 29);
 		contentPane.add(btnNewButton);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -296,7 +296,7 @@ public class CadastrarAlunoFrame extends JFrame {
 				
 			}
 		});
-		btnAtualizarTurmas.setBounds(70, 392, 141, 29);
+		btnAtualizarTurmas.setBounds(214, 335, 141, 29);
 		contentPane.add(btnAtualizarTurmas);
 	}
 
