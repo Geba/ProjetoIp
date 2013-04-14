@@ -102,7 +102,7 @@ public class PesquisarProfessorFrame extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblSelecioneOProfessor = new JLabel(
-				"Selecione o professor a ser editado:");
+				"Digite o nome de um professor:");
 		lblSelecioneOProfessor.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOProfessor);
 

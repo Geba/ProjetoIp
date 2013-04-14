@@ -102,7 +102,7 @@ public class PesquisarFuncionarioFrame extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblSelecioneOFuncionario = new JLabel(
-				"Selecione o funcionario a ser editado:");
+				"Digite o nome de um funcionario:");
 		lblSelecioneOFuncionario.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOFuncionario);
 

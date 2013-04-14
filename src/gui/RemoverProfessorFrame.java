@@ -93,9 +93,7 @@ public class RemoverProfessorFrame extends JFrame {
 								"Aluno removido com sucesso.");
 					} catch (ElementoNaoEncontradoException e1) {
 					}
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
-					setVisible(false);
+					voltar();
 
 					break;
 				case 1: // nao
@@ -179,6 +177,12 @@ public class RemoverProfessorFrame extends JFrame {
 		btnPesquisar.setBounds(377, 50, 125, 23);
 		contentPane.add(btnPesquisar);
 
+	}
+
+	protected void voltar() {
+		MenuPrincipal frame = new MenuPrincipal();
+		frame.setVisible(true);
+		setVisible(false);
 	}
 
 }

@@ -277,10 +277,7 @@ public class CadastrarAlunoFrame extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastrar();
-				MenuPrincipal frame = new MenuPrincipal();
-				frame.setVisible(true);
-				setVisible(false);
-			}
+				}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
@@ -326,6 +323,7 @@ public class CadastrarAlunoFrame extends JFrame {
 					pai, mae, turma); // <<<<<<
 			JOptionPane
 					.showMessageDialog(this, "Aluno cadastrado com sucesso.");
+			voltar();
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "O aluno j‡ est‡ cadastrado.");
 		} catch (EntradaInvalidaException e) {

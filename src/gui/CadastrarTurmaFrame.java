@@ -109,6 +109,7 @@ public class CadastrarTurmaFrame extends JFrame {
 			Controle.nomeValido(nome);
 			PaginaPrincipal.fachada.inserirTurma(nome);
 			JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
+			voltar();
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {

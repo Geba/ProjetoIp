@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 import classesBase.*;
 
@@ -65,6 +66,7 @@ public class EditarProfessorFrame extends JFrame {
 		textArea.setEditable(false);
 		textArea.setBounds(40, 114, 462, 148);
 		contentPane.add(textArea);
+		
 
 		JLabel lblSelecioneAOpcao = new JLabel("Selecione a opcao desejada:");
 		lblSelecioneAOpcao.setBounds(40, 271, 268, 16);

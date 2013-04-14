@@ -102,7 +102,7 @@ public class PesquisarAlunoFrame extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblSelecioneOAluno = new JLabel(
-				"Selecione o aluno a ser editado:");
+				"Digite para objter informa\u00E7\u00F5es:");
 		lblSelecioneOAluno.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOAluno);
 

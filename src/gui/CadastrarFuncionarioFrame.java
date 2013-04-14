@@ -266,6 +266,7 @@ public class CadastrarFuncionarioFrame extends JFrame {
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,
 					funcao);
 			JOptionPane.showMessageDialog(this,"Funcionario cadastrado com sucesso.");
+			voltar();
 		} catch (ElementoJaCadastradoException e){
 			JOptionPane.showMessageDialog(this,"O funcionario j‡ est‡ cadastrado.");
 		} catch (RepositorioException e) {

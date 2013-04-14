@@ -87,10 +87,7 @@ public class RemoverDisciplinaFrame extends JFrame {
 						JOptionPane.showMessageDialog(RemoverDisciplinaFrame.this,"Disciplina removida com sucesso.");
 					} catch (ElementoNaoEncontradoException e1) {
 					}
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
-					setVisible(false);
-					
+					voltar();		
 					break;
 				case 1: //nao
 					
@@ -173,5 +170,9 @@ public class RemoverDisciplinaFrame extends JFrame {
 		contentPane.add(btnPesquisar);
 
 	}
-
+	protected void voltar() {
+		MenuPrincipal frame = new MenuPrincipal();
+		frame.setVisible(true);
+		setVisible(false);
+	}
 }

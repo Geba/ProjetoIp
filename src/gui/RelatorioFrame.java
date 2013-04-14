@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -45,9 +47,13 @@ public class RelatorioFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(20, 48, 560, 326);
-		contentPane.add(textPane);
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBounds(20, 48, 560, 326);
+		contentPane.add(textArea);
+		//JScrollPane spDescricao = new JScrollPane( textPane ); 
+		//this.getContentPane().add(spDescricao);
+		
 		
 		String palavra = tipo.substring(0, 1).toUpperCase() + tipo.substring(1,tipo.length()).toLowerCase();
 		
@@ -68,7 +74,7 @@ public class RelatorioFrame extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		if (tipo.equalsIgnoreCase("aluno")){
-			textPane.setText(PaginaPrincipal.fachada.relatorioAlunos());
+			textArea.setText(PaginaPrincipal.fachada.relatorioAlunos());
 		}
 		
 	}

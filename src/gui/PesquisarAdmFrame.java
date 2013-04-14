@@ -102,7 +102,7 @@ public class PesquisarAdmFrame extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblSelecioneOAdministrador = new JLabel(
-				"Selecione o administrador a ser editado:");
+				"Digite o nome de um administrador:");
 		lblSelecioneOAdministrador.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOAdministrador);
 

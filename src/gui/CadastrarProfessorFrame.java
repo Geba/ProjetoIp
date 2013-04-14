@@ -252,6 +252,7 @@ public class CadastrarProfessorFrame extends JFrame {
 			PaginaPrincipal.fachada.inserirProfessor(cpf, nome, dataNasc, rg, sexo, telefone,
 					rua, numero, bairro, cep, cidade, estado, pais, funcao);
 			JOptionPane.showMessageDialog(this,"Professor cadastrado com sucesso.");
+			voltar();
 		} catch (ElementoJaCadastradoException e){
 			JOptionPane.showMessageDialog(this,"O professor j‡ est‡ cadastrado.");
 		} catch (RepositorioException e) {

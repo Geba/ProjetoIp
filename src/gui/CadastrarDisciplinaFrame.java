@@ -118,6 +118,7 @@ public class CadastrarDisciplinaFrame extends JFrame {
 			Controle.nomeValido(nome);
 			PaginaPrincipal.fachada.inserirDisciplina(nome, ementa);
 			JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso!");
+			voltar();
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, "Entrada invalida. Tente novamente.\n"+e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {

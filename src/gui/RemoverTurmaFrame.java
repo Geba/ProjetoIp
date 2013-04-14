@@ -89,11 +89,10 @@ public class RemoverTurmaFrame extends JFrame {
 							e.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(RemoverTurmaFrame.this,"Turma removida com sucesso.");
+						voltar();
 					} catch (ElementoNaoEncontradoException e1) {
 					}
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
-					setVisible(false);
+					
 					
 					break;
 				case 1: //nao
@@ -177,6 +176,12 @@ public class RemoverTurmaFrame extends JFrame {
 		btnPesquisar.setBounds(377, 50, 125, 23);
 		contentPane.add(btnPesquisar);
 
+	}
+
+	protected void voltar() {
+		MenuPrincipal frame = new MenuPrincipal();
+		frame.setVisible(true);
+		setVisible(false);
 	}
 
 }
