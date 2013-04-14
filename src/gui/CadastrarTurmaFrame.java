@@ -114,8 +114,7 @@ public class CadastrarTurmaFrame extends JFrame {
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Turma ja cadastrada. Tente novamente.");
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 	}
 }

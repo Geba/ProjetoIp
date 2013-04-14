@@ -15,8 +15,10 @@ import javax.swing.JOptionPane;
 import classesBase.*;
 
 import dados.Repositorio;
-import dados.RepositorioArrayPessoa;
+import dados.RepositorioArrayTurma;
 import excecoes.ElementoNaoEncontradoException;
+import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,10 +27,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class EditarAlunoFrame extends JFrame {
+public class RemoverTurmaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Pessoa> comboBox;
+	private JComboBox<Turma> comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -39,7 +41,7 @@ public class EditarAlunoFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditarAlunoFrame frame = new EditarAlunoFrame();
+					RemoverTurmaFrame frame = new RemoverTurmaFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +53,7 @@ public class EditarAlunoFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditarAlunoFrame() {
+	public RemoverTurmaFrame() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
@@ -69,39 +71,57 @@ public class EditarAlunoFrame extends JFrame {
 		lblSelecioneAOpcao.setBounds(40, 271, 268, 16);
 		contentPane.add(lblSelecioneAOpcao);
 
-		JButton btnAtualizarDados = new JButton("Atualizar dados");
-		btnAtualizarDados.addActionListener(new ActionListener() {
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Pessoa p = null;
-				try {
-					p = (Pessoa) comboBox.getSelectedItem();
-				} catch (NullPointerException e) {
-					JOptionPane.showMessageDialog(EditarAlunoFrame.this,
-							"Selecione um Aluno:");
+				int opc = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover?");
+				switch(opc){
+				case 0: //sim
+					try {
+						Turma t= (Turma) comboBox.getSelectedItem();
+						try {
+							PaginaPrincipal.fachada.removerTurma(t.getNome());
+						} catch (RepositorioException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (EntradaInvalidaException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						JOptionPane.showMessageDialog(RemoverTurmaFrame.this,"Turma removida com sucesso.");
+					} catch (ElementoNaoEncontradoException e1) {
+					}
+					MenuPrincipal frame = new MenuPrincipal();
+					frame.setVisible(true);
+					setVisible(false);
+					
+					break;
+				case 1: //nao
+					
+					break;
+				case 2: //cancelar
+					break;
 				}
-				AtualizarAlunoFrame frame = new AtualizarAlunoFrame(
-						(Aluno) p);
-				frame.setVisible(true);
 			}
 		});
 
-		btnAtualizarDados.setBounds(40, 299, 146, 50);
-		contentPane.add(btnAtualizarDados);
+		btnRemover.setBounds(40, 299, 146, 50);
+		contentPane.add(btnRemover);
 
-		comboBox = new JComboBox<Pessoa>();
+		comboBox = new JComboBox<Turma>();
 		comboBox.removeAllItems();
-		Iterator<Pessoa> it = PaginaPrincipal.fachada.getAlunos().getIterator();
+		Iterator<Turma> it = PaginaPrincipal.fachada.getTurmas().getIterator();
 		while(it.hasNext()){
 			comboBox.addItem(it.next());
 		}
 		if (comboBox.getSelectedItem() != null) {
-			textArea.setText(((Pessoa) comboBox.getSelectedItem())
+			textArea.setText(((Turma) comboBox.getSelectedItem())
 					.resumo());
 		}
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedItem() != null) {
-					textArea.setText(((Pessoa) comboBox.getSelectedItem())
+					textArea.setText(((Turma) comboBox.getSelectedItem())
 							.resumo());
 				}
 			}
@@ -124,10 +144,10 @@ public class EditarAlunoFrame extends JFrame {
 		btnVoltar.setBounds(463, 360, 117, 50);
 		contentPane.add(btnVoltar);
 
-		JLabel lblSelecioneOAluno = new JLabel(
-				"Selecione o aluno a ser editado:");
-		lblSelecioneOAluno.setBounds(40, 30, 254, 16);
-		contentPane.add(lblSelecioneOAluno);
+		JLabel lblSelecioneOTurma = new JLabel(
+				"Selecione o Turma a ser editado:");
+		lblSelecioneOTurma.setBounds(40, 30, 254, 16);
+		contentPane.add(lblSelecioneOTurma);
 
 		textField = new JTextField();
 		textField.setBounds(40, 50, 321, 23);
@@ -139,18 +159,18 @@ public class EditarAlunoFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBox.removeAll();
 				String procura = textField.getText();
-				RepositorioArrayPessoa resultadoPesquisa = new RepositorioArrayPessoa();
+				RepositorioArrayTurma resultadoPesquisa = new RepositorioArrayTurma();
 				try {
-					resultadoPesquisa = PaginaPrincipal.fachada.getAlunos().procurarNome(procura);
+					resultadoPesquisa =PaginaPrincipal.fachada.getArrayTurma().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
 					JOptionPane.showInputDialog(this, aviso);
 				}
 				comboBox.removeAllItems();
-				Iterator<Pessoa> it = resultadoPesquisa.iterator();
+				Iterator<Turma> it = resultadoPesquisa.iterator();
 				while (it.hasNext()) {
-					Pessoa pessoa = it.next();
-					comboBox.addItem(pessoa);
+					Turma turma = it.next();
+					comboBox.addItem(turma);
 				}
 			}
 		});

@@ -37,7 +37,7 @@ import classesBase.Turma;
 import dados.Repositorio;
 
 @SuppressWarnings("serial")
-public class AtualizarAlunoFrameNovo extends JFrame {
+public class AtualizarAlunoFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
@@ -69,7 +69,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AtualizarAlunoFrameNovo frame = new AtualizarAlunoFrameNovo(aluno);
+					AtualizarAlunoFrame frame = new AtualizarAlunoFrame(aluno);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -81,7 +81,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AtualizarAlunoFrameNovo(final Aluno alunoOriginal) {
+	public AtualizarAlunoFrame(final Aluno alunoOriginal) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();

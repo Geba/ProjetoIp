@@ -261,7 +261,6 @@ public class CadastrarAdmFrame extends JFrame {
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
 			String funcao = textfuncao.getText();
-			//String numero = textNumero.getText();
 			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			this.fachada.inserirAdministrador(cpf, nome, dataNasc, rg, sexo,
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,

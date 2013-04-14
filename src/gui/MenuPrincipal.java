@@ -207,16 +207,39 @@ public class MenuPrincipal extends JFrame {
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.setBounds(142, 291, 97, 50);
 		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 
-				try {
-					RemoverFrame frame = new RemoverFrame(tipo);
+				if (tipo.equals("professor")) {
+					RemoverProfessorFrame frame = new RemoverProfessorFrame();
 					frame.setVisible(true);
 					setVisible(false);
-				} catch (NullPointerException f) {
+				} else if (tipo.equals("funcionario")) {
+					RemoverFuncionarioFrame frame = new RemoverFuncionarioFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("aluno")) {
+					RemoverAlunoFrame frame = new RemoverAlunoFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("administrador")) {
+					RemoverAdmFrame frame = new RemoverAdmFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("disciplina")) {
+					RemoverDisciplinaFrame frame = new RemoverDisciplinaFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("turma")) {
+					RemoverTurmaFrame frame = new RemoverTurmaFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else {
+
 					JOptionPane.showMessageDialog(MenuPrincipal.this,
 							"Selecione uma opcao");
+
 				}
+
 			}
 		});
 		contentPane.add(btnRemover);

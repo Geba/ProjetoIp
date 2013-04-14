@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 
+import negocio.Controle;
+
 //import classesBase.Administrador;
 
 @SuppressWarnings("serial")
@@ -259,8 +261,8 @@ public class CadastrarFuncionarioFrame extends JFrame {
 			String estado = textEstado.getText();
 			String pais = textPais.getText();
 			String funcao = textfuncao.getText();
-			//String numero = textNumero.getText();
-			this.fachada.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
+			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
+			PaginaPrincipal.fachada.inserirFuncionario(cpf, nome, dataNasc, rg, sexo,
 					telefone, rua, numero, bairro, cep, cidade, estado, pais,
 					funcao);
 			JOptionPane.showMessageDialog(this,"Funcionario cadastrado com sucesso.");
@@ -269,7 +271,7 @@ public class CadastrarFuncionarioFrame extends JFrame {
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (EntradaInvalidaException e) {
-			JOptionPane.showMessageDialog(this,"Entrada inv‡lida. Tente novamente.");
+			JOptionPane.showMessageDialog(this,e.getOndeErrou());
 		}
 		
 	}

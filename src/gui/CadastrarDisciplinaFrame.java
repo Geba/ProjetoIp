@@ -123,8 +123,7 @@ public class CadastrarDisciplinaFrame extends JFrame {
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Disciplina ja cadastrada. Tente novamente.");
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 	}
 }

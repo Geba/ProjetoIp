@@ -24,7 +24,8 @@ import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-@SuppressWarnings("serial")
+
+
 public class EditarProfessorFrame extends JFrame {
 
 	private JPanel contentPane;

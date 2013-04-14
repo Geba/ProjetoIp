@@ -328,8 +328,7 @@ public class CadastrarAlunoFrame extends JFrame {
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		} catch (RepositorioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(this, "Erro no sistema\nPorfavor tente mais tarde");
 		}
 
 	}

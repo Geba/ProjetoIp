@@ -67,49 +67,49 @@ public class Escola {
 
 		Endereco end = new Endereco("Rua", "123", "Bairro", "51030630", "Cidade", "Estado", "Pais");
 		Turma turma = new Turma("tumrma1");
-		Pessoa bruna = new Aluno("43536787656", "Bruna", "", "7727724", "F",
+		Pessoa bruna = new Aluno("00000000001", "Bruna", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
-		Pessoa harry = new Aluno("25365576866", "Harry", "", "7727724", "F",
+		Pessoa harry = new Aluno("00000000002", "Harry", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
-		Pessoa alana = new Aluno("47623456456", "Laryssa", "", "7727724", "F",
+		Pessoa alana = new Aluno("00000000003", "Laryssa", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
-		Pessoa geovane = new Aluno("83830480504","Geovane Silva Pereira", "08/11/1992", "83830480504", "M", "34626209", end, "Gilvan", "Marcia", turma);
+		Pessoa geovane = new Aluno("00000000004","Geovane Silva Pereira", "08/11/1992", "83830480504", "M", "34626209", end, "Gilvan", "Marcia", turma);
 
-		Pessoa geovane2 = new Aluno("838304802504", "Geovane2", "", "7727724",
+		Pessoa geovane2 = new Aluno("00000000005", "Geovane2", "", "7727724",
 				"F", "", end, "Luiz", "Nancy", turma);
 
-		Pessoa novo = new Aluno("000000", "Fulano", "", "7727724", "F", "",
+		Pessoa novo = new Aluno("00000000006", "Fulano", "", "7727724", "F", "",
 				end, "Luiz", "Nancy", turma);
 
-		Pessoa timmy = new Aluno("123456789", "Timmy Turner", "", "34655843",
+		Pessoa timmy = new Aluno("00000000007", "Timmy Turner", "", "34655843",
 				"F", "", end, "Pai", "Mae", turma);
-		Pessoa bob = new Aluno("123456000", "BobSponge SquarePants", "",
+		Pessoa bob = new Aluno("00000000008", "BobSponge SquarePants", "",
 				"12321", "A", "", end, "Pai", "Mae", turma);
-		Pessoa frango = new Aluno("123456001", "Frango", "", "1245789", "F",
+		Pessoa frango = new Aluno("00000000009", "Frango", "", "1245789", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa vaca = new Aluno("123456002", "vaca", "", "1245789", "F", "",
+		Pessoa vaca = new Aluno("00000000010", "vaca", "", "1245789", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa jerry = new Aluno("123456005", "Jerry", "", "12235521", "F", "",
+		Pessoa jerry = new Aluno("00000000012", "Jerry", "", "12235521", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa tom = new Aluno("123456004", "Tom", "", "12235521", "F", "",
+		Pessoa tom = new Aluno("00000000013", "Tom", "", "12235521", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa johny = new Aluno("123456006", "Johny", "", "12233421", "F", "",
+		Pessoa johny = new Aluno("00000000014", "Johny", "", "12233421", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa lindinha = new Aluno("123456007", "Lindinha", "", "122321", "F",
+		Pessoa lindinha = new Aluno("00000000015", "Lindinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa docinho = new Aluno("123456008", "Docinho", "", "122321", "F",
+		Pessoa docinho = new Aluno("00000000011", "Docinho", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa flor = new Aluno("123456009", "Florzinha", "", "122321", "F",
+		Pessoa flor = new Aluno("00000000016", "Florzinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa untonio = new Professor("1234543433321", "Untonio", "", "123454433",
+		Pessoa untonio = new Professor("00000000017", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
-		Pessoa prof = new Professor("12224543333321", "Profinho", "", "1234588833",
+		Pessoa prof = new Professor("00000000018", "Profinho", "", "1234588833",
 				"F", "333333333", end, "ser pai");
-		Pessoa untonio2 = new Professor("1234546333321", "Untonio", "", "123454433",
+		Pessoa untonio2 = new Professor("00000000019", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
-		Pessoa untonio3 = new Professor("1234574333321", "Untonio", "", "123454433",
+		Pessoa untonio3 = new Professor("00000000020", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
-		Pessoa untonio4 = new Professor("1234540333321", "Untonio", "", "123454433",
+		Pessoa untonio4 = new Professor("00000000021", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");
@@ -204,15 +204,8 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			String pais, String pai, String mae, Turma turma)
 			throws EntradaInvalidaException, ElementoJaCadastradoException,
 			RepositorioException {
-
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
-					rua, numero, bairro, cep, cidade, estado, pais);
-		} catch (EntradaInvalidaException e) {
-			throw e;
-		}
-		try {
-			Pessoa p = pessoas.procurar(cpf);
+			Pessoa p = pessoas.procurar(cpf);//verifica se a pessoa já foi cadastrada. Se sim, é jogado o erro.
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
@@ -230,12 +223,6 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
 		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
-					rua, numero, bairro, cep, cidade, estado, pais);
-		} catch (EntradaInvalidaException e) {
-			throw e;
-		}
-		try {
 			Pessoa p = pessoas.procurar(cpf);
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
@@ -252,12 +239,6 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			String bairro, String cep, String cidade, String estado,
 			String pais, String funcao) throws RepositorioException,
 			EntradaInvalidaException, ElementoJaCadastradoException {
-		try {
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone,
-					rua, numero, bairro, cep, cidade, estado, pais);
-		} catch (EntradaInvalidaException e) {
-			throw e;
-		}
 		try {
 			Pessoa p = pessoas.procurar(cpf);
 			throw new ElementoJaCadastradoException();
@@ -421,8 +402,7 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			try {
 				turmas.atualizar(turmaAtualizada);
 			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}
 		} catch (ElementoNaoEncontradoException e) {
 
