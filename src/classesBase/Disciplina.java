@@ -30,5 +30,10 @@ public class Disciplina {
 	public String toString(){
 		return this.nome;
 	}
+	
+	public String resumo(){
+		String resumo = "Nome: "+this.nome+"\nEmenta: "+this.ementa;
+		return resumo;
+	}
 
 }

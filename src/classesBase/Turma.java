@@ -1,9 +1,10 @@
 package classesBase;
 
+import java.util.Iterator;
+
 import dados.RepositorioArrayDisciplina;
 import dados.RepositorioArrayPessoa;
 import excecoes.ElementoNaoEncontradoException;
-
 
 public class Turma {
 
@@ -26,20 +27,20 @@ public class Turma {
 		disciplinas.inserir(d);
 	}
 
-	public void inserirAluno(Pessoa p){
+	public void inserirAluno(Pessoa p) {
 		alunos.inserir(p);
 	}
-	
-	public void removerDisciplina(String nome) throws ElementoNaoEncontradoException{
+
+	public void removerDisciplina(String nome)
+			throws ElementoNaoEncontradoException {
 		disciplinas.remover(nome);
 	}
-	
-	public void removerAluno(String cpf) throws ElementoNaoEncontradoException{
+
+	public void removerAluno(String cpf) throws ElementoNaoEncontradoException {
 		alunos.remover(nome);
 	}
-	
-	
-public String getNome() {
+
+	public String getNome() {
 		return nome;
 	}
 
@@ -67,7 +68,27 @@ public String getNome() {
 		return disciplinas.getCont();
 	}
 
-	public String toString(){
+	public String toString() {
 		return this.nome;
+	}
+
+	public String resumo() {
+		String resumo = "Nome: " + this.nome;
+		Iterator<Disciplina> itDisc = this.disciplinas.getIterator();
+		if (itDisc.hasNext()) {
+			resumo = resumo + "\nDisciplinas:";
+			while (itDisc.hasNext()) {
+				resumo += "\n" + itDisc.next().getNome();
+			}
+		}
+		Iterator<Pessoa> itAlun = this.alunos.getIterator();
+		if (itAlun.hasNext()) {
+			resumo = resumo + "\nAlunos:";
+			while (itDisc.hasNext()) {
+				resumo += "\n" + itAlun.next().getNome();
+			}
+		}
+		return resumo;
+
 	}
 }
