@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 
 
@@ -32,6 +33,7 @@ public class PesquisarProfessorFrame extends JFrame {
 	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -60,11 +62,14 @@ public class PesquisarProfessorFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 114, 462, 235);
+		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
-		textArea.setBounds(40, 114, 462, 235);
-		contentPane.add(textArea);
 
 		comboBox = new JComboBox();
 		comboBox.removeAllItems();

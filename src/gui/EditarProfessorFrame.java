@@ -62,11 +62,14 @@ public class EditarProfessorFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 114, 462, 148);
+		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
-		textArea.setBounds(40, 114, 462, 148);
-		contentPane.add(textArea);
 		
 
 		JLabel lblSelecioneAOpcao = new JLabel("Selecione a opcao desejada:");
