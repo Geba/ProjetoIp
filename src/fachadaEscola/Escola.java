@@ -214,13 +214,20 @@ public class Escola {
 			Pessoa p = pessoas.procurar(cpf);// verifica se a pessoa já foi
 												// cadastrada. Se sim, é jogado
 												// o erro.
+
 			throw new ElementoJaCadastradoException();
+
 		} catch (ElementoNaoEncontradoException e) {
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
 					estado, pais);
 			Aluno aluno = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone,
 					endereco, pai, mae, turma);
 			pessoas.inserir(aluno);
+			try {
+				turmas.procurar(turma.getNome()).inserirAluno(aluno);
+			} catch (ElementoNaoEncontradoException e1) {
+				// Não vai acontecer
+			}
 		}
 
 	}
@@ -358,7 +365,20 @@ public class Escola {
 	public void removerDisciplina(String nome) throws RepositorioException,
 			EntradaInvalidaException, ElementoNaoEncontradoException {
 		Controle.nomeValido(nome);
+
 		disciplinas.remover(nome);
+		Iterator<Turma> it = turmas.getIterator();
+		while (it.hasNext()) {
+			Turma turmaAux = it.next();
+			Iterator<Disciplina> itD = turmaAux.getDisciplinas().getIterator();
+			while (itD.hasNext()) {
+				Disciplina disciplinaAux = itD.next();
+				if (disciplinaAux.getNome().equals(nome)) {
+					turmaAux.removerDisciplina(nome);
+				}
+
+			}
+		}
 	}
 
 	public void removerTurma(String nome) throws RepositorioException,
@@ -424,13 +444,13 @@ public class Escola {
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Aluno) {
-				retorno += p.resumo()+"\n\n";
+				retorno += p.resumo() + "\n\n";
 			}
 		}
 
 		return retorno;
 	}
-	
+
 	public String relatorioProfessor() { // tem que fazer os metodos relatorio
 		String retorno = "Relatorio de Professores\n\n";
 
@@ -438,13 +458,13 @@ public class Escola {
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Professor) {
-				retorno += p.resumo()+"\n\n";
+				retorno += p.resumo() + "\n\n";
 			}
 		}
 
 		return retorno;
 	}
-	
+
 	public String relatorioAdm() { // tem que fazer os metodos relatorio
 		String retorno = "Relatorio de Administradores\n\n";
 
@@ -452,13 +472,13 @@ public class Escola {
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Administrador) {
-				retorno += p.resumo()+"\n\n";
+				retorno += p.resumo() + "\n\n";
 			}
 		}
 
 		return retorno;
 	}
-	
+
 	public String relatorioFuncionario() { // tem que fazer os metodos relatorio
 		String retorno = "Relatorio de Funcionarios\n\n";
 
@@ -466,32 +486,32 @@ public class Escola {
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Funcionario) {
-				retorno += p.resumo()+"\n\n";
+				retorno += p.resumo() + "\n\n";
 			}
 		}
 
 		return retorno;
 	}
-	
+
 	public String relatorioTurmas() { // tem que fazer os metodos relatorio
 		String retorno = "Relatorio de Turmas\n\n";
 
-		Iterator<Turma> it =turmas.getIterator();
+		Iterator<Turma> it = turmas.getIterator();
 		while (it.hasNext()) {
 			Turma p = it.next();
-			retorno += p.resumo()+"\n\n";
+			retorno += p.resumo() + "\n\n";
 		}
 
 		return retorno;
 	}
-	
+
 	public String relatorioDisc() { // tem que fazer os metodos relatorio
 		String retorno = "Relatorio de Disciplinas\n\n";
 
-		Iterator<Disciplina> it =disciplinas.getIterator();
+		Iterator<Disciplina> it = disciplinas.getIterator();
 		while (it.hasNext()) {
 			Disciplina p = it.next();
-			retorno += p.resumo()+"\n\n";
+			retorno += p.resumo() + "\n\n";
 		}
 
 		return retorno;
@@ -527,7 +547,20 @@ public class Escola {
 			}
 
 		}
-
+		try {
+			turmas.procurar(alunoOriginal.getTurma().getNome()).removerAluno(
+					alunoOriginal.getCpf());
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			turmas.procurar(alunoAtualizado.getTurma().getNome()).inserirAluno(
+					alunoAtualizado);
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void atualizarProfessor(Professor professorOriginal,
@@ -604,31 +637,36 @@ public class Escola {
 		return disciplinasArray;
 
 	}
-	
-	public void removerTurmaProfessor(Professor professor, Turma turma) throws  RepositorioException, ElementoNaoEncontradoException{
-		Professor professorAux=professor;
+
+	public void removerTurmaProfessor(Professor professor, Turma turma)
+			throws RepositorioException, ElementoNaoEncontradoException {
+		Professor professorAux = professor;
 		try {
-			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+			professorAux = (Professor) getProfessores().procurar(
+					professor.getCpf());
 		} catch (ElementoNaoEncontradoException e) {
 		}
 		professorAux.removerTurma(turma);
 	}
-	
-	
-	public void adicionarTurmaProfessor(Professor professor, Turma turma) throws ElementoJaCadastradoException{
-		Professor professorAux=professor;
+
+	public void adicionarTurmaProfessor(Professor professor, Turma turma)
+			throws ElementoJaCadastradoException {
+		Professor professorAux = professor;
 		try {
-			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+			professorAux = (Professor) getProfessores().procurar(
+					professor.getCpf());
 		} catch (ElementoNaoEncontradoException e) {
 		}
 		professorAux.inserirTurma(turma);
-	
+
 	}
-	
-	public void removerDisciplinaProfessor(Professor professor, Disciplina disciplina){
-		Professor professorAux=professor;
+
+	public void removerDisciplinaProfessor(Professor professor,
+			Disciplina disciplina) {
+		Professor professorAux = professor;
 		try {
-			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+			professorAux = (Professor) getProfessores().procurar(
+					professor.getCpf());
 		} catch (ElementoNaoEncontradoException e) {
 		}
 		try {
@@ -639,16 +677,19 @@ public class Escola {
 		} catch (ElementoNaoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+
 	}
-	
-	public void adicionarDisciplinaProfessor(Professor professor, Disciplina disciplina) throws ElementoJaCadastradoException{
-		Professor professorAux=professor;
+
+	public void adicionarDisciplinaProfessor(Professor professor,
+			Disciplina disciplina) throws ElementoJaCadastradoException {
+		Professor professorAux = professor;
 		try {
-			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+			professorAux = (Professor) getProfessores().procurar(
+					professor.getCpf());
 		} catch (ElementoNaoEncontradoException e) {
 		}
 		professorAux.inserirDisciplina(disciplina);
 	}
-	
+
 }

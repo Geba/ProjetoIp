@@ -93,7 +93,9 @@ public class RemoverTurmaFrame extends JFrame {
 							e.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(RemoverTurmaFrame.this,"Turma removida com sucesso.");
-						voltar();
+						AlunosTurmaFrame newFrame = new AlunosTurmaFrame(t);
+						newFrame.setVisible(true);
+						setVisible(false);
 					} catch (ElementoNaoEncontradoException e1) {
 					}
 					
