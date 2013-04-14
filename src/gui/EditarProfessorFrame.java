@@ -92,7 +92,7 @@ public class EditarProfessorFrame extends JFrame {
 			}
 		});
 
-		btnAtualizarDados.setBounds(40, 299, 146, 50);
+		btnAtualizarDados.setBounds(36, 299, 146, 50);
 		contentPane.add(btnAtualizarDados);
 
 		comboBox = new JComboBox();
@@ -167,6 +167,26 @@ public class EditarProfessorFrame extends JFrame {
 		Scrollbar scrollbar = new Scrollbar();
 		scrollbar.setBounds(419, 183, 17, 50);
 		contentPane.add(scrollbar);
+		
+		JButton btnNewButton = new JButton("Editar Turmas");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditarProfessorTurmasFrame frameTurma = new EditarProfessorTurmasFrame((Professor) comboBox.getSelectedItem());
+				frameTurma.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(218, 299, 146, 50);
+		contentPane.add(btnNewButton);
+		
+		JButton btnEditarDisciplinas = new JButton("Editar Disciplinas");
+		btnEditarDisciplinas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EditarProfessorDisciplinasFrame frameDisciplina = new EditarProfessorDisciplinasFrame((Professor) comboBox.getSelectedItem());
+				frameDisciplina.setVisible(true);
+			}
+		});
+		btnEditarDisciplinas.setBounds(400, 299, 146, 50);
+		contentPane.add(btnEditarDisciplinas);
 
 	}
 }

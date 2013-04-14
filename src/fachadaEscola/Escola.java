@@ -604,4 +604,51 @@ public class Escola {
 		return disciplinasArray;
 
 	}
+	
+	public void removerTurmaProfessor(Professor professor, Turma turma) throws  RepositorioException, ElementoNaoEncontradoException{
+		Professor professorAux=professor;
+		try {
+			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+		} catch (ElementoNaoEncontradoException e) {
+		}
+		professorAux.removerTurma(turma);
+	}
+	
+	
+	public void adicionarTurmaProfessor(Professor professor, Turma turma) throws ElementoJaCadastradoException{
+		Professor professorAux=professor;
+		try {
+			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+		} catch (ElementoNaoEncontradoException e) {
+		}
+		professorAux.inserirTurma(turma);
+	
+	}
+	
+	public void removerDisciplinaProfessor(Professor professor, Disciplina disciplina){
+		Professor professorAux=professor;
+		try {
+			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+		} catch (ElementoNaoEncontradoException e) {
+		}
+		try {
+			professorAux.removerDisciplina(disciplina);
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	public void adicionarDisciplinaProfessor(Professor professor, Disciplina disciplina) throws ElementoJaCadastradoException{
+		Professor professorAux=professor;
+		try {
+			professorAux = (Professor) getProfessores().procurar(professor.getCpf());
+		} catch (ElementoNaoEncontradoException e) {
+		}
+		professorAux.inserirDisciplina(disciplina);
+	}
+	
 }
