@@ -424,8 +424,74 @@ public class Escola {
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Aluno) {
-				retorno += p.getNome() + " | " + p.getCpf() + "\n";
+				retorno += p.resumo()+"\n\n";
 			}
+		}
+
+		return retorno;
+	}
+	
+	public String relatorioProfessor() { // tem que fazer os metodos relatorio
+		String retorno = "";
+
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()) {
+			Pessoa p = (Pessoa) it.next();
+			if (p instanceof Professor) {
+				retorno += p.resumo()+"\n\n";
+			}
+		}
+
+		return retorno;
+	}
+	
+	public String relatorioAdm() { // tem que fazer os metodos relatorio
+		String retorno = "";
+
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()) {
+			Pessoa p = (Pessoa) it.next();
+			if (p instanceof Administrador) {
+				retorno += p.resumo()+"\n";
+			}
+		}
+
+		return retorno;
+	}
+	
+	public String relatorioFuncionario() { // tem que fazer os metodos relatorio
+		String retorno = "";
+
+		Iterator<Pessoa> it = pessoas.getIterator();
+		while (it.hasNext()) {
+			Pessoa p = (Pessoa) it.next();
+			if (p instanceof Funcionario) {
+				retorno += p.resumo()+"\n";
+			}
+		}
+
+		return retorno;
+	}
+	
+	public String relatorioTurmas() { // tem que fazer os metodos relatorio
+		String retorno = "";
+
+		Iterator<Turma> it =turmas.getIterator();
+		while (it.hasNext()) {
+			Turma p = it.next();
+			retorno += p.resumo()+"\n";
+		}
+
+		return retorno;
+	}
+	
+	public String relatorioDisc() { // tem que fazer os metodos relatorio
+		String retorno = "";
+
+		Iterator<Disciplina> it =disciplinas.getIterator();
+		while (it.hasNext()) {
+			Disciplina p = it.next();
+			retorno += p.resumo()+"\n";
 		}
 
 		return retorno;
