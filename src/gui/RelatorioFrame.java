@@ -21,6 +21,7 @@ public class RelatorioFrame extends JFrame {
 
 	private JPanel contentPane;
 	private static String tipo;
+	private JTextArea  textArea;
 
 	/**
 	 * Launch the application.
@@ -41,6 +42,7 @@ public class RelatorioFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public RelatorioFrame(String tipo) {
 		this.tipo = tipo;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,17 +51,28 @@ public class RelatorioFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(20, 48, 560, 326);
-		contentPane.add(textArea);
-	
-		/** JScrollPane sp = new JScrollPane(textArea);
-		getContentPane().add(sp);
-		add(sp, BorderLayout.CENTER);*/
 		
-		//JScrollPane jsp = new JScrollPane(textArea);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 48, 560, 326);
+		contentPane.add(scrollPane);
+
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
+	
+		if (tipo.equalsIgnoreCase("aluno")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioAlunos());
+		} else if (tipo.equalsIgnoreCase("professor")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioProfessor());
+		} else if (tipo.equalsIgnoreCase("administrador")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioAdm());
+		} else if (tipo.equalsIgnoreCase("funcionario")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioFuncionario());
+		} else if (tipo.equalsIgnoreCase("turma")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioTurmas());
+		} else if (tipo.equalsIgnoreCase("disciplina")) {
+			textArea.setText(PaginaPrincipal.fachada.relatorioDisc());
+		}
 
 		String palavra = tipo.substring(0, 1).toUpperCase()
 				+ tipo.substring(1, tipo.length()).toLowerCase();
@@ -80,34 +93,20 @@ public class RelatorioFrame extends JFrame {
 		btnVoltar.setBounds(463, 379, 117, 43);
 		contentPane.add(btnVoltar);
 		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvar();
+			}
+		});
+		btnSalvar.setBounds(342, 379, 117, 43);
+		contentPane.add(btnSalvar);
 		
-		//scrollBar.
-
-		if (tipo.equalsIgnoreCase("aluno")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioAlunos());
-		} else if (tipo.equalsIgnoreCase("professor")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioProfessor());
-		} else if (tipo.equalsIgnoreCase("administrador")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioAdm());
-		} else if (tipo.equalsIgnoreCase("funcionario")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioFuncionario());
-		} else if (tipo.equalsIgnoreCase("turma")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioTurmas());
-		} else if (tipo.equalsIgnoreCase("disciplina")) {
-			textArea.setText(PaginaPrincipal.fachada.relatorioDisc());
-		}
+	
+	}
+	public void salvar(){
+		SalvarFrame frame =new SalvarFrame(textArea.getText());
+		frame.setVisible(true);
 		
-		 JScrollPane scrollPane = new JScrollPane(textArea);
-	     scrollPane.setPreferredSize(new Dimension(300, 400));
-	     add(scrollPane);
-	     
-	     
-	        //JFrame frame = new JFrame("Test");
-	        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        //frame.add(scrollPane);
-	        //frame.pack();
-	        //frame.setLocationRelativeTo(null);
-	        //frame.setVisible(true);
-
 	}
 }

@@ -418,7 +418,7 @@ public class Escola {
 	}
 
 	public String relatorioAlunos() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Alunos\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -432,7 +432,7 @@ public class Escola {
 	}
 	
 	public String relatorioProfessor() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Professores\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -446,13 +446,13 @@ public class Escola {
 	}
 	
 	public String relatorioAdm() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Administradores\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Administrador) {
-				retorno += p.resumo()+"\n";
+				retorno += p.resumo()+"\n\n";
 			}
 		}
 
@@ -460,13 +460,13 @@ public class Escola {
 	}
 	
 	public String relatorioFuncionario() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Funcionarios\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
 			Pessoa p = (Pessoa) it.next();
 			if (p instanceof Funcionario) {
-				retorno += p.resumo()+"\n";
+				retorno += p.resumo()+"\n\n";
 			}
 		}
 
@@ -474,24 +474,24 @@ public class Escola {
 	}
 	
 	public String relatorioTurmas() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Turmas\n";
 
 		Iterator<Turma> it =turmas.getIterator();
 		while (it.hasNext()) {
 			Turma p = it.next();
-			retorno += p.resumo()+"\n";
+			retorno += p.resumo()+"\n\n";
 		}
 
 		return retorno;
 	}
 	
 	public String relatorioDisc() { // tem que fazer os metodos relatorio
-		String retorno = "";
+		String retorno = "Relatorio de Disciplinas\n";
 
 		Iterator<Disciplina> it =disciplinas.getIterator();
 		while (it.hasNext()) {
 			Disciplina p = it.next();
-			retorno += p.resumo()+"\n";
+			retorno += p.resumo()+"\n\n";
 		}
 
 		return retorno;
