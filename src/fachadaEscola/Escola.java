@@ -525,4 +525,24 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 		}
 		return funcionarios;
 	}
+	public RepositorioArrayTurma getArrayTurma(){
+		RepositorioArrayTurma turmasArray = new RepositorioArrayTurma();
+		Iterator<Turma> it = this.turmas.getIterator();
+		while (it.hasNext()){
+			Turma turma = it.next();
+			turmasArray.inserir(turma);
+			}
+		return turmasArray;
+	
+	}
+	public RepositorioArrayDisciplina getArrayDisciplina(){
+		RepositorioArrayDisciplina disciplinasArray = new RepositorioArrayDisciplina();
+		Iterator<Disciplina> it = this.disciplinas.getIterator();
+		while (it.hasNext()){
+			Disciplina disciplina = it.next();
+			disciplinasArray.inserir(disciplina);
+			}
+		return disciplinasArray;
+	
+	}
 }

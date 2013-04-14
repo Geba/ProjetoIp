@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class EditarAdministradorFrame extends JFrame {
+public class EditarAdmFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JComboBox<Pessoa> comboBox;
@@ -39,7 +39,7 @@ public class EditarAdministradorFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditarAdministradorFrame frame = new EditarAdministradorFrame();
+					EditarAdmFrame frame = new EditarAdmFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class EditarAdministradorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditarAdministradorFrame() {
+	public EditarAdmFrame() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
@@ -76,7 +76,7 @@ public class EditarAdministradorFrame extends JFrame {
 				try {
 					p = (Pessoa) comboBox.getSelectedItem();
 				} catch (NullPointerException e) {
-					JOptionPane.showMessageDialog(EditarAdministradorFrame.this,
+					JOptionPane.showMessageDialog(EditarAdmFrame.this,
 							"Selecione um Administrador:");
 				}
 				AtualizarAdmFrame frame = new AtualizarAdmFrame(

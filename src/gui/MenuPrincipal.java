@@ -208,7 +208,7 @@ public class MenuPrincipal extends JFrame {
 		btnRemover.setBounds(142, 291, 97, 50);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
 					RemoverFrame frame = new RemoverFrame(tipo);
 					frame.setVisible(true);
@@ -230,21 +230,25 @@ public class MenuPrincipal extends JFrame {
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("funcionario")) {
-					//EditarfuncionarioFrame frame = new EditarfuncionarioFrame();
-					//frame.setVisible(true);
+					EditarFuncionarioFrame frame = new EditarFuncionarioFrame();
+					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("aluno")) {
 					EditarAlunoFrame frame = new EditarAlunoFrame();
 					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("administrador")) {
-					//EditarAdmFrame frame = new EditarAdmFrame();
-					//frame.setVisible(true);
+					EditarAdmFrame frame = new EditarAdmFrame();
+					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("disciplina")) {
-
+					EditarDisciplinaFrame frame = new EditarDisciplinaFrame();
+					frame.setVisible(true);
+					setVisible(false);
 				} else if (tipo.equals("turma")) {
-
+					EditarTurmaFrame frame = new EditarTurmaFrame();
+					frame.setVisible(true);
+					setVisible(false);
 				} else {
 
 					JOptionPane.showMessageDialog(MenuPrincipal.this,
