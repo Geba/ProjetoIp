@@ -418,7 +418,7 @@ public class Escola {
 	}
 
 	public String relatorioAlunos() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Alunos\n";
+		String retorno = "Relatorio de Alunos\n\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -432,7 +432,7 @@ public class Escola {
 	}
 	
 	public String relatorioProfessor() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Professores\n";
+		String retorno = "Relatorio de Professores\n\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -446,7 +446,7 @@ public class Escola {
 	}
 	
 	public String relatorioAdm() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Administradores\n";
+		String retorno = "Relatorio de Administradores\n\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -460,7 +460,7 @@ public class Escola {
 	}
 	
 	public String relatorioFuncionario() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Funcionarios\n";
+		String retorno = "Relatorio de Funcionarios\n\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
 		while (it.hasNext()) {
@@ -474,7 +474,7 @@ public class Escola {
 	}
 	
 	public String relatorioTurmas() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Turmas\n";
+		String retorno = "Relatorio de Turmas\n\n";
 
 		Iterator<Turma> it =turmas.getIterator();
 		while (it.hasNext()) {
@@ -486,7 +486,7 @@ public class Escola {
 	}
 	
 	public String relatorioDisc() { // tem que fazer os metodos relatorio
-		String retorno = "Relatorio de Disciplinas\n";
+		String retorno = "Relatorio de Disciplinas\n\n";
 
 		Iterator<Disciplina> it =disciplinas.getIterator();
 		while (it.hasNext()) {

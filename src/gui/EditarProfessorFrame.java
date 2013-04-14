@@ -182,7 +182,7 @@ public class EditarProfessorFrame extends JFrame {
 		btnEditarDisciplinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditarProfessorDisciplinasFrame frameDisciplina = new EditarProfessorDisciplinasFrame((Professor) comboBox.getSelectedItem());
-				frameDisciplina.setVisible(true);
+				setVisible(true);
 			}
 		});
 		btnEditarDisciplinas.setBounds(400, 299, 146, 50);
