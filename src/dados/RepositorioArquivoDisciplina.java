@@ -33,10 +33,11 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 			this.wb = new HSSFWorkbook(file);
 			sheet1 = wb.getSheet("Disciplinas");
 			stream = new FileOutputStream("planilha.xls");
+			System.out.println("achou td disc");
 			stream.flush();
 			stream.close();
 		} catch (FileNotFoundException e1) {
-			System.out.println("n achou");
+			System.out.println("n achou disc");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet("Disciplinas");
 			try {
@@ -51,7 +52,7 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 			}
 			abrir = true;
 		} catch (IOException e) {
-			System.out.println("n achou");
+			System.out.println("n achou disc2");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet("Disciplinas");
 			try {
@@ -78,14 +79,14 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		boolean acabou = false;
 
 		while (!acabou) {
-			HSSFRow row =null;
-			
-			try{
+			HSSFRow row = null;
+
+			try {
 				row = this.sheet1.getRow(i);
-				}catch(NullPointerException e){
-					System.out.println("null pointer");
-				}
-			
+			} catch (NullPointerException e) {
+				System.out.println("null pointer disc");
+			}
+
 			HSSFCell cell = null;
 			boolean pulou = false;
 			try {
@@ -209,18 +210,16 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 
 		sheet1 = wb.getSheet("Disciplinas");
 
-		
 		Disciplina d = null;
-		
-		int i=this.getLinha(nome);
-		
+
+		int i = this.getLinha(nome);
+
 		HSSFRow row = sheet1.getRow(i);
-		HSSFCell cell = row.getCell((short)0);
+		HSSFCell cell = row.getCell((short) 0);
 		String nome1 = cell.getStringCellValue();
-		String ementa = row.getCell((short)1).getStringCellValue();
-		
-		d=new Disciplina(nome1, ementa);
-		
+		String ementa = row.getCell((short) 1).getStringCellValue();
+
+		d = new Disciplina(nome1, ementa);
 
 		try {
 			wb.write(stream);
@@ -265,13 +264,12 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		}
 
 		sheet1 = wb.getSheet("Disciplinas");
-		
-		int aux=this.getLinha(item.getNome());
-		//HSSFRow row2 = sheet1.getRow(aux);
+
+		int aux = this.getLinha(item.getNome());
+		// HSSFRow row2 = sheet1.getRow(aux);
 		HSSFRow row = sheet1.createRow(aux);
 		row.createCell((short) 0).setCellValue(item.getNome());
 		row.createCell((short) 1).setCellValue(item.getEmenta());
-		
 
 		try {
 			wb.write(stream);
@@ -316,8 +314,8 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		}
 
 		sheet1 = wb.getSheet("Disciplinas");
-		
-		int aux=this.getLinha(nome);
+
+		int aux = this.getLinha(nome);
 		HSSFRow row2 = sheet1.getRow(aux);
 		for (int k = 0; k < 2; k++) {
 			row2.getCell((short) k).setCellValue("-");
@@ -343,9 +341,10 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 
 	@Override
 	public Iterator<Disciplina> getIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<Disciplina> it = new IteratorArquivoDisciplina("Disciplinas");
+		return it;
 	}
+
 	public String imprimir() {
 		String retorno = "";
 
@@ -373,9 +372,9 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		for (int i = 0; i < cont; i++) {
 			String nome = lerCelula(i, 0);
 			String ementa = lerCelula(i, 1);
-			
+
 			if (!nome.equals("")) {
-				retorno += nome + " / " + ementa+"\n";
+				retorno += nome + " / " + ementa + "\n";
 			}
 		}
 
@@ -396,26 +395,92 @@ public class RepositorioArquivoDisciplina implements Repositorio<Disciplina> {
 		}
 		return retorno;
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public int getLinha(String nome) throws ElementoNaoEncontradoException{
-		int i=0;
-		String str="";
+	public int getLinha(String nome) throws ElementoNaoEncontradoException {
+		int i = 0;
+		String str = "";
 		boolean achou = false;
-		
-		for(;i<this.cont && !achou; i++){
+
+		for (; i < this.cont && !achou; i++) {
 			HSSFRow row = sheet1.getRow(i);
-			HSSFCell cell = row.getCell((short)0);
+			HSSFCell cell = row.getCell((short) 0);
 			str = cell.getStringCellValue();
-			if(str.equals(nome)){
-				achou=true;
+			if (str.equals(nome)) {
+				achou = true;
 			}
 		}
-		
-		if(!achou){
+
+		if (!achou) {
 			throw new ElementoNaoEncontradoException();
 		}
-		
+
 		return --i;
+	}
+
+	@SuppressWarnings("deprecation")
+	public RepositorioArrayDisciplina procurarNome(String nome)
+			throws ElementoNaoEncontradoException {
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Disciplinas");
+
+		RepositorioArrayDisciplina disc = new RepositorioArrayDisciplina();
+
+		int i = 0;
+		String str = "";
+		boolean achou = false;
+
+		for (; i < this.cont && !achou; i++) {
+			HSSFRow row = sheet1.getRow(i);
+			HSSFCell cell = row.getCell((short) 0);
+			str = cell.getStringCellValue();
+			if (str.toLowerCase().contains(nome.toLowerCase())) {
+				try {
+					disc.inserir(this.procurar(str));
+				} catch (ElementoNaoEncontradoException e) {
+
+				}
+				achou = true;
+			}
+		}
+
+		if (!achou) {
+			throw new ElementoNaoEncontradoException();
+		}
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e3) {
+			System.out.println("erro close");
+		}
+		return disc;
 	}
 }

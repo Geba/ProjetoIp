@@ -65,7 +65,8 @@ public class Escola {
 		// - PARA TESTES -
 		// - PARA TESTES -
 
-		Endereco end = new Endereco("Rua", "123", "Bairro", "51030630", "Cidade", "Estado", "Pais");
+		Endereco end = new Endereco("Rua", "123", "Bairro", "51030630",
+				"Cidade", "Estado", "Pais");
 		Turma turma = new Turma("tumrma1");
 		Pessoa bruna = new Aluno("00000000001", "Bruna", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
@@ -73,13 +74,15 @@ public class Escola {
 				"", end, "Luiz", "Nancy", turma);
 		Pessoa alana = new Aluno("00000000003", "Laryssa", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
-		Pessoa geovane = new Aluno("00000000004","Geovane Silva Pereira", "08/11/1992", "83830480504", "M", "34626209", end, "Gilvan", "Marcia", turma);
+		Pessoa geovane = new Aluno("00000000004", "Geovane Silva Pereira",
+				"08/11/1992", "83830480504", "M", "34626209", end, "Gilvan",
+				"Marcia", turma);
 
 		Pessoa geovane2 = new Aluno("00000000005", "Geovane2", "", "7727724",
 				"F", "", end, "Luiz", "Nancy", turma);
 
-		Pessoa novo = new Aluno("00000000006", "Fulano", "", "7727724", "F", "",
-				end, "Luiz", "Nancy", turma);
+		Pessoa novo = new Aluno("00000000006", "Fulano", "", "7727724", "F",
+				"", end, "Luiz", "Nancy", turma);
 
 		Pessoa timmy = new Aluno("00000000007", "Timmy Turner", "", "34655843",
 				"F", "", end, "Pai", "Mae", turma);
@@ -89,33 +92,35 @@ public class Escola {
 				"", end, "Pai", "Mae", turma);
 		Pessoa vaca = new Aluno("00000000010", "vaca", "", "1245789", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa jerry = new Aluno("00000000012", "Jerry", "", "12235521", "F", "",
-				end, "Pai", "Mae", turma);
+		Pessoa jerry = new Aluno("00000000012", "Jerry", "", "12235521", "F",
+				"", end, "Pai", "Mae", turma);
 		Pessoa tom = new Aluno("00000000013", "Tom", "", "12235521", "F", "",
 				end, "Pai", "Mae", turma);
-		Pessoa johny = new Aluno("00000000014", "Johny", "", "12233421", "F", "",
-				end, "Pai", "Mae", turma);
-		Pessoa lindinha = new Aluno("00000000015", "Lindinha", "", "122321", "F",
+		Pessoa johny = new Aluno("00000000014", "Johny", "", "12233421", "F",
 				"", end, "Pai", "Mae", turma);
+		Pessoa lindinha = new Aluno("00000000015", "Lindinha", "", "122321",
+				"F", "", end, "Pai", "Mae", turma);
 		Pessoa docinho = new Aluno("00000000011", "Docinho", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("00000000016", "Florzinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa untonio = new Professor("00000000017", "Untonio", "", "123454433",
-				"F", "333333333", end, "ser pai");
-		Pessoa prof = new Professor("00000000018", "Profinho", "", "1234588833",
-				"F", "333333333", end, "ser pai");
-		Pessoa untonio2 = new Professor("00000000019", "Untonio", "", "123454433",
-				"F", "333333333", end, "ser pai");
-		Pessoa untonio3 = new Professor("00000000020", "Untonio", "", "123454433",
-				"F", "333333333", end, "ser pai");
-		Pessoa untonio4 = new Professor("00000000021", "Untonio", "", "123454433",
-				"F", "333333333", end, "ser pai");
+		Pessoa untonio = new Professor("00000000017", "Untonio", "",
+				"123454433", "F", "333333333", end, "ser pai");
+		Pessoa prof = new Professor("00000000018", "Profinho", "",
+				"1234588833", "F", "333333333", end, "ser pai");
+		Pessoa untonio2 = new Professor("00000000019", "Untonio", "",
+				"123454433", "F", "333333333", end, "ser pai");
+		Pessoa untonio3 = new Professor("00000000020", "Untonio", "",
+				"123454433", "F", "333333333", end, "ser pai");
+		Pessoa untonio4 = new Professor("00000000021", "Untonio", "",
+				"123454433", "F", "333333333", end, "ser pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");
 		Disciplina d2 = new Disciplina("disc2", "ser legal");
 		Disciplina d3 = new Disciplina("disc3", "ser legal");
-turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(d3);
+		turma.inserirDisciplina(d1);
+		turma.inserirDisciplina(d2);
+		turma.inserirDisciplina(d3);
 		try {
 			pessoas.inserir(untonio4);
 			pessoas.inserir(untonio3);
@@ -149,7 +154,8 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			((Professor) untonio2).inserirDisciplina(d1);
 			((Professor) untonio2).inserirDisciplina(d2);
 			((Professor) untonio2).inserirDisciplina(d3);
-			((Professor) untonio2).inserirTurma(turma);((Professor) untonio4).inserirDisciplina(d1);
+			((Professor) untonio2).inserirTurma(turma);
+			((Professor) untonio4).inserirDisciplina(d1);
 			((Professor) untonio4).inserirDisciplina(d2);
 			((Professor) untonio4).inserirDisciplina(d3);
 			((Professor) untonio4).inserirTurma(turma);
@@ -205,7 +211,9 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			throws EntradaInvalidaException, ElementoJaCadastradoException,
 			RepositorioException {
 		try {
-			Pessoa p = pessoas.procurar(cpf);//verifica se a pessoa já foi cadastrada. Se sim, é jogado o erro.
+			Pessoa p = pessoas.procurar(cpf);// verifica se a pessoa já foi
+												// cadastrada. Se sim, é jogado
+												// o erro.
 			throw new ElementoJaCadastradoException();
 		} catch (ElementoNaoEncontradoException e) {
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade,
@@ -402,7 +410,7 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			try {
 				turmas.atualizar(turmaAtualizada);
 			} catch (RepositorioException e) {
-				
+
 			}
 		} catch (ElementoNaoEncontradoException e) {
 
@@ -460,69 +468,74 @@ turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(
 			Professor professorAtualizado) {
 		professorOriginal = professorAtualizado;
 	}
-	
-	public RepositorioArrayPessoa  getAlunos(){
+
+	public RepositorioArrayPessoa getAlunos() {
 		RepositorioArrayPessoa alunos = new RepositorioArrayPessoa();
 		Iterator<Pessoa> it = pessoas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Pessoa p = it.next();
-			if(p instanceof Aluno){
+			if (p instanceof Aluno) {
 				alunos.inserir(p);
 			}
 		}
 		return alunos;
 	}
-	public RepositorioArrayPessoa  getProfessores(){
+
+	public RepositorioArrayPessoa getProfessores() {
 		RepositorioArrayPessoa professores = new RepositorioArrayPessoa();
 		Iterator<Pessoa> it = pessoas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Pessoa p = it.next();
-			if(p instanceof Professor){
+			if (p instanceof Professor) {
 				professores.inserir(p);
 			}
 		}
 		return professores;
 	}
-	public RepositorioArrayPessoa  getAdministradores(){
+
+	public RepositorioArrayPessoa getAdministradores() {
 		RepositorioArrayPessoa administradores = new RepositorioArrayPessoa();
 		Iterator<Pessoa> it = pessoas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Pessoa p = it.next();
-			if(p instanceof Administrador){
+			if (p instanceof Administrador) {
 				administradores.inserir(p);
 			}
 		}
 		return administradores;
 	}
-	public RepositorioArrayPessoa  getFuncionarios(){
+
+	public RepositorioArrayPessoa getFuncionarios() {
 		RepositorioArrayPessoa funcionarios = new RepositorioArrayPessoa();
 		Iterator<Pessoa> it = pessoas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Pessoa p = it.next();
-			if(p instanceof Professor){
+			if (p instanceof Professor) {
 				funcionarios.inserir(p);
 			}
 		}
 		return funcionarios;
 	}
-	public RepositorioArrayTurma getArrayTurma(){
+
+	public RepositorioArrayTurma getArrayTurma() {
 		RepositorioArrayTurma turmasArray = new RepositorioArrayTurma();
 		Iterator<Turma> it = this.turmas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Turma turma = it.next();
 			turmasArray.inserir(turma);
-			}
+		}
 		return turmasArray;
-	
+
 	}
-	public RepositorioArrayDisciplina getArrayDisciplina(){
+
+	public RepositorioArrayDisciplina getArrayDisciplina() {
 		RepositorioArrayDisciplina disciplinasArray = new RepositorioArrayDisciplina();
 		Iterator<Disciplina> it = this.disciplinas.getIterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			Disciplina disciplina = it.next();
 			disciplinasArray.inserir(disciplina);
-			}
+		}
 		return disciplinasArray;
-	
+
 	}
 }

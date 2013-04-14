@@ -55,7 +55,7 @@ public class AtualizarAlunoFrame extends JFrame {
 	private JTextField textPais;
 	private JTextField textTelefone;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JComboBox<Turma> cbxTurma ;
+	private JComboBox cbxTurma ;
 	//private static Aluno aluno;
 	JRadioButton rdbtnMasculino;
 	JRadioButton rdbtnFeminino;
@@ -268,7 +268,7 @@ public class AtualizarAlunoFrame extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 		
-		cbxTurma = new JComboBox<Turma>();
+		cbxTurma = new JComboBox();
 		cbxTurma.setBounds(70, 337, 141, 27);
 		contentPane.add(cbxTurma);
 		

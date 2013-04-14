@@ -10,7 +10,6 @@ import java.util.Iterator;
 
 //import modificacoes.RepositorioArrayPessoa2;
 
-
 import org.apache.poi.hssf.usermodel.*;
 
 import classesBase.*;
@@ -29,9 +28,10 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
 	// boolean primeiravez = true;
 
-	public int getCont(){
+	public int getCont() {
 		return this.cont;
 	}
+
 	public RepositorioArquivoPessoa() {
 
 		try {
@@ -42,9 +42,11 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			stream.flush();
 			stream.close();
 		} catch (FileNotFoundException e1) {
-			System.out.println("n achou");
+			//System.out.println("n achou");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet("Pessoas");
+			wb.createSheet("Turmas");
+			wb.createSheet("Disciplinas");
 			try {
 				stream = new FileOutputStream("planilha.xls");
 				wb.write(stream);
@@ -55,10 +57,12 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			} catch (IOException e) {
 				System.out.println("erro dentro");
 			}
-			//abrir = true;
+			// abrir = true;
 		} catch (IOException e) {
-			System.out.println("n achou");
+			//System.out.println("n achou");
 			wb = new HSSFWorkbook();
+			wb.createSheet("Turmas");
+			wb.createSheet("Disciplinas");
 			this.sheet1 = wb.createSheet("Pessoas");
 			try {
 				stream = new FileOutputStream("planilha.xls");
@@ -70,7 +74,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			} catch (IOException f) {
 				System.out.println("erro dentro");
 			}
-			//abrir = true;
+			// abrir = true;
 		}
 
 		pessoas = new RepositorioArrayPessoa();
@@ -88,23 +92,21 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 		boolean acabou = false;
 
 		while (!acabou) {
-			HSSFRow row=null;
-			
-			
-			try{
-			row = this.sheet1.getRow(i);
-			}catch(NullPointerException e){
-				System.out.println("null pointer");
+			HSSFRow row = null;
+
+			try {
+				row = this.sheet1.getRow(i);
+			} catch (NullPointerException e) {
+				System.out.println("null pointer oi");
 			}
-			
-			
+
 			HSSFCell cell = null;
 			boolean pulou = false;
 			try {
 				cell = row.getCell((short) 0);
 			} catch (NullPointerException e) {
 				acabou = true;
-				System.out.println("acabou");
+				//System.out.println("acabou");
 			}
 			if (cell != null) {
 
@@ -115,7 +117,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 					try {
 						tipoPessoa = cell1.getNumericCellValue();
 					} catch (NumberFormatException e1) {
-						System.out.print("achou um vazio");
+						//System.out.print("achou um vazio");
 						pulou = true;
 					}
 				}
@@ -160,7 +162,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 						if (!sal.equals("")) {
 							salario = Double.parseDouble(lerCelula(i, 18));
 						} else {
-							salario=0.0;
+							salario = 0.0;
 						}
 					} catch (NumberFormatException e) {
 						HSSFCell cell7 = row.getCell((short) 18);
@@ -401,7 +403,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
 	}
 
-	//@SuppressWarnings({ "deprecation", "unused" })
+	// @SuppressWarnings({ "deprecation", "unused" })
 	public Pessoa procurar(String cpf) throws ElementoNaoEncontradoException {
 		return pessoas.procurar(cpf);
 	}
@@ -431,7 +433,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 		}
 
 		sheet1 = wb.getSheet("Pessoas");
-		int i=pessoas.procurarIndice(p.getCpf());
+		int i = pessoas.procurarIndice(p.getCpf());
 		HSSFRow row = sheet1.createRow(i);
 		if (p instanceof Aluno) {
 
@@ -460,7 +462,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 			row.createCell((short) 18).setCellValue("");
 			row.createCell((short) 19).setCellValue(p.getTelefone());
 		} else if (p instanceof Administrador) {
-			
+
 			row.createCell((short) 0).setCellValue("2");
 			row.createCell((short) 1).setCellValue(p.getCpf());
 			row.createCell((short) 2).setCellValue(p.getNome());
@@ -516,7 +518,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 					((Professor) p).getSalario());
 			row2.createCell((short) 19).setCellValue(p.getTelefone());
 		} else if (p instanceof Funcionario) {
-			//HSSFRow row = sheet1.createRow(cont);
+			// HSSFRow row = sheet1.createRow(cont);
 			// System.out.println("entrou no gravar pessoa funco >" + cont);
 			row.createCell((short) 0).setCellValue("4");
 			row.createCell((short) 1).setCellValue(p.getCpf());
@@ -558,7 +560,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 		} catch (IOException e) {
 			System.out.println("erro close");
 		}
-		
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -589,7 +591,7 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 
 		int i = pessoas.procurarIndice(cpf);
 
-		//System.out.println(i);
+		// System.out.println(i);
 
 		HSSFRow row = sheet1.getRow(i);
 		for (int k = 0; k < 19; k++) {
@@ -680,39 +682,117 @@ public class RepositorioArquivoPessoa implements Repositorio<Pessoa> {
 		}
 		return retorno;
 	}
+
 	@Override
 	public Iterator<Pessoa> getIterator() {
 		Iterator<Pessoa> it = new IteratorArquivoPessoa("Pessoas");
 		return it;
 	}
-	
+
 	@SuppressWarnings("deprecation")
-	public int getLinha(String cpf) throws ElementoNaoEncontradoException{
-		int i=0;
-		String str="";
-		boolean achou = false;
+	public int getLinha(String cpf) throws ElementoNaoEncontradoException {
 		
-		for(;i<this.cont && !achou; i++){
+		int i = 0;
+		String str = "";
+		boolean achou = false;
+
+		for (; i < this.cont && !achou; i++) {
 			HSSFRow row = sheet1.getRow(i);
-			HSSFCell cell = row.getCell((short)1);
-			try{
-			str = cell.getStringCellValue();
-			//System.out.println("entrou no 1 str: "+str+" cpf: "+cpf);
-			}catch (NumberFormatException e){
-				str = ""+cell.getNumericCellValue();
-				//System.out.println("entrou no 2");
+			HSSFCell cell = row.getCell((short) 1);
+			try {
+				str = cell.getStringCellValue();
+				// System.out.println("entrou no 1 str: "+str+" cpf: "+cpf);
+			} catch (NumberFormatException e) {
+				str = "" + cell.getNumericCellValue();
+				// System.out.println("entrou no 2");
 			}
-			
-			if(str.equals(cpf)){
-				achou=true;
+
+			if (str.equals(cpf)) {
+				achou = true;
 			}
 		}
-		
-		if(!achou){
+
+		if (!achou) {
 			throw new ElementoNaoEncontradoException();
+		}
+
+		
+		try {
+			wb.write(stream);
+		} catch (IOException e) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e) {
+			System.out.println("erro close");
 		}
 		
 		return --i;
+	}
+
+	@SuppressWarnings("deprecation")
+	public RepositorioArrayPessoa procurarNome(String nome)
+			throws ElementoNaoEncontradoException {
+		
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Pessoas");
+		//Pessoa p = null;
+		boolean achou = false;
+		RepositorioArrayPessoa resultado = new RepositorioArrayPessoa();
+		int i = 0;
+		String str = "", cpf = "";
+		for (; i < this.cont; i++) {
+			HSSFRow row = sheet1.getRow(i);
+			HSSFCell cell = row.getCell((short) 2);
+			try {
+				str = cell.getStringCellValue();
+				// System.out.println("entrou no 1 str: "+str+" cpf: "+cpf);
+			} catch (NumberFormatException e) {
+				str = "" + cell.getNumericCellValue();
+				// System.out.println("entrou no 2");
+			}
+			if (str.toLowerCase().contains(nome.toLowerCase())) {
+				HSSFCell cell2 = row.getCell((short) 1);
+				try {
+					str = cell2.getStringCellValue();
+					// System.out.println("entrou no 1 str: "+str+" cpf: "+cpf);
+				} catch (NumberFormatException e) {
+					str = "" + cell2.getNumericCellValue();
+					// System.out.println("entrou no 2");
+				}
+				resultado.inserir(this.procurar(cpf));
+				achou=true;
+			}
+		}
+
+		if (achou == false) {
+			throw new ElementoNaoEncontradoException();
+		}
+		return resultado;
 	}
 
 }

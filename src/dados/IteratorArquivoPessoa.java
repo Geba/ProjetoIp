@@ -124,7 +124,7 @@ public class IteratorArquivoPessoa extends IteratorArquivo<Pessoa> implements
 				telefone = "" + cell7.getNumericCellValue();
 			}
 
-			i--;
+			//i--;
 
 			Endereco end = new Endereco(rua, numero, bairro, cep, cidade,
 					estado, pais);

@@ -51,6 +51,10 @@ public class IteratorArquivoTurma extends IteratorArquivo<Turma> implements
 		HSSFRow row = null;
 
 		int i = super.indiceAtual;
+		
+		if (i==-1)
+			i++;
+		
 		row = this.sheet1.getRow(i);
 
 		if (!lerCelula(i, 0).equals("-")) {

@@ -39,10 +39,11 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 			this.wb = new HSSFWorkbook(file);
 			sheet1 = wb.getSheet("Turmas");
 			stream = new FileOutputStream("planilha.xls");
+			System.out.println();
 			stream.flush();
 			stream.close();
 		} catch (FileNotFoundException e1) {
-			System.out.println("n achou");
+			System.out.println("n achou turmas1");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet("Turmas");
 			try {
@@ -57,7 +58,7 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 			}
 			abrir = true;
 		} catch (IOException e) {
-			System.out.println("n achou");
+			System.out.println("n achou turmasIOEXCEP");
 			wb = new HSSFWorkbook();
 			this.sheet1 = wb.createSheet("Turmas");
 			try {
@@ -79,6 +80,8 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 	}
 
 	public void lerPlanilha() {
+		
+		
 
 		Turma turma = null;
 
@@ -89,11 +92,16 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 
 		while (!acabou) {
 			HSSFRow row = null;
+			
+			this.sheet1=wb.getSheet("Turmas");
 
+			if (i==-1)
+				i++;
+			
 			try {
 				row = this.sheet1.getRow(i);
 			} catch (NullPointerException e) {
-				System.out.println("null pointer");
+				System.out.println("null pointer turma");
 			}
 
 			HSSFCell cell = null;
@@ -132,6 +140,7 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 				acabou = true;
 			}
 		}
+		
 
 	}
 
@@ -208,6 +217,7 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 		return t;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void atualizar(Turma item) throws ElementoNaoEncontradoException,
 			RepositorioException {
@@ -378,4 +388,66 @@ public class RepositorioArquivoTurma implements Repositorio<Turma> {
 		return --i;
 	}
 
+	@SuppressWarnings("deprecation")
+	public RepositorioArrayTurma procurarNome(String nome) throws ElementoNaoEncontradoException{
+		try {
+			file = new FileInputStream(new File("planilha.xls"));
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro1");
+		}
+
+		try {
+			this.wb = new HSSFWorkbook(file);
+		} catch (IOException e1) {
+			// System.out.println("erro2");
+			// System.out.println(e1.getMessage());
+		}
+
+		try {
+			stream = new FileOutputStream("planilha.xls");
+		} catch (FileNotFoundException e1) {
+			// System.out.println("erro3");
+		}
+
+		sheet1 = wb.getSheet("Turmas");
+		
+		
+		RepositorioArrayTurma turmas = new RepositorioArrayTurma();
+		int i=0;
+		String str="";
+		boolean achou = false;
+		
+		for(;i<this.cont && !achou; i++){
+			HSSFRow row = sheet1.getRow(i);
+			HSSFCell cell = row.getCell((short)0);
+			str = cell.getStringCellValue();
+			if(str.toLowerCase().contains(nome.toLowerCase())){
+				turmas.inserir(this.procurar(nome));
+				achou=true;
+			}
+		}
+		
+		if(!achou){
+			throw new ElementoNaoEncontradoException();
+		}
+		
+
+		try {
+			wb.write(stream);
+		} catch (IOException e1) {
+			System.out.println("erro no stream");
+		}
+		try {
+			stream.flush();
+		} catch (IOException e2) {
+			System.out.println("erro flush");
+		}
+		try {
+			stream.close();
+		} catch (IOException e3) {
+			System.out.println("erro close");
+		}
+		return turmas;
+
+	}
 }

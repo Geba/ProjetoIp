@@ -51,7 +51,7 @@ public class testeArquivoPessoa {
 		System.out.println("imprimindo: ");
 		System.out.println(pessoas.getPessoas().imprimir());
 
-		/**try {
+		try {
 			pessoas.inserir(prof);
 			pessoas.inserir(geba);
 			pessoas.inserir(bruna);
@@ -59,13 +59,13 @@ public class testeArquivoPessoa {
 			pessoas.inserir(laryssa);
 		} catch (RepositorioException e) {
 			System.out.println("n deu certo");
-		}*/
+		}
 
 		System.out.println("imprimindo inseriu: ");
 		System.out.println(pessoas.imprimir());
 
 		try {
-			//pessoas.remover("90909090");
+			pessoas.remover("90909090");
 			pessoas.atualizar(item);
 			//System.out.println(pessoas.procurar("83830480504").getNome());
 			//System.out.println(pessoas.getPessoas().procurar("83830480504").getNome()+" <<<<\n");
@@ -84,7 +84,7 @@ public class testeArquivoPessoa {
 		Iterator<Pessoa> it = new IteratorArquivoPessoa("Pessoas");
 
 		while(it.hasNext()){ 
-			//System.out.println("CONT DO ITERATOR: "+((IteratorArquivo<Pessoa>) it).getIndice());
+			System.out.println("CONT DO ITERATOR: "+((IteratorArquivo<Pessoa>) it).getIndice());
 			try{System.out.println(it.next().getNome()+"");
 
 			}catch(NullPointerException e){
