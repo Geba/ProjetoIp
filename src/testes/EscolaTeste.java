@@ -8,6 +8,7 @@ import classesBase.Turma;
 import dados.RepositorioArrayPessoa;
 import dados.RepositorioListaPessoa;
 import excecoes.ElementoNaoEncontradoException;
+import gui.EditarProfessorFrame;
 
 public class EscolaTeste {
 
@@ -79,4 +80,12 @@ public class EscolaTeste {
 		}
 		return untonio;
 		}
+	
+	public static void main(String[] args) {	
+	EditarProfessorFrame frame = new EditarProfessorFrame();
+	
+	}
+	
+	
+	
 }

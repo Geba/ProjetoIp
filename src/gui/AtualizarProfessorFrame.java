@@ -133,7 +133,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		rdbtnFeminino = new JRadioButton("Feminino");
 		rdbtnFeminino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Feminino";
+				sexo = "F";
 			}
 		});
 		buttonGroup.add(rdbtnFeminino);
@@ -143,7 +143,7 @@ public class AtualizarProfessorFrame extends JFrame {
 		rdbtnMasculino = new JRadioButton("Masculino");
 		rdbtnMasculino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Masculino";
+				sexo = "M";
 			}
 		});
 		buttonGroup.add(rdbtnMasculino);
@@ -308,7 +308,7 @@ public class AtualizarProfessorFrame extends JFrame {
 			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal,
 					funcionarioAux);
 			JOptionPane.showMessageDialog(this,
-					"Funcionario atualizado com sucesso.");
+					"Professor atualizado com sucesso.");
 			voltar();
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this, "Erro no repositorio.");

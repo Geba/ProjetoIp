@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import java.awt.Scrollbar;
 
 
 
@@ -159,7 +160,10 @@ public class EditarProfessorFrame extends JFrame {
 		});
 		btnPesquisar.setBounds(377, 50, 125, 23);
 		contentPane.add(btnPesquisar);
+		
+		Scrollbar scrollbar = new Scrollbar();
+		scrollbar.setBounds(419, 183, 17, 50);
+		contentPane.add(scrollbar);
 
 	}
-
 }

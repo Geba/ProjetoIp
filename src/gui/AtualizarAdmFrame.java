@@ -123,7 +123,7 @@ public class AtualizarAdmFrame extends JFrame {
 		JRadioButton rdbtnFeminino = new JRadioButton("Feminino");
 		rdbtnFeminino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Feminino";
+				sexo = "F";
 			}
 		});
 		buttonGroup.add(rdbtnFeminino);
@@ -133,7 +133,7 @@ public class AtualizarAdmFrame extends JFrame {
 		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
 		rdbtnMasculino.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexo = "Masculino";
+				sexo = "M";
 			}
 		});
 		buttonGroup.add(rdbtnMasculino);

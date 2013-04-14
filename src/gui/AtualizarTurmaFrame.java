@@ -145,7 +145,7 @@ public class AtualizarTurmaFrame extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblSelecioneOTurma = new JLabel(
-				"Selecione o Turma a ser editado:");
+				"Selecione a Turma a ser editada:");
 		lblSelecioneOTurma.setBounds(40, 30, 254, 16);
 		contentPane.add(lblSelecioneOTurma);
 
