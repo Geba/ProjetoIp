@@ -20,8 +20,11 @@ public class IteratorArrayDisciplina implements Iterator<Disciplina> {
 	}
 
 	public boolean hasNext() {
+		if(this.contador==0){
+			return false;
+		}else{
 		return this.indiceAtual < this.contador;
-	}
+	}}
 
 	public Disciplina next() {
 		if (!hasNext()) {

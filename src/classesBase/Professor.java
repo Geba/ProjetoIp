@@ -15,13 +15,13 @@ public class Professor extends Empregado {
 			String rg, String sexo, String telefone, Endereco endereco,
 			String funcao) {
 		super(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-		turmas = new RepositorioArrayTurma();
-		disciplinas = new RepositorioArrayDisciplina();
+		this.turmas = new RepositorioArrayTurma();
+		this.disciplinas = new RepositorioArrayDisciplina();
 
 	}
 
 	public Repositorio<Turma> getTurmas() {
-		return turmas;
+		return this.turmas;
 	}
 
 	public void setTurmas(Repositorio<Turma> turmas) {
@@ -84,8 +84,8 @@ public class Professor extends Empregado {
 	public String resumo(){
 		String resumo = super.resumo();
 		
-		Iterator<Turma> itTurmas = turmas.getIterator();
-		Iterator<Disciplina> itDisciplinas = disciplinas.getIterator();
+		Iterator<Turma> itTurmas = this.turmas.getIterator();
+		Iterator<Disciplina> itDisciplinas = this.disciplinas.getIterator();
 		resumo+="\nTurmas:";
 		while (itTurmas.hasNext()){
 			Turma turma = itTurmas.next();

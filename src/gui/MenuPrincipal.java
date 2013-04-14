@@ -86,7 +86,10 @@ public class MenuPrincipal extends JFrame {
 		grupo.add(rdbtnAlunos);
 		rdbtnAlunos.setBounds(35, 95, 141, 23);
 		contentPane.add(rdbtnAlunos);
-
+		
+		rdbtnAlunos.setSelected(true);//Alunos selecionados por defalt
+		tipo="aluno";
+		
 		JRadioButton rdbtnProfessores = new JRadioButton("Professores");
 		rdbtnProfessores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,6 +143,8 @@ public class MenuPrincipal extends JFrame {
 		rdbtnDisciplinas.setBounds(35, 209, 141, 23);
 		contentPane.add(rdbtnDisciplinas);
 
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setForeground(new Color(0, 0, 0));
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -196,10 +201,33 @@ public class MenuPrincipal extends JFrame {
 		JButton btnProcurar = new JButton("Procurar");
 		btnProcurar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ProcurarFrame frame = new ProcurarFrame(tipo);
-				frame.setVisible(true);
-				setVisible(false);
-			}
+				if (tipo.equals("professor")) {
+					PesquisarProfessorFrame frame = new PesquisarProfessorFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("funcionario")) {
+					PesquisarFuncionarioFrame frame = new PesquisarFuncionarioFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("aluno")) {
+					PesquisarAlunoFrame frame = new PesquisarAlunoFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("administrador")) {
+					PesquisarAdmFrame frame = new PesquisarAdmFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("disciplina")) {
+					PesquisarDisciplinaFrame frame = new PesquisarDisciplinaFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else if (tipo.equals("turma")) {
+					PesquisarTurmaFrame frame = new PesquisarTurmaFrame();
+					frame.setVisible(true);
+					setVisible(false);
+				} else {
+
+				}}
 		});
 		btnProcurar.setBounds(349, 291, 97, 50);
 		contentPane.add(btnProcurar);

@@ -277,6 +277,9 @@ public class CadastrarAlunoFrame extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastrar();
+				MenuPrincipal frame = new MenuPrincipal();
+				frame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
