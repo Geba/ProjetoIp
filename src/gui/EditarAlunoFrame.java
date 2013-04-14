@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class EditarAlunosFrame extends JFrame {
+public class EditarAlunoFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JComboBox<Pessoa> comboBox;
@@ -39,7 +39,7 @@ public class EditarAlunosFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditarAlunosFrame frame = new EditarAlunosFrame();
+					EditarAlunoFrame frame = new EditarAlunoFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class EditarAlunosFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditarAlunosFrame() {
+	public EditarAlunoFrame() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
@@ -76,7 +76,7 @@ public class EditarAlunosFrame extends JFrame {
 				try {
 					p = (Pessoa) comboBox.getSelectedItem();
 				} catch (NullPointerException e) {
-					JOptionPane.showMessageDialog(EditarAlunosFrame.this,
+					JOptionPane.showMessageDialog(EditarAlunoFrame.this,
 							"Selecione um Aluno:");
 				}
 				AtualizarAlunoFrameNovo frame = new AtualizarAlunoFrameNovo(

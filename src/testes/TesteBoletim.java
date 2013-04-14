@@ -19,7 +19,7 @@ public class TesteBoletim {
 		disc.inserir(mat);
 		disc.inserir(geo);
 		
-		Boletim boletim = new Boletim(disc);
+		Boletim boletim = new Boletim();
 		System.out.println(boletim.imprimir());
 		
 		
