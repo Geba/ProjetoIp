@@ -18,10 +18,10 @@ public class testeArquivoTurmaEDisciplina {
 		Repositorio<Turma> turmas = new RepositorioArquivoTurma();
 		Repositorio<Disciplina> disc = new RepositorioArrayDisciplina();
 
-		Disciplina d = new Disciplina("nominho", "ementinha");
-		Disciplina d2 = new Disciplina("portugues", "ementinha");
-		Disciplina d3 = new Disciplina("matematica", "ementinha");
-		Disciplina d4 = new Disciplina("ingles", "ementinha");
+		Disciplina d = new Disciplina("turma", "ementz");
+		Disciplina d2 = new Disciplina("portugues", "ementa");
+		Disciplina d3 = new Disciplina("matematica", "ementa");
+		Disciplina d4 = new Disciplina("ingles", "ementa");
 
 		Turma t = new Turma("p5");
 		Turma t1 = new Turma("turma p");

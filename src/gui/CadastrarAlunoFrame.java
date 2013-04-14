@@ -277,7 +277,7 @@ public class CadastrarAlunoFrame extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastrar();
-				}
+			}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
@@ -323,13 +323,13 @@ public class CadastrarAlunoFrame extends JFrame {
 					pai, mae, turma); // <<<<<<
 			JOptionPane
 					.showMessageDialog(this, "Aluno cadastrado com sucesso.");
-			voltar();
 		} catch (ElementoJaCadastradoException e) {
-			JOptionPane.showMessageDialog(this, "O aluno j‡ est‡ cadastrado.");
+			JOptionPane.showMessageDialog(this, "O aluno jà està cadastrado.");
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		} catch (RepositorioException e) {
-			JOptionPane.showMessageDialog(this, "Erro no sistema\nPorfavor tente mais tarde");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

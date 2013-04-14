@@ -94,19 +94,13 @@ public class CadastrarTurmaFrame extends JFrame {
 		contentPane.add(lblPoderaoSerEditados);
 	}
 	
-	
-		public void voltar(){
-			MenuPrincipal frame = new MenuPrincipal();
-			frame.setVisible(true);
-			setVisible(false);
-	
-		/**if (!fechar){
-		*MenuPrincipal frame = new MenuPrincipal();
-		*frame.setVisible(true);
-		*System.out.println(fechar);
-		*}
-		*setVisible(false);
-		*/
+	public void voltar(){
+		if (!fechar){
+		MenuPrincipal frame = new MenuPrincipal();
+		frame.setVisible(true);
+		System.out.println(fechar);
+		}
+		setVisible(false);
 	}
 	
 	public void cadastrar(){
@@ -115,13 +109,13 @@ public class CadastrarTurmaFrame extends JFrame {
 			Controle.nomeValido(nome);
 			PaginaPrincipal.fachada.inserirTurma(nome);
 			JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
-			voltar();
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "Turma ja cadastrada. Tente novamente.");
 		} catch (RepositorioException e) {
-			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

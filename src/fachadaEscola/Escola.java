@@ -54,8 +54,8 @@ public class Escola {
 			disciplinas = new RepositorioListaDisciplina();
 		} else if (repositorio.equalsIgnoreCase("arquivo")) {
 			pessoas = new RepositorioArquivoPessoa();
-			turmas = new RepositorioArquivoTurma();
-			disciplinas = new RepositorioArquivoDisciplina();
+			turmas = new RepositorioArrayTurma();
+			disciplinas = new RepositorioArrayDisciplina();
 		} else {
 
 		}
