@@ -26,7 +26,7 @@ import javax.swing.JTextArea;
 public class RemoverDisciplinaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Disciplina> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -100,7 +100,7 @@ public class RemoverDisciplinaFrame extends JFrame {
 		btnRemover.setBounds(40, 299, 146, 50);
 		contentPane.add(btnRemover);
 
-		comboBox = new JComboBox<Disciplina>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Disciplina> it = PaginaPrincipal.fachada.getArrayDisciplina().getIterator();
 		while(it.hasNext()){

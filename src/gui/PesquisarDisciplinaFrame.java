@@ -29,7 +29,7 @@ import javax.swing.JTextArea;
 public class PesquisarDisciplinaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Disciplina> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -66,7 +66,7 @@ public class PesquisarDisciplinaFrame extends JFrame {
 		textArea.setBounds(40, 114, 462, 235);
 		contentPane.add(textArea);
 
-		comboBox = new JComboBox<Disciplina>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Disciplina> it = PaginaPrincipal.fachada.getArrayDisciplina().getIterator();
 		while(it.hasNext()){

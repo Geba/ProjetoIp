@@ -28,7 +28,7 @@ import javax.swing.JTextArea;
 public class PesquisarTurmaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Turma> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -65,7 +65,7 @@ public class PesquisarTurmaFrame extends JFrame {
 		textArea.setBounds(40, 114, 462, 235);
 		contentPane.add(textArea);
 
-		comboBox = new JComboBox<Turma>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Turma> it = PaginaPrincipal.fachada.getTurmas().getIterator();
 		while(it.hasNext()){

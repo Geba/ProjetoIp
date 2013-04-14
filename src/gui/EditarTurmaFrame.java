@@ -28,7 +28,7 @@ import javax.swing.JTextArea;
 public class EditarTurmaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Turma> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -72,6 +72,7 @@ public class EditarTurmaFrame extends JFrame {
 		JButton btnAtualizarDados = new JButton("Atualizar dados");
 		btnAtualizarDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				@SuppressWarnings("unused")
 				Turma p = null;
 				try {
 					p = (Turma) comboBox.getSelectedItem();
@@ -87,7 +88,7 @@ public class EditarTurmaFrame extends JFrame {
 		btnAtualizarDados.setBounds(40, 299, 146, 50);
 		contentPane.add(btnAtualizarDados);
 
-		comboBox = new JComboBox<Turma>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Turma> it = PaginaPrincipal.fachada.getTurmas().getIterator();
 		while(it.hasNext()){

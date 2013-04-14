@@ -29,7 +29,7 @@ import javax.swing.JTextArea;
 public class EditarDisciplinaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Disciplina> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -89,7 +89,7 @@ public class EditarDisciplinaFrame extends JFrame {
 		btnAtualizarDados.setBounds(40, 299, 146, 50);
 		contentPane.add(btnAtualizarDados);
 
-		comboBox = new JComboBox<Disciplina>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Disciplina> it = PaginaPrincipal.fachada.getArrayDisciplina().getIterator();
 		while(it.hasNext()){

@@ -30,7 +30,7 @@ import javax.swing.JTextArea;
 public class RemoverAdmFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Pessoa> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -106,7 +106,7 @@ public class RemoverAdmFrame extends JFrame {
 
 		btnRemover.setBounds(40, 299, 146, 50);
 
-		comboBox = new JComboBox<Pessoa>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Pessoa> it = PaginaPrincipal.fachada.getAdministradores().getIterator();
 		while(it.hasNext()){

@@ -28,7 +28,7 @@ import javax.swing.JTextArea;
 public class PesquisarAlunoFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Pessoa> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -65,7 +65,7 @@ public class PesquisarAlunoFrame extends JFrame {
 		textArea.setBounds(40, 114, 462, 235);
 		contentPane.add(textArea);
 
-		comboBox = new JComboBox<Pessoa>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Pessoa> it = PaginaPrincipal.fachada.getAlunos().getIterator();
 		while(it.hasNext()){

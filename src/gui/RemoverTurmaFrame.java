@@ -30,7 +30,7 @@ import javax.swing.JTextArea;
 public class RemoverTurmaFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<Turma> comboBox;
+	private JComboBox comboBox;
 	private JTextField textField;
 	private JTextArea textArea;
 
@@ -107,7 +107,7 @@ public class RemoverTurmaFrame extends JFrame {
 		btnRemover.setBounds(40, 299, 146, 50);
 		contentPane.add(btnRemover);
 
-		comboBox = new JComboBox<Turma>();
+		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Turma> it = PaginaPrincipal.fachada.getTurmas().getIterator();
 		while(it.hasNext()){
