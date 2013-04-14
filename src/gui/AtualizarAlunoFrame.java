@@ -244,10 +244,8 @@ public class AtualizarAlunoFrame extends JFrame {
 		JButton btnatualizar = new JButton("Atualizar");
 		btnatualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				atualizar(alunoOriginal);
-				
-			}
+				}
 		});
 		btnatualizar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnatualizar);
@@ -349,10 +347,11 @@ public class AtualizarAlunoFrame extends JFrame {
 			Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
 			PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
 			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
+			voltar();
 			} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
-			
 			}
+		
 	}
 
 	private void voltar() {

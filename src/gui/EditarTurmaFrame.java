@@ -79,8 +79,7 @@ public class EditarTurmaFrame extends JFrame {
 					JOptionPane.showMessageDialog(EditarTurmaFrame.this,
 							"Selecione um Turma:");
 				}
-				AtualizarTurmaFrame frame = new AtualizarTurmaFrame(
-						(Turma) p);
+				AtualizarTurmaFrame frame = new AtualizarTurmaFrame();
 				frame.setVisible(true);
 			}
 		});

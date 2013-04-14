@@ -19,11 +19,8 @@ public class IteratorArrayTurma implements Iterator<Turma> {
 	}
 
 	public boolean hasNext() {
-		if(this.contador==0){
-			return false;
-		}else{
 		return this.indiceAtual < this.contador;
-	}}
+	}
 
 	public Turma next() {
 		if (!hasNext()) {

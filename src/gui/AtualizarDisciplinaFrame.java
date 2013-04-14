@@ -85,6 +85,9 @@ public class AtualizarDisciplinaFrame extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				atualizar();
+				MenuPrincipal frame = new MenuPrincipal();
+				frame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnCadastrar.setBounds(462, 357, 117, 48);

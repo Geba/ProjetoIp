@@ -212,7 +212,7 @@ public class AtualizarAdmFrame extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				atualizar(administradorOrigninal);
-			}
+				}
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
@@ -292,6 +292,7 @@ public class AtualizarAdmFrame extends JFrame {
 			Administrador administradorAtualizado = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
 			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAtualizado);
 			JOptionPane.showMessageDialog(this,"Administrador atualizado com sucesso.");
+			voltar();
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no reposit—rio.");
 		} catch (ElementoNaoEncontradoException e) {

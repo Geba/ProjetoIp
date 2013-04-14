@@ -211,14 +211,14 @@ public class AtualizarFuncionarioFrame extends JFrame {
 		contentPane.add(textPais);
 		textPais.setColumns(10);
 
-		JButton btnCadastrar = new JButton("Atualizar");
-		btnCadastrar.addActionListener(new ActionListener() {
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				atualizar(funcionarioOriginal);
-			}
+				}
 		});
-		btnCadastrar.setBounds(461, 365, 112, 42);
-		contentPane.add(btnCadastrar);
+		btnAtualizar.setBounds(461, 365, 112, 42);
+		contentPane.add(btnAtualizar);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {

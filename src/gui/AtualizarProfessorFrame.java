@@ -220,42 +220,9 @@ public class AtualizarProfessorFrame extends JFrame {
 		JButton btnCadastrar = new JButton("Atualizar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					System.out.println(professorOriginal.getCpf());
-					String nome = textNome.getText();
-					String cpf = professorOriginal.getCpf();
-					String dataNasc = textDataNasc.getText();
-					String rg = textRg.getText();
-					String telefone = textTelefone.getText();
-					String rua = textRua.getText();
-					String numero = textNumero.getText();
-					String cep = textCep.getText();
-					String bairro = textBairro.getText();
-					String cidade = textCidade.getText();
-					String estado = textEstado.getText();
-					String pais = textPais.getText();
-					String funcao = textFuncao.getText();
-					Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao,
-							telefone, rua, numero, bairro, cep, cidade, estado,
-							pais);
-
-					Endereco endereco = new Endereco(rua, numero, bairro, cep,
-							cidade, estado, pais);
-					Professor professorAtualizado = new Professor(cpf, nome,
-							dataNasc, rg, sexo, telefone, endereco, funcao);
-
-					PaginaPrincipal.fachada.atualizarProfessor(
-							professorOriginal, professorAtualizado);
-					JOptionPane.showMessageDialog(AtualizarProfessorFrame.this,
-							"Professor atualizado com sucesso.");
-
-				} catch (EntradaInvalidaException e) {
-					JOptionPane.showMessageDialog(AtualizarProfessorFrame.this,
-							e.getOndeErrou());
-				}
-
-			}
-		});
+					atualizar(professorOriginal);
+					}
+			});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
 
@@ -342,6 +309,7 @@ public class AtualizarProfessorFrame extends JFrame {
 					funcionarioAux);
 			JOptionPane.showMessageDialog(this,
 					"Funcionario atualizado com sucesso.");
+			voltar();
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this, "Erro no repositorio.");
 		} catch (ElementoNaoEncontradoException e) {
