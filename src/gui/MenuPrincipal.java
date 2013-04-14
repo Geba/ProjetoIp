@@ -234,8 +234,8 @@ public class MenuPrincipal extends JFrame {
 					//frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("aluno")) {
-					//EditarAlunoFrame frame = new EditarAlunoFrame();
-					//frame.setVisible(true);
+					EditarAlunosFrame frame = new EditarAlunosFrame();
+					frame.setVisible(true);
 					setVisible(false);
 				} else if (tipo.equals("administrador")) {
 					//EditarAdmFrame frame = new EditarAdmFrame();

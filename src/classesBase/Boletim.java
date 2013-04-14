@@ -9,10 +9,7 @@ public class Boletim {
 	private RepositorioArrayDisciplina disciplinas;
 	private double[][] notas;
 
-	public Boletim(RepositorioArrayDisciplina repositorioArrayDisciplina2) { // quantidade
-																				// de
-																				// disciplinas
-		disciplinas = repositorioArrayDisciplina2;
+	public Boletim() {
 		notas = new double[15][4];
 		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 4; j++) {

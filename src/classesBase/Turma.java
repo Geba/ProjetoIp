@@ -14,7 +14,7 @@ public class Turma {
 	public Turma(String nome) {
 		this.nome = nome;
 		this.alunos = new RepositorioArrayPessoa();
-		disciplinas = new RepositorioArrayDisciplina();
+		this.disciplinas = new RepositorioArrayDisciplina();
 	}
 
 	public void inserirDisciplina(String nome, String ementa) {

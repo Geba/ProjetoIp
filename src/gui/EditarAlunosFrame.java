@@ -24,12 +24,12 @@ import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-public class EditarProfessorFrame extends JFrame {
+@SuppressWarnings("serial")
+public class EditarAlunosFrame extends JFrame {
 
 	private JPanel contentPane;
-	private static JComboBox<Pessoa> comboBox;
+	private JComboBox<Pessoa> comboBox;
 	private JTextField textField;
-	private static RepositorioArrayPessoa professores;
 	private JTextArea textArea;
 
 	/**
@@ -39,9 +39,8 @@ public class EditarProfessorFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditarProfessorFrame frame = new EditarProfessorFrame();
+					EditarAlunosFrame frame = new EditarAlunosFrame();
 					frame.setVisible(true);
-					atualizarComboBox();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,9 +51,8 @@ public class EditarProfessorFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditarProfessorFrame() {
-		this.professores = PaginaPrincipal.fachada.getProfessores();
-
+	public EditarAlunosFrame() {
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -78,11 +76,11 @@ public class EditarProfessorFrame extends JFrame {
 				try {
 					p = (Pessoa) comboBox.getSelectedItem();
 				} catch (NullPointerException e) {
-					JOptionPane.showMessageDialog(EditarProfessorFrame.this,
-							"Selecione um professor:");
+					JOptionPane.showMessageDialog(EditarAlunosFrame.this,
+							"Selecione um Aluno:");
 				}
-				AtualizarProfessorFrame frame = new AtualizarProfessorFrame(
-						(Professor) p);
+				AtualizarAlunoFrameNovo frame = new AtualizarAlunoFrameNovo(
+						(Aluno) p);
 				frame.setVisible(true);
 			}
 		});
@@ -91,6 +89,15 @@ public class EditarProfessorFrame extends JFrame {
 		contentPane.add(btnAtualizarDados);
 
 		comboBox = new JComboBox<Pessoa>();
+		comboBox.removeAllItems();
+		Iterator<Pessoa> it = PaginaPrincipal.fachada.getAlunos().getIterator();
+		while(it.hasNext()){
+			comboBox.addItem(it.next());
+		}
+		if (comboBox.getSelectedItem() != null) {
+			textArea.setText(((Pessoa) comboBox.getSelectedItem())
+					.resumo());
+		}
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedItem() != null) {
@@ -102,33 +109,8 @@ public class EditarProfessorFrame extends JFrame {
 
 		comboBox.setBounds(40, 76, 462, 27);
 		contentPane.add(comboBox);
-		atualizarComboBox();
-
-		JButton btnInserirTurma = new JButton("Editar turmas");
-		btnInserirTurma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				// EDITAR TURMAS
-				EditarProfessorTurmasFrame frame = new EditarProfessorTurmasFrame(
-						(Professor) comboBox.getSelectedItem());
-				frame.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnInserirTurma.setBounds(198, 299, 146, 50);
-		contentPane.add(btnInserirTurma);
-
-		JButton btnInserirDisciplina = new JButton("Editar disciplinas");
-		btnInserirDisciplina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				// EDITAR DISCIPLINAS
-
-			}
-		});
-		btnInserirDisciplina.setBounds(356, 299, 146, 50);
-		contentPane.add(btnInserirDisciplina);
-
+		
+						
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,10 +124,10 @@ public class EditarProfessorFrame extends JFrame {
 		btnVoltar.setBounds(463, 360, 117, 50);
 		contentPane.add(btnVoltar);
 
-		JLabel lblSelecioneOProfessor = new JLabel(
-				"Selecione o professor a ser editado:");
-		lblSelecioneOProfessor.setBounds(40, 30, 254, 16);
-		contentPane.add(lblSelecioneOProfessor);
+		JLabel lblSelecioneOAluno = new JLabel(
+				"Selecione o aluno a ser editado:");
+		lblSelecioneOAluno.setBounds(40, 30, 254, 16);
+		contentPane.add(lblSelecioneOAluno);
 
 		textField = new JTextField();
 		textField.setBounds(40, 50, 321, 23);
@@ -156,11 +138,10 @@ public class EditarProfessorFrame extends JFrame {
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBox.removeAll();
-				professores = PaginaPrincipal.fachada.getProfessores();
 				String procura = textField.getText();
 				RepositorioArrayPessoa resultadoPesquisa = new RepositorioArrayPessoa();
 				try {
-					resultadoPesquisa = professores.procurarNome(procura);
+					resultadoPesquisa = PaginaPrincipal.fachada.getAlunos().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
 					JOptionPane.showInputDialog(this, aviso);
@@ -178,14 +159,4 @@ public class EditarProfessorFrame extends JFrame {
 
 	}
 
-	protected final static void atualizarComboBox() {
-		professores = PaginaPrincipal.fachada.getProfessores();
-		comboBox.removeAllItems();
-		Iterator<Pessoa> it = professores.getIterator();
-		while (it.hasNext()) {
-			Pessoa pessoa = it.next();
-			comboBox.addItem(pessoa);
-		}
-
-	}
 }

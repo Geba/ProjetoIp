@@ -18,7 +18,7 @@ public class Aluno extends Pessoa {
 
 	public Aluno(String cpf, String nome, String dataNasc, String rg, String sexo,String telefone,
 			Endereco endereco, String pai, String mae, Turma turma) {
-		super(cpf, nome, dataNasc, rg, telefone, sexo, endereco);
+		super(cpf, nome, dataNasc, rg, sexo, telefone, endereco);
 		this.pai = pai;
 		this.mae = mae;
 		this.turma = turma;
@@ -29,7 +29,7 @@ public class Aluno extends Pessoa {
 		x += (rg.substring(0, 3));
 		this.numeroMatricula = x;
 
-		boletim = new Boletim(turma.getDisciplinas()); // desse jeito passa pro
+		this.boletim = new Boletim(); // desse jeito passa pro
 														// boletim do cara as
 														// disciplinas que estao
 														// definidas na turma

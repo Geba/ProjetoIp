@@ -164,7 +164,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(textPai);
 		textPai.setColumns(10);
 		
-		JLabel lblNomeDaMe = new JLabel("Nome da M\u00E3e:");
+		JLabel lblNomeDaMe = new JLabel("Nome da Mae:");
 		lblNomeDaMe.setBounds(21, 200, 94, 16);
 		contentPane.add(lblNomeDaMe);
 		
@@ -173,7 +173,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(textMae);
 		textMae.setColumns(10);
 		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
+		JLabel lblEndereo = new JLabel("Endereco:");
 		lblEndereo.setBounds(21, 234, 61, 16);
 		contentPane.add(lblEndereo);
 		
@@ -243,6 +243,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		JButton btnatualizar = new JButton("Atualizar");
 		btnatualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				atualizar(alunoOriginal);
 				
 			}
@@ -293,7 +294,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		this.textPai.setText(alunoOriginal.getPai());
 		this.textMae.setText(alunoOriginal.getMae());
 		this.textTelefone.setText(alunoOriginal.getTelefone());
-		//seleciona o sexo de acordo com o já salvo
+		cbxTurma.setSelectedItem(alunoOriginal.getTurma());
 		if(alunoOriginal.getSexo().equals("M")){
 			rdbtnMasculino.setSelected(true);
 		}else{
@@ -301,7 +302,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		}
 		
 		
-		//Preenche a comboBox com todos os items e deixa selecionado aqquele que está salvo;
+		//Preenche a comboBox com todos os items e deixa selecionado aquele que está salvo;
 		cbxTurma.removeAllItems();
 		Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
 		Iterator<Turma> it = repositorio.getIterator();
@@ -345,7 +346,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
 			} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
-			e.printStackTrace();
+			
 			}
 	}
 

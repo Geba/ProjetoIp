@@ -65,8 +65,7 @@ public class Escola {
 		// - PARA TESTES -
 		// - PARA TESTES -
 
-		Endereco end = new Endereco("sddsad", "sdasd", "Sadasd", "sdsad",
-				"asd", "", "asdasd");
+		Endereco end = new Endereco("Rua", "123", "Bairro", "51030630", "Cidade", "Estado", "Pais");
 		Turma turma = new Turma("tumrma1");
 		Pessoa bruna = new Aluno("43536787656", "Bruna", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
@@ -74,8 +73,7 @@ public class Escola {
 				"", end, "Luiz", "Nancy", turma);
 		Pessoa alana = new Aluno("47623456456", "Laryssa", "", "7727724", "F",
 				"", end, "Luiz", "Nancy", turma);
-		Pessoa geovane = new Aluno("83830480504", "Geovane", "", "7727724",
-				"F", "", end, "Luiz", "Nancy", turma);
+		Pessoa geovane = new Aluno("83830480504","Geovane Silva Pereira", "08/11/1992", "83830480504", "M", "34626209", end, "Gilvan", "Marcia", turma);
 
 		Pessoa geovane2 = new Aluno("838304802504", "Geovane2", "", "7727724",
 				"F", "", end, "Luiz", "Nancy", turma);
@@ -103,16 +101,25 @@ public class Escola {
 				"", end, "Pai", "Mae", turma);
 		Pessoa flor = new Aluno("123456009", "Florzinha", "", "122321", "F",
 				"", end, "Pai", "Mae", turma);
-		Pessoa untonio = new Professor("123454333321", "Untonio", "", "123454433",
+		Pessoa untonio = new Professor("1234543433321", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
-		Pessoa prof = new Professor("1222454333321", "Profinho", "", "1234588833",
+		Pessoa prof = new Professor("12224543333321", "Profinho", "", "1234588833",
+				"F", "333333333", end, "ser pai");
+		Pessoa untonio2 = new Professor("1234546333321", "Untonio", "", "123454433",
+				"F", "333333333", end, "ser pai");
+		Pessoa untonio3 = new Professor("1234574333321", "Untonio", "", "123454433",
+				"F", "333333333", end, "ser pai");
+		Pessoa untonio4 = new Professor("1234540333321", "Untonio", "", "123454433",
 				"F", "333333333", end, "ser pai");
 
 		Disciplina d1 = new Disciplina("disc", "ser legal");
 		Disciplina d2 = new Disciplina("disc2", "ser legal");
 		Disciplina d3 = new Disciplina("disc3", "ser legal");
-
+turma.inserirDisciplina(d1);turma.inserirDisciplina(d2);turma.inserirDisciplina(d3);
 		try {
+			pessoas.inserir(untonio4);
+			pessoas.inserir(untonio3);
+			pessoas.inserir(untonio2);
 			pessoas.inserir(geovane);
 			pessoas.inserir(geovane2);
 			pessoas.inserir(harry);
@@ -138,7 +145,18 @@ public class Escola {
 			((Professor) untonio).inserirDisciplina(d1);
 			((Professor) untonio).inserirDisciplina(d2);
 			((Professor) untonio).inserirDisciplina(d3);
-			((Professor) untonio).inserirTurma(turma);
+			((Professor) untonio2).inserirTurma(turma);
+			((Professor) untonio2).inserirDisciplina(d1);
+			((Professor) untonio2).inserirDisciplina(d2);
+			((Professor) untonio2).inserirDisciplina(d3);
+			((Professor) untonio2).inserirTurma(turma);((Professor) untonio4).inserirDisciplina(d1);
+			((Professor) untonio4).inserirDisciplina(d2);
+			((Professor) untonio4).inserirDisciplina(d3);
+			((Professor) untonio4).inserirTurma(turma);
+			((Professor) untonio3).inserirDisciplina(d1);
+			((Professor) untonio3).inserirDisciplina(d2);
+			((Professor) untonio3).inserirDisciplina(d3);
+			((Professor) untonio3).inserirTurma(turma);
 			((Professor) prof).inserirDisciplina(d1);
 			((Professor) prof).inserirDisciplina(d2);
 			((Professor) prof).inserirDisciplina(d3);
@@ -428,8 +446,11 @@ public class Escola {
 	public void atualizarAluno(Aluno alunoOriginal, Aluno alunoAtualizado) {
 		if (alunoAtualizado.getCpf().equals(alunoOriginal.getCpf())) {
 			try {
-				pessoas.inserir(alunoAtualizado);
+				pessoas.atualizar(alunoAtualizado);
 			} catch (RepositorioException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ElementoNaoEncontradoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
