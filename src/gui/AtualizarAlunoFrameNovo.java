@@ -55,6 +55,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 	private JTextField textPais;
 	private JTextField textTelefone;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JComboBox<Turma> cbxTurma ;
 	//private static Aluno aluno;
 	JRadioButton rdbtnMasculino;
 	JRadioButton rdbtnFeminino;
@@ -269,7 +270,7 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		contentPane.add(textTelefone);
 		textTelefone.setColumns(10);
 		
-		JComboBox cbxTurma = new JComboBox();
+		cbxTurma = new JComboBox<Turma>();
 		cbxTurma.setBounds(70, 337, 141, 27);
 		contentPane.add(cbxTurma);
 		
@@ -333,10 +334,14 @@ public class AtualizarAlunoFrameNovo extends JFrame {
 		String pai = textPai.getText();
 		String mae = textMae.getText();
 		String sexo;
+		turma = (Turma) cbxTurma.getSelectedItem();
 		if (rdbtnMasculino.isSelected()){
 			sexo = "M";
 		}else{
 			sexo = "F";
+		}
+		if(turma==null){
+			JOptionPane.showMessageDialog(this, "Por favor, selecione uma turma!");
 		}
 		try {
 			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
