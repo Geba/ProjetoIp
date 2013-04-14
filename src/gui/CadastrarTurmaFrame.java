@@ -94,13 +94,19 @@ public class CadastrarTurmaFrame extends JFrame {
 		contentPane.add(lblPoderaoSerEditados);
 	}
 	
-	public void voltar(){
-		if (!fechar){
-		MenuPrincipal frame = new MenuPrincipal();
-		frame.setVisible(true);
-		System.out.println(fechar);
-		}
-		setVisible(false);
+	
+		public void voltar(){
+			MenuPrincipal frame = new MenuPrincipal();
+			frame.setVisible(true);
+			setVisible(false);
+	
+		/**if (!fechar){
+		*MenuPrincipal frame = new MenuPrincipal();
+		*frame.setVisible(true);
+		*System.out.println(fechar);
+		*}
+		*setVisible(false);
+		*/
 	}
 	
 	public void cadastrar(){

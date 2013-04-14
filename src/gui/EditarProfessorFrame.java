@@ -168,21 +168,23 @@ public class EditarProfessorFrame extends JFrame {
 		scrollbar.setBounds(419, 183, 17, 50);
 		contentPane.add(scrollbar);
 		
-		JButton btnNewButton = new JButton("Editar Turmas");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnEditarTurmas = new JButton("Editar Turmas");
+		btnEditarTurmas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditarProfessorTurmasFrame frameTurma = new EditarProfessorTurmasFrame((Professor) comboBox.getSelectedItem());
 				frameTurma.setVisible(true);
+				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(218, 299, 146, 50);
-		contentPane.add(btnNewButton);
+		btnEditarTurmas.setBounds(218, 299, 146, 50);
+		contentPane.add(btnEditarTurmas);
 		
 		JButton btnEditarDisciplinas = new JButton("Editar Disciplinas");
 		btnEditarDisciplinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditarProfessorDisciplinasFrame frameDisciplina = new EditarProfessorDisciplinasFrame((Professor) comboBox.getSelectedItem());
-				setVisible(true);
+				frameDisciplina.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnEditarDisciplinas.setBounds(400, 299, 146, 50);
