@@ -4,8 +4,7 @@ import java.util.Iterator;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
 
-
-public class RepositorioListaPessoa implements Repositorio<Pessoa>{
+public class RepositorioListaPessoa implements Repositorio<Pessoa> {
 
 	private Pessoa pessoa;
 	private RepositorioListaPessoa prox;
@@ -43,11 +42,11 @@ public class RepositorioListaPessoa implements Repositorio<Pessoa>{
 	}
 
 	public String imprimir() {
-		RepositorioListaPessoa repositorioAtual= this.prox;
+		RepositorioListaPessoa repositorioAtual = this.prox;
 		String resposta = "";
-		while (repositorioAtual!= null) {
-			resposta = resposta + repositorioAtual.getPessoa().getNome()+"\n";
-			repositorioAtual=repositorioAtual.getProx();
+		while (repositorioAtual != null) {
+			resposta = resposta + repositorioAtual.getPessoa().getNome() + "\n";
+			repositorioAtual = repositorioAtual.getProx();
 		}
 		return resposta;
 	}
@@ -131,29 +130,36 @@ public class RepositorioListaPessoa implements Repositorio<Pessoa>{
 		boolean achou = false;
 		RepositorioListaPessoa repositorioAtual = null;
 		RepositorioListaPessoa repositorioProximo = this.prox;
-		if (this.prox.getPessoa().getCpf().equals(cpf)) {// Verifica se o
-															// primeiro da lista
-															// é aquele que eu
-															// quero remover.
-			this.prox = this.prox.getProx();
-			achou = true;
-		} else {
-			repositorioAtual = this.prox;
-			repositorioProximo = repositorioAtual.getProx();
-			while (achou != true && repositorioProximo != null) {
-				if (repositorioProximo.getPessoa().getCpf().equals(cpf)) {
-					repositorioAtual.setProx(repositorioProximo.getProx());
-					;
-					achou = true;
-				} else {
-					repositorioAtual = repositorioProximo;
-					repositorioProximo = repositorioProximo.getProx();
+		if (this.prox != null) {
+			if (this.prox.getPessoa().getCpf().equals(cpf)) {// Verifica se o
+																// primeiro da
+																// lista
+																// é aquele que
+																// eu
+																// quero
+																// remover.
+
+				this.prox = this.prox.getProx();
+				achou = true;
+			} else {
+				repositorioAtual = this.prox;
+				repositorioProximo = repositorioAtual.getProx();
+				while (achou != true && repositorioProximo != null) {
+					if (repositorioProximo.getPessoa().getCpf().equals(cpf)) {
+						repositorioAtual.setProx(repositorioProximo.getProx());
+						;
+						achou = true;
+					} else {
+						repositorioAtual = repositorioProximo;
+						repositorioProximo = repositorioProximo.getProx();
+					}
 				}
 			}
 		}
 		if (achou == false) {
 			throw new ElementoNaoEncontradoException();
 		}
+
 		/**
 		 * Pessoa p = null; boolean achou = false;
 		 * Iterator<RepositorioLista<Pessoa>> it = iterator();
@@ -177,7 +183,13 @@ public class RepositorioListaPessoa implements Repositorio<Pessoa>{
 	}
 
 	public Iterator<Pessoa> iterator() {
-		IteratorListaPessoa it = new IteratorListaPessoa(this.prox);//Passa como argumento o primeiro item da lista.
+		IteratorListaPessoa it = new IteratorListaPessoa(this.prox);// Passa
+																	// como
+																	// argumento
+																	// o
+																	// primeiro
+																	// item da
+																	// lista.
 		return it;
 
 	}

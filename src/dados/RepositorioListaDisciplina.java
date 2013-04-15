@@ -4,7 +4,6 @@ import java.util.Iterator;
 import excecoes.ElementoNaoEncontradoException;
 import classesBase.*;
 
-
 public class RepositorioListaDisciplina implements Repositorio<Disciplina> {
 
 	private Disciplina disciplina;
@@ -126,23 +125,27 @@ public class RepositorioListaDisciplina implements Repositorio<Disciplina> {
 		boolean achou = false;
 		RepositorioListaDisciplina repositorioAtual = null;
 		RepositorioListaDisciplina repositorioProximo = this.prox;
-		if (this.prox.getDisciplina().getNome().equals(nome)) {// Verifica se o
-			// primeiro da lista
-			// é aquele que eu
-			// quero remover.
-			this.prox = this.prox.getProx();
-			achou = true;
-		} else {
-			repositorioAtual = this.prox;
-			repositorioProximo = repositorioAtual.getProx();
-			while (achou != true && repositorioProximo != null) {
-				if (repositorioProximo.getDisciplina().getNome().equals(nome)) {
-					repositorioAtual.setProx(repositorioProximo.getProx());
-					;
-					achou = true;
-				} else {
-					repositorioAtual = repositorioProximo;
-					repositorioProximo = repositorioProximo.getProx();
+		if (this.prox != null) {
+			if (this.prox.getDisciplina().getNome().equals(nome)) {// Verifica
+																	// se o
+				// primeiro da lista
+				// é aquele que eu
+				// quero remover.
+				this.prox = this.prox.getProx();
+				achou = true;
+			} else {
+				repositorioAtual = this.prox;
+				repositorioProximo = repositorioAtual.getProx();
+				while (achou != true && repositorioProximo != null) {
+					if (repositorioProximo.getDisciplina().getNome()
+							.equals(nome)) {
+						repositorioAtual.setProx(repositorioProximo.getProx());
+						;
+						achou = true;
+					} else {
+						repositorioAtual = repositorioProximo;
+						repositorioProximo = repositorioProximo.getProx();
+					}
 				}
 			}
 		}
