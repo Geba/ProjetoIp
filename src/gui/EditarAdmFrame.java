@@ -66,6 +66,7 @@ public class EditarAdmFrame extends JFrame {
 		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
+		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
 

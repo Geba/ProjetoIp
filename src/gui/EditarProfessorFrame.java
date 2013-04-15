@@ -64,12 +64,12 @@ public class EditarProfessorFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(40, 114, 462, 148);
+		scrollPane.setBounds(40, 111, 462, 148);
 		contentPane.add(scrollPane);
-
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-		textArea.setEditable(false);
+		
+				textArea = new JTextArea();
+				scrollPane.setRowHeaderView(textArea);
+				textArea.setEditable(false);
 		
 
 		JLabel lblSelecioneAOpcao = new JLabel("Selecione a opcao desejada:");
@@ -143,7 +143,7 @@ public class EditarProfessorFrame extends JFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				comboBox.removeAll();
+				
 				String procura = textField.getText();
 				RepositorioArrayPessoa resultadoPesquisa = new RepositorioArrayPessoa();
 				try {
@@ -163,10 +163,6 @@ public class EditarProfessorFrame extends JFrame {
 		});
 		btnPesquisar.setBounds(377, 50, 125, 23);
 		contentPane.add(btnPesquisar);
-		
-		Scrollbar scrollbar = new Scrollbar();
-		scrollbar.setBounds(419, 183, 17, 50);
-		contentPane.add(scrollbar);
 		
 		JButton btnEditarTurmas = new JButton("Editar Turmas");
 		btnEditarTurmas.addActionListener(new ActionListener() {
