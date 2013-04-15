@@ -20,7 +20,7 @@ public class IteratorArrayDisciplina implements Iterator<Disciplina> {
 	}
 
 	public boolean hasNext() {
-		return this.indiceAtual < this.contador;
+		return this.indiceAtual < this.contador-1;
 	}
 
 	public Disciplina next() {

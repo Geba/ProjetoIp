@@ -19,7 +19,7 @@ public class IteratorArrayTurma implements Iterator<Turma> {
 	}
 
 	public boolean hasNext() {
-		return this.indiceAtual < this.contador;
+		return this.indiceAtual < this.contador-1;
 	}
 
 	public Turma next() {
