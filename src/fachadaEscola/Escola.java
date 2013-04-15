@@ -111,7 +111,7 @@ public class Escola {
 					endereco, pai, mae, turma);
 			pessoas.inserir(aluno);
 			try {
-				turmas.procurar(turma.getNome()).inserirAluno(aluno);
+				procurarTurma(turma.getNome()).inserirAluno(aluno);
 			} catch (ElementoNaoEncontradoException e1) {
 				// Não vai acontecer
 			}
@@ -330,7 +330,7 @@ public class Escola {
 		return retorno;
 	}
 
-	public String relatorioFuncionario() { // tem que fazer os metodos relatorio
+	public String relatorioFuncionario() { 
 		String retorno = "Relatorio de Funcionarios\n\n";
 
 		Iterator<Pessoa> it = pessoas.getIterator();
@@ -344,7 +344,7 @@ public class Escola {
 		return retorno;
 	}
 
-	public String relatorioTurmas() { // tem que fazer os metodos relatorio
+	public String relatorioTurmas() { 
 		String retorno = "Relatorio de Turmas\n\n";
 
 		Iterator<Turma> it = turmas.getIterator();
@@ -356,7 +356,7 @@ public class Escola {
 		return retorno;
 	}
 
-	public String relatorioDisc() { // tem que fazer os metodos relatorio
+	public String relatorioDisc() { 
 		String retorno = "Relatorio de Disciplinas\n\n";
 
 		Iterator<Disciplina> it = disciplinas.getIterator();
@@ -368,12 +368,12 @@ public class Escola {
 		return retorno;
 	}
 
-	public void atualizarAluno(Pessoa item) throws ElementoNaoEncontradoException, RepositorioException {
-		pessoas.atualizar(item);
+	public void atualizarAluno(Pessoa aluno) throws ElementoNaoEncontradoException, RepositorioException {
+		pessoas.atualizar(aluno);
 	}
 
-	public void atualizarProfessor(Pessoa item) throws ElementoNaoEncontradoException, RepositorioException {
-		pessoas.atualizar(item);
+	public void atualizarProfessor(Pessoa professor) throws ElementoNaoEncontradoException, RepositorioException {
+		pessoas.atualizar(professor);
 	}
 
 	public RepositorioArrayPessoa getAlunos() {
@@ -507,6 +507,8 @@ public class Escola {
 			// - PARA TESTES -
 			// - PARA TESTES -
 			// - PARA TESTES -
+			
+			
 
 			Endereco end = new Endereco("Rua", "123", "Bairro", "51030630",
 					"Cidade", "Estado", "Pais");
@@ -619,6 +621,7 @@ public class Escola {
 			// - PARA TESTES -
 			
 			inserirTurma("Turma1");
+			procurarTurma("Turma1").inserirDisciplina(d2);;
 			this.inserirAluno("344000134342", "Wandergleison", "01/01/1111", "8349638",
 					"M", "34626209", "rua", "1234", "bairro", "51030630",
 					"cidade", "estado", "pais", "pai", "mae", this.getTurmas()

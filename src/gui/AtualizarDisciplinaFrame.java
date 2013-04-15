@@ -61,7 +61,7 @@ public class AtualizarDisciplinaFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblCadastrarDisciplina = new JLabel("Cadastrar Disciplina");
+		JLabel lblCadastrarDisciplina = new JLabel("Atualizar Disciplina");
 		lblCadastrarDisciplina.setBounds(28, 31, 137, 16);
 		contentPane.add(lblCadastrarDisciplina);
 

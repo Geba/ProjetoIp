@@ -107,6 +107,7 @@ public class AtualizarAlunoFrame extends JFrame {
 		contentPane.add(lblCpf);
 		
 		textCpf = new JTextField();
+		textCpf.setEditable(false);
 		textCpf.setBounds(214, 121, 141, 28);
 		contentPane.add(textCpf);
 		textCpf.setColumns(10);
