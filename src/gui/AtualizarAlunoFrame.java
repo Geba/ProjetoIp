@@ -45,7 +45,7 @@ public class AtualizarAlunoFrame extends JFrame {
 	private JTextField textRg;
 	private JTextField textDataNasc;
 	private JTextField textPai;
-	private JTextField textMae;  // FALTA RESOLVER O COMBOBOX DA TURMA!!!!
+	private JTextField textMae;  
 	private JTextField textRua;
 	private JTextField textNumero;
 	private JTextField textCEP;

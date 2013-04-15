@@ -267,7 +267,7 @@ public class CadastrarAlunoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CadastrarTurmaFrame frame = new CadastrarTurmaFrame(true);
 				frame.setVisible(true);
-				
+
 			}
 		});
 		btnNewButton.setBounds(70, 368, 141, 29);
@@ -281,19 +281,20 @@ public class CadastrarAlunoFrame extends JFrame {
 		});
 		btnCadastrar.setBounds(461, 365, 112, 42);
 		contentPane.add(btnCadastrar);
-		
+
 		JButton btnAtualizarTurmas = new JButton("Atualizar Turmas");
 		btnAtualizarTurmas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				comboBoxTurma.removeAllItems();
-				Repositorio<Turma> repositorio = PaginaPrincipal.fachada.getTurmas(); 
+				Repositorio<Turma> repositorio = PaginaPrincipal.fachada
+						.getTurmas();
 				Iterator<Turma> it = repositorio.getIterator();
-				while (it.hasNext()){
+				while (it.hasNext()) {
 					Turma turmaAux = it.next();
 					comboBoxTurma.addItem(turmaAux);
 				}
-				
+
 			}
 		});
 		btnAtualizarTurmas.setBounds(214, 335, 141, 29);
@@ -301,6 +302,7 @@ public class CadastrarAlunoFrame extends JFrame {
 	}
 
 	private void cadastrar() {
+		Turma turma = null;
 		try {
 			String nome = tf_nome.getText();
 			String cpf = tf_cpf.getText();
@@ -316,13 +318,18 @@ public class CadastrarAlunoFrame extends JFrame {
 			String pais = tf_pais.getText();
 			String pai = tf_pai.getText();
 			String mae = tf_mae.getText();
-			Turma turma = (Turma) comboBoxTurma.getSelectedItem();
-			Controle.controlePessoa(cpf, nome, dataNasc, rg, mae, telefone, rua, numero, bairro, cep, cidade, estado, pais);
-			PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg, sexo,
-					telefone, rua, numero, bairro, cep, cidade, estado, pais,
-					pai, mae, turma); // <<<<<<
-			JOptionPane
-					.showMessageDialog(this, "Aluno cadastrado com sucesso.");
+			if (comboBoxTurma.getSelectedItem() != null) {
+				turma = (Turma) comboBoxTurma.getSelectedItem();
+				Controle.controlePessoa(cpf, nome, dataNasc, rg, mae, telefone,
+						rua, numero, bairro, cep, cidade, estado, pais);
+				PaginaPrincipal.fachada.inserirAluno(cpf, nome, dataNasc, rg,
+						sexo, telefone, rua, numero, bairro, cep, cidade,
+						estado, pais, pai, mae, turma); // <<<<<<
+				JOptionPane.showMessageDialog(this,
+						"Aluno cadastrado com sucesso.");
+			} else {
+				JOptionPane.showMessageDialog(null, "Insira uma turma.");
+			}
 		} catch (ElementoJaCadastradoException e) {
 			JOptionPane.showMessageDialog(this, "O aluno jà està cadastrado.");
 		} catch (EntradaInvalidaException e) {

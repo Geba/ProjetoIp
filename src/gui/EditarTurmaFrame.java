@@ -144,7 +144,7 @@ public class EditarTurmaFrame extends JFrame {
 					resultadoPesquisa =PaginaPrincipal.fachada.getArrayTurma().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
-					JOptionPane.showInputDialog(this, aviso);
+					JOptionPane.showMessageDialog(null, aviso);
 				}
 				comboBox.removeAllItems();
 				Iterator<Turma> it = resultadoPesquisa.iterator();

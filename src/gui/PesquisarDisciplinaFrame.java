@@ -127,7 +127,7 @@ public class PesquisarDisciplinaFrame extends JFrame {
 					resultadoPesquisa =PaginaPrincipal.fachada.getArrayDisciplina().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
-					JOptionPane.showInputDialog(this, aviso);
+					JOptionPane.showMessageDialog(null, aviso);
 				}
 				comboBox.removeAllItems();
 				Iterator<Disciplina> it = resultadoPesquisa.iterator();

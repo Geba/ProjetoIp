@@ -151,7 +151,7 @@ public class EditarProfessorFrame extends JFrame {
 							.getProfessores().procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
-					JOptionPane.showInputDialog(this, aviso);
+					JOptionPane.showMessageDialog(null, aviso);
 				}
 				comboBox.removeAllItems();
 				Iterator<Pessoa> it = resultadoPesquisa.iterator();
