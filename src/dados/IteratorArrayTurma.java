@@ -2,6 +2,8 @@ package dados;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import classesBase.Pessoa;
 import classesBase.Turma;
 
 public class IteratorArrayTurma implements Iterator<Turma> {
@@ -13,7 +15,7 @@ public class IteratorArrayTurma implements Iterator<Turma> {
 		this.array = array;
 		this.indiceAtual = -1;
 		for (int i = 0; this.array[i] != null; i++) {
-			this.contador = i;
+			this.contador = i+1;
 		}
 
 	}
@@ -22,10 +24,11 @@ public class IteratorArrayTurma implements Iterator<Turma> {
 		if(this.contador ==0){
 			return false;
 		}else{
-			return this.indiceAtual < this.contador;	
+			return this.indiceAtual < this.contador-1;	
 		}
-			}
-
+		
+		
+	}
 	public Turma next() {
 		if (!hasNext()) {
 			throw new NoSuchElementException();

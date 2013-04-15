@@ -13,7 +13,7 @@ public class IteratorArrayPessoa implements Iterator<Pessoa> {
 		this.array = array;
 		this.indiceAtual = -1;
 		for (int i = 0; this.array[i] != null; i++) {
-			this.contador = i;
+			this.contador = i+1;
 		}
 
 	}
@@ -22,7 +22,7 @@ public class IteratorArrayPessoa implements Iterator<Pessoa> {
 		if(this.contador ==0){
 			return false;
 		}else{
-			return this.indiceAtual < this.contador;	
+			return this.indiceAtual < this.contador-1;	
 		}
 		
 		

@@ -35,15 +35,18 @@ public class TesteGeba3Array {
 		Pessoa timmy3 = new Aluno("123456789","Timmy Turner3","", "34655843", "F", "",end, "Pai", "Mae", turma);
 		Pessoa timmy4 = new Aluno("123456789","Timmy Turner4","", "34655843", "F", "",end, "Pai", "Mae", turma);
 
-		pessoas.inserir(geba);
-		pessoas.inserir(harry);
-		pessoas.inserir(bruna);
-		pessoas.inserir(novo);
-		pessoas.inserir(alana);
+		//pessoas.inserir(geba);
+		//pessoas.inserir(harry);
+		//pessoas.inserir(bruna);
+		//pessoas.inserir(novo);
+		//pessoas.inserir(alana);
 
 		System.out.println("\nImprima:\n");
-
-		System.out.println("\n\n" + pessoas.imprimir());
+Iterator<Pessoa> it9 = pessoas.getIterator();
+while(it9.hasNext()){
+	System.out.println(it9.next().getNome());
+}
+		//System.out.println("\n\n" + pessoas.imprimir());
 
 		System.out.println("\nProcurando geba:o primeiro da lista\n");
 		try {

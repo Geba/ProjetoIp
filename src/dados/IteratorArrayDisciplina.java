@@ -3,6 +3,7 @@ package dados;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import classesBase.Disciplina;
+import classesBase.Pessoa;
 
 
 public class IteratorArrayDisciplina implements Iterator<Disciplina> {
@@ -14,7 +15,7 @@ public class IteratorArrayDisciplina implements Iterator<Disciplina> {
 		this.array = array;
 		this.indiceAtual = -1;
 		for (int i = 0; this.array[i] != null; i++) {
-			this.contador = i;
+			this.contador = i+1;
 		}
 
 	}
@@ -23,7 +24,7 @@ public class IteratorArrayDisciplina implements Iterator<Disciplina> {
 		if(this.contador ==0){
 			return false;
 		}else{
-			return this.indiceAtual < this.contador;	
+			return this.indiceAtual < this.contador-1;	
 		}
 		
 		
