@@ -19,7 +19,13 @@ public class IteratorArrayPessoa implements Iterator<Pessoa> {
 	}
 
 	public boolean hasNext() {
-		return this.indiceAtual < this.contador-1;
+		if(this.contador ==0){
+			return false;
+		}else{
+			return this.indiceAtual < this.contador;	
+		}
+		
+		
 	}
 
 	public Pessoa next() {
