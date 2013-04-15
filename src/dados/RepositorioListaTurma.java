@@ -187,8 +187,14 @@ public class RepositorioListaTurma implements Repositorio<Turma> {
 
 	@Override
 	public Iterator<Turma> getIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		IteratorListaTurma it = new IteratorListaTurma(this.prox);// Passa
+		// como
+		// argumento
+		// o
+		// primeiro
+		// item da
+		// lista.
+return it;
 	}
 
 }
