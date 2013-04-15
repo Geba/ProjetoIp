@@ -305,7 +305,7 @@ public class AtualizarProfessorFrame extends JFrame {
 					estado, pais);
 			Professor funcionarioAux = new Professor(cpf, nome, dataNasc, rg,
 					sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(professorOriginal,
+			PaginaPrincipal.fachada.atualizarPessoa(
 					funcionarioAux);
 			JOptionPane.showMessageDialog(this,
 					"Professor atualizado com sucesso.");

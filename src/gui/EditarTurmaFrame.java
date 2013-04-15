@@ -72,16 +72,10 @@ public class EditarTurmaFrame extends JFrame {
 		JButton btnAtualizarDados = new JButton("Atualizar dados");
 		btnAtualizarDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				@SuppressWarnings("unused")
-				Turma p = null;
-				try {
-					p = (Turma) comboBox.getSelectedItem();
-				} catch (NullPointerException e) {
-					JOptionPane.showMessageDialog(EditarTurmaFrame.this,
-							"Selecione um Turma:");
-				}
-				AtualizarTurmaFrame frame = new AtualizarTurmaFrame();
+				
+				AtualizarTurmaFrame frame = new AtualizarTurmaFrame((Turma) comboBox.getSelectedItem());
 				frame.setVisible(true);
+				setVisible(false);
 			}
 		});
 

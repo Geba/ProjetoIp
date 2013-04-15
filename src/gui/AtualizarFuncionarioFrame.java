@@ -292,7 +292,7 @@ public class AtualizarFuncionarioFrame extends JFrame {
 Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);			
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Funcionario funcionarioAtualizado = new Funcionario(cpf, nome, dataNasc, rg, pais, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa( funcionarioOriginal, funcionarioAtualizado);
+			PaginaPrincipal.fachada.atualizarPessoa(funcionarioAtualizado);
 			JOptionPane.showMessageDialog(this,"Funcionario atualizado com sucesso.");
 		} catch (RepositorioException e) {
 			JOptionPane.showMessageDialog(this,"Erro no repositorio.");

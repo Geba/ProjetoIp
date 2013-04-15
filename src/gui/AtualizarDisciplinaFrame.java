@@ -21,6 +21,7 @@ import classesBase.Disciplina;
 
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
+import excecoes.RepositorioException;
 
 
 import java.awt.event.ActionListener;
@@ -132,6 +133,8 @@ public class AtualizarDisciplinaFrame extends JFrame {
 			e.printStackTrace();
 		} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
+		} catch (RepositorioException e) {
+			JOptionPane.showMessageDialog(this, "Erro no sistema. Desculpe-nos!");
 		}
 	}	
 }

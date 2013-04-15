@@ -345,11 +345,15 @@ public class AtualizarAlunoFrame extends JFrame {
 			Controle.controlePessoa(cpf, nome, dataNasc, rg, sexo, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Aluno alunoAtualizado = new Aluno(cpf, nome, dataNasc, rg, sexo, telefone, endereco, pai, mae, turma);
-			PaginaPrincipal.fachada.atualizarAluno(alunoOriginal, alunoAtualizado);
+			PaginaPrincipal.fachada.atualizarAluno(alunoAtualizado);
 			JOptionPane.showMessageDialog(this,"Aluno atualizado com sucesso.");
 			voltar();
 			} catch (EntradaInvalidaException e) {
 			JOptionPane.showMessageDialog(this, e.getOndeErrou());
+			} catch (ElementoNaoEncontradoException e) {
+				JOptionPane.showMessageDialog(this, "Aluno nao encontrado");
+			} catch (RepositorioException e) {
+				JOptionPane.showMessageDialog(this,"Erro no sistema. Desculpe-nos!");
 			}
 		
 	}

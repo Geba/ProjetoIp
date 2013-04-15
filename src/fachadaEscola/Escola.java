@@ -274,54 +274,18 @@ public class Escola {
 		turmas.remover(nome);
 	}
 
-	public void atualizarPessoa(Pessoa pessoaOriginal, Pessoa pessoaAtualizada)
+	public void atualizarPessoa(Pessoa item)
 			throws ElementoNaoEncontradoException, RepositorioException {
-		if (pessoaOriginal.getCpf().equals(pessoaAtualizada.getCpf())) {
-			try {
-				pessoas.atualizar(pessoaAtualizada);
-			} catch (ElementoNaoEncontradoException e) {// isso nunca vai
-														// acontecer
-			}
-		} else {
-			try {
-				removerPessoa(pessoaOriginal.getCpf());
-				this.pessoas.inserir(pessoaAtualizada);
-			} catch (EntradaInvalidaException e) {
-			}
-		}
-		try {
-			pessoas.atualizar(pessoaAtualizada);
-		} catch (ElementoNaoEncontradoException e) {
-		} catch (RepositorioException f) {
-
-		}
+		pessoas.atualizar(item);
 	}
 
-	public void atualizarDisciplina(Disciplina disc)
-			throws ElementoNaoEncontradoException {
-		try {
-			try {
-				disciplinas.atualizar(disc);
-			} catch (RepositorioException e) {
-
-				e.printStackTrace();
-			}
-		} catch (ElementoNaoEncontradoException e) {
-
-		}
+	public void atualizarDisciplina(Disciplina disc) throws ElementoNaoEncontradoException, RepositorioException{
+			disciplinas.atualizar(disc);
 	}
 
-	public void atualizarTurma(Turma turmaOriginal, Turma turmaAtualizada)
-			throws ElementoNaoEncontradoException {
-		try {
-			try {
-				turmas.atualizar(turmaAtualizada);
-			} catch (RepositorioException e) {
-
-			}
-		} catch (ElementoNaoEncontradoException e) {
-
-		}
+	public void atualizarTurma(Turma item)
+			throws ElementoNaoEncontradoException, RepositorioException {
+		turmas.atualizar(item);
 	}
 
 	public String relatorioAlunos() { // tem que fazer os metodos relatorio
@@ -404,55 +368,12 @@ public class Escola {
 		return retorno;
 	}
 
-	public void atualizarAluno(Aluno alunoOriginal, Aluno alunoAtualizado) {
-		if (alunoAtualizado.getCpf().equals(alunoOriginal.getCpf())) {
-			try {
-				pessoas.atualizar(alunoAtualizado);
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ElementoNaoEncontradoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			alunoAtualizado.setBoletim(alunoOriginal.getBoletim());
-			try {
-				pessoas.remover(alunoOriginal.getCpf());
-			} catch (ElementoNaoEncontradoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				pessoas.inserir(alunoAtualizado);
-			} catch (RepositorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-		try {
-			turmas.procurar(alunoOriginal.getTurma().getNome()).removerAluno(
-					alunoOriginal.getCpf());
-		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			turmas.procurar(alunoAtualizado.getTurma().getNome()).inserirAluno(
-					alunoAtualizado);
-		} catch (ElementoNaoEncontradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void atualizarAluno(Pessoa item) throws ElementoNaoEncontradoException, RepositorioException {
+		pessoas.atualizar(item);
 	}
 
-	public void atualizarProfessor(Professor professorOriginal,
-			Professor professorAtualizado) {
-		professorOriginal = professorAtualizado;
+	public void atualizarProfessor(Pessoa item) throws ElementoNaoEncontradoException, RepositorioException {
+		pessoas.atualizar(item);
 	}
 
 	public RepositorioArrayPessoa getAlunos() {

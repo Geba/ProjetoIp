@@ -290,7 +290,7 @@ public class AtualizarAdmFrame extends JFrame {
 			Controle.controlePessoa(cpf, nome, dataNasc, rg, funcao, telefone, rua, numero, bairro, cep, cidade, estado, pais);
 			Endereco endereco = new Endereco(rua, numero, bairro, cep, cidade, estado, pais);
 			Administrador administradorAtualizado = new Administrador(cpf, nome, dataNasc, rg, sexo, telefone, endereco, funcao);
-			PaginaPrincipal.fachada.atualizarPessoa(administradoOriginal, administradorAtualizado);
+			PaginaPrincipal.fachada.atualizarPessoa(administradorAtualizado);
 			JOptionPane.showMessageDialog(this,"Administrador atualizado com sucesso.");
 			voltar();
 		} catch (RepositorioException e) {
