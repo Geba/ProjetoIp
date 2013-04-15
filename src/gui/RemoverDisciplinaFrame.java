@@ -153,7 +153,7 @@ public class RemoverDisciplinaFrame extends JFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				comboBox.removeAll();
+				
 				String procura = textField.getText();
 				RepositorioArrayDisciplina resultadoPesquisa = new RepositorioArrayDisciplina();
 				try {

@@ -158,7 +158,7 @@ public class RemoverAlunoFrame extends JFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				comboBox.removeAll();
+				//comboBox.removeAll();
 				String procura = textField.getText();
 				RepositorioArrayPessoa resultadoPesquisa = new RepositorioArrayPessoa();
 				try {
