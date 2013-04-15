@@ -201,8 +201,7 @@ public class AlunosTurmaFrame extends JFrame {
 									+ turmaNova.getNome());
 					voltar();
 				} catch (ElementoNaoEncontradoException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Aluno nao encontrado! ");
 				}
 
 			}
