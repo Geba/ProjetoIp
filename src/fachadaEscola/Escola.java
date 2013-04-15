@@ -59,10 +59,11 @@ public class Escola {
 			turmas = new RepositorioArrayTurma();
 			disciplinas = new RepositorioArrayDisciplina();
 		} else {
-			JOptionPane.showMessageDialog(null, "Insira um tipo de repositorio no config.txt");
+			JOptionPane.showMessageDialog(null,
+					"Insira um tipo de repositorio no config.txt");
 		}
-
 		
+		teste();
 
 	}
 
@@ -576,6 +577,58 @@ public class Escola {
 		} catch (ElementoNaoEncontradoException e) {
 		}
 		professorAux.inserirDisciplina(disciplina);
+	}
+
+	public void teste() {
+		try {
+			inserirTurma("Turma1");
+			this.inserirAluno("344000134342", "heey", "01/01/1111", "8349638",
+					"M", "34626209", "rua", "1234", "bairro", "51030630",
+					"cidade", "estado", "pais", "pai", "mae", this.getTurmas()
+							.procurar("Turma1"));
+			this.inserirAluno("2342300044300134342", "heey", "01/01/1111",
+					"8349638", "M", "34626209", "rua", "1234", "bairro",
+					"51030630", "cidade", "estado", "pais", "pai", "mae", this
+							.getTurmas().procurar("Turma1"));
+			this.inserirAluno("32423413234324342", "heey", "01/01/1111",
+					"8349638", "M", "34626209", "rua", "1234", "bairro",
+					"51030630", "cidade", "estado", "pais", "pai", "mae", this
+							.getTurmas().procurar("Turma1"));
+			this.inserirAluno("234234233242334234234", "heey", "01/01/1111",
+					"8349638", "M", "34626209", "rua", "1234", "bairro",
+					"51030630", "cidade", "estado", "pais", "pai", "mae", this
+							.getTurmas().procurar("Turma1"));
+			this.inserirAluno("0003423333343232", "heey", "01/01/1111",
+					"8349638", "M", "34626209", "rua", "1234", "bairro",
+					"51030630", "cidade", "estado", "pais", "pai", "mae", this
+							.getTurmas().procurar("Turma1"));
+			this.inserirAluno("000324333432000134342", "heey", "01/01/1111",
+					"8349638", "M", "34626209", "rua", "1234", "bairro",
+					"51030630", "cidade", "estado", "pais", "pai", "mae", this
+							.getTurmas().procurar("Turma1"));
+			inserirProfessor("334234234234", "professor", "01/01/2001",
+					"2234234123", "Feminino", "44444444", "tua", "numero",
+					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
+			inserirProfessor("334234212121221", "professor", "01/01/2001",
+					"2234234123", "Feminino", "44444444", "tua", "numero",
+					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
+			inserirProfessor("3342342312214", "professor", "01/01/2001",
+					"2234234123", "Feminino", "44444444", "tua", "numero",
+					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
+		} catch (EntradaInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ElementoJaCadastradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RepositorioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ElementoNaoEncontradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }
