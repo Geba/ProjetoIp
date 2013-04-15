@@ -92,7 +92,7 @@ public class RemoverFuncionarioFrame extends JFrame {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						JOptionPane.showMessageDialog(RemoverFuncionarioFrame.this,"Aluno removido com sucesso.");
+						JOptionPane.showMessageDialog(RemoverFuncionarioFrame.this,"Funcionario removido com sucesso.");
 					} catch (ElementoNaoEncontradoException e1) {
 					}
 					voltar();

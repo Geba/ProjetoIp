@@ -94,7 +94,7 @@ public class RemoverProfessorFrame extends JFrame {
 						}
 						JOptionPane.showMessageDialog(
 								RemoverProfessorFrame.this,
-								"Aluno removido com sucesso.");
+								"Professor removido com sucesso.");
 					} catch (ElementoNaoEncontradoException e1) {
 					}
 					voltar();
