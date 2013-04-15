@@ -46,8 +46,10 @@ public class TesteGeba3Lista {
 
 		System.out.println("\nImprima:\n");
 
-		System.out.println("\n\n" + pessoas.imprimir());
-
+		Iterator<Pessoa> it2 = pessoas.getIterator();
+		while (it2.hasNext()){
+			System.out.println(it2.next().getNome());
+		}
 		System.out.println("\nProcurando geba:o primeiro da lista\n");
 		try {
 			System.out.println(pessoas.procurar("83830480504").getNome());
@@ -186,12 +188,12 @@ public class TesteGeba3Lista {
 		while (it.hasNext()) {
 			System.out.println(it.next().getNome());
 		}
-		
+		System.out.println("Fadaas!");
 		
 		System.out.println("procurando ful");
 		try{
 			RepositorioArrayPessoa resultado = pessoas.procurarNome("geo");
-			Iterator<Pessoa> it2 = resultado.iterator();
+			it2 = resultado.iterator();
 			while (it2.hasNext()){
 				System.out.println(it2.next().getNome());
 			}
@@ -199,8 +201,5 @@ public class TesteGeba3Lista {
 		}catch(ElementoNaoEncontradoException e){
 			System.out.println("Nao achei");
 		}
-		
-		System.out.println("Fadaas!");
-
 	}
 }
