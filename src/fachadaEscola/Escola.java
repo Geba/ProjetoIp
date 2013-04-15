@@ -581,38 +581,154 @@ public class Escola {
 
 	public void teste() {
 		try {
+			
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+
+			Endereco end = new Endereco("Rua", "123", "Bairro", "51030630",
+					"Cidade", "Estado", "Pais");
+			Turma turma = new Turma("tumrma1");
+			Pessoa bruna = new Aluno("00000000001", "Bruna", "", "7727724", "F",
+					"", end, "Luiz", "Nancy", turma);
+			Pessoa harry = new Aluno("00000000002", "Harry", "", "7727724", "F",
+					"", end, "Luiz", "Nancy", turma);
+			Pessoa alana = new Aluno("00000000003", "Laryssa", "", "7727724", "F",
+					"", end, "Luiz", "Nancy", turma);
+			Pessoa geovane = new Aluno("00000000004", "Geovane Silva Pereira",
+					"08/11/1992", "83830480504", "M", "34626209", end, "Gilvan",
+					"Marcia", turma);
+
+			Pessoa geovane2 = new Aluno("00000000005", "Geovane2", "", "7727724",
+					"F", "", end, "Luiz", "Nancy", turma);
+
+			Pessoa novo = new Aluno("00000000006", "Fulano", "", "7727724", "F",
+					"", end, "Luiz", "Nancy", turma);
+
+			Pessoa timmy = new Aluno("00000000007", "Timmy Turner", "", "34655843",
+					"F", "", end, "Pai", "Mae", turma);
+			Pessoa bob = new Aluno("00000000008", "BobSponge SquarePants", "",
+					"12321", "A", "", end, "Pai", "Mae", turma);
+			Pessoa frango = new Aluno("00000000009", "Frango", "", "1245789", "F",
+					"", end, "Pai", "Mae", turma);
+			Pessoa vaca = new Aluno("00000000010", "vaca", "", "1245789", "F", "",
+					end, "Pai", "Mae", turma);
+			Pessoa jerry = new Aluno("00000000012", "Jerry", "", "12235521", "F",
+					"", end, "Pai", "Mae", turma);
+			Pessoa tom = new Aluno("00000000013", "Tom", "", "12235521", "F", "",
+					end, "Pai", "Mae", turma);
+			Pessoa johny = new Aluno("00000000014", "Johny", "", "12233421", "F",
+					"", end, "Pai", "Mae", turma);
+			Pessoa lindinha = new Aluno("00000000015", "Lindinha", "", "122321",
+					"F", "", end, "Pai", "Mae", turma);
+			Pessoa docinho = new Aluno("00000000011", "Docinho", "", "122321", "F",
+					"", end, "Pai", "Mae", turma);
+			Pessoa flor = new Aluno("00000000016", "Florzinha", "", "122321", "F",
+					"", end, "Pai", "Mae", turma);
+			Pessoa untonio = new Professor("00000000017", "Untonio", "",
+					"123454433", "F", "333333333", end, "ser pai");
+			Pessoa prof = new Professor("00000000018", "Profinho", "",
+					"1234588833", "F", "333333333", end, "ser pai");
+			Pessoa untonio2 = new Professor("00000000019", "Untonio", "",
+					"123454433", "F", "333333333", end, "ser pai");
+			Pessoa untonio3 = new Professor("00000000020", "Untonio", "",
+					"123454433", "F", "333333333", end, "ser pai");
+			Pessoa untonio4 = new Professor("00000000021", "Untonio", "",
+					"123454433", "F", "333333333", end, "ser pai");
+
+			Disciplina d1 = new Disciplina("disc", "ser legal");
+			Disciplina d2 = new Disciplina("disc2", "ser legal");
+			Disciplina d3 = new Disciplina("disc3", "ser legal");
+			turma.inserirDisciplina(d1);
+			turma.inserirDisciplina(d2);
+			turma.inserirDisciplina(d3);
+			try {
+				pessoas.inserir(untonio4);
+				pessoas.inserir(untonio3);
+				pessoas.inserir(untonio2);
+				pessoas.inserir(geovane);
+				pessoas.inserir(geovane2);
+				pessoas.inserir(harry);
+				pessoas.inserir(bruna);
+				pessoas.inserir(novo);
+				pessoas.inserir(alana);
+				pessoas.inserir(timmy);
+				pessoas.inserir(bob);
+				pessoas.inserir(vaca);
+				pessoas.inserir(frango);
+				pessoas.inserir(jerry);
+				pessoas.inserir(johny);
+				pessoas.inserir(tom);
+				pessoas.inserir(flor);
+				pessoas.inserir(docinho);
+				pessoas.inserir(lindinha);
+				pessoas.inserir(untonio);
+				pessoas.inserir(prof);
+				disciplinas.inserir(d1);
+				disciplinas.inserir(d2);
+				disciplinas.inserir(d3);
+				turmas.inserir(turma);
+				((Professor) untonio).inserirDisciplina(d1);
+				((Professor) untonio).inserirDisciplina(d2);
+				((Professor) untonio).inserirDisciplina(d3);
+				((Professor) untonio2).inserirTurma(turma);
+				((Professor) untonio2).inserirDisciplina(d1);
+				((Professor) untonio2).inserirDisciplina(d2);
+				((Professor) untonio2).inserirDisciplina(d3);
+				((Professor) untonio2).inserirTurma(turma);
+				((Professor) untonio4).inserirDisciplina(d1);
+				((Professor) untonio4).inserirDisciplina(d2);
+				((Professor) untonio4).inserirDisciplina(d3);
+				((Professor) untonio4).inserirTurma(turma);
+				((Professor) untonio3).inserirDisciplina(d1);
+				((Professor) untonio3).inserirDisciplina(d2);
+				((Professor) untonio3).inserirDisciplina(d3);
+				((Professor) untonio3).inserirTurma(turma);
+				((Professor) prof).inserirDisciplina(d1);
+				((Professor) prof).inserirDisciplina(d2);
+				((Professor) prof).inserirDisciplina(d3);
+				((Professor) prof).inserirTurma(turma);
+			} catch (RepositorioException e) {
+				System.out.println("erro");
+			}
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			
 			inserirTurma("Turma1");
-			this.inserirAluno("344000134342", "heey", "01/01/1111", "8349638",
+			this.inserirAluno("344000134342", "Wandergleison", "01/01/1111", "8349638",
 					"M", "34626209", "rua", "1234", "bairro", "51030630",
 					"cidade", "estado", "pais", "pai", "mae", this.getTurmas()
 							.procurar("Turma1"));
-			this.inserirAluno("2342300044300134342", "heey", "01/01/1111",
+			this.inserirAluno("2342300044300134342", "Maria do Carmo", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("32423413234324342", "heey", "01/01/1111",
+			this.inserirAluno("32423413234324342", "Maria Aparecida", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("234234233242334234234", "heey", "01/01/1111",
+			this.inserirAluno("234234233242334234234", "Izinalda", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("0003423333343232", "heey", "01/01/1111",
+			this.inserirAluno("0003423333343232", "Yslan", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("000324333432000134342", "heey", "01/01/1111",
+			this.inserirAluno("000324333432000134342", "Creuza", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			inserirProfessor("334234234234", "professor", "01/01/2001",
+			inserirProfessor("334234234234", "Dorgival", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
-			inserirProfessor("334234212121221", "professor", "01/01/2001",
+			inserirProfessor("334234212121221", "Edvaldo", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
-			inserirProfessor("3342342312214", "professor", "01/01/2001",
+			inserirProfessor("3342342312214", "Socorro", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
 		} catch (EntradaInvalidaException e) {
