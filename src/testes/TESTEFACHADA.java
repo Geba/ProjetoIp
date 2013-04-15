@@ -24,13 +24,34 @@ public class TESTEFACHADA {
 
 		System.out.println("Pegando os alunoss: \n");
 
-		Iterator<Pessoa> it1 = fachada.getAlunos().getIterator();
+
 		fachada.inserirTurma("Turma1");
 		
-		fachada.inserirAluno("000000000000134342", "heey", "01/01/1111", "8349638", "M",
+		fachada.inserirAluno("344000134342", "heey", "01/01/1111", "8349638", "M",
 				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
 				"estado", "pais", "pai", "mae",
 				fachada.getTurmas().procurar("Turma1"));
+		fachada.inserirAluno("2342300044300134342", "heey", "01/01/1111", "8349638", "M",
+				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
+				"estado", "pais", "pai", "mae",
+				fachada.getTurmas().procurar("Turma1"));
+		fachada.inserirAluno("32423413234324342", "heey", "01/01/1111", "8349638", "M",
+				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
+				"estado", "pais", "pai", "mae",
+				fachada.getTurmas().procurar("Turma1"));
+		fachada.inserirAluno("234234233242334234234", "heey", "01/01/1111", "8349638", "M",
+				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
+				"estado", "pais", "pai", "mae",
+				fachada.getTurmas().procurar("Turma1"));
+		fachada.inserirAluno("0003423333343232", "heey", "01/01/1111", "8349638", "M",
+				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
+				"estado", "pais", "pai", "mae",
+				fachada.getTurmas().procurar("Turma1"));
+		fachada.inserirAluno("000324333432000134342", "heey", "01/01/1111", "8349638", "M",
+				"34626209", "rua", "1234", "bairro", "51030630", "cidade",
+				"estado", "pais", "pai", "mae",
+				fachada.getTurmas().procurar("Turma1"));
+		Iterator<Pessoa> it1 = fachada.getAlunos().getIterator();
 		while (it1.hasNext()) {
 			System.out.println(it1.next().resumo());
 		}
