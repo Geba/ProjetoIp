@@ -23,7 +23,7 @@ import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 
-public class Escola {
+public class CopyOfEscola {
 
 	Repositorio<Pessoa> pessoas;
 	Repositorio<Turma> turmas; // AINDA TEM QUE TRATAR OS ERROS NO CATCH
@@ -31,7 +31,7 @@ public class Escola {
 											// ATUALIZAR
 											// DONE
 
-	public Escola() {
+	public CopyOfEscola() {
 
 		FileReader arq;
 		String repositorio = "";
@@ -516,6 +516,12 @@ public class Escola {
 	public void teste() {
 		try {
 			
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			
+			
 
 			Endereco end = new Endereco("Rua", "123", "Bairro", "51030630",
 					"Cidade", "Estado", "Pais");
@@ -621,45 +627,45 @@ public class Escola {
 				((Professor) prof).inserirTurma(turma);
 			} catch (RepositorioException e) {
 				System.out.println("erro");
-			}	
-			this.inserirDisciplina("d232", "Ser legal!");
-			this.inserirDisciplina("d332", "Ser legal!");
-			this.inserirTurma("Turma1");
-			this.inserirDisciplina("d123", "Funcionar");
-			//System.out.println(this.procurarTurma("Turma1").getNome());
-			//System.out.println(this.procurarDisciplina("d123"));
-			this.procurarTurma("Turma1").inserirDisciplina(this.procurarDisciplina("d123"));
-			this.inserirAluno("000000000101", "Wandergleison", "01/01/1111", "8349638",
+			}
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			// - PARA TESTES -
+			
+			inserirTurma("Turma1");
+			procurarTurma("Turma1").inserirDisciplina(d2);;
+			this.inserirAluno("344000134342", "Wandergleison", "01/01/1111", "8349638",
 					"M", "34626209", "rua", "1234", "bairro", "51030630",
 					"cidade", "estado", "pais", "pai", "mae", this.getTurmas()
 							.procurar("Turma1"));
-			this.inserirAluno("000000000022", "Maria do Carmo", "01/01/1111",
+			this.inserirAluno("2342300044300134342", "Maria do Carmo", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("000000000303", "Maria Aparecida", "01/01/1111",
+			this.inserirAluno("32423413234324342", "Maria Aparecida", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("000000000204", "Izinalda", "01/01/1111",
+			this.inserirAluno("234234233242334234234", "Izinalda", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("000000000205", "Yslan", "01/01/1111",
+			this.inserirAluno("0003423333343232", "Yslan", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirAluno("000000000026", "Creuza", "01/01/1111",
+			this.inserirAluno("000324333432000134342", "Creuza", "01/01/1111",
 					"8349638", "M", "34626209", "rua", "1234", "bairro",
 					"51030630", "cidade", "estado", "pais", "pai", "mae", this
 							.getTurmas().procurar("Turma1"));
-			this.inserirProfessor("002000000008", "Dorgival", "01/01/2001",
+			inserirProfessor("334234234234", "Dorgival", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
-		this.	inserirProfessor("000010000009", "Edvaldo", "01/01/2001",
+			inserirProfessor("334234212121221", "Edvaldo", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
-			this.inserirProfessor("002000000010", "Socorro", "01/01/2001",
+			inserirProfessor("3342342312214", "Socorro", "01/01/2001",
 					"2234234123", "Feminino", "44444444", "tua", "numero",
 					"bairro", "cep", "cidade", "estado", "pais", "funcionar");
 		} catch (EntradaInvalidaException e) {

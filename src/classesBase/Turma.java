@@ -18,30 +18,30 @@ public class Turma {
 		this.disciplinas = new RepositorioArrayDisciplina();
 	}
 
-	public void inserirDisciplina(String nome, String ementa) {
+	public void inserirDisciplinaNova(String nome, String ementa) {
 		Disciplina d = new Disciplina(nome, ementa);
-		disciplinas.inserir(d);
+		this.disciplinas.inserir(d);
 	}
 
 	public void inserirDisciplina(Disciplina d) {
-		disciplinas.inserir(d);
+	this.disciplinas.inserir(d);
 	}
 
 	public void inserirAluno(Pessoa p) {
-		alunos.inserir(p);
+		this.alunos.inserir(p);
 	}
 
 	public void removerDisciplina(String nome)
 			throws ElementoNaoEncontradoException {
-		disciplinas.remover(nome);
+		this.disciplinas.remover(nome);
 	}
 
 	public void removerAluno(String cpf) throws ElementoNaoEncontradoException {
-		alunos.remover(nome);
+		this.alunos.remover(nome);
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
@@ -49,7 +49,7 @@ public class Turma {
 	}
 
 	public RepositorioArrayPessoa getAlunos() {
-		return alunos;
+		return this.alunos;
 	}
 
 	public void setAlunos(RepositorioArrayPessoa alunos) {
@@ -57,7 +57,7 @@ public class Turma {
 	}
 
 	public RepositorioArrayDisciplina getDisciplinas() {
-		return disciplinas;
+		return this.disciplinas;
 	}
 
 	public void setDisciplinas(RepositorioArrayDisciplina disciplinas) {
@@ -65,7 +65,7 @@ public class Turma {
 	}
 
 	public int qtdDeDisciplinas() {
-		return disciplinas.getCont();
+		return this.disciplinas.getCont();
 	}
 
 	public String toString() {
@@ -85,9 +85,11 @@ public class Turma {
 		if (itAlun.hasNext()) {
 			resumo = resumo + "\nAlunos:";
 			while (itDisc.hasNext()) {
+				
 				resumo += "\n" + itAlun.next().getNome();
 			}
 		}
+		//System.out.println(resumo);
 		return resumo;
 
 	}

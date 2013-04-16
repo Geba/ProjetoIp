@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class EditarTurmaFrame extends JFrame {
@@ -52,7 +53,7 @@ public class EditarTurmaFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public EditarTurmaFrame() {
-	
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -60,10 +61,13 @@ public class EditarTurmaFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 114, 462, 148);
+		contentPane.add(scrollPane);
+
 		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
-		textArea.setBounds(40, 114, 462, 148);
-		contentPane.add(textArea);
 
 		JLabel lblSelecioneAOpcao = new JLabel("Selecione a opcao desejada:");
 		lblSelecioneAOpcao.setBounds(40, 271, 268, 16);
@@ -72,8 +76,9 @@ public class EditarTurmaFrame extends JFrame {
 		JButton btnAtualizarDados = new JButton("Atualizar dados");
 		btnAtualizarDados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				AtualizarTurmaFrame frame = new AtualizarTurmaFrame((Turma) comboBox.getSelectedItem());
+
+				AtualizarTurmaFrame frame = new AtualizarTurmaFrame(
+						(Turma) comboBox.getSelectedItem());
 				frame.setVisible(true);
 				setVisible(false);
 			}
@@ -85,26 +90,33 @@ public class EditarTurmaFrame extends JFrame {
 		comboBox = new JComboBox();
 		comboBox.removeAllItems();
 		Iterator<Turma> it = PaginaPrincipal.fachada.getTurmas().getIterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			comboBox.addItem(it.next());
 		}
 		if (comboBox.getSelectedItem() != null) {
-			textArea.setText(((Turma) comboBox.getSelectedItem())
-					.resumo());
+			textArea.setText(((Turma) comboBox.getSelectedItem()).resumo());
 		}
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedItem() != null) {
-					textArea.setText(((Turma) comboBox.getSelectedItem())
-							.resumo());
+					Turma turma = (Turma) comboBox.getSelectedItem();
+					Iterator<Pessoa> it = PaginaPrincipal.fachada
+							.getAlunosTurma(turma.getNome()).getIterator();
+					String texto = turma.resumo();
+					while (it.hasNext()) {
+						Aluno aluno = (Aluno) it.next();
+						if (aluno.getTurma().getNome().equals(turma.getNome())) {
+							texto = texto + "\n" + aluno.getNome();
+						}
+					}
+					textArea.setText(texto);
 				}
 			}
 		});
 
 		comboBox.setBounds(40, 76, 462, 27);
 		contentPane.add(comboBox);
-		
-						
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -131,11 +143,12 @@ public class EditarTurmaFrame extends JFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//comboBox.removeAll();
+				// comboBox.removeAll();
 				String procura = textField.getText();
 				RepositorioArrayTurma resultadoPesquisa = new RepositorioArrayTurma();
 				try {
-					resultadoPesquisa =PaginaPrincipal.fachada.getArrayTurma().procurarNome(procura);
+					resultadoPesquisa = PaginaPrincipal.fachada.getArrayTurma()
+							.procurarNome(procura);
 				} catch (ElementoNaoEncontradoException e1) {
 					String aviso = "A pesquisa não retornou resultados";
 					JOptionPane.showMessageDialog(null, aviso);
