@@ -17,10 +17,13 @@ import javax.swing.JPasswordField;
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ButtonGroup;
 
+import principal.PaginaPrincipal;
 import negocio.Controle;
 
 public class CadastrarProfessorFrame extends JFrame {

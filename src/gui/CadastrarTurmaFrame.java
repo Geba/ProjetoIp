@@ -11,8 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import principal.PaginaPrincipal;
 import negocio.Controle;
-
 import excecoes.ElementoJaCadastradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;

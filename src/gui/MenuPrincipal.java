@@ -19,12 +19,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Window;
 import java.awt.SystemColor;
+
 import javax.swing.UIManager;
+
+import principal.PaginaPrincipal;
 
 public class MenuPrincipal extends JFrame {
 

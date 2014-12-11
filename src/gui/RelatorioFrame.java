@@ -13,9 +13,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JScrollBar;
+
+import principal.PaginaPrincipal;
 
 public class RelatorioFrame extends JFrame {
 

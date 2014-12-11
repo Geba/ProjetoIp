@@ -24,9 +24,13 @@ import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ButtonGroup;
+
+import principal.PaginaPrincipal;
 
 @SuppressWarnings("serial")
 public class AtualizarProfessorFrame extends JFrame {

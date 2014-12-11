@@ -14,16 +14,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import classesBase.*;
-
-
 import dados.RepositorioArrayPessoa;
 import excecoes.ElementoNaoEncontradoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+
+import principal.PaginaPrincipal;
+
 import java.awt.Scrollbar;
 
 

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import principal.PaginaPrincipal;
 import negocio.Controle;
 //import javax.swing.SwingConstants;
 

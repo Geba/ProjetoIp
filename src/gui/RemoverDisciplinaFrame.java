@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import classesBase.*;
-
 import dados.RepositorioArrayDisciplina;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
@@ -19,9 +19,12 @@ import excecoes.RepositorioException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
+import principal.PaginaPrincipal;
 
 @SuppressWarnings("serial")
 public class RemoverDisciplinaFrame extends JFrame {

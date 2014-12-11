@@ -4,12 +4,12 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
+import principal.PaginaPrincipal;
 import excecoes.ElementoJaCadastradoException;
 import excecoes.ElementoNaoEncontradoException;
 import excecoes.EntradaInvalidaException;
 import excecoes.RepositorioException;
 import fachadaEscola.Escola;
-import gui.PaginaPrincipal;
 import classesBase.*;
 import dados.*;
 

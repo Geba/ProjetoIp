@@ -15,16 +15,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
 import classesBase.*;
-
 import dados.Repositorio;
 import excecoes.ElementoNaoEncontradoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ImageIcon;
+
 import java.awt.Color;
+
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
+
+import principal.PaginaPrincipal;
 
 public class ProcurarFrame extends JFrame {
 

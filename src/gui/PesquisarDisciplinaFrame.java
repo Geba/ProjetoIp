@@ -13,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import classesBase.*;
-
 import dados.Repositorio;
 import dados.RepositorioArrayDisciplina;
 import dados.RepositorioArrayDisciplina;
@@ -22,9 +21,12 @@ import excecoes.ElementoNaoEncontradoException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+
+import principal.PaginaPrincipal;
 
 @SuppressWarnings("serial")
 public class PesquisarDisciplinaFrame extends JFrame {

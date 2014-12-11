@@ -7,13 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import classesBase.Professor;
-
 import classesBase.Turma;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-
 import javax.swing.JButton;
 
 import excecoes.ElementoJaCadastradoException;
@@ -23,9 +21,11 @@ import excecoes.RepositorioException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
+import principal.PaginaPrincipal;
 import dados.Repositorio;
 
 public class EditarProfessorTurmasFrame extends JFrame {
